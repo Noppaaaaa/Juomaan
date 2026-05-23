@@ -14326,5 +14326,311 @@
         "tyyppi": "Viskit",
         "linkki": "https://www.alko.fi/fi/tuotteet/958797/basil-haydens-kentucky-straight-bourbon",
         "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/958797/basil-haydens-kentucky-straight-bourbon.jpg"
+    },
+    {
+        "nimi": "Joseph Drouhin Rully Rouge 2023",
+        "hinta_eur": 32.98,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/423117/joseph-drouhin-rully-rouge-2023",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/423117/joseph-drouhin-rully-rouge-2023.jpg"
+    },
+    {
+        "nimi": "Paul Jaboulet Aîné Chateauneuf-du-Pape Les Cédres 2019",
+        "hinta_eur": 52.45,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 15.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/933132/paul-jaboulet-ane-chateauneuf-du-pape-les-cedres-2019",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/933132/paul-jaboulet-ane-chateauneuf-du-pape-les-cedres-2019.jpg"
+    },
+    {
+        "nimi": "Pizzolato Organic Moscato Dolce 2024",
+        "hinta_eur": 12.85,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 6.5,
+        "tyyppi": "Kuohuviinit ja samppanjat",
+        "linkki": "https://www.alko.fi/fi/tuotteet/910991/pizzolato-organic-moscato-dolce-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/910991/pizzolato-organic-moscato-dolce-2024.jpg"
+    },
+    {
+        "nimi": "Sancrispino Sangiovese Organic kartonkitölkki",
+        "hinta_eur": 6.19,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 13.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/900529/sancrispino-sangiovese-organic-kartonkitolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/900529/sancrispino-sangiovese-organic-kartonkitolkki.jpg"
+    },
+    {
+        "nimi": "Ceretto Barolo Brunate 2021",
+        "hinta_eur": 170.0,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/400179/ceretto-barolo-brunate-2021",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/400179/ceretto-barolo-brunate-2021.jpg"
+    },
+    {
+        "nimi": "San Miguel de la Vega Reserva 2019",
+        "hinta_eur": 10.98,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/900938/san-miguel-de-la-vega-reserva-2019",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/900938/san-miguel-de-la-vega-reserva-2019.jpg"
+    },
+    {
+        "nimi": "Williams Elegant 48 Gin",
+        "hinta_eur": 67.72,
+        "tilavuus_litraa": 0.7,
+        "alkoholi_prosentti": 48.0,
+        "tyyppi": "Väkevä",
+        "linkki": "https://www.alko.fi/fi/tuotteet/112207/williams-elegant-48-gin",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/112207/williams-elegant-48-gin.jpg"
+    },
+    {
+        "nimi": "Hayman's Peach & Rose Cup",
+        "hinta_eur": 35.98,
+        "tilavuus_litraa": 0.7,
+        "alkoholi_prosentti": 25.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/153897/haymans-peach-rose-cup",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/153897/haymans-peach-rose-cup.jpg"
+    },
+    {
+        "nimi": "Lasso Zero 0% tölkki",
+        "hinta_eur": 0.99,
+        "tilavuus_litraa": 0.33,
+        "alkoholi_prosentti": 0.0,
+        "tyyppi": "Alkoholiton",
+        "linkki": "https://www.alko.fi/fi/tuotteet/600061/lasso-zero-0-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/600061/lasso-zero-0-tolkki.jpg"
+    },
+    {
+        "nimi": "LaCheteau Saumur Demi-Sec",
+        "hinta_eur": 16.98,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 11.5,
+        "tyyppi": "Kuohuviinit ja samppanjat",
+        "linkki": "https://www.alko.fi/fi/tuotteet/574947/lacheteau-saumur-demi-sec",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/574947/lacheteau-saumur-demi-sec.jpg"
+    },
+    {
+        "nimi": "Juli Cabernet Sauvignon Organic 2024",
+        "hinta_eur": 14.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/468957/juli-cabernet-sauvignon-organic-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/468957/juli-cabernet-sauvignon-organic-2024.jpg"
+    },
+    {
+        "nimi": "Oban 14 Year Old Single Malt",
+        "hinta_eur": 93.0,
+        "tilavuus_litraa": 0.7,
+        "alkoholi_prosentti": 43.0,
+        "tyyppi": "Väkevä",
+        "linkki": "https://www.alko.fi/fi/tuotteet/906087/oban-14-year-old-single-malt",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/906087/oban-14-year-old-single-malt.jpg"
+    },
+    {
+        "nimi": "Small Wonder Pinot Noir 2024",
+        "hinta_eur": 26.9,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/900136/small-wonder-pinot-noir-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/900136/small-wonder-pinot-noir-2024.jpg"
+    },
+    {
+        "nimi": "Kolme Leijonaa muovipullo",
+        "hinta_eur": 13.89,
+        "tilavuus_litraa": 0.35,
+        "alkoholi_prosentti": 40.0,
+        "tyyppi": "Väkevä",
+        "linkki": "https://www.alko.fi/fi/tuotteet/112074/kolme-leijonaa-muovipullo",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/112074/kolme-leijonaa-muovipullo.jpg"
+    },
+    {
+        "nimi": "Moët & Chandon Impérial Mini Champagne Brut",
+        "hinta_eur": 22.2,
+        "tilavuus_litraa": 0.2,
+        "alkoholi_prosentti": 12.5,
+        "tyyppi": "Kuohuviinit ja samppanjat",
+        "linkki": "https://www.alko.fi/fi/tuotteet/008179/mot-chandon-imperial-mini-champagne-brut",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/008179/mot-chandon-imperial-mini-champagne-brut.jpg"
+    },
+    {
+        "nimi": "Château Smith Haut Lafitte (erittäin rajallinen saatavuus, 1plo/asiakas) 1979",
+        "hinta_eur": 79.0,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 11.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/888142/chteau-smith-haut-lafitte-erittain-rajallinen-saatavuus-1ploasiakas-1979",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/888142/chteau-smith-haut-lafitte-erittain-rajallinen-saatavuus-1ploasiakas-1979.jpg"
+    },
+    {
+        "nimi": "Koskenkorva Salmiakki Raspberry",
+        "hinta_eur": 17.99,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 30.0,
+        "tyyppi": "Väkevä",
+        "linkki": "https://www.alko.fi/fi/tuotteet/903736/koskenkorva-salmiakki-raspberry",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/903736/koskenkorva-salmiakki-raspberry.jpg"
+    },
+    {
+        "nimi": "Chateau Clarke 2015",
+        "hinta_eur": 25.27,
+        "tilavuus_litraa": 0.375,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/957956/chateau-clarke-2015",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/957956/chateau-clarke-2015.jpg"
+    },
+    {
+        "nimi": "Château Duhart-Milon 2022",
+        "hinta_eur": 98.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/400348/chteau-duhart-milon-2022",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/400348/chteau-duhart-milon-2022.jpg"
+    },
+    {
+        "nimi": "Mont-Redon Côtes-du-Rhône Réserve Rouge 2023",
+        "hinta_eur": 16.5,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/921883/mont-redon-ctes-du-rhne-reserve-rouge-2023",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/921883/mont-redon-ctes-du-rhne-reserve-rouge-2023.jpg"
+    },
+    {
+        "nimi": "Beaulieu Vinyard Rutherford Cabernet Sauvignon 2019",
+        "hinta_eur": 109.39,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 15.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/928255/beaulieu-vinyard-rutherford-cabernet-sauvignon-2019",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/928255/beaulieu-vinyard-rutherford-cabernet-sauvignon-2019.jpg"
+    },
+    {
+        "nimi": "Suomi Viina muovipullo",
+        "hinta_eur": 18.68,
+        "tilavuus_litraa": 0.7,
+        "alkoholi_prosentti": 32.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/103817/suomi-viina-muovipullo",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/103817/suomi-viina-muovipullo.jpg"
+    },
+    {
+        "nimi": "Stirling Pink Gin",
+        "hinta_eur": 18.79,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 37.5,
+        "tyyppi": "Gini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/119576/stirling-pink-gin",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/119576/stirling-pink-gin.jpg"
+    },
+    {
+        "nimi": "Château Quinault L'Enclos 2018",
+        "hinta_eur": 59.92,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/471017/chteau-quinault-lenclos-2018",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/471017/chteau-quinault-lenclos-2018.jpg"
+    },
+    {
+        "nimi": "Uiltje Bird Of Prey Peach IPA tölkki",
+        "hinta_eur": 7.99,
+        "tilavuus_litraa": 0.44,
+        "alkoholi_prosentti": 5.8,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/903358/uiltje-bird-of-prey-peach-ipa-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/903358/uiltje-bird-of-prey-peach-ipa-tolkki.jpg"
+    },
+    {
+        "nimi": "Heineken 0.0 Alcohol Free",
+        "hinta_eur": 1.95,
+        "tilavuus_litraa": 0.33,
+        "alkoholi_prosentti": 0.0,
+        "tyyppi": "Alkoholiton",
+        "linkki": "https://www.alko.fi/fi/tuotteet/719754/heineken-00-alcohol-free",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/719754/heineken-00-alcohol-free.jpg"
+    },
+    {
+        "nimi": "Bernard Robert Rosé Champagne Brut",
+        "hinta_eur": 44.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12.0,
+        "tyyppi": "Kuohuviinit ja samppanjat",
+        "linkki": "https://www.alko.fi/fi/tuotteet/901555/bernard-robert-rose-champagne-brut",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/901555/bernard-robert-rose-champagne-brut.jpg"
+    },
+    {
+        "nimi": "Brič Chardonnay Oranž 2018",
+        "hinta_eur": 20.25,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/500191/bri-chardonnay-oran-2018",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/500191/bri-chardonnay-oran-2018.jpg"
+    },
+    {
+        "nimi": "Fuerst Wiacek Standart IPA tölkki",
+        "hinta_eur": 7.79,
+        "tilavuus_litraa": 0.44,
+        "alkoholi_prosentti": 6.2,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/700080/fuerst-wiacek-standart-ipa-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/700080/fuerst-wiacek-standart-ipa-tolkki.jpg"
+    },
+    {
+        "nimi": "Red Bull Sugarfree tölkki",
+        "hinta_eur": 1.95,
+        "tilavuus_litraa": 0.25,
+        "alkoholi_prosentti": 0.0,
+        "tyyppi": "Alkoholiton",
+        "linkki": "https://www.alko.fi/fi/tuotteet/600017/red-bull-sugarfree-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/600017/red-bull-sugarfree-tolkki.jpg"
+    },
+    {
+        "nimi": "Faustino VII 2023",
+        "hinta_eur": 13.98,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/006774/faustino-vii-2023",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/006774/faustino-vii-2023.jpg"
+    },
+    {
+        "nimi": "RPS Theory Of Hoppyness tölkki",
+        "hinta_eur": 4.19,
+        "tilavuus_litraa": 0.44,
+        "alkoholi_prosentti": 6.3,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/723595/rps-theory-of-hoppyness-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/723595/rps-theory-of-hoppyness-tolkki.jpg"
+    },
+    {
+        "nimi": "Le Contesse Prosecco Organic Brut Magnum",
+        "hinta_eur": 37.89,
+        "tilavuus_litraa": 1.5,
+        "alkoholi_prosentti": 11.0,
+        "tyyppi": "Kuohuviinit ja samppanjat",
+        "linkki": "https://www.alko.fi/fi/tuotteet/931766/le-contesse-prosecco-organic-brut-magnum",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/931766/le-contesse-prosecco-organic-brut-magnum.jpg"
+    },
+    {
+        "nimi": "Devil's Rock Riesling 2024",
+        "hinta_eur": 10.98,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/007694/devils-rock-riesling-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/007694/devils-rock-riesling-2024.jpg"
     }
 ]
