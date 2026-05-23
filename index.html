@@ -6,7 +6,7 @@
     <title>Alko Tuotetiedot – Suora linkki tuotteeseen</title>
     <style>
         :root {
-            --bg-body: #f0f4f8;  /* Kiinteä vaalea tausta (ei vaalene alaspäin) */
+            --bg-body: #f0f4f8;
             --bg-container: #ffffff;
             --text-main: #1a202c;
             --text-heading: #2d3748;
@@ -29,25 +29,25 @@
         }
 
         body.dark-mode {
-            --bg-body: #2c2e33;  /* Tummanharmaa, sinisyyttä vähennetty 50 % */
-            --bg-container: #1e293b;
+            --bg-body: #1a1e26;
+            --bg-container: #21252f;
             --text-main: #e2e8f0;
             --text-heading: #f8fafc;
             --text-muted: #94a3b8;
-            --info-bg: #0f172a;
+            --info-bg: #1a1e26;
             --info-text: #38bdf8;
             --info-border: #0ea5e9;
             --btn-bg: #0ea5e9;
             --btn-hover: #0284c7;
             --btn-active-bg: #0369a1;
             --btn-active-text: white;
-            --table-border: #334155;
-            --row-border: #334155;
-            --th-border: #475569;
-            --th-bg: #0f172a;
-            --row-hover: #334155;
-            --last-col-bg: #0f172a;
-            --kytkin-bg: #475569;
+            --table-border: #2d333b;
+            --row-border: #2d333b;
+            --th-border: #3a4049;
+            --th-bg: #1a1e26;
+            --row-hover: #2a303c;
+            --last-col-bg: #2a303c;
+            --kytkin-bg: #3a4049;
             --link-color: #7dd3fc;
         }
 
@@ -210,6 +210,7 @@
             overflow-x: auto;
             border-radius: 8px;
             border: 1px solid var(--table-border);
+            position: relative;
         }
 
         table {
@@ -359,6 +360,16 @@
             color: #fdba74;
         }
 
+        .sentinel {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            pointer-events: none;
+        }
+        #topSentinel { top: 0; }
+        #bottomSentinel { bottom: 0; }
+
         @media (max-width: 600px) {
             body { padding: 15px; }
             .container { padding: 20px; }
@@ -393,12 +404,14 @@
         </div>
 
         <div class="taulukko-container" id="taulukkoContainer">
+            <div id="topSentinel" class="sentinel"></div>
             <table id="tuoteTaulukko">
                 <thead>
                     <tr><th>Nimi</th><th>Tyyppi</th><th>Hinta (€)</th><th>Tilavuus (L)</th><th>Alkoholi (%)</th><th>Alkoholiannoksen hinta (€)</th></tr>
                 </thead>
                 <tbody id="taulukkoBody"></tbody>
             </table>
+            <div id="bottomSentinel" class="sentinel"></div>
         </div>
     </div>
 
@@ -429,17 +442,18 @@
 
         let tuoteData = [];
         let startIndex = 0;
-        const WINDOW_SIZE = 40;
-        const SHIFT_AMOUNT = 30;
+        const WINDOW_SIZE = 50;   // 50 tuotetta näkyvissä
+        const SHIFT_AMOUNT = 30;  // 30 riviä vaihdetaan kerralla
         let currentSort = 'annos';
         let isShifting = false;
         let cooldownTimer = null;
-        let lastScrollTime = 0;
 
         const btnHinta = document.getElementById('btnHinta');
         const btnAnnos = document.getElementById('btnAnnos');
         const body = document.getElementById('taulukkoBody');
         const infoDiv = document.getElementById('info');
+        const topSentinel = document.getElementById('topSentinel');
+        const bottomSentinel = document.getElementById('bottomSentinel');
 
         function asetaAktiivinenNappi(kriteeri) {
             if (kriteeri === 'hinta') {
@@ -568,31 +582,53 @@
                 cooldownTimer = setTimeout(() => {
                     isShifting = false;
                     cooldownTimer = null;
-                }, 300);
+                }, 500);  // pidempi esto nopeille peräkkäisille siirroille
             });
             return true;
         }
 
-        function checkScrollShift() {
+        // IntersectionObserver suurella marginaalilla, jotta havaitsee ajoissa
+        const observerOptions = {
+            root: null,
+            rootMargin: '800px 0px 800px 0px',
+            threshold: 0
+        };
+
+        const topObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !isShifting && startIndex > 0) {
+                    shiftWindow('backward');
+                }
+            });
+        }, observerOptions);
+
+        const bottomObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !isShifting) {
+                    shiftWindow('forward');
+                }
+            });
+        }, observerOptions);
+
+        topObserver.observe(topSentinel);
+        bottomObserver.observe(bottomSentinel);
+
+        // Lisävarmistus scroll-tapahtumalla, jos jostain syystä sentinel ei laukea
+        let lastScrollCheck = 0;
+        window.addEventListener('scroll', () => {
+            const now = Date.now();
+            if (now - lastScrollCheck < 100) return;
+            lastScrollCheck = now;
             if (isShifting) return;
             const table = document.getElementById('tuoteTaulukko');
             if (!table) return;
             const rect = table.getBoundingClientRect();
             const viewHeight = window.innerHeight;
-            const MARGIN = 400;
-
+            const MARGIN = 200;
             if (rect.top > -MARGIN && startIndex > 0) {
                 shiftWindow('backward');
             } else if (rect.bottom < viewHeight + MARGIN && startIndex + WINDOW_SIZE < getSortedData().length) {
                 shiftWindow('forward');
-            }
-        }
-
-        window.addEventListener('scroll', () => {
-            const now = Date.now();
-            if (now - lastScrollTime >= 100) {
-                lastScrollTime = now;
-                checkScrollShift();
             }
         }, { passive: true });
 
