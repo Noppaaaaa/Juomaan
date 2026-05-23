@@ -385,7 +385,6 @@
         #topSentinel { top: 0; }
         #bottomSentinel { bottom: 0; }
 
-        /* Poista kiilto mobiilissa */
         @media (max-width: 768px) {
             tr.mitali-kulta::after,
             tr.mitali-hopea::after,
@@ -657,7 +656,8 @@
         }
 
         function getScrollDebounceTime() {
-            return window.innerWidth < 768 ? 50 : 200;
+            // Nopea reagointi sekä mobiilissa että pöytäkoneella
+            return 50;
         }
 
         window.addEventListener('scroll', () => {
