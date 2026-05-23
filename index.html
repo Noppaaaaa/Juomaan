@@ -3,8 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Alko Tuotetiedot – Suora linkki tuotteeseen</title>
     <style>
+        /* Yleinen nollaus / selainyhtenäistys */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+
         :root {
             --bg-body: #f0f4f8;
             --bg-container: #ffffff;
@@ -200,6 +210,11 @@
             transform: translateY(0);
         }
 
+        button:focus-visible {
+            outline: 2px solid var(--btn-bg);
+            outline-offset: 2px;
+        }
+
         button.aktiivinen {
             background-color: var(--btn-active-bg);
             box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
@@ -211,6 +226,7 @@
             border-radius: 8px;
             border: 1px solid var(--table-border);
             position: relative;
+            -webkit-overflow-scrolling: touch;
         }
 
         table {
@@ -370,13 +386,132 @@
         #topSentinel { top: 0; }
         #bottomSentinel { bottom: 0; }
 
-        @media (max-width: 600px) {
-            body { padding: 15px; }
-            .container { padding: 20px; }
-            .header-rivi { flex-direction: column; align-items: flex-start; gap: 15px; }
-            .logo { height: 112px; }
-            .nappi-alue { flex-direction: column; }
-            .tuote-kuva { height: 90px; max-width: 80px; margin-right: 0; }
+        /* ==================== RESPONSIIVISUUS ==================== */
+        /* Tabletti (pysty) ja pienet kannettavat */
+        @media (max-width: 1024px) {
+            body {
+                padding: 30px 15px;
+            }
+            .container {
+                padding: 25px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            .logo {
+                height: 100px;
+            }
+        }
+
+        /* Tabletti (pysty) tai suuret puhelimet */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            .container {
+                padding: 20px;
+            }
+            .header-rivi {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .logo-otsikko {
+                gap: 8px;
+            }
+            .logo {
+                height: 80px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+            .nappi-alue {
+                flex-direction: column;
+            }
+            .info {
+                font-size: 13px;
+            }
+            th, td {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+            .tuote-kuva {
+                height: 70px;
+                max-height: 70px;
+                max-width: 70px;
+            }
+            .mitali-emoji {
+                font-size: 1.5em;
+            }
+        }
+
+        /* Puhelimet */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px 5px;
+            }
+            .container {
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            }
+            .header-rivi {
+                gap: 10px;
+            }
+            .logo {
+                height: 60px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            .kytkin-wrapper span {
+                font-size: 12px;
+            }
+            .teema-kytkin {
+                width: 48px;
+                height: 24px;
+            }
+            .liuku:before {
+                height: 18px;
+                width: 18px;
+                left: 3px;
+                bottom: 3px;
+                font-size: 12px;
+            }
+            input:checked+.liuku:before {
+                transform: translateX(24px);
+            }
+            .nappi-alue {
+                gap: 8px;
+            }
+            button {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+            .info {
+                font-size: 12px;
+                padding: 8px 12px;
+                margin-bottom: 20px;
+            }
+            th, td {
+                padding: 6px 8px;
+                font-size: 12px;
+                line-height: 1.3;
+            }
+            .tuote-solu {
+                gap: 5px;
+            }
+            .tuote-kuva {
+                height: 50px;
+                max-height: 50px;
+                max-width: 50px;
+            }
+            .mitali-emoji {
+                font-size: 1.2em;
+            }
+            th:last-child, td:last-child {
+                min-width: 80px;
+            }
         }
     </style>
 </head>
@@ -583,8 +718,6 @@
             return true;
         }
 
-        // Tarkistus: jos käyttäjä on nopeasti päässyt lähelle listan päätyä,
-        // mutta ikkunaa ei ole vielä siirretty sinne, tehdään siirto nyt.
         function checkStuck() {
             if (isShifting) return;
             const table = document.getElementById('tuoteTaulukko');
@@ -593,23 +726,18 @@
             const rect = table.getBoundingClientRect();
             const viewHeight = window.innerHeight;
 
-            // Yläreuna lähellä ja alkua vielä jäljellä
             if (rect.top >= -200 && startIndex > 0) {
                 shiftWindow('backward');
-            }
-            // Alareuna lähellä ja loppua vielä jäljellä
-            else if (rect.bottom <= viewHeight + 200 && startIndex + WINDOW_SIZE < sorted.length) {
+            } else if (rect.bottom <= viewHeight + 200 && startIndex + WINDOW_SIZE < sorted.length) {
                 shiftWindow('forward');
             }
         }
 
-        // Debounce scroll-tapahtumaan: tarkistetaan "jumitus" 200ms kuluttua viimeisestä scrollista
         window.addEventListener('scroll', () => {
             if (stuckCheckTimer) clearTimeout(stuckCheckTimer);
             stuckCheckTimer = setTimeout(checkStuck, 200);
         }, { passive: true });
 
-        // IntersectionObserver isolla marginaalilla
         const observerOptions = {
             root: null,
             rootMargin: '600px 0px 600px 0px',
