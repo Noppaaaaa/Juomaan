@@ -16018,5 +16018,365 @@
         "tyyppi": "Viini",
         "linkki": "https://www.alko.fi/fi/tuotteet/940265/aspasie-champagne-rose-brut",
         "kuva_url": ""
+    },
+    {
+        "nimi": "Andechs Weissbier Dunkel",
+        "hinta_eur": 4.49,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 5,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/738456/andechs-weissbier-dunkel",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/738456/andechs-weissbier-dunkel.jpg"
+    },
+    {
+        "nimi": "Domaine Chantal Lescure Côte de Beaune La Grande Châtelaine 2022",
+        "hinta_eur": 56.65,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/903058/domaine-chantal-lescure-cte-de-beaune-la-grande-chtelaine-2022",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/903058/domaine-chantal-lescure-cte-de-beaune-la-grande-chtelaine-2022.jpg"
+    },
+    {
+        "nimi": "Pople Strawberry Ice Cream muovipullo",
+        "hinta_eur": 14.98,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 15,
+        "tyyppi": "Alkoholiton",
+        "linkki": "https://www.alko.fi/fi/tuotteet/251436/pople-strawberry-ice-cream-muovipullo",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/251436/pople-strawberry-ice-cream-muovipullo.jpg"
+    },
+    {
+        "nimi": "Ogelin Oma Malbec 2023",
+        "hinta_eur": 17.42,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/901994/ogelin-oma-malbec-2023",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/901994/ogelin-oma-malbec-2023.jpg"
+    },
+    {
+        "nimi": "Wolfberger (W)2 2024",
+        "hinta_eur": 9.98,
+        "tilavuus_litraa": 0.375,
+        "alkoholi_prosentti": 12,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/576944/wolfberger-w2-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/576944/wolfberger-w2-2024.jpg"
+    },
+    {
+        "nimi": "Piccini Costa Toscana Organic Rosso 2021",
+        "hinta_eur": 14.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/918626/piccini-costa-toscana-organic-rosso-2021",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/918626/piccini-costa-toscana-organic-rosso-2021.jpg"
+    },
+    {
+        "nimi": "Corvers-Kauter Quarzit Riesling 2024",
+        "hinta_eur": 12.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/500141/corvers-kauter-quarzit-riesling-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/500141/corvers-kauter-quarzit-riesling-2024.jpg"
+    },
+    {
+        "nimi": "Krug Vintage Champagne Brut 2011",
+        "hinta_eur": 519.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12.5,
+        "tyyppi": "Kuohuviinit ja samppanjat",
+        "linkki": "https://www.alko.fi/fi/tuotteet/950108/krug-vintage-champagne-brut-2011",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/950108/krug-vintage-champagne-brut-2011.jpg"
+    },
+    {
+        "nimi": "Cline Sauvignon Blanc 2022",
+        "hinta_eur": 14.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/563927/cline-sauvignon-blanc-2022",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/563927/cline-sauvignon-blanc-2022.jpg"
+    },
+    {
+        "nimi": "Azelia Langhe Nebbiolo 2024",
+        "hinta_eur": 38.66,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/903104/azelia-langhe-nebbiolo-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/903104/azelia-langhe-nebbiolo-2024.jpg"
+    },
+    {
+        "nimi": "Prunotto Bansella 2023",
+        "hinta_eur": 24.98,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/465917/prunotto-bansella-2023",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/465917/prunotto-bansella-2023.jpg"
+    },
+    {
+        "nimi": "Gato Negro Semi Sweet Red 2023",
+        "hinta_eur": 9.98,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 10.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/954507/gato-negro-semi-sweet-red-2023",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/954507/gato-negro-semi-sweet-red-2023.jpg"
+    },
+    {
+        "nimi": "De Halve Maan Brugse Zot Dubbel",
+        "hinta_eur": 9.85,
+        "tilavuus_litraa": 0.33,
+        "alkoholi_prosentti": 7,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/901161/de-halve-maan-brugse-zot-dubbel",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/901161/de-halve-maan-brugse-zot-dubbel.jpg"
+    },
+    {
+        "nimi": "Dr H. Thanisch Bernkasteler Lay Riesling GG 2021",
+        "hinta_eur": 40.48,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/913038/dr-h-thanisch-bernkasteler-lay-riesling-gg-2021",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/913038/dr-h-thanisch-bernkasteler-lay-riesling-gg-2021.jpg"
+    },
+    {
+        "nimi": "Krug Grande Cuvée 173ème Édition Champagne Brut",
+        "hinta_eur": 309.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12.5,
+        "tyyppi": "Kuohuviinit ja samppanjat",
+        "linkki": "https://www.alko.fi/fi/tuotteet/533257/krug-grande-cuvee-173me-edition-champagne-brut",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/533257/krug-grande-cuvee-173me-edition-champagne-brut.jpg"
+    },
+    {
+        "nimi": "Domäne Wachau Grüner Veltliner Smaragd Ried Achleiten 2023",
+        "hinta_eur": 49.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/935757/domane-wachau-grner-veltliner-smaragd-ried-achleiten-2023",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/935757/domane-wachau-grner-veltliner-smaragd-ried-achleiten-2023.jpg"
+    },
+    {
+        "nimi": "Leclerc Briant Réserve Champagne Brut Magnum",
+        "hinta_eur": 134.99,
+        "tilavuus_litraa": 1.5,
+        "alkoholi_prosentti": 12,
+        "tyyppi": "Kuohuviinit ja samppanjat",
+        "linkki": "https://www.alko.fi/fi/tuotteet/934103/leclerc-briant-reserve-champagne-brut-magnum",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/934103/leclerc-briant-reserve-champagne-brut-magnum.jpg"
+    },
+    {
+        "nimi": "Francois Mikulski Côte d'Or Chardonnay 2022",
+        "hinta_eur": 54.84,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/941017/francois-mikulski-cte-dor-chardonnay-2022",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/941017/francois-mikulski-cte-dor-chardonnay-2022.jpg"
+    },
+    {
+        "nimi": "Weltenburger Kloster Pils",
+        "hinta_eur": 3.95,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 4.9,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/727856/weltenburger-kloster-pils",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/727856/weltenburger-kloster-pils.jpg"
+    },
+    {
+        "nimi": "Pasqua PassioneSentimento Rosso 2021",
+        "hinta_eur": 14.37,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/956247/pasqua-passionesentimento-rosso-2021",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/956247/pasqua-passionesentimento-rosso-2021.jpg"
+    },
+    {
+        "nimi": "Hewitson Le Secateur 2024",
+        "hinta_eur": 19.93,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/476347/hewitson-le-secateur-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/476347/hewitson-le-secateur-2024.jpg"
+    },
+    {
+        "nimi": "The Dalmore 12 Year Old Sherry Cask Select Single Malt",
+        "hinta_eur": 99.26,
+        "tilavuus_litraa": 0.7,
+        "alkoholi_prosentti": 43,
+        "tyyppi": "Viskit",
+        "linkki": "https://www.alko.fi/fi/tuotteet/138287/the-dalmore-12-year-old-sherry-cask-select-single-malt",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/138287/the-dalmore-12-year-old-sherry-cask-select-single-malt.jpg"
+    },
+    {
+        "nimi": "Force Majeure Traditional Blond",
+        "hinta_eur": 3.74,
+        "tilavuus_litraa": 0.33,
+        "alkoholi_prosentti": 5,
+        "tyyppi": "Erikoisuus",
+        "linkki": "https://www.alko.fi/fi/tuotteet/905888/force-majeure-traditional-blond",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/905888/force-majeure-traditional-blond.jpg"
+    },
+    {
+        "nimi": "Piccini Collezione Oro Organic Chianti 2024",
+        "hinta_eur": 7.99,
+        "tilavuus_litraa": 0.375,
+        "alkoholi_prosentti": 13,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/482014/piccini-collezione-oro-organic-chianti-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/482014/piccini-collezione-oro-organic-chianti-2024.jpg"
+    },
+    {
+        "nimi": "Veuve Clicquot Champagne Brut Mathusalem",
+        "hinta_eur": 1134.9,
+        "tilavuus_litraa": 6,
+        "alkoholi_prosentti": 12.5,
+        "tyyppi": "Kuohuviini ja sampanja",
+        "linkki": "https://www.alko.fi/fi/tuotteet/934184/veuve-clicquot-champagne-brut-mathusalem",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/934184/veuve-clicquot-champagne-brut-mathusalem.jpg"
+    },
+    {
+        "nimi": "Albino Rocca Nebbiolo d'Alba 2024",
+        "hinta_eur": 36.86,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/903152/albino-rocca-nebbiolo-dalba-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/903152/albino-rocca-nebbiolo-dalba-2024.jpg"
+    },
+    {
+        "nimi": "Chymos Mansikka Väkevä Marjaviini",
+        "hinta_eur": 11.98,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 15,
+        "tyyppi": "Väkevä viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/311617/chymos-mansikka-vakeva-marjaviini",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/311617/chymos-mansikka-vakeva-marjaviini.jpg"
+    },
+    {
+        "nimi": "Moric Balaton Hidden Treasures NR3 2020",
+        "hinta_eur": 29.73,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/919651/moric-balaton-hidden-treasures-nr3-2020",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/919651/moric-balaton-hidden-treasures-nr3-2020.jpg"
+    },
+    {
+        "nimi": "Taliano Michele A Bon Rendre Barbera d'Alba 2021",
+        "hinta_eur": 22.94,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/920961/taliano-michele-a-bon-rendre-barbera-dalba-2021",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/920961/taliano-michele-a-bon-rendre-barbera-dalba-2021.jpg"
+    },
+    {
+        "nimi": "Glenfarclas 8 Year Old Single Malt",
+        "hinta_eur": 58.31,
+        "tilavuus_litraa": 0.7,
+        "alkoholi_prosentti": 40,
+        "tyyppi": "Viskit",
+        "linkki": "https://www.alko.fi/fi/tuotteet/903643/glenfarclas-8-year-old-single-malt",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/903643/glenfarclas-8-year-old-single-malt.jpg"
+    },
+    {
+        "nimi": "Ardbeg Anthology The Unicorn's Tale 14 Year Old Single Malt",
+        "hinta_eur": 189.99,
+        "tilavuus_litraa": 0.7,
+        "alkoholi_prosentti": 46,
+        "tyyppi": "Viskit",
+        "linkki": "https://www.alko.fi/fi/tuotteet/900272/ardbeg-anthology-the-unicorns-tale-14-year-old-single-malt",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/900272/ardbeg-anthology-the-unicorns-tale-14-year-old-single-malt.jpg"
+    },
+    {
+        "nimi": "Lustau Amontillado Los Arcos Sherry Dry",
+        "hinta_eur": 15.26,
+        "tilavuus_litraa": 0.375,
+        "alkoholi_prosentti": 18.5,
+        "tyyppi": "Säkeri",
+        "linkki": "https://www.alko.fi/fi/tuotteet/370144/lustau-amontillado-los-arcos-sherry-dry",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/370144/lustau-amontillado-los-arcos-sherry-dry.jpg"
+    },
+    {
+        "nimi": "Fuerst Wiacek Hop Asteroid IPA tölkki",
+        "hinta_eur": 6.72,
+        "tilavuus_litraa": 0.44,
+        "alkoholi_prosentti": 8.1,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/700035/fuerst-wiacek-hop-asteroid-ipa-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/700035/fuerst-wiacek-hop-asteroid-ipa-tolkki.jpg"
+    },
+    {
+        "nimi": "Le Roi Soleil Rosé 2025",
+        "hinta_eur": 19.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/941036/le-roi-soleil-rose-2025",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/941036/le-roi-soleil-rose-2025.jpg"
+    },
+    {
+        "nimi": "Lamole di Lamole Chianti Classico 2023",
+        "hinta_eur": 29.21,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/946937/lamole-di-lamole-chianti-classico-2023",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/946937/lamole-di-lamole-chianti-classico-2023.jpg"
+    },
+    {
+        "nimi": "Zensa Primitivo Organico 2024",
+        "hinta_eur": 13.38,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/950577/zensa-primitivo-organico-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/950577/zensa-primitivo-organico-2024.jpg"
+    },
+    {
+        "nimi": "Põhjala Topelt Nelson DIPA tölkki",
+        "hinta_eur": 7.53,
+        "tilavuus_litraa": 0.44,
+        "alkoholi_prosentti": 8.2,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/902149/phjala-topelt-nelson-dipa-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/902149/phjala-topelt-nelson-dipa-tolkki.jpg"
+    },
+    {
+        "nimi": "Granbazán Etiqueta Verde Magnum 2024",
+        "hinta_eur": 59.99,
+        "tilavuus_litraa": 1.5,
+        "alkoholi_prosentti": 13,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/900413/granbazn-etiqueta-verde-magnum-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/900413/granbazn-etiqueta-verde-magnum-2024.jpg"
+    },
+    {
+        "nimi": "Rathfinny Blanc de Blancs Brut 2017",
+        "hinta_eur": 57.45,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12,
+        "tyyppi": "Kuohuviini ja sampanja",
+        "linkki": "https://www.alko.fi/fi/tuotteet/901476/rathfinny-blanc-de-blancs-brut-2017",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/901476/rathfinny-blanc-de-blancs-brut-2017.jpg"
+    },
+    {
+        "nimi": "Gustave Lorentz Grand Cru Kanzlerberg Riesling 2020",
+        "hinta_eur": 40.98,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/917097/gustave-lorentz-grand-cru-kanzlerberg-riesling-2020",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/917097/gustave-lorentz-grand-cru-kanzlerberg-riesling-2020.jpg"
     }
 ]
