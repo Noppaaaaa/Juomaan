@@ -209,7 +209,6 @@
             margin: 0;
         }
 
-        /* Ruudunlukijoille piilotettu otsikko */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -415,10 +414,10 @@
         }
 
         .tuote-kuva {
-            height: 90px;
             width: auto;
-            max-height: 90px;
+            height: auto;
             max-width: 100px;
+            max-height: 90px;
             object-fit: contain;
             flex-shrink: 0;
             margin-right: 0;
@@ -452,36 +451,20 @@
 
         /* ========== Mitalianimaatiot ========== */
         @keyframes valokiilto {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
         @keyframes kultakimallus {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
         @keyframes hopeakimallus {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
         @keyframes pronssikimallus {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
 
         tr.mitali-kulta,
@@ -490,6 +473,7 @@
             position: relative;
             isolation: isolate;
             font-weight: bold;
+            will-change: background-position;
         }
         tr.mitali-kulta td,
         tr.mitali-hopea td,
@@ -514,25 +498,26 @@
             content: '';
             position: absolute;
             inset: 0;
-            background-image: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.35) 45%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0.35) 55%, transparent 100%);
+            background-image: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.35) 45%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0.35) 55%, transparent 100%);
             background-size: 400% 100%;
             animation: valokiilto 20s linear infinite;
             pointer-events: none;
             z-index: 0;
+            will-change: background-position;
         }
         tr.mitali-hopea {
             background-image: linear-gradient(110deg, #8a8d91 0%, #e0e4e9 10%, #b7bbc1 20%, #f0f2f5 30%, #9ca0a6 40%, #e0e4e9 50%, #b7bbc1 60%, #f0f2f5 70%, #9ca0a6 80%, #e0e4e9 90%, #8a8d91 100%);
             background-size: 400% 100%;
             animation: hopeakimallus 35s linear infinite;
             color: #1a202c;
-            text-shadow: 0 0 6px rgba(192, 192, 192, 0.8);
+            text-shadow: 0 0 6px rgba(192,192,192,0.8);
         }
         tr.mitali-pronssi {
             background-image: linear-gradient(110deg, #a04f2e 0%, #e2a87c 10%, #cd7f4c 20%, #f5c7a6 30%, #b25d33 40%, #e2a87c 50%, #cd7f4c 60%, #f5c7a6 70%, #b25d33 80%, #e2a87c 90%, #a04f2e 100%);
             background-size: 400% 100%;
             animation: pronssikimallus 35s linear infinite;
             color: #1a202c;
-            text-shadow: 0 0 6px rgba(184, 115, 51, 0.8);
+            text-shadow: 0 0 6px rgba(184,115,51,0.8);
         }
         body.dark-mode tr.mitali-kulta {
             background-image: linear-gradient(110deg, #7a5c14 0%, #b8a03a 10%, #8f6e1d 20%, #c4af45 30%, #7a5c14 40%, #b8a03a 50%, #8f6e1d 60%, #c4af45 70%, #7a5c14 80%, #b8a03a 90%, #7a5c14 100%);
@@ -547,6 +532,18 @@
             color: #fdba74;
         }
 
+        /* ========== Vähennetyn liikkeen tila ========== */
+        @media (prefers-reduced-motion: reduce) {
+            tr.mitali-kulta,
+            tr.mitali-hopea,
+            tr.mitali-pronssi,
+            tr.mitali-kulta::after {
+                animation: none !important;
+                background-size: 100% 100% !important;
+                will-change: auto !important;
+            }
+        }
+
         .sentinel {
             position: absolute;
             left: 0;
@@ -554,17 +551,8 @@
             height: 1px;
             pointer-events: none;
         }
-        #topSentinel {
-            top: 0;
-        }
-        #bottomSentinel {
-            bottom: 0;
-        }
-
-        /* ========== Noscript-tyylit ========== */
-        .noscript-viesti {
-            display: none;
-        }
+        #topSentinel { top: 0; }
+        #bottomSentinel { bottom: 0; }
 
         /* ========== Responsiivisuus ========== */
         @media (max-width: 768px) {
@@ -576,136 +564,49 @@
         }
 
         @media (max-width: 1024px) {
-            body {
-                padding: 30px 15px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 24px;
-            }
-            .logo {
-                height: 100px;
-            }
+            body { padding: 30px 15px; }
+            .container { padding: 25px; }
+            h1 { font-size: 24px; }
+            .logo { height: 100px; }
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 20px 10px;
-            }
-            .container {
-                padding: 20px;
-            }
-            .header-rivi {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            .logo-otsikko {
-                gap: 8px;
-            }
-            .logo {
-                height: 80px;
-            }
-            h1 {
-                font-size: 22px;
-            }
-            .nappi-alue {
-                flex-direction: column;
-            }
-            .info {
-                font-size: 13px;
-            }
-            th,
-            td {
-                padding: 8px 10px;
-                font-size: 13px;
-            }
-            .tuote-kuva {
-                height: 70px;
-                max-height: 70px;
-                max-width: 70px;
-            }
-            .mitali-emoji {
-                font-size: 1.5em;
-            }
+            body { padding: 20px 10px; }
+            .container { padding: 20px; }
+            .header-rivi { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .logo-otsikko { gap: 8px; }
+            .logo { height: 80px; }
+            h1 { font-size: 22px; }
+            .nappi-alue { flex-direction: column; }
+            .info { font-size: 13px; }
+            th, td { padding: 8px 10px; font-size: 13px; }
+            .tuote-kuva { max-height: 70px; max-width: 70px; }
+            .mitali-emoji { font-size: 1.5em; }
         }
 
         @media (max-width: 480px) {
-            body {
-                padding: 15px 5px;
-            }
-            .container {
-                padding: 15px;
-                border-radius: 8px;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            }
-            .header-rivi {
-                gap: 10px;
-            }
-            .logo {
-                height: 60px;
-            }
-            h1 {
-                font-size: 20px;
-            }
-            .kytkin-wrapper span {
-                font-size: 12px;
-            }
-            .teema-kytkin {
-                width: 48px;
-                height: 24px;
-            }
-            .liuku:before {
-                height: 18px;
-                width: 18px;
-                left: 3px;
-                bottom: 3px;
-                font-size: 12px;
-            }
-            input:checked+.liuku:before {
-                transform: translateX(24px);
-            }
-            .nappi-alue {
-                gap: 8px;
-            }
-            button {
-                padding: 8px 16px;
-                font-size: 13px;
-            }
-            .info {
-                font-size: 12px;
-                padding: 8px 12px;
-                margin-bottom: 20px;
-            }
-            th,
-            td {
-                padding: 6px 8px;
-                font-size: 12px;
-                line-height: 1.3;
-            }
-            .tuote-solu {
-                gap: 5px;
-            }
-            .tuote-kuva {
-                height: 50px;
-                max-height: 50px;
-                max-width: 50px;
-            }
-            .mitali-emoji {
-                font-size: 1.2em;
-            }
-            th:last-child,
-            td:last-child {
-                min-width: 80px;
-            }
+            body { padding: 15px 5px; }
+            .container { padding: 15px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+            .header-rivi { gap: 10px; }
+            .logo { height: 60px; }
+            h1 { font-size: 20px; }
+            .kytkin-wrapper span { font-size: 12px; }
+            .teema-kytkin { width: 48px; height: 24px; }
+            .liuku:before { height: 18px; width: 18px; left: 3px; bottom: 3px; font-size: 12px; }
+            input:checked+.liuku:before { transform: translateX(24px); }
+            .nappi-alue { gap: 8px; }
+            button { padding: 8px 16px; font-size: 13px; }
+            .info { font-size: 12px; padding: 8px 12px; margin-bottom: 20px; }
+            th, td { padding: 6px 8px; font-size: 12px; line-height: 1.3; }
+            .tuote-solu { gap: 5px; }
+            .tuote-kuva { max-height: 50px; max-width: 50px; }
+            .mitali-emoji { font-size: 1.2em; }
+            th:last-child, td:last-child { min-width: 80px; }
         }
     </style>
 </head>
 <body>
     <main class="container" role="main" aria-labelledby="paaotsikko">
-        <!-- ========== Ylätunniste ========== -->
         <header class="header-rivi">
             <div class="logo-otsikko">
                 <img src="Logo.png"
@@ -726,19 +627,15 @@
             </div>
         </header>
 
-        <!-- ========== Ruudunlukijoille piilotettu osion otsikko ========== -->
         <h2 class="sr-only">Tuotevertailutaulukko – Alkon hinnat ja alkoholiannosten hinnat</h2>
 
-        <!-- ========== Info-palkki ========== -->
         <div id="info" class="info" role="status" aria-live="polite">Ladataan tuotteita...</div>
 
-        <!-- ========== Järjestyspainikkeet ========== -->
         <nav class="nappi-alue" aria-label="Järjestysvalinnat">
             <button id="btnHinta" onclick="jarjesta('hinta')" aria-label="Järjestä halvimman hinnan mukaan">Halvin hinta</button>
             <button id="btnAnnos" onclick="jarjesta('annos')" aria-label="Järjestä halvimman alkoholiannoksen mukaan">Halvin alkoholiannos</button>
         </nav>
 
-        <!-- ========== Taulukko ========== -->
         <section class="taulukko-container" id="taulukkoContainer" aria-label="Tuotevertailutaulukko">
             <div id="topSentinel" class="sentinel" aria-hidden="true"></div>
             <table id="tuoteTaulukko" role="table" aria-label="Alkon tuotteiden hintavertailu">
@@ -757,14 +654,11 @@
             <div id="bottomSentinel" class="sentinel" aria-hidden="true"></div>
         </section>
 
-        <!-- ========== Noscript-sisältö hakukoneita ja JS-poiskytkentää varten ========== -->
         <noscript>
-            <div class="noscript-viesti" style="display:block; padding:20px; background:#fff8e1; border:2px solid #ff9800; border-radius:8px; margin-top:20px; color:#1a202c;">
+            <div style="display:block; padding:20px; background:#fff8e1; border:2px solid #ff9800; border-radius:8px; margin-top:20px; color:#1a202c;">
                 <h2>Alkon tuotetiedot – Hintavertailu</h2>
                 <p>Tämä sivu vertailee yli 2 000 Alkon tuotteen hintoja ja alkoholiannosten hintoja. Sivusto tarvitsee JavaScriptin näyttääkseen interaktiivisen tuotevertailun.</p>
-                <p>Voit selata Alkon kaikkia tuotteita suoraan osoitteessa:
-                    <a href="https://www.alko.fi/fi/tuotteet" rel="noopener" target="_blank">Alko.fi – Tuotteet</a>
-                </p>
+                <p>Voit selata Alkon kaikkia tuotteita suoraan osoitteessa: <a href="https://www.alko.fi/fi/tuotteet" rel="noopener" target="_blank">Alko.fi – Tuotteet</a></p>
                 <p><small>Sivuston ylläpitäjä: Halvan alkoholin perässä. Päivitetty 2025.</small></p>
             </div>
         </noscript>
@@ -772,10 +666,8 @@
 
     <script>
         (function() {
-            // ========== Tiukka tila: estetään globaalit vuodot ==========
             "use strict";
 
-            // ========== DOM-viittaukset ==========
             const teemaToggle = document.getElementById("teemaToggle");
             const teemaTeksti = document.getElementById("teemaTeksti");
             const metaThemeColor = document.getElementById("metaThemeColor");
@@ -787,7 +679,6 @@
             const bottomSentinel = document.getElementById('bottomSentinel');
             const itemListSchema = document.getElementById('itemListSchema');
 
-            // ========== Teeman hallinta ==========
             const tallennettuTeema = localStorage.getItem("tummaTeema");
 
             function paivitaTeemaTeksti() {
@@ -812,7 +703,6 @@
                 paivitaTeemaTeksti();
             };
 
-            // ========== Tietorakenteet ==========
             let tuoteData = [];
             let startIndex = 0;
             const WINDOW_SIZE = 50;
@@ -822,7 +712,6 @@
             let isUserScrolling = false;
             let scrollDebounceTimer = null;
 
-            // ========== Apufunktiot ==========
             function asetaAktiivinenNappi(kriteeri) {
                 if (kriteeri === 'hinta') {
                     btnHinta.classList.add('aktiivinen');
@@ -867,6 +756,12 @@
                 });
             }
 
+            // Optimoi kuvien URL vaihtamalla 't_medium' -> 't_small' pienempää tiedostokokoa varten
+            function optimoiKuvaUrl(url) {
+                if (!url) return '';
+                return url.replace('/t_medium/', '/t_small/');
+            }
+
             function getSortedData() {
                 let lajiteltu = [...tuoteData];
                 if (currentSort === 'hinta') {
@@ -877,7 +772,6 @@
                 return lajiteltu;
             }
 
-            // ========== Rakenteellisen datan päivitys (Schema.org ItemList) ==========
             function paivitaStructuredData() {
                 if (!itemListSchema) return;
                 const sorted = getSortedData();
@@ -899,12 +793,12 @@
                         "category": tuote.tyyppi || "Ei tiedossa",
                         "offers": tarjous
                     };
-                    if (tuote.kuva_url && tuote.kuva_url.trim() !== "") {
-                        tuoteObj.image = tuote.kuva_url;
+                    const optimoituUrl = optimoiKuvaUrl(tuote.kuva_url);
+                    if (optimoituUrl) {
+                        tuoteObj.image = optimoituUrl;
                     }
                     if (tuote.alkoholi_prosentti > 0) {
-                        tuoteObj.description = tuote.alkoholi_prosentti.toFixed(1) +
-                            '% alkoholia, ' + tuote.tilavuus_litraa.toFixed(2) + ' L';
+                        tuoteObj.description = tuote.alkoholi_prosentti.toFixed(1) + '% alkoholia, ' + tuote.tilavuus_litraa.toFixed(2) + ' L';
                     }
                     return {
                         "@type": "ListItem",
@@ -917,15 +811,13 @@
                     "@context": "https://schema.org",
                     "@type": "ItemList",
                     "name": "Alkon tuotteet – Halvimmat alkoholiannokset",
-                    "description": "Listaus " + sorted.length + " Alkon tuotteesta järjestettynä " + (
-                        currentSort === 'hinta' ? 'hinnan' : 'alkoholiannoksen hinnan') + " mukaan. Sisältää viinit, oluet, väkevät juomat ja alkoholittomat tuotteet.",
+                    "description": "Listaus " + sorted.length + " Alkon tuotteesta järjestettynä " + (currentSort === 'hinta' ? 'hinnan' : 'alkoholiannoksen hinnan') + " mukaan. Sisältää viinit, oluet, väkevät juomat ja alkoholittomat tuotteet.",
                     "numberOfItems": sorted.length,
                     "itemListElement": itemListElement
                 };
                 itemListSchema.textContent = JSON.stringify(schema, null, 2);
             }
 
-            // ========== Renderöinti ==========
             function renderWindow() {
                 var sorted = getSortedData();
                 var endIndex = Math.min(startIndex + WINDOW_SIZE, sorted.length);
@@ -944,14 +836,12 @@
 
                     var turvallinenNimi = escapeHtml(tuote.nimi);
                     var linkki = tuote.linkki || "";
-                    var tuoteUrl = (linkki && linkki.trim() !== "") ?
-                        escapeHtml(linkki) :
-                        'https://www.alko.fi/fi/tuotteet?q=' + encodeURIComponent(tuote.nimi);
+                    var tuoteUrl = (linkki && linkki.trim() !== "") ? escapeHtml(linkki) : 'https://www.alko.fi/fi/tuotteet?q=' + encodeURIComponent(tuote.nimi);
                     var klikkausKasittelija = "avaaAlkonTuoteSivu('" + escapeHtml(linkki).replace(/'/g, "\\'") + "', '" + escapeHtml(tuote.nimi).replace(/'/g, "\\'") + "'); return false;";
                     var nimiHtml = '<a href="' + tuoteUrl + '" class="tuote-linkki" target="_blank" rel="noopener noreferrer" onclick="' + klikkausKasittelija + '" title="Avaa Alkon tuotesivu: ' + turvallinenNimi + '">' + turvallinenNimi + '</a>';
-                    var kuvaUrl = escapeHtml(tuote.kuva_url || "");
+                    var kuvaUrl = optimoiKuvaUrl(tuote.kuva_url || "");
                     var kuvaHtml = kuvaUrl ?
-                        '<img src="' + kuvaUrl + '" alt="' + turvallinenNimi + '" class="tuote-kuva" referrerpolicy="no-referrer" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">' :
+                        '<img src="' + kuvaUrl + '" alt="' + turvallinenNimi + '" class="tuote-kuva" width="100" height="90" referrerpolicy="no-referrer" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">' :
                         '';
                     var mitaliHtml = mitali ? '<span class="mitali-emoji" aria-label="Sija ' + (globalIndex + 1) + '">' + mitali + '</span>' : '';
                     var nimiSisalto = '<div class="tuote-solu">' + kuvaHtml + mitaliHtml + '<span class="nimi-linkki">' + nimiHtml + '</span></div>';
@@ -970,11 +860,9 @@
                 infoDiv.innerHTML = 'Löytyi yhteensä <strong>' + sorted.length + '</strong> tuotetta. ' +
                     '<span style="font-size:12px; opacity:0.7;">Klikkaa nimeä, niin pääset suoraan Alkon tuotesivulle.</span>';
 
-                // Päivitä rakenteellinen data
                 paivitaStructuredData();
             }
 
-            // ========== Virtuaalinen vieritys (alkuperäinen logiikka) ==========
             function shiftWindow(direction) {
                 if (isShifting || isUserScrolling) return false;
                 var sorted = getSortedData();
@@ -1084,7 +972,6 @@
                 setupObservers();
             });
 
-            // ========== Julkinen järjestysfunktio ==========
             window.jarjesta = function(kriteeri) {
                 if (scrollDebounceTimer) clearTimeout(scrollDebounceTimer);
                 isShifting = false;
@@ -1096,7 +983,6 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
-            // ========== Tietojen lataus ==========
             fetch('alko_tuotteet.json')
                 .then(function(response) {
                     if (!response.ok) throw new Error('HTTP ' + response.status);
