@@ -15748,5 +15748,275 @@
         "tyyppi": "Viini",
         "linkki": "https://www.alko.fi/fi/tuotteet/500206/waldschtz-grner-veltliner-ried-hammergraben-2025",
         "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/500206/waldschtz-grner-veltliner-ried-hammergraben-2025.jpg"
+    },
+    {
+        "nimi": "Krug Clos d'Ambonnay Blanc de Noirs Champagne Brut 2000",
+        "hinta_eur": 3045.46,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12.5,
+        "tyyppi": "Kuohuviinit ja samppanjat",
+        "linkki": "https://www.alko.fi/fi/tuotteet/549847/krug-clos-dambonnay-blanc-de-noirs-champagne-brut-2000",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/549847/krug-clos-dambonnay-blanc-de-noirs-champagne-brut-2000.jpg"
+    },
+    {
+        "nimi": "Gen One White 2019",
+        "hinta_eur": 38.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/945933/gen-one-white-2019",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/945933/gen-one-white-2019.jpg"
+    },
+    {
+        "nimi": "Château de Fitère Madiran Vieilles Vignes 2020",
+        "hinta_eur": 14.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/490897/chteau-de-fitre-madiran-vieilles-vignes-2020",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/490897/chteau-de-fitre-madiran-vieilles-vignes-2020.jpg"
+    },
+    {
+        "nimi": "Les 3 Cellier Châteauneuf du Pape Etoiles Perdues 2022",
+        "hinta_eur": 109.96,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 15.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/901978/les-3-cellier-chteauneuf-du-pape-etoiles-perdues-2022",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/901978/les-3-cellier-chteauneuf-du-pape-etoiles-perdues-2022.jpg"
+    },
+    {
+        "nimi": "Aura Bock tölkki",
+        "hinta_eur": 3.69,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 6.5,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/718556/aura-bock-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/718556/aura-bock-tolkki.jpg"
+    },
+    {
+        "nimi": "Codorníu Ars Collecta Organic Cava Brut",
+        "hinta_eur": 15.49,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 11.5,
+        "tyyppi": "Kuohuviinit ja samppanjat",
+        "linkki": "https://www.alko.fi/fi/tuotteet/901872/codornu-ars-collecta-organic-cava-brut",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/901872/codornu-ars-collecta-organic-cava-brut.jpg"
+    },
+    {
+        "nimi": "Nonino L'Aperitivo Botanical Drink",
+        "hinta_eur": 39.99,
+        "tilavuus_litraa": 0.7,
+        "alkoholi_prosentti": 21,
+        "tyyppi": "Väkevät",
+        "linkki": "https://www.alko.fi/fi/tuotteet/915875/nonino-laperitivo-botanical-drink",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/915875/nonino-laperitivo-botanical-drink.jpg"
+    },
+    {
+        "nimi": "Boizel Absolu Rosé Brut",
+        "hinta_eur": 28.9,
+        "tilavuus_litraa": 0.375,
+        "alkoholi_prosentti": 12,
+        "tyyppi": "Kuohuviinit ja samppanjat",
+        "linkki": "https://www.alko.fi/fi/tuotteet/949464/boizel-absolu-rose-brut",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/949464/boizel-absolu-rose-brut.jpg"
+    },
+    {
+        "nimi": "Angostura Aromatic Bitters",
+        "hinta_eur": 23.35,
+        "tilavuus_litraa": 0.2,
+        "alkoholi_prosentti": 44.7,
+        "tyyppi": "Väkevät",
+        "linkki": "https://www.alko.fi/fi/tuotteet/177933/angostura-aromatic-bitters",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/177933/angostura-aromatic-bitters.jpg"
+    },
+    {
+        "nimi": "Greenall's London Dry Gin & Tonic tölkki",
+        "hinta_eur": 3.98,
+        "tilavuus_litraa": 0.33,
+        "alkoholi_prosentti": 8,
+        "tyyppi": "Väkevät",
+        "linkki": "https://www.alko.fi/fi/tuotteet/727684/greenalls-london-dry-gin-tonic-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/727684/greenalls-london-dry-gin-tonic-tolkki.jpg"
+    },
+    {
+        "nimi": "Cascina Fontana Langhe Nebbiolo 2022",
+        "hinta_eur": 32.94,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/902040/cascina-fontana-langhe-nebbiolo-2022",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/902040/cascina-fontana-langhe-nebbiolo-2022.jpg"
+    },
+    {
+        "nimi": "Art Laieta Opus Cava Brut Nature 2021",
+        "hinta_eur": 49.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/537667/art-laieta-opus-cava-brut-nature-2021",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/537667/art-laieta-opus-cava-brut-nature-2021.jpg"
+    },
+    {
+        "nimi": "Conde Vimioso Sommelier Edition Red 2022",
+        "hinta_eur": 19.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/937092/conde-vimioso-sommelier-edition-red-2022",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/937092/conde-vimioso-sommelier-edition-red-2022.jpg"
+    },
+    {
+        "nimi": "Barone Montalto Frappato 2023 viinipussi",
+        "hinta_eur": 21.98,
+        "tilavuus_litraa": 1.5,
+        "alkoholi_prosentti": 13.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/901541/barone-montalto-frappato-2023-viinipussi",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/901541/barone-montalto-frappato-2023-viinipussi.jpg"
+    },
+    {
+        "nimi": "Le Carré 2016",
+        "hinta_eur": 113.95,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 15.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/419567/le-carre-2016",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/419567/le-carre-2016.jpg"
+    },
+    {
+        "nimi": "Helsinki Whiskey #28 VYS Stout Cask Matured Rye Malt",
+        "hinta_eur": 73.91,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 47.5,
+        "tyyppi": "Viinijuoma",
+        "linkki": "https://www.alko.fi/fi/tuotteet/178626/helsinki-whiskey-28-vys-stout-cask-matured-rye-malt",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/178626/helsinki-whiskey-28-vys-stout-cask-matured-rye-malt.jpg"
+    },
+    {
+        "nimi": "Louis Jadot Bourgogne Chardonnay Couvent des Jacobins 2023",
+        "hinta_eur": 15.38,
+        "tilavuus_litraa": 0.375,
+        "alkoholi_prosentti": 13.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/516674/louis-jadot-bourgogne-chardonnay-couvent-des-jacobins-2023",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/516674/louis-jadot-bourgogne-chardonnay-couvent-des-jacobins-2023.jpg"
+    },
+    {
+        "nimi": "Swing Dry Apple Strong Cider muovipullo",
+        "hinta_eur": 7.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 8.0,
+        "tyyppi": "Siideri",
+        "linkki": "https://www.alko.fi/fi/tuotteet/751537/swing-dry-apple-strong-cider-muovipullo",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/751537/swing-dry-apple-strong-cider-muovipullo.jpg"
+    },
+    {
+        "nimi": "Kyrö Dairy Cream",
+        "hinta_eur": 24.98,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 16.0,
+        "tyyppi": "Väkevä",
+        "linkki": "https://www.alko.fi/fi/tuotteet/223876/kyro-dairy-cream",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/223876/kyro-dairy-cream.jpg"
+    },
+    {
+        "nimi": "Stadlmann St Laurent Rosé 2023",
+        "hinta_eur": 15.45,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/436157/stadlmann-st-laurent-rose-2023",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/436157/stadlmann-st-laurent-rose-2023.jpg"
+    },
+    {
+        "nimi": "Guerrieri Rizzardi Villa Rizzardi Amarone della Valpolicella Classico Riserva 2020",
+        "hinta_eur": 69.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 16.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/957274/guerrieri-rizzardi-villa-rizzardi-amarone-della-valpolicella-classico-riserva-2020",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/957274/guerrieri-rizzardi-villa-rizzardi-amarone-della-valpolicella-classico-riserva-2020.jpg"
+    },
+    {
+        "nimi": "Geheimrat J Riesling Spätlese Trocken 2011",
+        "hinta_eur": 60.45,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/900372/geheimrat-j-riesling-spatlese-trocken-2011",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/900372/geheimrat-j-riesling-spatlese-trocken-2011.jpg"
+    },
+    {
+        "nimi": "Palmer & Co Collection Vintage Champagne Brut 1980",
+        "hinta_eur": 258.0,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/900052/palmer-co-collection-vintage-champagne-brut-1980",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/900052/palmer-co-collection-vintage-champagne-brut-1980.jpg"
+    },
+    {
+        "nimi": "Clos Lanson Brut 2006",
+        "hinta_eur": 198.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/553897/clos-lanson-brut-2006",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/553897/clos-lanson-brut-2006.jpg"
+    },
+    {
+        "nimi": "Cognac Park Mizunara Aged 10 Years",
+        "hinta_eur": 96.08,
+        "tilavuus_litraa": 0.7,
+        "alkoholi_prosentti": 44.0,
+        "tyyppi": "Viinijuoma",
+        "linkki": "https://www.alko.fi/fi/tuotteet/918943/cognac-park-mizunara-aged-10-years",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/918943/cognac-park-mizunara-aged-10-years.jpg"
+    },
+    {
+        "nimi": "Lingoncello muovipullo",
+        "hinta_eur": 4.09,
+        "tilavuus_litraa": 0.05,
+        "alkoholi_prosentti": 25.0,
+        "tyyppi": "Väkevä",
+        "linkki": "https://www.alko.fi/fi/tuotteet/902636/lingoncello-muovipullo",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/902636/lingoncello-muovipullo.jpg"
+    },
+    {
+        "nimi": "Travaglini Gattinara Riserva 2019",
+        "hinta_eur": 58.45,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/901880/travaglini-gattinara-riserva-2019",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/901880/travaglini-gattinara-riserva-2019.jpg"
+    },
+    {
+        "nimi": "Jameson",
+        "hinta_eur": 21.48,
+        "tilavuus_litraa": 0.35,
+        "alkoholi_prosentti": 40.0,
+        "tyyppi": "Viinijuoma",
+        "linkki": "https://www.alko.fi/fi/tuotteet/001576/jameson",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/001576/jameson.jpg"
+    },
+    {
+        "nimi": "Zonin Frizzantino Amabile",
+        "hinta_eur": 9.29,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 7.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/008384/zonin-frizzantino-amabile",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/008384/zonin-frizzantino-amabile.jpg"
+    },
+    {
+        "nimi": "Aspasie Champagne Rosé Brut",
+        "hinta_eur": 53.06,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12.0,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/940265/aspasie-champagne-rose-brut",
+        "kuva_url": ""
     }
 ]
