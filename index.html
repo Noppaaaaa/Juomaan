@@ -11,24 +11,19 @@
             --text-main: #1a202c;
             --text-heading: #2d3748;
             --text-muted: #4a5568;
-
             --info-bg: #ebf8ff;
             --info-text: #2b6cb0;
             --info-border: #3182ce;
-
             --btn-bg: #2b6cb0;
             --btn-hover: #2c5282;
             --btn-active-bg: #1e4a6b;
             --btn-active-text: white;
-
             --table-border: #e2e8f0;
             --row-border: #edf2f7;
             --th-border: #cbd5e0;
             --th-bg: #f8fafc;
-
             --row-hover: #ebf8ff;
-            --last-col-bg: #d1d5db; /* tummempi vaaleassa teemassa */
-
+            --last-col-bg: #d1d5db;
             --kytkin-bg: #cbd5e0;
             --link-color: #2b6cb0;
         }
@@ -39,24 +34,19 @@
             --text-main: #e2e8f0;
             --text-heading: #f8fafc;
             --text-muted: #94a3b8;
-
             --info-bg: #0f172a;
             --info-text: #38bdf8;
             --info-border: #0ea5e9;
-
             --btn-bg: #0ea5e9;
             --btn-hover: #0284c7;
             --btn-active-bg: #0369a1;
             --btn-active-text: white;
-
             --table-border: #334155;
             --row-border: #334155;
             --th-border: #475569;
             --th-bg: #0f172a;
-
             --row-hover: #334155;
-            --last-col-bg: #0f172a; /* pysyy tummana tummassa teemassa */
-
+            --last-col-bg: #0f172a;
             --kytkin-bg: #475569;
             --link-color: #7dd3fc;
         }
@@ -220,6 +210,7 @@
             overflow-x: auto;
             border-radius: 8px;
             border: 1px solid var(--table-border);
+            position: relative;
         }
 
         table {
@@ -236,7 +227,6 @@
             vertical-align: top;
         }
 
-        /* Puolitetaan kuvasolun pystypadding */
         td:first-child {
             padding-top: 6px;
             padding-bottom: 6px;
@@ -253,7 +243,6 @@
             min-width: 100px;
         }
 
-        /* Estetään viimeisen sarakkeen taustan muuttuminen hoverissa */
         tbody tr:hover td:last-child {
             background-color: var(--last-col-bg);
         }
@@ -325,22 +314,10 @@
             opacity: 0.85;
         }
 
-        @keyframes valokiilto {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-        @keyframes kultakimallus {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-        @keyframes hopeakimallus {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-        @keyframes pronssikimallus {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
+        @keyframes valokiilto { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        @keyframes kultakimallus { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        @keyframes hopeakimallus { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        @keyframes pronssikimallus { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
 
         tr.mitali-kulta, tr.mitali-hopea, tr.mitali-pronssi {
             position: relative;
@@ -348,43 +325,27 @@
             font-weight: bold;
         }
         tr.mitali-kulta td, tr.mitali-hopea td, tr.mitali-pronssi td {
-            position: relative;
-            z-index: 1;
-            background: transparent !important;
+            position: relative; z-index: 1; background: transparent !important;
         }
         tr.mitali-kulta td:last-child, tr.mitali-hopea td:last-child, tr.mitali-pronssi td:last-child {
             background: transparent !important;
         }
         tr.mitali-kulta {
             background-image: linear-gradient(110deg, #bf953f 0%, #fcf6ba 10%, #b38728 20%, #fbf5b7 30%, #aa771c 40%, #fcf6ba 50%, #b38728 60%, #fbf5b7 70%, #aa771c 80%, #fcf6ba 90%, #bf953f 100%);
-            background-size: 400% 100%;
-            animation: kultakimallus 35s linear infinite;
-            color: #1a202c;
-            text-shadow: 0 0 6px rgba(255, 215, 0, 0.7);
+            background-size: 400% 100%; animation: kultakimallus 35s linear infinite; color: #1a202c; text-shadow: 0 0 6px rgba(255,215,0,0.7);
         }
         tr.mitali-kulta::after {
-            content: '';
-            position: absolute;
-            inset: 0;
+            content: ''; position: absolute; inset: 0;
             background-image: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.35) 45%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0.35) 55%, transparent 100%);
-            background-size: 400% 100%;
-            animation: valokiilto 20s linear infinite;
-            pointer-events: none;
-            z-index: 0;
+            background-size: 400% 100%; animation: valokiilto 20s linear infinite; pointer-events: none; z-index: 0;
         }
         tr.mitali-hopea {
             background-image: linear-gradient(110deg, #8a8d91 0%, #e0e4e9 10%, #b7bbc1 20%, #f0f2f5 30%, #9ca0a6 40%, #e0e4e9 50%, #b7bbc1 60%, #f0f2f5 70%, #9ca0a6 80%, #e0e4e9 90%, #8a8d91 100%);
-            background-size: 400% 100%;
-            animation: hopeakimallus 35s linear infinite;
-            color: #1a202c;
-            text-shadow: 0 0 6px rgba(192, 192, 192, 0.8);
+            background-size: 400% 100%; animation: hopeakimallus 35s linear infinite; color: #1a202c; text-shadow: 0 0 6px rgba(192,192,192,0.8);
         }
         tr.mitali-pronssi {
             background-image: linear-gradient(110deg, #a04f2e 0%, #e2a87c 10%, #cd7f4c 20%, #f5c7a6 30%, #b25d33 40%, #e2a87c 50%, #cd7f4c 60%, #f5c7a6 70%, #b25d33 80%, #e2a87c 90%, #a04f2e 100%);
-            background-size: 400% 100%;
-            animation: pronssikimallus 35s linear infinite;
-            color: #1a202c;
-            text-shadow: 0 0 6px rgba(184, 115, 51, 0.8);
+            background-size: 400% 100%; animation: pronssikimallus 35s linear infinite; color: #1a202c; text-shadow: 0 0 6px rgba(184,115,51,0.8);
         }
         body.dark-mode tr.mitali-kulta {
             background-image: linear-gradient(110deg, #7a5c14 0%, #b8a03a 10%, #8f6e1d 20%, #c4af45 30%, #7a5c14 40%, #b8a03a 50%, #8f6e1d 60%, #c4af45 70%, #7a5c14 80%, #b8a03a 90%, #7a5c14 100%);
@@ -398,6 +359,17 @@
             background-image: linear-gradient(110deg, #5c301c 0%, #8a5028 10%, #6e3a1f 20%, #9c6038 30%, #5c301c 40%, #8a5028 50%, #6e3a1f 60%, #9c6038 70%, #5c301c 80%, #8a5028 90%, #5c301c 100%);
             color: #fdba74;
         }
+
+        .sentinel {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            pointer-events: none;
+        }
+        #topSentinel { top: 0; }
+        #bottomSentinel { bottom: 0; }
+
         @media (max-width: 600px) {
             body { padding: 15px; }
             .container { padding: 20px; }
@@ -431,13 +403,15 @@
             <button id="btnAnnos" onclick="jarjesta('annos')">Halvin alkoholiannos</button>
         </div>
 
-        <div class="taulukko-container">
+        <div class="taulukko-container" id="taulukkoContainer">
+            <div id="topSentinel" class="sentinel"></div>
             <table id="tuoteTaulukko">
                 <thead>
                     <tr><th>Nimi</th><th>Tyyppi</th><th>Hinta (€)</th><th>Tilavuus (L)</th><th>Alkoholi (%)</th><th>Alkoholiannoksen hinta (€)</th></tr>
                 </thead>
                 <tbody id="taulukkoBody"></tbody>
             </table>
+            <div id="bottomSentinel" class="sentinel"></div>
         </div>
     </div>
 
@@ -467,18 +441,24 @@
         }
 
         let tuoteData = [];
-        let currentData = [];
-        let renderedIndex = 0;
-        const PAGE_SIZE = 50;
+        let startIndex = 0;
+        const WINDOW_SIZE = 40;   // Näytetään 40 tuotetta kerrallaan
+        const SHIFT_AMOUNT = 30;  // Vaihdetaan 30 riviä kerralla
+        let currentSort = 'annos';
+        let isShifting = false;
 
         const btnHinta = document.getElementById('btnHinta');
         const btnAnnos = document.getElementById('btnAnnos');
+        const body = document.getElementById('taulukkoBody');
+        const infoDiv = document.getElementById('info');
+        const topSentinel = document.getElementById('topSentinel');
+        const bottomSentinel = document.getElementById('bottomSentinel');
 
         function asetaAktiivinenNappi(kriteeri) {
             if (kriteeri === 'hinta') {
                 btnHinta.classList.add('aktiivinen');
                 btnAnnos.classList.remove('aktiivinen');
-            } else if (kriteeri === 'annos') {
+            } else {
                 btnAnnos.classList.add('aktiivinen');
                 btnHinta.classList.remove('aktiivinen');
             }
@@ -512,28 +492,41 @@
             });
         }
 
-        function renderMore() {
-            const body = document.getElementById('taulukkoBody');
-            const slice = currentData.slice(renderedIndex, renderedIndex + PAGE_SIZE);
-            slice.forEach((tuote, index) => {
-                const realIndex = renderedIndex + index;
+        function getSortedData() {
+            let lajiteltu = [...tuoteData];
+            if (currentSort === 'hinta') {
+                lajiteltu.sort((a, b) => a.hinta_eur - b.hinta_eur);
+            } else {
+                lajiteltu.sort((a, b) => laskeAnnosHinta(a) - laskeAnnosHinta(b));
+            }
+            return lajiteltu;
+        }
+
+        // Renderöi nykyinen ikkuna
+        function renderWindow() {
+            const sorted = getSortedData();
+            const endIndex = Math.min(startIndex + WINDOW_SIZE, sorted.length);
+            const pageItems = sorted.slice(startIndex, endIndex);
+
+            let html = '';
+            pageItems.forEach((tuote, idx) => {
+                const globalIndex = startIndex + idx;
                 const annosHinta = laskeAnnosHinta(tuote);
                 const annosHintaDisplay = annosHinta === Infinity ? "∞" : annosHinta.toFixed(2) + " €";
                 let riviLuokka = '';
                 let mitali = '';
-                if (realIndex === 0) { riviLuokka = 'class="mitali-kulta"'; mitali = '🥇 '; }
-                else if (realIndex === 1) { riviLuokka = 'class="mitali-hopea"'; mitali = '🥈 '; }
-                else if (realIndex === 2) { riviLuokka = 'class="mitali-pronssi"'; mitali = '🥉 '; }
-                
+                if (globalIndex === 0) { riviLuokka = 'class="mitali-kulta"'; mitali = '🥇 '; }
+                else if (globalIndex === 1) { riviLuokka = 'class="mitali-hopea"'; mitali = '🥈 '; }
+                else if (globalIndex === 2) { riviLuokka = 'class="mitali-pronssi"'; mitali = '🥉 '; }
+
                 const turvallinenNimi = escapeHtml(tuote.nimi);
                 const linkki = tuote.linkki || "";
                 const nimiHtml = `<a href="#" class="tuote-linkki" onclick="avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g, "\\'")}', '${escapeHtml(tuote.nimi).replace(/'/g, "\\'")}'); return false;">${turvallinenNimi}</a>`;
-                
                 const kuvaHtml = tuote.kuva_url ? `<img src="${escapeHtml(tuote.kuva_url)}" alt="Tuote" class="tuote-kuva" onerror="this.style.display='none'">` : '';
                 const mitaliHtml = mitali ? `<span class="mitali-emoji">${mitali}</span>` : '';
                 const nimiSisalto = `<div class="tuote-solu">${kuvaHtml}${mitaliHtml}<span class="nimi-linkki">${nimiHtml}</span></div>`;
-                
-                const row = `<tr ${riviLuokka}>
+
+                html += `<tr data-index="${globalIndex}" ${riviLuokka}>
                     <td>${nimiSisalto}</td>
                     <td>${escapeHtml(tuote.tyyppi)}</td>
                     <td>${tuote.hinta_eur.toFixed(2)}</td>
@@ -541,37 +534,90 @@
                     <td>${tuote.alkoholi_prosentti.toFixed(1)}%</td>
                     <td>${annosHintaDisplay}</td>
                 </tr>`;
-                body.innerHTML += row;
             });
-            renderedIndex += slice.length;
+            body.innerHTML = html;
+
+            infoDiv.innerHTML = `Löytyi yhteensä ${sorted.length} tuotetta. ` +
+                `<span style="font-size:12px; opacity:0.7;">Klikkaa nimeä, niin pääset suoraan Alkon tuotesivulle.</span>`;
         }
 
-        function paivitaTaulukko(data, lajitteluKriteeri = null) {
-            const body = document.getElementById('taulukkoBody');
-            const infoDiv = document.getElementById('info');
-            infoDiv.innerHTML = `Löytyi yhteensä ${data.length} tuotetta. ` +
-                `<span style="font-size:12px; opacity:0.7;">  klikkaa nimeä, niin pääset suoraan Alkon tuotesivulle.</span>`;
-            body.innerHTML = '';
-            currentData = data;
-            renderedIndex = 0;
-            renderMore();
-            
-            if (lajitteluKriteeri) {
-                asetaAktiivinenNappi(lajitteluKriteeri);
+        // Suorittaa ikkunan siirron ja kompensoi vierityksen
+        function shiftWindow(direction) {
+            if (isShifting) return;
+            const sorted = getSortedData();
+            if (direction === 'forward' && startIndex + WINDOW_SIZE >= sorted.length) return;
+            if (direction === 'backward' && startIndex === 0) return;
+
+            let anchorIndex;
+            if (direction === 'forward') {
+                // Poistetaan SHIFT_AMOUNT yläpäästä, ankkuri on uuden ikkunan ensimmäinen rivi
+                anchorIndex = startIndex + SHIFT_AMOUNT;
+            } else {
+                // Poistetaan SHIFT_AMOUNT alhaalta, ankkuri on vanhan ikkunan ensimmäinen rivi
+                anchorIndex = startIndex;
             }
+
+            const anchorRow = document.querySelector(`tr[data-index="${anchorIndex}"]`);
+            if (!anchorRow) return;
+            const oldAnchorTop = anchorRow.getBoundingClientRect().top;
+
+            isShifting = true;
+
+            if (direction === 'forward') {
+                startIndex += SHIFT_AMOUNT;
+            } else {
+                startIndex = Math.max(0, startIndex - SHIFT_AMOUNT);
+            }
+
+            renderWindow();
+
+            requestAnimationFrame(() => {
+                const newAnchorRow = document.querySelector(`tr[data-index="${anchorIndex}"]`);
+                if (newAnchorRow) {
+                    const newAnchorTop = newAnchorRow.getBoundingClientRect().top;
+                    const diff = newAnchorTop - oldAnchorTop;
+                    window.scrollBy({ top: diff, behavior: 'instant' });
+                }
+                isShifting = false;
+            });
         }
 
+        // IntersectionObserverit ennakoivaan siirtoon
+        const observerOptions = {
+            root: null,
+            rootMargin: '200px 0px 200px 0px',
+            threshold: 0
+        };
+
+        const topObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !isShifting && startIndex > 0) {
+                    shiftWindow('backward');
+                }
+            });
+        }, observerOptions);
+
+        const bottomObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !isShifting) {
+                    shiftWindow('forward');
+                }
+            });
+        }, observerOptions);
+
+        topObserver.observe(topSentinel);
+        bottomObserver.observe(bottomSentinel);
+
+        // Lajittelun vaihto – palauta alkuun ja renderöi
         function jarjesta(kriteeri) {
-            if (!tuoteData.length) return;
-            let lajiteltu = [...tuoteData];
-            if (kriteeri === 'hinta') {
-                lajiteltu.sort((a, b) => a.hinta_eur - b.hinta_eur);
-            } else if (kriteeri === 'annos') {
-                lajiteltu.sort((a, b) => laskeAnnosHinta(a) - laskeAnnosHinta(b));
-            }
-            paivitaTaulukko(lajiteltu, kriteeri);
+            currentSort = kriteeri;
+            startIndex = 0;
+            renderWindow();
+            asetaAktiivinenNappi(kriteeri);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // Alkulataus
         fetch('alko_tuotteet.json')
             .then(response => {
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -599,22 +645,19 @@
                 }
                 tuoteData = Array.from(uniqueMap.values());
                 if (tuoteData.length === 0) {
-                    document.getElementById('info').innerHTML = "⚠️ Aineistossa ei ole kelvollisia tuotteita.";
+                    infoDiv.innerHTML = "⚠️ Aineistossa ei ole kelvollisia tuotteita.";
                     return;
                 }
-                jarjesta('annos');
+                currentSort = 'annos';
+                startIndex = 0;
+                renderWindow();
+                asetaAktiivinenNappi('annos');
             })
             .catch(err => {
                 console.error("Virhe ladattaessa tiedostoa:", err);
-                document.getElementById('info').innerHTML = "❌ Virhe tuotetietojen lataamisessa. Varmista, että 'alko_tuotteet.json' on olemassa ja sisältää 'linkki'- ja 'kuva_url'-kentät.";
-                document.getElementById('taulukkoBody').innerHTML = '<tr><td colspan="6">Tietoja ei voitu ladata.</td></tr>';
+                infoDiv.innerHTML = "❌ Virhe tuotetietojen lataamisessa. Varmista, että 'alko_tuotteet.json' on olemassa ja sisältää 'linkki'- ja 'kuva_url'-kentät.";
+                body.innerHTML = '<tr><td colspan="6">Tietoja ei voitu ladata.</td></tr>';
             });
-
-        window.addEventListener('scroll', () => {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
-                if (renderedIndex < currentData.length) renderMore();
-            }
-        });
     </script>
 </body>
 </html>
