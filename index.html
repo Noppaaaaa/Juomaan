@@ -385,7 +385,6 @@
         #topSentinel { top: 0; }
         #bottomSentinel { bottom: 0; }
 
-        /* Poista kiilto mobiilissa */
         @media (max-width: 768px) {
             tr.mitali-kulta::after,
             tr.mitali-hopea::after,
@@ -500,6 +499,7 @@
         let startIndex = 0;
         const WINDOW_SIZE = 50;
         const SHIFT_AMOUNT = 30;
+        let extraRows = 0;                // kuinka monta ylimääräistä riviä alaspäin on lisätty
         let currentSort = 'annos';
         let isShifting = false;
         let isUserScrolling = false;
@@ -560,9 +560,11 @@
             return lajiteltu;
         }
 
+        // Renderöi nykyisen ikkunan, joka voi olla suurempi kuin WINDOW_SIZE extraRows:n verran
         function renderWindow() {
             const sorted = getSortedData();
-            const endIndex = Math.min(startIndex + WINDOW_SIZE, sorted.length);
+            const totalRows = WINDOW_SIZE + extraRows;
+            const endIndex = Math.min(startIndex + totalRows, sorted.length);
             const pageItems = sorted.slice(startIndex, endIndex);
 
             let html = '';
@@ -601,47 +603,83 @@
                 `<span style="font-size:12px; opacity:0.7;">Klikkaa nimeä, niin pääset suoraan Alkon tuotesivulle.</span>`;
         }
 
-        function shiftWindow(direction) {
-            if (isShifting || isUserScrolling) return false;
+        // Lisää uusia rivejä alareunaan (vain inertian aikana), ei poista vanhoja
+        function appendForwardIfNeeded() {
+            if (isShifting) return;
             const sorted = getSortedData();
-            if (direction === 'forward' && startIndex + WINDOW_SIZE >= sorted.length) return false;
-            if (direction === 'backward' && startIndex === 0) return false;
+            const currentEnd = startIndex + WINDOW_SIZE + extraRows;
+            if (currentEnd >= sorted.length) return; // ei enempää
 
-            let anchorIndex;
-            if (direction === 'forward') {
-                anchorIndex = startIndex + SHIFT_AMOUNT;
-            } else {
-                anchorIndex = startIndex;
-            }
+            // Lasketaan, montako uutta riviä voitaisiin lisätä
+            const available = sorted.length - currentEnd;
+            const addCount = Math.min(SHIFT_AMOUNT, available);
+            if (addCount <= 0) return;
 
+            extraRows += addCount;
+            renderWindow();
+            // Ei tarvitse kompensoida, koska lisäsimme vain alareunaan ja selain pitää scroll-position suhteessa dokumentin alkuun.
+        }
+
+        // Poistaa ylimääräiset rivit yläpäästä ja siirtää startIndexiä, palauttaa ikkunan WINDOW_SIZE:een
+        function trimExtraRows() {
+            if (extraRows <= 0 || isShifting) return;
+            const sorted = getSortedData();
+            const anchorIndex = startIndex + extraRows; // ankkuri on rivi, joka aiemmin oli ylimpänä, mutta nyt siitä tulee ikkunan ylin
             const anchorRow = document.querySelector(`tr[data-index="${anchorIndex}"]`);
-            if (!anchorRow) return false;
-            const oldAnchorTop = anchorRow.getBoundingClientRect().top;
-
-            isShifting = true;
-
-            if (direction === 'forward') {
-                startIndex += SHIFT_AMOUNT;
-            } else {
-                startIndex = Math.max(0, startIndex - SHIFT_AMOUNT);
+            let oldAnchorTop = null;
+            if (anchorRow) {
+                oldAnchorTop = anchorRow.getBoundingClientRect().top;
             }
 
+            startIndex += extraRows;
+            extraRows = 0;
+            renderWindow();
+
+            if (oldAnchorTop !== null) {
+                requestAnimationFrame(() => {
+                    const newAnchorRow = document.querySelector(`tr[data-index="${anchorIndex}"]`);
+                    if (newAnchorRow) {
+                        const newAnchorTop = newAnchorRow.getBoundingClientRect().top;
+                        const diff = newAnchorTop - oldAnchorTop;
+                        window.scrollBy(0, diff);
+                    }
+                });
+            }
+        }
+
+        // Siirrä ikkunaa taaksepäin (vain pysähdyksissä)
+        function shiftBackward() {
+            if (isShifting || startIndex === 0) return;
+            isShifting = true;
+            const anchorIndex = startIndex;
+            const anchorRow = document.querySelector(`tr[data-index="${anchorIndex}"]`);
+            let oldAnchorTop = null;
+            if (anchorRow) oldAnchorTop = anchorRow.getBoundingClientRect().top;
+
+            startIndex = Math.max(0, startIndex - SHIFT_AMOUNT);
             renderWindow();
 
             requestAnimationFrame(() => {
-                const newAnchorRow = document.querySelector(`tr[data-index="${anchorIndex}"]`);
-                if (newAnchorRow) {
-                    const newAnchorTop = newAnchorRow.getBoundingClientRect().top;
-                    const diff = newAnchorTop - oldAnchorTop;
-                    window.scrollBy(0, diff);
+                if (oldAnchorTop !== null) {
+                    const newAnchorRow = document.querySelector(`tr[data-index="${anchorIndex}"]`);
+                    if (newAnchorRow) {
+                        const newAnchorTop = newAnchorRow.getBoundingClientRect().top;
+                        const diff = newAnchorTop - oldAnchorTop;
+                        window.scrollBy(0, diff);
+                    }
                 }
                 isShifting = false;
             });
-            return true;
         }
 
         function checkStuck() {
-            if (isShifting || isUserScrolling) return;
+            if (isShifting) return;
+            // Jos on ylimääräisiä rivejä, trimmaa ne ensin
+            if (extraRows > 0) {
+                trimExtraRows();
+                return;
+            }
+
             const table = document.getElementById('tuoteTaulukko');
             if (!table) return;
             const sorted = getSortedData();
@@ -650,9 +688,36 @@
             const margin = window.innerWidth < 768 ? 100 : 200;
 
             if (rect.top >= -margin && startIndex > 0) {
-                shiftWindow('backward');
+                shiftBackward();
             } else if (rect.bottom <= viewHeight + margin && startIndex + WINDOW_SIZE < sorted.length) {
-                shiftWindow('forward');
+                // Jos ollaan aivan lopussa, voidaan tehdä perinteinen shift eteenpäin (ei enää append, koska nyt ollaan pysähdyksissä)
+                // Mutta normaalisti tänne ei pitäisi päätyä, koska append on jo hoitanut eteenpäin menon.
+                // Varmuuden vuoksi tehdään shift.
+                if (extraRows === 0) {
+                    // shift forward
+                    if (startIndex + WINDOW_SIZE < sorted.length) {
+                        isShifting = true;
+                        const anchorIndex = startIndex + SHIFT_AMOUNT;
+                        const anchorRow = document.querySelector(`tr[data-index="${anchorIndex}"]`);
+                        let oldAnchorTop = null;
+                        if (anchorRow) oldAnchorTop = anchorRow.getBoundingClientRect().top;
+
+                        startIndex += SHIFT_AMOUNT;
+                        renderWindow();
+
+                        requestAnimationFrame(() => {
+                            if (oldAnchorTop !== null) {
+                                const newAnchorRow = document.querySelector(`tr[data-index="${anchorIndex}"]`);
+                                if (newAnchorRow) {
+                                    const newAnchorTop = newAnchorRow.getBoundingClientRect().top;
+                                    const diff = newAnchorTop - oldAnchorTop;
+                                    window.scrollBy(0, diff);
+                                }
+                            }
+                            isShifting = false;
+                        });
+                    }
+                }
             }
         }
 
@@ -667,10 +732,20 @@
                 isUserScrolling = false;
                 checkStuck();
             }, getScrollDebounceTime());
+
+            // Yritä lisätä rivejä alaspäin heti, jos ollaan lähellä alareunaa
+            const table = document.getElementById('tuoteTaulukko');
+            if (table) {
+                const rect = table.getBoundingClientRect();
+                const viewHeight = window.innerHeight;
+                if (rect.bottom < viewHeight + 600) {
+                    appendForwardIfNeeded();
+                }
+            }
         }, { passive: true });
 
         function getRootMargin() {
-            return window.innerWidth < 768 ? '500px 0px 500px 0px' : '600px 0px 600px 0px';
+            return window.innerWidth < 768 ? '600px 0px 600px 0px' : '600px 0px 600px 0px';
         }
 
         let topObserver, bottomObserver;
@@ -687,15 +762,15 @@
             topObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting && !isShifting && !isUserScrolling && startIndex > 0) {
-                        shiftWindow('backward');
+                        shiftBackward();
                     }
                 });
             }, observerOptions);
 
             bottomObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting && !isShifting && !isUserScrolling) {
-                        shiftWindow('forward');
+                    if (entry.isIntersecting && !isShifting) {
+                        appendForwardIfNeeded();
                     }
                 });
             }, observerOptions);
@@ -713,6 +788,7 @@
             if (scrollDebounceTimer) clearTimeout(scrollDebounceTimer);
             isShifting = false;
             isUserScrolling = false;
+            extraRows = 0;
             currentSort = kriteeri;
             startIndex = 0;
             renderWindow();
@@ -752,6 +828,7 @@
                 }
                 currentSort = 'annos';
                 startIndex = 0;
+                extraRows = 0;
                 renderWindow();
                 asetaAktiivinenNappi('annos');
             })
