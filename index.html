@@ -87,468 +87,113 @@
     </script>
 
     <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
-        html {
-            -webkit-text-size-adjust: 100%;
-        }
-
+        *, *::before, *::after { box-sizing: border-box; }
+        html { -webkit-text-size-adjust: 100%; }
         :root {
-            --bg-body: #f0f4f8;
-            --bg-container: #ffffff;
-            --text-main: #1a202c;
-            --text-heading: #2d3748;
-            --text-muted: #4a5568;
-            --info-bg: #ebf8ff;
-            --info-text: #2b6cb0;
-            --info-border: #3182ce;
-            --btn-bg: #2b6cb0;
-            --btn-hover: #2c5282;
-            --btn-active-bg: #1e4a6b;
-            --btn-active-text: white;
-            --table-border: #e2e8f0;
-            --row-border: #edf2f7;
-            --th-border: #cbd5e0;
-            --th-bg: #f8fafc;
-            --row-hover: #ebf8ff;
-            --last-col-bg: #d1d5db;
-            --kytkin-bg: #cbd5e0;
-            --link-color: #2b6cb0;
-            --dropdown-bg: #ffffff;
-            --dropdown-border: #e2e8f0;
-            --checkbox-bg: #ffffff;
-            --checkbox-border: #cbd5e0;
+            --bg-body: #f0f4f8; --bg-container: #ffffff; --text-main: #1a202c; --text-heading: #2d3748;
+            --text-muted: #4a5568; --info-bg: #ebf8ff; --info-text: #2b6cb0; --info-border: #3182ce;
+            --btn-bg: #2b6cb0; --btn-hover: #2c5282; --btn-active-bg: #1e4a6b; --btn-active-text: white;
+            --table-border: #e2e8f0; --row-border: #edf2f7; --th-border: #cbd5e0; --th-bg: #f8fafc;
+            --row-hover: #ebf8ff; --last-col-bg: #d1d5db; --kytkin-bg: #cbd5e0; --link-color: #2b6cb0;
+            --dropdown-bg: #ffffff; --dropdown-border: #e2e8f0; --checkbox-bg: #ffffff; --checkbox-border: #cbd5e0;
         }
-
         body.dark-mode {
-            --bg-body: #1a1e26;
-            --bg-container: #21252f;
-            --text-main: #e2e8f0;
-            --text-heading: #f8fafc;
-            --text-muted: #94a3b8;
-            --info-bg: #1a1e26;
-            --info-text: #38bdf8;
-            --info-border: #0ea5e9;
-            --btn-bg: #0ea5e9;
-            --btn-hover: #0284c7;
-            --btn-active-bg: #0369a1;
-            --btn-active-text: white;
-            --table-border: #2d333b;
-            --row-border: #2d333b;
-            --th-border: #3a4049;
-            --th-bg: #1a1e26;
-            --row-hover: #2a303c;
-            --last-col-bg: #2a303c;
-            --kytkin-bg: #3a4049;
-            --link-color: #7dd3fc;
-            --dropdown-bg: #21252f;
-            --dropdown-border: #3a4049;
-            --checkbox-bg: #2d3748;
-            --checkbox-border: #4a5568;
+            --bg-body: #1a1e26; --bg-container: #21252f; --text-main: #e2e8f0; --text-heading: #f8fafc;
+            --text-muted: #94a3b8; --info-bg: #1a1e26; --info-text: #38bdf8; --info-border: #0ea5e9;
+            --btn-bg: #0ea5e9; --btn-hover: #0284c7; --btn-active-bg: #0369a1; --btn-active-text: white;
+            --table-border: #2d333b; --row-border: #2d333b; --th-border: #3a4049; --th-bg: #1a1e26;
+            --row-hover: #2a303c; --last-col-bg: #2a303c; --kytkin-bg: #3a4049; --link-color: #7dd3fc;
+            --dropdown-bg: #21252f; --dropdown-border: #3a4049; --checkbox-bg: #2d3748; --checkbox-border: #4a5568;
         }
-
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            margin: 0;
-            padding: 40px 20px;
-            background: var(--bg-body);
-            color: var(--text-main);
-            min-height: 100vh;
-            transition: background 0.3s ease, color 0.3s ease;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; margin: 0; padding: 40px 20px;
+            background: var(--bg-body); color: var(--text-main); min-height: 100vh; transition: background 0.3s, color 0.3s;
         }
-
         .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: var(--bg-container);
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            padding: 30px;
-            transition: background 0.3s ease;
+            max-width: 1100px; margin: 0 auto; background: var(--bg-container); border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); padding: 30px; transition: background 0.3s;
         }
-
-        .header-rivi {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .logo-otsikko {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo {
-            height: 112px;
-            width: auto;
-            vertical-align: middle;
-        }
-
-        h1 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #8B0000;
-            margin: 0;
-            line-height: 1.2;
-        }
-
-        .alaotsikko {
-            font-size: 14px;
-            font-weight: 400;
-            color: var(--text-muted);
-            margin: 2px 0 0 0;
-            line-height: 1.3;
-        }
-
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        .kytkin-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-muted);
-        }
-
-        .teema-kytkin {
-            position: relative;
-            display: inline-block;
-            width: 56px;
-            height: 28px;
-        }
-
-        .teema-kytkin input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
+        .header-rivi { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .logo-otsikko { display: flex; align-items: center; gap: 10px; }
+        .logo { height: 112px; width: auto; }
+        h1 { font-size: 28px; font-weight: 700; color: #8B0000; margin: 0; }
+        .alaotsikko { font-size: 14px; color: var(--text-muted); margin: 2px 0 0; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+        .kytkin-wrapper { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: var(--text-muted); }
+        .teema-kytkin { position: relative; display: inline-block; width: 56px; height: 28px; }
+        .teema-kytkin input { opacity: 0; width: 0; height: 0; }
         .liuku {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--kytkin-bg);
-            transition: .3s;
-            border-radius: 34px;
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--kytkin-bg);
+            transition: .3s; border-radius: 34px;
         }
-
         .liuku:before {
-            position: absolute;
-            content: "☀️";
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 22px;
-            width: 22px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .3s;
-            border-radius: 50%;
-            color: #f59e0b;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            position: absolute; content: "☀️"; font-size: 16px; display: flex; align-items: center; justify-content: center;
+            height: 22px; width: 22px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%;
+            color: #f59e0b; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
-
-        input:checked+.liuku:before {
-            content: "🌙";
-            color: #3b82f6;
-            transform: translateX(28px);
-        }
-
-        input:checked+.liuku {
-            background-color: var(--btn-bg);
-        }
-
+        input:checked+.liuku:before { content: "🌙"; color: #3b82f6; transform: translateX(28px); }
+        input:checked+.liuku { background-color: var(--btn-bg); }
         .info {
-            display: inline-block;
-            padding: 10px 16px;
-            background-color: var(--info-bg);
-            color: var(--info-text);
-            border-left: 4px solid var(--info-border);
-            border-radius: 6px;
-            font-weight: 500;
-            font-size: 14px;
-            margin-bottom: 25px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            display: inline-block; padding: 10px 16px; background-color: var(--info-bg); color: var(--info-text);
+            border-left: 4px solid var(--info-border); border-radius: 6px; font-weight: 500; font-size: 14px; margin-bottom: 25px;
         }
-
-        .nappi-alue {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
+        .nappi-alue { display: flex; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; align-items: center; }
         button {
-            padding: 10px 20px;
-            cursor: pointer;
-            background-color: var(--btn-bg);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px; cursor: pointer; background-color: var(--btn-bg); color: white; border: none;
+            border-radius: 8px; font-size: 14px; font-weight: 600; transition: all 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             font-family: inherit;
         }
-
-        button:hover {
-            background-color: var(--btn-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        button:focus-visible {
-            outline: 2px solid var(--btn-bg);
-            outline-offset: 2px;
-        }
-
-        button.aktiivinen {
-            background-color: var(--btn-active-bg);
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
-            transform: scale(0.98);
-        }
-
-        /* Pudotusvalikko kategoriavalinnalle */
-        .kategoria-dropdown {
-            position: relative;
-            margin-left: auto;
-        }
-
-        .dropdown-toggle {
-            padding: 10px 20px;
-            background-color: var(--btn-bg);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.2s ease;
-        }
-
-        .dropdown-toggle:hover {
-            background-color: var(--btn-hover);
-            transform: translateY(-2px);
-        }
-
+        button:hover { background-color: var(--btn-hover); transform: translateY(-2px); }
+        button:active { transform: translateY(0); }
+        button:focus-visible { outline: 2px solid var(--btn-bg); outline-offset: 2px; }
+        button.aktiivinen { background-color: var(--btn-active-bg); box-shadow: 0 0 0 2px rgba(255,255,255,0.3); transform: scale(0.98); }
+        .kategoria-dropdown { position: relative; margin-left: auto; }
+        .dropdown-toggle { padding: 10px 20px; background-color: var(--btn-bg); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
+        .dropdown-toggle:hover { background-color: var(--btn-hover); }
         .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 100%;
-            margin-top: 8px;
-            background: var(--dropdown-bg);
-            border: 1px solid var(--dropdown-border);
-            border-radius: 10px;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-            padding: 12px 16px;
-            min-width: 220px;
-            z-index: 100;
-            transition: opacity 0.2s ease;
+            display: none; position: absolute; right: 0; top: 100%; margin-top: 8px; background: var(--dropdown-bg);
+            border: 1px solid var(--dropdown-border); border-radius: 10px; box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+            padding: 12px 16px; min-width: 220px; z-index: 100;
         }
-
-        .dropdown-content.visible {
-            display: block;
-        }
-
+        .dropdown-content.visible { display: block; }
         .kategoria-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-muted);
-            cursor: pointer;
-            padding: 6px 0;
-            user-select: none;
+            display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--text-muted);
+            cursor: pointer; padding: 6px 0; user-select: none;
         }
-
         .kategoria-checkbox input[type="checkbox"] {
-            appearance: none;
-            width: 18px;
-            height: 18px;
-            border: 2px solid var(--checkbox-border);
-            border-radius: 4px;
-            background: var(--checkbox-bg);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            position: relative;
-            flex-shrink: 0;
+            appearance: none; width: 18px; height: 18px; border: 2px solid var(--checkbox-border);
+            border-radius: 4px; background: var(--checkbox-bg); cursor: pointer; position: relative; flex-shrink: 0;
         }
-
-        .kategoria-checkbox input[type="checkbox"]:checked {
-            background-color: var(--btn-bg);
-            border-color: var(--btn-bg);
-        }
-
+        .kategoria-checkbox input[type="checkbox"]:checked { background-color: var(--btn-bg); border-color: var(--btn-bg); }
         .kategoria-checkbox input[type="checkbox"]:checked::after {
-            content: "";
-            position: absolute;
-            left: 4px;
-            top: 1px;
-            width: 6px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
+            content: ""; position: absolute; left: 4px; top: 1px; width: 6px; height: 10px;
+            border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
         }
-
-        .taulukko-container {
-            overflow-x: auto;
-            border-radius: 8px;
-            border: 1px solid var(--table-border);
-            position: relative;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--bg-container);
-        }
-
-        th,
-        td {
-            padding: 12px;
-            border-bottom: 1px solid var(--row-border);
-            text-align: left;
-            line-height: 1.4;
-            vertical-align: top;
-        }
-
-        td:first-child {
-            padding-top: 6px;
-            padding-bottom: 6px;
-        }
-
-        th:nth-child(n+3),
-        td:nth-child(n+3) {
-            text-align: right;
-        }
-
-        th:last-child,
-        td:last-child {
-            background-color: var(--last-col-bg);
-            font-weight: 600;
-            color: var(--text-heading);
-            min-width: 100px;
-        }
-
-        tbody tr:hover td:last-child {
-            background-color: var(--last-col-bg);
-        }
-
-        th {
-            background-color: var(--th-bg);
-            color: var(--text-muted);
-            font-weight: 600;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-bottom: 2px solid var(--th-border);
-        }
-
-        tbody tr {
-            transition: background-color 0.15s ease;
-        }
-
-        tbody tr:hover {
-            background-color: var(--row-hover);
-        }
-
-        .tuote-solu {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-
-        .mitali-emoji {
-            font-size: 2em;
-            line-height: 1;
-            flex-shrink: 0;
-            align-self: flex-start;
-        }
-
-        .tuote-kuva {
-            height: 90px;
-            width: auto;
-            max-height: 90px;
-            max-width: 100px;
-            object-fit: contain;
-            flex-shrink: 0;
-            border-radius: 6px;
-            border: 1px solid transparent;
-            transition: border-color 0.2s;
-        }
-
-        body.dark-mode .tuote-kuva {
-            border-color: #334155;
-        }
-
-        .nimi-linkki {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .tuote-linkki {
-            color: var(--link-color);
-            text-decoration: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-bottom: 1px dashed transparent;
-        }
-
-        .tuote-linkki:hover {
-            border-bottom-color: var(--link-color);
-            opacity: 0.85;
-        }
-
+        .taulukko-container { overflow-x: auto; border-radius: 8px; border: 1px solid var(--table-border); position: relative; }
+        table { width: 100%; border-collapse: collapse; background: var(--bg-container); }
+        th, td { padding: 12px; border-bottom: 1px solid var(--row-border); text-align: left; vertical-align: top; }
+        th:nth-child(n+3), td:nth-child(n+3) { text-align: right; }
+        th:last-child, td:last-child { background-color: var(--last-col-bg); font-weight: 600; color: var(--text-heading); min-width: 100px; }
+        tbody tr:hover td:last-child { background-color: var(--last-col-bg); }
+        th { background-color: var(--th-bg); color: var(--text-muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid var(--th-border); }
+        tbody tr { transition: background-color 0.15s; }
+        tbody tr:hover { background-color: var(--row-hover); }
+        .tuote-solu { display: flex; align-items: flex-start; gap: 8px; }
+        .mitali-emoji { font-size: 2em; line-height: 1; flex-shrink: 0; }
+        .tuote-kuva { height: 90px; max-height: 90px; max-width: 100px; object-fit: contain; border-radius: 6px; border: 1px solid transparent; }
+        body.dark-mode .tuote-kuva { border-color: #334155; }
+        .nimi-linkki { flex: 1; min-width: 0; }
+        .tuote-linkki { color: var(--link-color); text-decoration: none; font-weight: 600; border-bottom: 1px dashed transparent; }
+        .tuote-linkki:hover { border-bottom-color: var(--link-color); }
         @keyframes valokiilto { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
         @keyframes kultakimallus { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
         @keyframes hopeakimallus { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
         @keyframes pronssikimallus { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
-
-        tr.mitali-kulta, tr.mitali-hopea, tr.mitali-pronssi {
-            position: relative; isolation: isolate; font-weight: bold;
-        }
-        tr.mitali-kulta td, tr.mitali-hopea td, tr.mitali-pronssi td {
-            position: relative; z-index: 1; background: transparent !important;
-        }
-        tr.mitali-kulta td:last-child, tr.mitali-hopea td:last-child, tr.mitali-pronssi td:last-child {
-            background: transparent !important;
-        }
+        tr.mitali-kulta, tr.mitali-hopea, tr.mitali-pronssi { position: relative; isolation: isolate; font-weight: bold; }
+        tr.mitali-kulta td, tr.mitali-hopea td, tr.mitali-pronssi td { position: relative; z-index: 1; background: transparent !important; }
+        tr.mitali-kulta td:last-child, tr.mitali-hopea td:last-child, tr.mitali-pronssi td:last-child { background: transparent !important; }
         tr.mitali-kulta {
-            background-image: linear-gradient(110deg, #bf953f 0%, #fcf6ba 10%, #b38728 20%, #fbf5b7 30%, #aa771c 40%, #fcf6ba 50%, #b38728 60%, #fbf5b7 70%, #aa771c 80%, #fcf6ba 90%, #bf953f 100%);
+            background-image: linear-gradient(110deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c, #fcf6ba, #b38728, #fbf5b7, #aa771c, #fcf6ba, #bf953f);
             background-size: 400% 100%; animation: kultakimallus 35s linear infinite; color: #1a202c; text-shadow: 0 0 6px rgba(255,215,0,0.7);
         }
         tr.mitali-kulta::after {
@@ -557,73 +202,49 @@
             background-size: 400% 100%; animation: valokiilto 20s linear infinite; pointer-events: none; z-index: 0;
         }
         tr.mitali-hopea {
-            background-image: linear-gradient(110deg, #8a8d91 0%, #e0e4e9 10%, #b7bbc1 20%, #f0f2f5 30%, #9ca0a6 40%, #e0e4e9 50%, #b7bbc1 60%, #f0f2f5 70%, #9ca0a6 80%, #e0e4e9 90%, #8a8d91 100%);
+            background-image: linear-gradient(110deg, #8a8d91, #e0e4e9, #b7bbc1, #f0f2f5, #9ca0a6, #e0e4e9, #b7bbc1, #f0f2f5, #9ca0a6, #e0e4e9, #8a8d91);
             background-size: 400% 100%; animation: hopeakimallus 35s linear infinite; color: #1a202c; text-shadow: 0 0 6px rgba(192,192,192,0.8);
         }
         tr.mitali-pronssi {
-            background-image: linear-gradient(110deg, #a04f2e 0%, #e2a87c 10%, #cd7f4c 20%, #f5c7a6 30%, #b25d33 40%, #e2a87c 50%, #cd7f4c 60%, #f5c7a6 70%, #b25d33 80%, #e2a87c 90%, #a04f2e 100%);
+            background-image: linear-gradient(110deg, #a04f2e, #e2a87c, #cd7f4c, #f5c7a6, #b25d33, #e2a87c, #cd7f4c, #f5c7a6, #b25d33, #e2a87c, #a04f2e);
             background-size: 400% 100%; animation: pronssikimallus 35s linear infinite; color: #1a202c; text-shadow: 0 0 6px rgba(184,115,51,0.8);
         }
         body.dark-mode tr.mitali-kulta {
-            background-image: linear-gradient(110deg, #7a5c14 0%, #b8a03a 10%, #8f6e1d 20%, #c4af45 30%, #7a5c14 40%, #b8a03a 50%, #8f6e1d 60%, #c4af45 70%, #7a5c14 80%, #b8a03a 90%, #7a5c14 100%);
+            background-image: linear-gradient(110deg, #7a5c14, #b8a03a, #8f6e1d, #c4af45, #7a5c14, #b8a03a, #8f6e1d, #c4af45, #7a5c14, #b8a03a, #7a5c14);
             color: #fde047;
         }
         body.dark-mode tr.mitali-hopea {
-            background-image: linear-gradient(110deg, #4a4d52 0%, #7a7e85 10%, #5c6066 20%, #8e9299 30%, #4a4d52 40%, #7a7e85 50%, #5c6066 60%, #8e9299 70%, #4a4d52 80%, #7a7e85 90%, #4a4d52 100%);
+            background-image: linear-gradient(110deg, #4a4d52, #7a7e85, #5c6066, #8e9299, #4a4d52, #7a7e85, #5c6066, #8e9299, #4a4d52, #7a7e85, #4a4d52);
             color: #e2e8f0;
         }
         body.dark-mode tr.mitali-pronssi {
-            background-image: linear-gradient(110deg, #5c301c 0%, #8a5028 10%, #6e3a1f 20%, #9c6038 30%, #5c301c 40%, #8a5028 50%, #6e3a1f 60%, #9c6038 70%, #5c301c 80%, #8a5028 90%, #5c301c 100%);
+            background-image: linear-gradient(110deg, #5c301c, #8a5028, #6e3a1f, #9c6038, #5c301c, #8a5028, #6e3a1f, #9c6038, #5c301c, #8a5028, #5c301c);
             color: #fdba74;
         }
-
-        .sentinel {
-            position: absolute; left: 0; width: 100%; height: 1px; pointer-events: none;
-        }
-        #topSentinel { top: 0; }
-        #bottomSentinel { bottom: 0; }
-
-        .noscript-viesti { display: none; }
-
+        .sentinel { position: absolute; left: 0; width: 100%; height: 1px; pointer-events: none; }
+        #topSentinel { top: 0; } #bottomSentinel { bottom: 0; }
         @media (max-width: 768px) {
-            tr.mitali-kulta::after, tr.mitali-hopea::after, tr.mitali-pronssi::after { display: none; }
             .kategoria-dropdown { margin-left: 0; width: 100%; }
             .dropdown-content { width: 100%; }
+            tr.mitali-kulta::after, tr.mitali-hopea::after, tr.mitali-pronssi::after { display: none; }
         }
-        @media (max-width: 1024px) {
-            body { padding: 30px 15px; }
-            .container { padding: 25px; }
-            h1 { font-size: 24px; }
-            .logo { height: 100px; }
-        }
+        @media (max-width: 1024px) { body { padding: 30px 15px; } .container { padding: 25px; } h1 { font-size: 24px; } .logo { height: 100px; } }
         @media (max-width: 768px) {
-            body { padding: 20px 10px; }
-            .container { padding: 20px; }
+            body { padding: 20px 10px; } .container { padding: 20px; }
             .header-rivi { flex-direction: column; align-items: flex-start; gap: 15px; }
-            .logo-otsikko { gap: 8px; }
-            .logo { height: 80px; }
-            h1 { font-size: 22px; }
-            .alaotsikko { font-size: 13px; }
-            .nappi-alue { flex-direction: column; }
-            .info { font-size: 13px; }
+            .logo { height: 80px; } h1 { font-size: 22px; }
+            .nappi-alue { flex-direction: column; } .info { font-size: 13px; }
             th, td { padding: 8px 10px; font-size: 13px; }
             .tuote-kuva { height: 70px; max-height: 70px; max-width: 70px; }
             .mitali-emoji { font-size: 1.5em; }
         }
         @media (max-width: 480px) {
-            body { padding: 15px 5px; }
-            .container { padding: 15px; border-radius: 8px; }
-            .header-rivi { gap: 10px; }
-            .logo { height: 60px; }
-            h1 { font-size: 20px; }
-            .alaotsikko { font-size: 12px; }
-            .kytkin-wrapper span { font-size: 12px; }
+            body { padding: 15px 5px; } .container { padding: 15px; }
+            .logo { height: 60px; } h1 { font-size: 20px; }
             .teema-kytkin { width: 48px; height: 24px; }
             .liuku:before { height: 18px; width: 18px; left: 3px; bottom: 3px; font-size: 12px; }
             input:checked+.liuku:before { transform: translateX(24px); }
-            .nappi-alue { gap: 8px; }
             button { padding: 8px 16px; font-size: 13px; }
-            .info { font-size: 12px; padding: 8px 12px; margin-bottom: 20px; }
             th, td { padding: 6px 8px; font-size: 12px; }
             .tuote-kuva { height: 50px; max-height: 50px; max-width: 50px; }
             .mitali-emoji { font-size: 1.2em; }
@@ -638,7 +259,7 @@
                 <img src="Logo.png" alt="Halvan alkoholin perässä -logo" class="logo" fetchpriority="high" width="112" height="112" onerror="this.style.display='none'">
                 <div>
                     <h1 id="paaotsikko">Alkon halvin alkoholi</h1>
-                    <p class="alaotsikko">Halvan alkoholin perässä – Hintavertailu &amp; suorat linkit Alkoon</p>
+                    <p class="alaotsikko">Halvan alkoholin perässä – Hintavertailu & suorat linkit Alkoon</p>
                 </div>
             </div>
             <div class="kytkin-wrapper">
@@ -656,12 +277,9 @@
         <nav class="nappi-alue" aria-label="Järjestys- ja suodatusvalinnat">
             <button id="btnHinta" onclick="jarjesta('hinta')">Halvin hinta</button>
             <button id="btnAnnos" onclick="jarjesta('annos')">Halvin alkoholiannos</button>
-
             <div class="kategoria-dropdown" id="kategoriaDropdown">
                 <button class="dropdown-toggle" id="dropdownToggle">Kategoriat ▾</button>
-                <div class="dropdown-content" id="dropdownContent">
-                    <!-- Checkboxit luodaan täällä -->
-                </div>
+                <div class="dropdown-content" id="dropdownContent"></div>
             </div>
         </nav>
 
@@ -684,10 +302,9 @@
         </section>
 
         <noscript>
-            <div style="display:block; padding:20px; background:#fff8e1; border:2px solid #ff9800; border-radius:8px; margin-top:20px; color:#1a202c;">
+            <div style="padding:20px; background:#fff8e1; border:2px solid #ff9800; border-radius:8px; margin-top:20px;">
                 <h2>Alkon halvin alkoholi 2025 – Hintavertailu</h2>
-                <p>Tämä sivu tarvitsee JavaScriptin näyttääkseen interaktiivisen tuotevertailun.</p>
-                <p>Voit selata Alkon tuotteita: <a href="https://www.alko.fi/fi/tuotteet" target="_blank" rel="noopener">Alko.fi</a></p>
+                <p>Tämä sivu tarvitsee JavaScriptin. Voit selata Alkon tuotteita: <a href="https://www.alko.fi/fi/tuotteet" target="_blank">Alko.fi</a></p>
             </div>
         </noscript>
     </main>
@@ -695,7 +312,6 @@
     <script>
         (function() {
             "use strict";
-
             const teemaToggle = document.getElementById("teemaToggle");
             const teemaTeksti = document.getElementById("teemaTeksti");
             const metaThemeColor = document.getElementById("metaThemeColor");
@@ -713,16 +329,13 @@
             function paivitaTeemaTeksti() {
                 if (document.body.classList.contains("dark-mode")) {
                     teemaTeksti.textContent = "Tumma teema";
-                    if (metaThemeColor) metaThemeColor.setAttribute("content", "#1a1e26");
+                    metaThemeColor?.setAttribute("content", "#1a1e26");
                 } else {
                     teemaTeksti.textContent = "Vaalea teema";
-                    if (metaThemeColor) metaThemeColor.setAttribute("content", "#8B0000");
+                    metaThemeColor?.setAttribute("content", "#8B0000");
                 }
             }
-            if (tallennettuTeema === "kylla") {
-                document.body.classList.add("dark-mode");
-                teemaToggle.checked = true;
-            }
+            if (tallennettuTeema === "kylla") { document.body.classList.add("dark-mode"); teemaToggle.checked = true; }
             paivitaTeemaTeksti();
             window.vaihdaTeema = function() {
                 document.body.classList.toggle("dark-mode");
@@ -732,182 +345,152 @@
 
             let tuoteData = [];
             let startIndex = 0;
-            const WINDOW_SIZE = 50;
-            const SHIFT_AMOUNT = 30;
-            let currentSort = 'annos';
-            let isShifting = false;
-            let isUserScrolling = false;
-            let scrollDebounceTimer = null;
+            const WINDOW_SIZE = 50, SHIFT_AMOUNT = 30;
+            let currentSort = 'annos', isShifting = false, isUserScrolling = false, scrollDebounceTimer = null;
+            let activeCategories = [];
 
-            // Määritellään pääkategoriat, jotka halutaan aina erikseen
-            const PAALUOKAT = [
-                { nimi: "Viinit", tyypit: ["Viini"] },
-                { nimi: "Kuohuvat & Samppanjat", tyypit: ["Kuohuviinit ja samppanjat"] },
-                { nimi: "Oluet", tyypit: ["Olut"] },
-                { nimi: "Siiderit", tyypit: ["Siideri"] },
-                { nimi: "Väkevät & Viskit", tyypit: ["Väkevä", "Viskit"] }
-            ];
+            // Älykäs luokittelu: ensin tyyppi, sitten tarvittaessa nimi
+            function luokitteleKategoria(tyyppi, nimi) {
+                if (!tyyppi) tyyppi = "";
+                if (!nimi) nimi = "";
+                const t = tyyppi.toLowerCase().trim();
+                const n = nimi.toLowerCase().trim();
 
-            // Täydennetään datan perusteella – kaikki loput tyypit menevät "Muut" alle
-            function muodostaKategoriat() {
-                const maaritellytTyypit = new Set(PAALUOKAT.flatMap(k => k.tyypit));
-                const kaikkiDatatyypit = new Set(tuoteData.map(t => t.tyyppi));
-                const muutTyypit = [...kaikkiDatatyypit].filter(t => !maaritellytTyypit.has(t));
-                const kategoriat = [...PAALUOKAT];
-                if (muutTyypit.length > 0) {
-                    kategoriat.push({ nimi: "Muut", tyypit: muutTyypit });
-                } else {
-                    // Varmistetaan, että "Muut" on olemassa jos datassa on "Muu"
-                    if (kaikkiDatatyypit.has("Muu")) {
-                        kategoriat.push({ nimi: "Muut", tyypit: ["Muu"] });
-                    }
+                // Alkoholittomat
+                if (/\balkoholiton\b/.test(t) || /\balkoholiton\b/.test(n)) return "Alkoholittomat";
+
+                // Viinit (sis. kuohuviinit, väkevät viinit, glögit yms.)
+                if (/\b(viini|punaviini|valkoviini|roseeviini|kuohuviini|samppanja|champagne|cava|prosecco|cr[eé]mant|portviini|port|sherry|madeira|marsala|vermut|gl[oö]gi|gl[üu]hwein|hedelmäviini|marjaviini|väkevä\s*viini|rosé|rosato|riesling|chardonnay|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|rheingau|nahe|tokaji|icewine)\b/i.test(t) ||
+                     /\b(viini|punaviini|valkoviini|roseeviini|kuohuviini|samppanja|champagne|cava|prosecco|cr[eé]mant|portviini|port|sherry|madeira|marsala|vermut|gl[oö]gi|gl[üu]hwein|hedelmäviini|marjaviini|rosé|rosato|riesling|chardonnay|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|tokaji)\b/i.test(n)) {
+                    return "Viinit";
                 }
-                return kategoriat;
-            }
 
-            let activeCategories = []; // täytetään checkboxien luonnin yhteydessä
-            let KATEGORIAT = [];
-
-            function asetaAktiivinenNappi(kriteeri) {
-                if (kriteeri === 'hinta') {
-                    btnHinta.classList.add('aktiivinen');
-                    btnAnnos.classList.remove('aktiivinen');
-                    btnHinta.setAttribute('aria-pressed', 'true');
-                    btnAnnos.setAttribute('aria-pressed', 'false');
-                } else {
-                    btnAnnos.classList.add('aktiivinen');
-                    btnHinta.classList.remove('aktiivinen');
-                    btnAnnos.setAttribute('aria-pressed', 'true');
-                    btnHinta.setAttribute('aria-pressed', 'false');
+                // Oluet
+                if (/\b(olut|ale|lager|stout|porter|ipa|pils|vehnä|saison|sahti|dubbel|tripel|quadrupel|barley\s*wine|pale\s*ale|neipa|imperial\s*stout)\b/i.test(t) ||
+                    /\b(olut|ale|lager|stout|porter|ipa|pils|vehnä|saison|sahti|dubbel|tripel|quadrupel|barley\s*wine|pale\s*ale|neipa)\b/i.test(n)) {
+                    return "Oluet";
                 }
-            }
 
-            function laskeAnnosHinta(tuote) {
-                const tilavuusCl = tuote.tilavuus_litraa * 100;
-                const puhdasAlkoholiCl = tilavuusCl * (tuote.alkoholi_prosentti / 100);
-                if (puhdasAlkoholiCl === 0) return Infinity;
-                const annostenMaara = puhdasAlkoholiCl / 1.5;
-                return tuote.hinta_eur / annostenMaara;
-            }
+                // Siiderit
+                if (/\b(siideri|cider)\b/i.test(t) || /\b(siideri|cider)\b/i.test(n)) return "Siiderit";
 
-            function avaaAlkonTuoteSivu(linkki, nimi) {
-                if (linkki && linkki.trim() !== "") {
-                    window.open(linkki, '_blank', 'noopener,noreferrer');
-                } else {
-                    const hakusana = `${nimi} Alko`.trim();
-                    window.open(`https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(hakusana)}`, '_blank', 'noopener,noreferrer');
+                // Väkevät ja viskit (laaja kattavuus)
+                if (/\b(vodka|rommi|romm|gini|viski|viskit|whisky|whiskey|brandy|konjakki|likööri|viina|katkero|absintti|tequila|mezcal|sake|long\s*drink|väkevä|maustettu\s*vodka|hedelmälikööri|maustelikööri|gin|rom|rum|aquavit|akvavit|pastis|ouzo|raki|soju|calvados|grappa|armagnac|cognac|brandy|brandi)\b/i.test(t) ||
+                     /\b(vodka|rommi|romm|gini|viski|whisky|whiskey|brandy|konjakki|likööri|viina|katkero|absintti|tequila|mezcal|long\s*drink|rom|rum|gin|grappa|cognac|armagnac|calvados|aquavit|pastis|ouzo|raki|soju)\b/i.test(n)) {
+                    return "Väkevät & Viskit";
                 }
+
+                return "Muut";
             }
 
-            function escapeHtml(str) {
-                if (!str) return '';
-                return str.replace(/[&<>"']/g, function(m) {
-                    if (m === '&') return '&amp;';
-                    if (m === '<') return '&lt;';
-                    if (m === '>') return '&gt;';
-                    if (m === '"') return '&quot;';
-                    if (m === "'") return '&#39;';
-                    return m;
-                });
-            }
+            // Pääkategorioiden lista (järjestys haluttu)
+            const KATEGORIA_NIMET = ["Viinit", "Oluet", "Siiderit", "Väkevät & Viskit", "Alkoholittomat", "Muut"];
 
             function getFilteredData() {
-                if (activeCategories.length === 0) return [];
-                const sallitutTyypit = new Set();
-                KATEGORIAT.forEach(kategoria => {
-                    if (activeCategories.includes(kategoria.nimi)) {
-                        kategoria.tyypit.forEach(t => sallitutTyypit.add(t));
-                    }
-                });
-                if (sallitutTyypit.size === 0) return tuoteData;
-                return tuoteData.filter(t => sallitutTyypit.has(t.tyyppi));
+                return tuoteData.filter(t => activeCategories.includes(luokitteleKategoria(t.tyyppi, t.nimi)));
             }
 
             function getSortedData() {
                 let lajiteltu = getFilteredData();
-                if (currentSort === 'hinta') {
-                    lajiteltu.sort((a, b) => a.hinta_eur - b.hinta_eur);
-                } else {
-                    lajiteltu.sort((a, b) => laskeAnnosHinta(a) - laskeAnnosHinta(b));
-                }
+                if (currentSort === 'hinta') lajiteltu.sort((a,b) => a.hinta_eur - b.hinta_eur);
+                else lajiteltu.sort((a,b) => laskeAnnosHinta(a) - laskeAnnosHinta(b));
                 return lajiteltu;
+            }
+
+            function laskeAnnosHinta(t) {
+                const cl = t.tilavuus_litraa * 100;
+                const puhdas = cl * (t.alkoholi_prosentti/100);
+                if (puhdas === 0) return Infinity;
+                return t.hinta_eur / (puhdas / 1.5);
+            }
+
+            function avaaAlkonTuoteSivu(linkki, nimi) {
+                if (linkki?.trim()) window.open(linkki, '_blank', 'noopener,noreferrer');
+                else window.open(`https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(nimi)}`, '_blank', 'noopener,noreferrer');
+            }
+
+            function escapeHtml(s) {
+                return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]);
+            }
+
+            function renderWindow() {
+                const sorted = getSortedData();
+                const end = Math.min(startIndex + WINDOW_SIZE, sorted.length);
+                const items = sorted.slice(startIndex, end);
+                let html = '';
+                items.forEach((t, i) => {
+                    const gi = startIndex + i;
+                    const ah = laskeAnnosHinta(t);
+                    let riviLuokka = '', mitali = '';
+                    if (gi === 0) { riviLuokka='mitali-kulta'; mitali='🥇 '; }
+                    else if (gi === 1) { riviLuokka='mitali-hopea'; mitali='🥈 '; }
+                    else if (gi === 2) { riviLuokka='mitali-pronssi'; mitali='🥉 '; }
+                    const nimi = escapeHtml(t.nimi);
+                    const linkki = t.linkki || "";
+                    const url = linkki.trim() ? escapeHtml(linkki) : `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(t.nimi)}`;
+                    const klikkaus = `avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g, "\\'")}', '${nimi.replace(/'/g, "\\'")}'); return false;`;
+                    const nimiHtml = `<a href="${url}" class="tuote-linkki" target="_blank" rel="noopener noreferrer" onclick="${klikkaus}" title="Avaa Alkon tuotesivu: ${nimi}">${nimi}</a>`;
+                    const kuvaUrl = escapeHtml(t.kuva_url||"");
+                    const kuvaHtml = kuvaUrl ? `<img src="${kuvaUrl}" alt="${nimi}" class="tuote-kuva" loading="lazy" decoding="async" onerror="this.style.display='none'">` : '';
+                    const mitaliHtml = mitali ? `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitali}</span>` : '';
+                    html += `<tr class="${riviLuokka}" data-index="${gi}">
+                        <td><div class="tuote-solu">${kuvaHtml}${mitaliHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td>
+                        <td>${escapeHtml(t.tyyppi)}</td>
+                        <td>${t.hinta_eur.toFixed(2)}</td>
+                        <td>${ah === Infinity ? '∞' : ah.toFixed(2) + ' €'}</td>
+                        <td>${t.alkoholi_prosentti.toFixed(1)}%</td>
+                        <td>${t.tilavuus_litraa.toFixed(2)}</td>
+                    </tr>`;
+                });
+                body.innerHTML = html;
+                infoDiv.innerHTML = `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${sorted.length}</strong> tuotetta.`;
+                paivitaStructuredData();
             }
 
             function paivitaStructuredData() {
                 if (!itemListSchema) return;
                 const sorted = getSortedData();
-                const itemListElement = sorted.map(function(tuote, index) {
-                    const tuoteUrl = (tuote.linkki && tuote.linkki.trim() !== "") ? tuote.linkki : 'https://www.alko.fi/fi/tuotteet?q=' + encodeURIComponent(tuote.nimi);
-                    const tarjous = { "@type": "Offer", "price": tuote.hinta_eur.toFixed(2), "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": tuoteUrl };
-                    const tuoteObj = { "@type": "Product", "name": tuote.nimi, "url": tuoteUrl, "category": tuote.tyyppi || "Ei tiedossa", "offers": tarjous };
-                    if (tuote.kuva_url) tuoteObj.image = tuote.kuva_url;
-                    if (tuote.alkoholi_prosentti > 0) tuoteObj.description = tuote.alkoholi_prosentti.toFixed(1) + '% alkoholia, ' + tuote.tilavuus_litraa.toFixed(2) + ' L';
-                    return { "@type": "ListItem", "position": index + 1, "item": tuoteObj };
+                const elements = sorted.map((t,i) => {
+                    const url = t.linkki?.trim() ? t.linkki : `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(t.nimi)}`;
+                    return {
+                        "@type": "ListItem",
+                        "position": i+1,
+                        "item": {
+                            "@type": "Product",
+                            "name": t.nimi,
+                            "url": url,
+                            "category": t.tyyppi || "Ei tiedossa",
+                            "offers": { "@type": "Offer", "price": t.hinta_eur.toFixed(2), "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": url },
+                            ...(t.kuva_url && { "image": t.kuva_url }),
+                            ...(t.alkoholi_prosentti > 0 && { "description": `${t.alkoholi_prosentti.toFixed(1)}% alkoholia, ${t.tilavuus_litraa.toFixed(2)} L` })
+                        }
+                    };
                 });
                 itemListSchema.textContent = JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "ItemList",
-                    "name": "Alkon halvin alkoholi – tuotteet järjestettynä " + (currentSort === 'hinta' ? 'hinnan' : 'alkoholiannoksen hinnan') + " mukaan",
-                    "description": "Listaus " + sorted.length + " Alkon tuotteesta.",
+                    "name": `Alkon halvin alkoholi – ${currentSort==='hinta'?'hinnan':'alkoholiannoksen hinnan'} mukaan`,
+                    "description": `Listaus ${sorted.length} Alkon tuotteesta.`,
                     "numberOfItems": sorted.length,
-                    "itemListElement": itemListElement
-                }, null, 2);
-            }
-
-            function renderWindow() {
-                const sorted = getSortedData();
-                const endIndex = Math.min(startIndex + WINDOW_SIZE, sorted.length);
-                const pageItems = sorted.slice(startIndex, endIndex);
-                let html = '';
-                pageItems.forEach(function(tuote, idx) {
-                    const globalIndex = startIndex + idx;
-                    const annosHinta = laskeAnnosHinta(tuote);
-                    const annosHintaDisplay = annosHinta === Infinity ? "∞" : annosHinta.toFixed(2) + " €";
-                    let riviLuokka = '', mitali = '';
-                    if (globalIndex === 0) { riviLuokka = 'class="mitali-kulta"'; mitali = '🥇 '; }
-                    else if (globalIndex === 1) { riviLuokka = 'class="mitali-hopea"'; mitali = '🥈 '; }
-                    else if (globalIndex === 2) { riviLuokka = 'class="mitali-pronssi"'; mitali = '🥉 '; }
-                    const turvallinenNimi = escapeHtml(tuote.nimi);
-                    const linkki = tuote.linkki || "";
-                    const tuoteUrl = (linkki && linkki.trim() !== "") ? escapeHtml(linkki) : 'https://www.alko.fi/fi/tuotteet?q=' + encodeURIComponent(tuote.nimi);
-                    const klikkaus = "avaaAlkonTuoteSivu('" + escapeHtml(linkki).replace(/'/g, "\\'") + "', '" + escapeHtml(tuote.nimi).replace(/'/g, "\\'") + "'); return false;";
-                    const nimiHtml = '<a href="' + tuoteUrl + '" class="tuote-linkki" target="_blank" rel="noopener noreferrer" onclick="' + klikkaus + '" title="Avaa Alkon tuotesivu: ' + turvallinenNimi + '">' + turvallinenNimi + '</a>';
-                    const kuvaUrl = escapeHtml(tuote.kuva_url || "");
-                    const kuvaHtml = kuvaUrl ? '<img src="' + kuvaUrl + '" alt="' + turvallinenNimi + '" class="tuote-kuva" referrerpolicy="no-referrer" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">' : '';
-                    const mitaliHtml = mitali ? '<span class="mitali-emoji" aria-label="Sija ' + (globalIndex + 1) + '">' + mitali + '</span>' : '';
-                    html += '<tr data-index="' + globalIndex + '" ' + riviLuokka + '>' +
-                        '<td><div class="tuote-solu">' + kuvaHtml + mitaliHtml + '<span class="nimi-linkki">' + nimiHtml + '</span></div></td>' +
-                        '<td>' + escapeHtml(tuote.tyyppi) + '</td>' +
-                        '<td>' + tuote.hinta_eur.toFixed(2) + '</td>' +
-                        '<td>' + annosHintaDisplay + '</td>' +
-                        '<td>' + tuote.alkoholi_prosentti.toFixed(1) + '%</td>' +
-                        '<td>' + tuote.tilavuus_litraa.toFixed(2) + '</td>' +
-                        '</tr>';
+                    "itemListElement": elements
                 });
-                body.innerHTML = html;
-                infoDiv.innerHTML = 'Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>' + sorted.length + '</strong> tuotetta.';
-                paivitaStructuredData();
             }
 
-            function shiftWindow(direction) {
+            function shiftWindow(dir) {
                 if (isShifting || isUserScrolling) return false;
                 const sorted = getSortedData();
-                if (direction === 'forward' && startIndex + WINDOW_SIZE >= sorted.length) return false;
-                if (direction === 'backward' && startIndex === 0) return false;
-                let anchorIndex = direction === 'forward' ? startIndex + SHIFT_AMOUNT : startIndex;
-                const anchorRow = document.querySelector('tr[data-index="' + anchorIndex + '"]');
-                if (!anchorRow) return false;
-                const oldAnchorTop = anchorRow.getBoundingClientRect().top;
+                if (dir === 'forward' && startIndex + WINDOW_SIZE >= sorted.length) return false;
+                if (dir === 'backward' && startIndex === 0) return false;
+                const anchor = dir === 'forward' ? startIndex + SHIFT_AMOUNT : startIndex;
+                const row = document.querySelector(`tr[data-index="${anchor}"]`);
+                if (!row) return false;
+                const oldTop = row.getBoundingClientRect().top;
                 isShifting = true;
-                if (direction === 'forward') startIndex += SHIFT_AMOUNT;
-                else startIndex = Math.max(0, startIndex - SHIFT_AMOUNT);
+                startIndex = dir === 'forward' ? startIndex + SHIFT_AMOUNT : Math.max(0, startIndex - SHIFT_AMOUNT);
                 renderWindow();
-                requestAnimationFrame(function() {
-                    const newAnchorRow = document.querySelector('tr[data-index="' + anchorIndex + '"]');
-                    if (newAnchorRow) {
-                        const newAnchorTop = newAnchorRow.getBoundingClientRect().top;
-                        window.scrollBy(0, newAnchorTop - oldAnchorTop);
-                    }
+                requestAnimationFrame(() => {
+                    const newRow = document.querySelector(`tr[data-index="${anchor}"]`);
+                    if (newRow) window.scrollBy(0, newRow.getBoundingClientRect().top - oldTop);
                     isShifting = false;
                 });
                 return true;
@@ -919,32 +502,26 @@
                 if (!table) return;
                 const sorted = getSortedData();
                 const rect = table.getBoundingClientRect();
-                const viewHeight = window.innerHeight;
                 const margin = window.innerWidth < 768 ? 300 : 400;
                 if (rect.top >= -margin && startIndex > 0) shiftWindow('backward');
-                else if (rect.bottom <= viewHeight + margin && startIndex + WINDOW_SIZE < sorted.length) shiftWindow('forward');
+                else if (rect.bottom <= window.innerHeight + margin && startIndex + WINDOW_SIZE < sorted.length) shiftWindow('forward');
             }
 
-            window.addEventListener('scroll', function() {
+            window.addEventListener('scroll', () => {
                 isUserScrolling = true;
                 if (scrollDebounceTimer) clearTimeout(scrollDebounceTimer);
-                scrollDebounceTimer = setTimeout(function() {
-                    isUserScrolling = false;
-                    checkStuck();
-                }, window.innerWidth < 768 ? 80 : 10);
+                scrollDebounceTimer = setTimeout(() => { isUserScrolling = false; checkStuck(); }, window.innerWidth < 768 ? 80 : 10);
             }, { passive: true });
 
-            function getRootMargin() { return window.innerWidth < 768 ? '500px 0px 500px 0px' : '800px 0px 800px 0px'; }
             let topObserver, bottomObserver;
             function setupObservers() {
-                if (topObserver) topObserver.disconnect();
-                if (bottomObserver) bottomObserver.disconnect();
-                const opts = { root: null, rootMargin: getRootMargin(), threshold: 0 };
-                topObserver = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) { if (entry.isIntersecting && !isShifting && !isUserScrolling && startIndex > 0) shiftWindow('backward'); });
+                topObserver?.disconnect(); bottomObserver?.disconnect();
+                const opts = { rootMargin: window.innerWidth < 768 ? '500px 0px' : '800px 0px' };
+                topObserver = new IntersectionObserver(entries => {
+                    if (entries[0].isIntersecting && !isShifting && !isUserScrolling && startIndex > 0) shiftWindow('backward');
                 }, opts);
-                bottomObserver = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) { if (entry.isIntersecting && !isShifting && !isUserScrolling) shiftWindow('forward'); });
+                bottomObserver = new IntersectionObserver(entries => {
+                    if (entries[0].isIntersecting && !isShifting && !isUserScrolling) shiftWindow('forward');
                 }, opts);
                 topObserver.observe(topSentinel);
                 bottomObserver.observe(bottomSentinel);
@@ -952,98 +529,66 @@
             setupObservers();
             window.addEventListener('resize', setupObservers);
 
-            // Pudotusvalikon logiikka
-            dropdownToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                dropdownContent.classList.toggle('visible');
-            });
-            document.addEventListener('click', function(e) {
-                if (!dropdownContent.contains(e.target) && e.target !== dropdownToggle) {
-                    dropdownContent.classList.remove('visible');
-                }
-            });
+            dropdownToggle.addEventListener('click', e => { e.stopPropagation(); dropdownContent.classList.toggle('visible'); });
+            document.addEventListener('click', e => { if (!dropdownContent.contains(e.target) && e.target !== dropdownToggle) dropdownContent.classList.remove('visible'); });
 
-            function luoKategoriaCheckboxit() {
-                KATEGORIAT = muodostaKategoriat();
-                activeCategories = KATEGORIAT.map(k => k.nimi); // oletuksena kaikki valittu
+            function luoCheckboxit() {
+                activeCategories = [...KATEGORIA_NIMET];
                 dropdownContent.innerHTML = '';
-                KATEGORIAT.forEach(kategoria => {
+                KATEGORIA_NIMET.forEach(kat => {
                     const label = document.createElement('label');
                     label.className = 'kategoria-checkbox';
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox';
-                    checkbox.value = kategoria.nimi;
-                    checkbox.checked = true;
-                    checkbox.addEventListener('change', function(e) {
-                        if (e.target.checked) {
-                            if (!activeCategories.includes(kategoria.nimi)) activeCategories.push(kategoria.nimi);
-                        } else {
-                            activeCategories = activeCategories.filter(n => n !== kategoria.nimi);
-                        }
-                        startIndex = 0;
-                        if (scrollDebounceTimer) clearTimeout(scrollDebounceTimer);
-                        isShifting = false;
-                        isUserScrolling = false;
-                        renderWindow();
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    const cb = document.createElement('input');
+                    cb.type = 'checkbox'; cb.value = kat; cb.checked = true;
+                    cb.addEventListener('change', e => {
+                        if (e.target.checked) { if (!activeCategories.includes(kat)) activeCategories.push(kat); }
+                        else activeCategories = activeCategories.filter(c => c !== kat);
+                        startIndex = 0; clearTimeout(scrollDebounceTimer); isShifting = isUserScrolling = false;
+                        renderWindow(); window.scrollTo({ top: 0, behavior: 'smooth' });
                     });
-                    label.appendChild(checkbox);
-                    label.appendChild(document.createTextNode(kategoria.nimi));
+                    label.appendChild(cb);
+                    label.appendChild(document.createTextNode(kat));
                     dropdownContent.appendChild(label);
                 });
             }
 
             window.jarjesta = function(kriteeri) {
-                if (scrollDebounceTimer) clearTimeout(scrollDebounceTimer);
-                isShifting = false;
-                isUserScrolling = false;
-                currentSort = kriteeri;
-                startIndex = 0;
-                renderWindow();
-                asetaAktiivinenNappi(kriteeri);
+                clearTimeout(scrollDebounceTimer); isShifting = isUserScrolling = false;
+                currentSort = kriteeri; startIndex = 0; renderWindow();
+                if (kriteeri === 'hinta') { btnHinta.classList.add('aktiivinen'); btnAnnos.classList.remove('aktiivinen'); }
+                else { btnAnnos.classList.add('aktiivinen'); btnHinta.classList.remove('aktiivinen'); }
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
             fetch('alko_tuotteet.json')
-                .then(function(response) {
-                    if (!response.ok) throw new Error('HTTP ' + response.status);
-                    return response.json();
-                })
-                .then(function(rawData) {
-                    if (!Array.isArray(rawData)) throw new Error("Aineisto ei ole taulukko");
-                    const uniqueMap = new Map();
-                    for (let i = 0; i < rawData.length; i++) {
-                        const tuote = rawData[i];
-                        if (tuote && typeof tuote.nimi === 'string' && tuote.nimi.trim() !== '') {
-                            const nimi = tuote.nimi.trim();
-                            if (!uniqueMap.has(nimi)) {
-                                uniqueMap.set(nimi, {
-                                    nimi: nimi,
-                                    tyyppi: tuote.tyyppi || "Ei tiedossa",
-                                    hinta_eur: typeof tuote.hinta_eur === 'number' ? tuote.hinta_eur : parseFloat(tuote.hinta_eur) || 0,
-                                    tilavuus_litraa: typeof tuote.tilavuus_litraa === 'number' ? tuote.tilavuus_litraa : parseFloat(tuote.tilavuus_litraa) || 0,
-                                    alkoholi_prosentti: typeof tuote.alkoholi_prosentti === 'number' ? tuote.alkoholi_prosentti : parseFloat(tuote.alkoholi_prosentti) || 0,
-                                    linkki: tuote.linkki || "",
-                                    kuva_url: tuote.kuva_url || ""
+                .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+                .then(raw => {
+                    if (!Array.isArray(raw)) throw new Error("Ei taulukko");
+                    const map = new Map();
+                    raw.forEach(t => {
+                        if (t?.nimi?.trim()) {
+                            const nimi = t.nimi.trim();
+                            if (!map.has(nimi)) {
+                                map.set(nimi, {
+                                    nimi, tyyppi: t.tyyppi || "Ei tiedossa",
+                                    hinta_eur: typeof t.hinta_eur === 'number' ? t.hinta_eur : parseFloat(t.hinta_eur)||0,
+                                    tilavuus_litraa: typeof t.tilavuus_litraa === 'number' ? t.tilavuus_litraa : parseFloat(t.tilavuus_litraa)||0,
+                                    alkoholi_prosentti: typeof t.alkoholi_prosentti === 'number' ? t.alkoholi_prosentti : parseFloat(t.alkoholi_prosentti)||0,
+                                    linkki: t.linkki || "", kuva_url: t.kuva_url || ""
                                 });
                             }
                         }
-                    }
-                    tuoteData = Array.from(uniqueMap.values());
-                    if (tuoteData.length === 0) {
-                        infoDiv.innerHTML = "⚠️ Aineistossa ei ole kelvollisia tuotteita.";
-                        return;
-                    }
-                    luoKategoriaCheckboxit();
-                    currentSort = 'annos';
-                    startIndex = 0;
-                    renderWindow();
-                    asetaAktiivinenNappi('annos');
+                    });
+                    tuoteData = [...map.values()];
+                    if (!tuoteData.length) { infoDiv.innerHTML = "⚠️ Ei kelvollisia tuotteita."; return; }
+                    luoCheckboxit();
+                    currentSort = 'annos'; startIndex = 0; renderWindow();
+                    btnAnnos.classList.add('aktiivinen');
                 })
-                .catch(function(err) {
-                    console.error("Virhe ladattaessa tiedostoa:", err);
+                .catch(err => {
+                    console.error(err);
                     infoDiv.innerHTML = "❌ Virhe tuotetietojen lataamisessa.";
-                    body.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;">Tietoja ei voitu ladata. <a href="https://www.alko.fi/fi/tuotteet" target="_blank" rel="noopener">Siirry Alkon sivuille</a></td></tr>';
+                    body.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;">Tietoja ei voitu ladata. <a href="https://www.alko.fi/fi/tuotteet" target="_blank">Siirry Alkon sivuille</a></td></tr>';
                 });
         })();
     </script>
