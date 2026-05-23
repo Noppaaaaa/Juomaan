@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alko Tuotetiedot – Suora linkki tuotteeseen</title>
     <style>
+        /* ... kaikki tyylit säilyvät ennallaan ... */
         :root {
             --bg-body: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
             --bg-container: #ffffff;
@@ -446,6 +447,7 @@
         const SHIFT_AMOUNT = 30;  // Vaihdetaan 30 riviä kerralla
         let currentSort = 'annos';
         let isShifting = false;
+        let shiftTimeout = null;  // Ajastin isShifting-lipun vapauttamiseen
 
         const btnHinta = document.getElementById('btnHinta');
         const btnAnnos = document.getElementById('btnAnnos');
@@ -541,7 +543,7 @@
                 `<span style="font-size:12px; opacity:0.7;">Klikkaa nimeä, niin pääset suoraan Alkon tuotesivulle.</span>`;
         }
 
-        // Suorittaa ikkunan siirron ja kompensoi vierityksen
+        // Suorittaa ikkunan siirron ja kompensoi vierityksen – lisätty viive isShifting-lipulle
         function shiftWindow(direction) {
             if (isShifting) return;
             const sorted = getSortedData();
@@ -550,10 +552,8 @@
 
             let anchorIndex;
             if (direction === 'forward') {
-                // Poistetaan SHIFT_AMOUNT yläpäästä, ankkuri on uuden ikkunan ensimmäinen rivi
                 anchorIndex = startIndex + SHIFT_AMOUNT;
             } else {
-                // Poistetaan SHIFT_AMOUNT alhaalta, ankkuri on vanhan ikkunan ensimmäinen rivi
                 anchorIndex = startIndex;
             }
 
@@ -561,7 +561,9 @@
             if (!anchorRow) return;
             const oldAnchorTop = anchorRow.getBoundingClientRect().top;
 
+            // Aseta esto päälle ja tyhjennä mahdollinen aiempi ajastin
             isShifting = true;
+            if (shiftTimeout) clearTimeout(shiftTimeout);
 
             if (direction === 'forward') {
                 startIndex += SHIFT_AMOUNT;
@@ -578,7 +580,11 @@
                     const diff = newAnchorTop - oldAnchorTop;
                     window.scrollBy({ top: diff, behavior: 'instant' });
                 }
-                isShifting = false;
+                // Vapauta esto vasta 200 ms kuluttua, jotta kompensoinnin aiheuttama scroll ehtii tasaantua
+                shiftTimeout = setTimeout(() => {
+                    isShifting = false;
+                    shiftTimeout = null;
+                }, 200);
             });
         }
 
@@ -610,6 +616,12 @@
 
         // Lajittelun vaihto – palauta alkuun ja renderöi
         function jarjesta(kriteeri) {
+            // Peruuta mahdolliset siirrot ja ajastimet
+            if (shiftTimeout) {
+                clearTimeout(shiftTimeout);
+                shiftTimeout = null;
+            }
+            isShifting = false;
             currentSort = kriteeri;
             startIndex = 0;
             renderWindow();
