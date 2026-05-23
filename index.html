@@ -385,6 +385,15 @@
         #topSentinel { top: 0; }
         #bottomSentinel { bottom: 0; }
 
+        /* Poista kiilto mobiilissa */
+        @media (max-width: 768px) {
+            tr.mitali-kulta::after,
+            tr.mitali-hopea::after,
+            tr.mitali-pronssi::after {
+                display: none;
+            }
+        }
+
         @media (max-width: 1024px) {
             body { padding: 30px 15px; }
             .container { padding: 25px; }
@@ -638,16 +647,17 @@
             const sorted = getSortedData();
             const rect = table.getBoundingClientRect();
             const viewHeight = window.innerHeight;
+            const margin = window.innerWidth < 768 ? 100 : 200;
 
-            if (rect.top >= -200 && startIndex > 0) {
+            if (rect.top >= -margin && startIndex > 0) {
                 shiftWindow('backward');
-            } else if (rect.bottom <= viewHeight + 200 && startIndex + WINDOW_SIZE < sorted.length) {
+            } else if (rect.bottom <= viewHeight + margin && startIndex + WINDOW_SIZE < sorted.length) {
                 shiftWindow('forward');
             }
         }
 
         function getScrollDebounceTime() {
-            return window.innerWidth < 768 ? 100 : 200;
+            return window.innerWidth < 768 ? 50 : 200;
         }
 
         window.addEventListener('scroll', () => {
@@ -660,7 +670,7 @@
         }, { passive: true });
 
         function getRootMargin() {
-            return window.innerWidth < 768 ? '350px 0px 350px 0px' : '600px 0px 600px 0px';
+            return window.innerWidth < 768 ? '500px 0px 500px 0px' : '600px 0px 600px 0px';
         }
 
         let topObserver, bottomObserver;
