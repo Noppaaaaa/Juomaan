@@ -349,6 +349,7 @@
             let currentSort = 'annos', isShifting = false, isUserScrolling = false, scrollDebounceTimer = null;
             let activeCategories = [];
 
+            // Kattava luokittelu – hyödyntää sekä tyyppiä että nimeä
             function luokitteleKategoria(tuote) {
                 const tyyppi = (tuote.tyyppi || "").toLowerCase().trim();
                 const nimi = (tuote.nimi || "").toLowerCase().trim();
@@ -357,29 +358,24 @@
                 if (tuote.alkoholi_prosentti === 0) return "Alkoholittomat";
                 if (/\balkoholiton\b/.test(tyyppi) || /\balkoholiton\b/.test(nimi)) return "Alkoholittomat";
 
-                // Viinit
-                if (/\b(viini|punaviini|valkoviini|roseeviini|kuohuviini|samppanja|samppanj|sampan|champagne|cava|prosecco|cr[eé]mant|portviini|port|sherry|madeira|marsala|vermut|gl[oö]gi|gl[üu]hwein|hedelmäviini|marjaviini|väkevä\s*viini|rosé|rosato|riesling|chardonnay|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|rheingau|nahe|tokaji|icewine|sparkling|fiano)\b/i.test(tyyppi) ||
-                     /\b(viini|punaviini|valkoviini|roseeviini|kuohuviini|samppanja|samppanj|sampan|champagne|cava|prosecco|cr[eé]mant|portviini|port|sherry|madeira|marsala|vermut|gl[oö]gi|gl[üu]hwein|hedelmäviini|marjaviini|rosé|rosato|riesling|chardonnay|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|tokaji|sparkling|fiano)\b/i.test(nimi)) {
+                // Viinit – laaja valikoima suomenkielisiä sanoja ja monikkoja
+                const viiniPattern = /\b(viini|viinit|punaviini|punaviinit|valkoviini|valkoviinit|roseeviini|roseeviinit|kuohuviini|kuohuviinit|samppanja|samppanjat|sampanja|sampanjat|champagne|champagnet|cava|cavat|prosecco|proseccot|cr[eé]mant|portviini|portviinit|port|portit|sherry|sherryt|madeira|madeirat|marsala|marsalat|vermut|vermutit|gl[oö]gi|gl[oö]git|gl[üu]hwein|gl[üu]hweinit|hedelmäviini|hedelmäviinit|marjaviini|marjaviinit|väkevä\s*viini|väkevät\s*viinit|rosé|rosét|rosato|rosatot|riesling|rieslingit|chardonnay|chardonnayt|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|rheingau|nahe|tokaji|icewine|sparkling|fiano|fianot)\b/i;
+
+                if (viiniPattern.test(tyyppi) || viiniPattern.test(nimi)) {
                     return "Viinit";
                 }
 
-                // Oluet (lisätty blond)
-                if (/\b(olut|ale|lager|stout|porter|ipa|pils|vehnä|saison|sahti|dubbel|tripel|quadrupel|barley\s*wine|pale\s*ale|neipa|imperial\s*stout|blond|dipa)\b/i.test(tyyppi) ||
-                    /\b(olut|ale|lager|stout|porter|ipa|pils|vehnä|saison|sahti|dubbel|tripel|quadrupel|barley\s*wine|pale\s*ale|neipa|blond|dipa)\b/i.test(nimi)) {
-                    return "Oluet";
-                }
+                // Oluet
+                const olutPattern = /\b(olut|oluet|ale|alet|lager|lagerit|stout|stoutit|porter|porterit|ipa|ipat|pils|pilsit|vehnä|vehnät|saison|saisonit|sahti|sahdit|dubbel|dubbelit|tripel|tripelit|quadrupel|quadrupelit|barley\s*wine|pale\s*ale|neipa|neipat|imperial\s*stout|blond|blondit|dipa|dipat)\b/i;
+                if (olutPattern.test(tyyppi) || olutPattern.test(nimi)) return "Oluet";
 
                 // Siiderit & Seltzerit
-                if (/\b(siideri|cider|seltzer|hard\s*seltzer)\b/i.test(tyyppi) ||
-                    /\b(siideri|cider|seltzer|hard\s*seltzer)\b/i.test(nimi)) {
-                    return "Siiderit";
-                }
+                const siideriPattern = /\b(siideri|siiderit|cider|ciderit|seltzer|seltzerit|hard\s*seltzer)\b/i;
+                if (siideriPattern.test(tyyppi) || siideriPattern.test(nimi)) return "Siiderit";
 
-                // Väkevät ja viskit (lisätty puuttuvat avainsanat)
-                if (/\b(vodka|rommi|romm|gini|viski|viskit|whisky|whiskey|brandy|konjakki|konjakit|likööri|viina|katkero|absintti|tequila|mezcal|sake|long\s*drink|väkevä|maustettu\s*vodka|hedelmälikööri|maustelikööri|gin|rom|rum|aquavit|akvavit|akvaviitit|pastis|ouzo|raki|soju|calvados|grappa|armagnac|cognac|brandy|brandi|grogikatkerot|hedelmätisleet|tisleet|single\s*malt|single\s*cask|blended\s*malt|blended\s*scotch|single\s*grain|bourbon|scotch\s*whisky|irish\s*whiskey|distiller|vs|vsop|xo|extra\s*old|liquore|shot|leijona|koskenkorva|salmiakki|salmari)\b/i.test(tyyppi) ||
-                     /\b(vodka|rommi|romm|gini|viski|whisky|whiskey|brandy|konjakki|likööri|viina|katkero|absintti|tequila|mezcal|long\s*drink|rom|rum|gin|grappa|cognac|armagnac|calvados|aquavit|akvavit|pastis|ouzo|raki|soju|single\s*malt|single\s*cask|blended\s*malt|blended\s*scotch|bourbon|distiller|vs\b|vsop\b|xo\b|extra\s*old|\d+\s*year\s*old|liquore|shot|leijona|koskenkorva|salmiakki|salmari)\b/i.test(nimi)) {
-                    return "Väkevät & Viskit";
-                }
+                // Väkevät ja viskit (kattava lista, sis. monikot)
+                const vakevaPattern = /\b(vodka|vodkat|rommi|rommit|romm|gini|ginit|viski|viskit|whisky|whiskyt|whiskey|whiskeyt|brandy|brandyt|konjakki|konjakit|likööri|liköörit|viina|viinat|katkero|katkerot|absintti|absintit|tequila|tequilat|mezcal|mezcalit|sake|saket|long\s*drink|long\s*drinkit|väkevä|väkevät|maustettu\s*vodka|hedelmälikööri|hedelmäliköörit|maustelikööri|mausteliköörit|gin|rom|rum|aquavit|aquavitit|akvavit|akvavitit|akvaviitit|pastis|pastikset|ouzo|ouzoit|raki|rakit|soju|sojut|calvados|calvadokset|grappa|grappat|armagnac|armagnacit|cognac|cognacit|brandy|brandit|grogikatkerot|hedelmätisleet|tisleet|single\s*malt|single\s*cask|blended\s*malt|blended\s*scotch|single\s*grain|bourbon|bourbonit|scotch\s*whisky|irish\s*whiskey|distiller|vs|vsop|xo|extra\s*old|liquore|shot|shotit|leijona|koskenkorva|salmiakki|salmari)\b/i;
+                if (vakevaPattern.test(tyyppi) || vakevaPattern.test(nimi)) return "Väkevät & Viskit";
 
                 return "Muut";
             }
