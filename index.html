@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alko Tuotetiedot – Suora linkki tuotteeseen</title>
     <style>
-        /* ... kaikki tyylit säilyvät ennallaan ... */
         :root {
             --bg-body: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
             --bg-container: #ffffff;
@@ -211,7 +210,6 @@
             overflow-x: auto;
             border-radius: 8px;
             border: 1px solid var(--table-border);
-            position: relative;
         }
 
         table {
@@ -361,16 +359,6 @@
             color: #fdba74;
         }
 
-        .sentinel {
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            pointer-events: none;
-        }
-        #topSentinel { top: 0; }
-        #bottomSentinel { bottom: 0; }
-
         @media (max-width: 600px) {
             body { padding: 15px; }
             .container { padding: 20px; }
@@ -405,14 +393,12 @@
         </div>
 
         <div class="taulukko-container" id="taulukkoContainer">
-            <div id="topSentinel" class="sentinel"></div>
             <table id="tuoteTaulukko">
                 <thead>
                     <tr><th>Nimi</th><th>Tyyppi</th><th>Hinta (€)</th><th>Tilavuus (L)</th><th>Alkoholi (%)</th><th>Alkoholiannoksen hinta (€)</th></tr>
                 </thead>
                 <tbody id="taulukkoBody"></tbody>
             </table>
-            <div id="bottomSentinel" class="sentinel"></div>
         </div>
     </div>
 
@@ -443,18 +429,17 @@
 
         let tuoteData = [];
         let startIndex = 0;
-        const WINDOW_SIZE = 40;   // Näytetään 40 tuotetta kerrallaan
-        const SHIFT_AMOUNT = 30;  // Vaihdetaan 30 riviä kerralla
+        const WINDOW_SIZE = 40;
+        const SHIFT_AMOUNT = 30;
         let currentSort = 'annos';
         let isShifting = false;
-        let shiftTimeout = null;  // Ajastin isShifting-lipun vapauttamiseen
+        let cooldownTimer = null;
+        let lastScrollTime = 0;
 
         const btnHinta = document.getElementById('btnHinta');
         const btnAnnos = document.getElementById('btnAnnos');
         const body = document.getElementById('taulukkoBody');
         const infoDiv = document.getElementById('info');
-        const topSentinel = document.getElementById('topSentinel');
-        const bottomSentinel = document.getElementById('bottomSentinel');
 
         function asetaAktiivinenNappi(kriteeri) {
             if (kriteeri === 'hinta') {
@@ -504,7 +489,6 @@
             return lajiteltu;
         }
 
-        // Renderöi nykyinen ikkuna
         function renderWindow() {
             const sorted = getSortedData();
             const endIndex = Math.min(startIndex + WINDOW_SIZE, sorted.length);
@@ -524,7 +508,10 @@
                 const turvallinenNimi = escapeHtml(tuote.nimi);
                 const linkki = tuote.linkki || "";
                 const nimiHtml = `<a href="#" class="tuote-linkki" onclick="avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g, "\\'")}', '${escapeHtml(tuote.nimi).replace(/'/g, "\\'")}'); return false;">${turvallinenNimi}</a>`;
-                const kuvaHtml = tuote.kuva_url ? `<img src="${escapeHtml(tuote.kuva_url)}" alt="Tuote" class="tuote-kuva" onerror="this.style.display='none'">` : '';
+                const kuvaUrl = escapeHtml(tuote.kuva_url || "");
+                const kuvaHtml = kuvaUrl
+                    ? `<img src="${kuvaUrl}" alt="" class="tuote-kuva" referrerpolicy="no-referrer" loading="lazy" onerror="this.style.display='none'">`
+                    : '';
                 const mitaliHtml = mitali ? `<span class="mitali-emoji">${mitali}</span>` : '';
                 const nimiSisalto = `<div class="tuote-solu">${kuvaHtml}${mitaliHtml}<span class="nimi-linkki">${nimiHtml}</span></div>`;
 
@@ -543,12 +530,11 @@
                 `<span style="font-size:12px; opacity:0.7;">Klikkaa nimeä, niin pääset suoraan Alkon tuotesivulle.</span>`;
         }
 
-        // Suorittaa ikkunan siirron ja kompensoi vierityksen – lisätty viive isShifting-lipulle
         function shiftWindow(direction) {
-            if (isShifting) return;
+            if (isShifting) return false;
             const sorted = getSortedData();
-            if (direction === 'forward' && startIndex + WINDOW_SIZE >= sorted.length) return;
-            if (direction === 'backward' && startIndex === 0) return;
+            if (direction === 'forward' && startIndex + WINDOW_SIZE >= sorted.length) return false;
+            if (direction === 'backward' && startIndex === 0) return false;
 
             let anchorIndex;
             if (direction === 'forward') {
@@ -558,12 +544,11 @@
             }
 
             const anchorRow = document.querySelector(`tr[data-index="${anchorIndex}"]`);
-            if (!anchorRow) return;
+            if (!anchorRow) return false;
             const oldAnchorTop = anchorRow.getBoundingClientRect().top;
 
-            // Aseta esto päälle ja tyhjennä mahdollinen aiempi ajastin
             isShifting = true;
-            if (shiftTimeout) clearTimeout(shiftTimeout);
+            if (cooldownTimer) clearTimeout(cooldownTimer);
 
             if (direction === 'forward') {
                 startIndex += SHIFT_AMOUNT;
@@ -580,46 +565,47 @@
                     const diff = newAnchorTop - oldAnchorTop;
                     window.scrollBy({ top: diff, behavior: 'instant' });
                 }
-                // Vapauta esto vasta 200 ms kuluttua, jotta kompensoinnin aiheuttama scroll ehtii tasaantua
-                shiftTimeout = setTimeout(() => {
+                // Cooldown: estä uudet siirrot 300 ms ajan
+                cooldownTimer = setTimeout(() => {
                     isShifting = false;
-                    shiftTimeout = null;
-                }, 200);
+                    cooldownTimer = null;
+                }, 300);
             });
+            return true;
         }
 
-        // IntersectionObserverit ennakoivaan siirtoon
-        const observerOptions = {
-            root: null,
-            rootMargin: '200px 0px 200px 0px',
-            threshold: 0
-        };
+        function checkScrollShift() {
+            if (isShifting) return;
+            const table = document.getElementById('tuoteTaulukko');
+            if (!table) return;
+            const rect = table.getBoundingClientRect();
+            const viewHeight = window.innerHeight;
+            const MARGIN = 400; // pikseliä, jonka sisällä ollaan "lähellä" reunaa
 
-        const topObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !isShifting && startIndex > 0) {
-                    shiftWindow('backward');
-                }
-            });
-        }, observerOptions);
+            // Yläreuna lähellä -> yritä siirtyä taaksepäin
+            if (rect.top > -MARGIN && startIndex > 0) {
+                shiftWindow('backward');
+            }
+            // Alareuna lähellä -> yritä siirtyä eteenpäin
+            else if (rect.bottom < viewHeight + MARGIN && startIndex + WINDOW_SIZE < getSortedData().length) {
+                shiftWindow('forward');
+            }
+        }
 
-        const bottomObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !isShifting) {
-                    shiftWindow('forward');
-                }
-            });
-        }, observerOptions);
+        // Kuristettu scroll-kuuntelija (100ms välein)
+        window.addEventListener('scroll', () => {
+            const now = Date.now();
+            if (now - lastScrollTime >= 100) {
+                lastScrollTime = now;
+                checkScrollShift();
+            }
+        }, { passive: true });
 
-        topObserver.observe(topSentinel);
-        bottomObserver.observe(bottomSentinel);
-
-        // Lajittelun vaihto – palauta alkuun ja renderöi
+        // Lajittelun vaihto
         function jarjesta(kriteeri) {
-            // Peruuta mahdolliset siirrot ja ajastimet
-            if (shiftTimeout) {
-                clearTimeout(shiftTimeout);
-                shiftTimeout = null;
+            if (cooldownTimer) {
+                clearTimeout(cooldownTimer);
+                cooldownTimer = null;
             }
             isShifting = false;
             currentSort = kriteeri;
