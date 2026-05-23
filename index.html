@@ -462,7 +462,7 @@
             <div id="topSentinel" class="sentinel"></div>
             <table id="tuoteTaulukko">
                 <thead>
-                    <tr><th>Nimi</th><th>Tyyppi</th><th>Hinta (€)</th><th>Tilavuus (L)</th><th>Alkoholi (%)</th><th>Alkoholiannoksen hinta (€)</th></tr>
+                    <tr><th>Nimi</th><th>Tyyppi</th><th>Hinta (€)</th><th>Alkoholiannoksen hinta (€)</th><th>Alkoholi (%)</th><th>Tilavuus (L)</th></tr>
                 </thead>
                 <tbody id="taulukkoBody"></tbody>
             </table>
@@ -589,9 +589,9 @@
                     <td>${nimiSisalto}</td>
                     <td>${escapeHtml(tuote.tyyppi)}</td>
                     <td>${tuote.hinta_eur.toFixed(2)}</td>
-                    <td>${tuote.tilavuus_litraa.toFixed(2)}</td>
-                    <td>${tuote.alkoholi_prosentti.toFixed(1)}%</td>
                     <td>${annosHintaDisplay}</td>
+                    <td>${tuote.alkoholi_prosentti.toFixed(1)}%</td>
+                    <td>${tuote.tilavuus_litraa.toFixed(2)}</td>
                 </tr>`;
             });
             body.innerHTML = html;
