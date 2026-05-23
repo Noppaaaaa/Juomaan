@@ -15388,5 +15388,185 @@
         "tyyppi": "Viini",
         "linkki": "https://www.alko.fi/fi/tuotteet/534577/via-maipo-sauvignon-blanc-8-2025",
         "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/534577/via-maipo-sauvignon-blanc-8-2025.jpg"
+    },
+    {
+        "nimi": "Kalevala London Dry Gin",
+        "hinta_eur": 10.37,
+        "tilavuus_litraa": 0.1,
+        "alkoholi_prosentti": 46.3,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/900222/kalevala-london-dry-gin",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/900222/kalevala-london-dry-gin.jpg"
+    },
+    {
+        "nimi": "La Trappe Blond",
+        "hinta_eur": 9.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 6.5,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/904246/la-trappe-blond",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/904246/la-trappe-blond.jpg"
+    },
+    {
+        "nimi": "Mont-Ferrant Americano Organic Cava Brut Nature",
+        "hinta_eur": 4.58,
+        "tilavuus_litraa": 0.2,
+        "alkoholi_prosentti": 11.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/906746/mont-ferrant-americano-organic-cava-brut-nature",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/906746/mont-ferrant-americano-organic-cava-brut-nature.jpg"
+    },
+    {
+        "nimi": "Hartwall Hard Seltzer Veriappelsiini tölkki",
+        "hinta_eur": 2.39,
+        "tilavuus_litraa": 0.33,
+        "alkoholi_prosentti": 4.5,
+        "tyyppi": "Long drink",
+        "linkki": "https://www.alko.fi/fi/tuotteet/700201/hartwall-hard-seltzer-veriappelsiini-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/700201/hartwall-hard-seltzer-veriappelsiini-tolkki.jpg"
+    },
+    {
+        "nimi": "Ramirana Trinidad Vineyard 2015",
+        "hinta_eur": 31.49,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/497797/ramirana-trinidad-vineyard-2015",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/497797/ramirana-trinidad-vineyard-2015.jpg"
+    },
+    {
+        "nimi": "Baron M Jardin d'amour 2024",
+        "hinta_eur": 29.79,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/900025/baron-m-jardin-damour-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/900025/baron-m-jardin-damour-2024.jpg"
+    },
+    {
+        "nimi": "Retsina Lafazanis",
+        "hinta_eur": 13.49,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/566687/retsina-lafazanis",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/566687/retsina-lafazanis.jpg"
+    },
+    {
+        "nimi": "Bruichladdich Black Art 11 Single Malt",
+        "hinta_eur": 548.99,
+        "tilavuus_litraa": 0.7,
+        "alkoholi_prosentti": 44.2,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/925065/bruichladdich-black-art-11-single-malt",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/925065/bruichladdich-black-art-11-single-malt.jpg"
+    },
+    {
+        "nimi": "Apis Wsciekla Pszczola",
+        "hinta_eur": 26.29,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/951268/apis-wsciekla-pszczola",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/951268/apis-wsciekla-pszczola.jpg"
+    },
+    {
+        "nimi": "A. Bergere Rosé Champagne Brut",
+        "hinta_eur": 51.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/952984/a-bergere-rose-champagne-brut",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/952984/a-bergere-rose-champagne-brut.jpg"
+    },
+    {
+        "nimi": "Dugges Tropic Thunder Alcohol Free tölkki",
+        "hinta_eur": 3.49,
+        "tilavuus_litraa": 0.33,
+        "alkoholi_prosentti": 0.5,
+        "tyyppi": "Alkoholiton",
+        "linkki": "https://www.alko.fi/fi/tuotteet/600067/dugges-tropic-thunder-alcohol-free-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/600067/dugges-tropic-thunder-alcohol-free-tolkki.jpg"
+    },
+    {
+        "nimi": "Fontanafredda Barbera d'Alba 2024",
+        "hinta_eur": 16.98,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/425207/fontanafredda-barbera-dalba-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/425207/fontanafredda-barbera-dalba-2024.jpg"
+    },
+    {
+        "nimi": "JP. Chenet Cabernet Syrah 2023 hanapakkaus",
+        "hinta_eur": 34.98,
+        "tilavuus_litraa": 3,
+        "alkoholi_prosentti": 13,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/005312/jp-chenet-cabernet-syrah-2023-hanapakkaus",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/005312/jp-chenet-cabernet-syrah-2023-hanapakkaus.jpg"
+    },
+    {
+        "nimi": "Askaneli Rkatsiteli 2024",
+        "hinta_eur": 16.42,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 12.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/901629/askaneli-rkatsiteli-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/901629/askaneli-rkatsiteli-2024.jpg"
+    },
+    {
+        "nimi": "Soma Ghost Hazy IPA tölkki",
+        "hinta_eur": 8.39,
+        "tilavuus_litraa": 0.44,
+        "alkoholi_prosentti": 6.5,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/700118/soma-ghost-hazy-ipa-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/700118/soma-ghost-hazy-ipa-tolkki.jpg"
+    },
+    {
+        "nimi": "Larsen Very Special muovipullo",
+        "hinta_eur": 28.98,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 40,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/109356/larsen-very-special-muovipullo",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/109356/larsen-very-special-muovipullo.jpg"
+    },
+    {
+        "nimi": "Muré Orchidées Sauvages Gewurztraminer 2023",
+        "hinta_eur": 23.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/959433/mure-orchidees-sauvages-gewurztraminer-2023",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/959433/mure-orchidees-sauvages-gewurztraminer-2023.jpg"
+    },
+    {
+        "nimi": "Domaine Chêne Chardonnay 2024",
+        "hinta_eur": 12.77,
+        "tilavuus_litraa": 0.375,
+        "alkoholi_prosentti": 12.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/500201/domaine-chne-chardonnay-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/500201/domaine-chne-chardonnay-2024.jpg"
+    },
+    {
+        "nimi": "Fernet-Branca",
+        "hinta_eur": 181.49,
+        "tilavuus_litraa": 3,
+        "alkoholi_prosentti": 39,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/900448/fernet-branca",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/900448/fernet-branca.jpg"
+    },
+    {
+        "nimi": "Original Long Drink Summer Mandarin tölkki",
+        "hinta_eur": 4.49,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 5.5,
+        "tyyppi": "Long drink",
+        "linkki": "https://www.alko.fi/fi/tuotteet/700310/original-long-drink-summer-mandarin-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/700310/original-long-drink-summer-mandarin-tolkki.jpg"
     }
 ]
