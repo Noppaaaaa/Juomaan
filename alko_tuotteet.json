@@ -15568,5 +15568,185 @@
         "tyyppi": "Long drink",
         "linkki": "https://www.alko.fi/fi/tuotteet/700310/original-long-drink-summer-mandarin-tolkki",
         "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/700310/original-long-drink-summer-mandarin-tolkki.jpg"
+    },
+    {
+        "nimi": "Wolfberger Crémant d'Alsace Rosé Brut",
+        "hinta_eur": 13.49,
+        "tilavuus_litraa": 0.375,
+        "alkoholi_prosentti": 12,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/901311/wolfberger-cremant-dalsace-rose-brut",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/901311/wolfberger-cremant-dalsace-rose-brut.jpg"
+    },
+    {
+        "nimi": "Nittenauer Festbier",
+        "hinta_eur": 3.99,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 5.7,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/721256/nittenauer-festbier",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/721256/nittenauer-festbier.jpg"
+    },
+    {
+        "nimi": "The Norfolk Rye 9 Year Old Single Grain",
+        "hinta_eur": 69.17,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 51.4,
+        "tyyppi": "Väkevä",
+        "linkki": "https://www.alko.fi/fi/tuotteet/128046/the-norfolk-rye-9-year-old-single-grain",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/128046/the-norfolk-rye-9-year-old-single-grain.jpg"
+    },
+    {
+        "nimi": "Crisp Radler Sitrus tölkki",
+        "hinta_eur": 1.8,
+        "tilavuus_litraa": 0.33,
+        "alkoholi_prosentti": 0,
+        "tyyppi": "Alkoholiton",
+        "linkki": "https://www.alko.fi/fi/tuotteet/600058/crisp-radler-sitrus-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/600058/crisp-radler-sitrus-tolkki.jpg"
+    },
+    {
+        "nimi": "Quinta do Espirito Santo 2022",
+        "hinta_eur": 10.98,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 15,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/944115/quinta-do-espirito-santo-2022",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/944115/quinta-do-espirito-santo-2022.jpg"
+    },
+    {
+        "nimi": "Gracia de Chile Cabernet Sauvignon 2020",
+        "hinta_eur": 12.96,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/439087/gracia-de-chile-cabernet-sauvignon-2020",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/439087/gracia-de-chile-cabernet-sauvignon-2020.jpg"
+    },
+    {
+        "nimi": "Martell XO",
+        "hinta_eur": 118.99,
+        "tilavuus_litraa": 0.35,
+        "alkoholi_prosentti": 40,
+        "tyyppi": "Väkevä",
+        "linkki": "https://www.alko.fi/fi/tuotteet/189444/martell-xo",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/189444/martell-xo.jpg"
+    },
+    {
+        "nimi": "Bumbu",
+        "hinta_eur": 28.98,
+        "tilavuus_litraa": 0.35,
+        "alkoholi_prosentti": 40,
+        "tyyppi": "Väkevä",
+        "linkki": "https://www.alko.fi/fi/tuotteet/902261/bumbu",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/902261/bumbu.jpg"
+    },
+    {
+        "nimi": "Lo Alto Tardana 2024",
+        "hinta_eur": 29.7,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 11,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/902413/lo-alto-tardana-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/902413/lo-alto-tardana-2024.jpg"
+    },
+    {
+        "nimi": "Château Lamarsalle 2022",
+        "hinta_eur": 32.91,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/946137/chteau-lamarsalle-2022",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/946137/chteau-lamarsalle-2022.jpg"
+    },
+    {
+        "nimi": "Northern Monk Lord Heathen DIPA tölkki",
+        "hinta_eur": 6.98,
+        "tilavuus_litraa": 0.44,
+        "alkoholi_prosentti": 8.4,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/773225/northern-monk-lord-heathen-dipa-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/773225/northern-monk-lord-heathen-dipa-tolkki.jpg"
+    },
+    {
+        "nimi": "Torii Mor Riesling 2015",
+        "hinta_eur": 39.56,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/901813/torii-mor-riesling-2015",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/901813/torii-mor-riesling-2015.jpg"
+    },
+    {
+        "nimi": "Vigneti del Vulture Pipoli Aglianico 2024",
+        "hinta_eur": 14.29,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/484037/vigneti-del-vulture-pipoli-aglianico-2024",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/484037/vigneti-del-vulture-pipoli-aglianico-2024.jpg"
+    },
+    {
+        "nimi": "Bacardi Carta Blanca",
+        "hinta_eur": 29.99,
+        "tilavuus_litraa": 0.7,
+        "alkoholi_prosentti": 37.5,
+        "tyyppi": "Väkevä",
+        "linkki": "https://www.alko.fi/fi/tuotteet/001657/bacardi-carta-blanca",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/001657/bacardi-carta-blanca.jpg"
+    },
+    {
+        "nimi": "Revenant Brewing Project Ponder New England TIPA tölkki",
+        "hinta_eur": 9.89,
+        "tilavuus_litraa": 0.44,
+        "alkoholi_prosentti": 9.7,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/902399/revenant-brewing-project-ponder-new-england-tipa-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/902399/revenant-brewing-project-ponder-new-england-tipa-tolkki.jpg"
+    },
+    {
+        "nimi": "Kattila Gin",
+        "hinta_eur": 46.95,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 39,
+        "tyyppi": "Väkevä",
+        "linkki": "https://www.alko.fi/fi/tuotteet/900824/kattila-gin",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/900824/kattila-gin.jpg"
+    },
+    {
+        "nimi": "Samson Extra Hopped Lager",
+        "hinta_eur": 3.69,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 4.9,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/948973/samson-extra-hopped-lager",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/948973/samson-extra-hopped-lager.jpg"
+    },
+    {
+        "nimi": "Marqués de Valparaíso Roble 2016",
+        "hinta_eur": 16.73,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/926787/marques-de-valparaso-roble-2016",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/926787/marques-de-valparaso-roble-2016.jpg"
+    },
+    {
+        "nimi": "Maisel's Weisse Original",
+        "hinta_eur": 4.99,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 5.1,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/901746/maisels-weisse-original",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/901746/maisels-weisse-original.jpg"
+    },
+    {
+        "nimi": "Waldschütz Grüner Veltliner Ried Hammergraben 2025",
+        "hinta_eur": 15.44,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/500206/waldschtz-grner-veltliner-ried-hammergraben-2025",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/500206/waldschtz-grner-veltliner-ried-hammergraben-2025.jpg"
     }
 ]
