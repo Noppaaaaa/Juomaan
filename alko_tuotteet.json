@@ -14236,5 +14236,95 @@
         "tyyppi": "Viini",
         "linkki": "https://www.alko.fi/fi/tuotteet/945474/frank-cornelissen-munjebel-rosso-2021",
         "kuva_url": "https://images.dk.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/945474/frank-cornelissen-munjebel-rosso-2021.jpg"
+    },
+    {
+        "nimi": "Gouden Carolus Imperial Dark Cuvée van de Keizer",
+        "hinta_eur": 13.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 11,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/937707/gouden-carolus-imperial-dark-cuvee-van-de-keizer",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/937707/gouden-carolus-imperial-dark-cuvee-van-de-keizer.jpg"
+    },
+    {
+        "nimi": "Luigi Righetti Campolieti Valpolicella Ripasso Classico Superiore 2023",
+        "hinta_eur": 15.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/453417/luigi-righetti-campolieti-valpolicella-ripasso-classico-superiore-2023",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/453417/luigi-righetti-campolieti-valpolicella-ripasso-classico-superiore-2023.jpg"
+    },
+    {
+        "nimi": "Banfi Poggio alle Mura Brunello di Montalcino 2020",
+        "hinta_eur": 79.98,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 15,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/902144/banfi-poggio-alle-mura-brunello-di-montalcino-2020",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/902144/banfi-poggio-alle-mura-brunello-di-montalcino-2020.jpg"
+    },
+    {
+        "nimi": "Salama Brewing BA Liquid Rorschach tölkki",
+        "hinta_eur": 12.29,
+        "tilavuus_litraa": 0.44,
+        "alkoholi_prosentti": 10.8,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/901030/salama-brewing-ba-liquid-rorschach-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/901030/salama-brewing-ba-liquid-rorschach-tolkki.jpg"
+    },
+    {
+        "nimi": "Amarula",
+        "hinta_eur": 14.48,
+        "tilavuus_litraa": 0.35,
+        "alkoholi_prosentti": 17,
+        "tyyppi": "Alkoholiton",
+        "linkki": "https://www.alko.fi/fi/tuotteet/002241/amarula",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/002241/amarula.jpg"
+    },
+    {
+        "nimi": "Vóila Vineyard Assyrtiko 2025",
+        "hinta_eur": 19.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/587157/vila-vineyard-assyrtiko-2025",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/587157/vila-vineyard-assyrtiko-2025.jpg"
+    },
+    {
+        "nimi": "Pauillac De Chateau Latour 2018",
+        "hinta_eur": 128.96,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/902231/pauillac-de-chateau-latour-2018",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/902231/pauillac-de-chateau-latour-2018.jpg"
+    },
+    {
+        "nimi": "Zaccagnini Montepulciano d'Abruzzo Riserva 2021",
+        "hinta_eur": 20.48,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 14,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/901295/zaccagnini-montepulciano-dabruzzo-riserva-2021",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/901295/zaccagnini-montepulciano-dabruzzo-riserva-2021.jpg"
+    },
+    {
+        "nimi": "Port Askaig 8 Year Old Single Malt",
+        "hinta_eur": 79.09,
+        "tilavuus_litraa": 0.7,
+        "alkoholi_prosentti": 45.8,
+        "tyyppi": "Viskit",
+        "linkki": "https://www.alko.fi/fi/tuotteet/902899/port-askaig-8-year-old-single-malt",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/902899/port-askaig-8-year-old-single-malt.jpg"
+    },
+    {
+        "nimi": "Basil Hayden's Kentucky Straight Bourbon",
+        "hinta_eur": 69.51,
+        "tilavuus_litraa": 0.7,
+        "alkoholi_prosentti": 40,
+        "tyyppi": "Viskit",
+        "linkki": "https://www.alko.fi/fi/tuotteet/958797/basil-haydens-kentucky-straight-bourbon",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/958797/basil-haydens-kentucky-straight-bourbon.jpg"
     }
 ]
