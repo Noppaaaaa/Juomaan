@@ -646,17 +646,21 @@
             }
         }
 
+        function getScrollDebounceTime() {
+            return window.innerWidth < 768 ? 100 : 200;
+        }
+
         window.addEventListener('scroll', () => {
             isUserScrolling = true;
             if (scrollDebounceTimer) clearTimeout(scrollDebounceTimer);
             scrollDebounceTimer = setTimeout(() => {
                 isUserScrolling = false;
                 checkStuck();
-            }, 200);
+            }, getScrollDebounceTime());
         }, { passive: true });
 
         function getRootMargin() {
-            return window.innerWidth < 768 ? '200px 0px 200px 0px' : '600px 0px 600px 0px';
+            return window.innerWidth < 768 ? '350px 0px 350px 0px' : '600px 0px 600px 0px';
         }
 
         let topObserver, bottomObserver;
