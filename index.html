@@ -6,7 +6,7 @@
     <title>Alko Tuotetiedot – Suora linkki tuotteeseen</title>
     <style>
         :root {
-            --bg-body: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            --bg-body: #f0f4f8;  /* Kiinteä vaalea tausta (ei vaalene alaspäin) */
             --bg-container: #ffffff;
             --text-main: #1a202c;
             --text-heading: #2d3748;
@@ -29,7 +29,7 @@
         }
 
         body.dark-mode {
-            --bg-body: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --bg-body: #2c2e33;  /* Tummanharmaa, sinisyyttä vähennetty 50 % */
             --bg-container: #1e293b;
             --text-main: #e2e8f0;
             --text-heading: #f8fafc;
@@ -565,7 +565,6 @@
                     const diff = newAnchorTop - oldAnchorTop;
                     window.scrollBy({ top: diff, behavior: 'instant' });
                 }
-                // Cooldown: estä uudet siirrot 300 ms ajan
                 cooldownTimer = setTimeout(() => {
                     isShifting = false;
                     cooldownTimer = null;
@@ -580,19 +579,15 @@
             if (!table) return;
             const rect = table.getBoundingClientRect();
             const viewHeight = window.innerHeight;
-            const MARGIN = 400; // pikseliä, jonka sisällä ollaan "lähellä" reunaa
+            const MARGIN = 400;
 
-            // Yläreuna lähellä -> yritä siirtyä taaksepäin
             if (rect.top > -MARGIN && startIndex > 0) {
                 shiftWindow('backward');
-            }
-            // Alareuna lähellä -> yritä siirtyä eteenpäin
-            else if (rect.bottom < viewHeight + MARGIN && startIndex + WINDOW_SIZE < getSortedData().length) {
+            } else if (rect.bottom < viewHeight + MARGIN && startIndex + WINDOW_SIZE < getSortedData().length) {
                 shiftWindow('forward');
             }
         }
 
-        // Kuristettu scroll-kuuntelija (100ms välein)
         window.addEventListener('scroll', () => {
             const now = Date.now();
             if (now - lastScrollTime >= 100) {
@@ -601,7 +596,6 @@
             }
         }, { passive: true });
 
-        // Lajittelun vaihto
         function jarjesta(kriteeri) {
             if (cooldownTimer) {
                 clearTimeout(cooldownTimer);
@@ -615,7 +609,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Alkulataus
         fetch('alko_tuotteet.json')
             .then(response => {
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
