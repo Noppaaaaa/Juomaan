@@ -656,7 +656,7 @@
         }
 
         function getScrollDebounceTime() {
-            return 50;
+            return window.innerWidth < 768 ? 80 : 10;
         }
 
         window.addEventListener('scroll', () => {
