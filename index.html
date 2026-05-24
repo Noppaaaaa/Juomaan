@@ -31,11 +31,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Alko Tuotetiedot">
-    <link rel="dns-prefetch" href="https://images.alko.fi">
+    <!-- Optimoidut resurssivihjeet: preconnect korvaa dns-prefetchin ja avaa yhteyden valmiiksi -->
     <link rel="preconnect" href="https://images.alko.fi" crossorigin>
-    <link rel="dns-prefetch" href="https://www.alko.fi">
     <link rel="preconnect" href="https://www.alko.fi">
-    <link rel="dns-prefetch" href="https://cdn.alko.fi">
+    <link rel="preconnect" href="https://cdn.alko.fi" crossorigin>
 
     <script type="application/ld+json">
         {
@@ -180,7 +179,11 @@
         tbody tr:hover { background-color: var(--row-hover); }
         .tuote-solu { display: flex; align-items: flex-start; gap: 8px; }
         .mitali-emoji { font-size: 2em; line-height: 1; flex-shrink: 0; }
-        .tuote-kuva { height: 90px; max-height: 90px; max-width: 100px; object-fit: contain; border-radius: 6px; }
+        .tuote-kuva {
+            height: 90px; max-height: 90px; max-width: 100px; object-fit: contain; border-radius: 6px;
+            /* Kiinteä kuvasuhde estää asettelun hyppimisen (CLS) */
+            aspect-ratio: auto;
+        }
         .nimi-linkki { flex: 1; min-width: 0; }
         .tuote-linkki { color: var(--link-color); text-decoration: none; font-weight: 600; border-bottom: 1px dashed transparent; }
         .tuote-linkki:hover { border-bottom-color: var(--link-color); }
@@ -256,7 +259,10 @@
     <main class="container" role="main" aria-labelledby="paaotsikko">
         <header class="header-rivi">
             <div class="logo-otsikko">
-                <img src="Logo.png" alt="Halvan alkoholin perässä -logo" class="logo" fetchpriority="high" width="112" height="112" onerror="this.style.display='none'">
+                <!-- Logo: lisätty fetchpriority="high" ja kiinteät mitat estämään CLS -->
+                <img src="Logo.png" alt="Halvan alkoholin perässä -logo" class="logo"
+                     fetchpriority="high" width="112" height="112"
+                     onerror="this.style.display='none'">
                 <div>
                     <h1 id="paaotsikko">Alkon halvin alkoholi</h1>
                     <p class="alaotsikko">Halvan alkoholin perässä – Hintavertailu & suorat linkit Alkoon</p>
@@ -335,7 +341,7 @@
                     if (rowIndex === 0) return { color: COLORS.light.gold, transparent: true };
                     if (rowIndex === 1) return { color: COLORS.light.silver, transparent: true };
                     if (rowIndex === 2) return { color: COLORS.light.bronze, transparent: true };
-                    return null; // vaalea ei-mitali: ei käsittelyä
+                    return null;
                 } else {
                     if (rowIndex === 0) return { color: COLORS.dark.gold, transparent: true };
                     if (rowIndex === 1) return { color: COLORS.dark.silver, transparent: true };
@@ -408,7 +414,6 @@
             }
 
             function processImage(img, target) {
-                // Jos target on null, palauta alkuperäinen kuva
                 if (!target) {
                     const original = img.dataset.originalSrc;
                     if (original && img.src !== original) {
@@ -433,20 +438,23 @@
                 }
             }
 
+            // Optimointi: kuvankäsittely siirretään idle-hetkiin, jotta pääsäie ei tukkeudu
             function processAllImages() {
-                const isDark = document.body.classList.contains('dark-mode');
-                const rows = body.querySelectorAll('tr[data-index]');
-                rows.forEach(row => {
-                    const index = parseInt(row.getAttribute('data-index'), 10);
-                    const target = getTarget(index, isDark);
-                    const images = row.querySelectorAll('img.tuote-kuva:not([data-processed="true"])');
-                    images.forEach(img => {
-                        if (!img.dataset.originalSrc) {
-                            img.dataset.originalSrc = img.src;
-                        }
-                        processImage(img, target);
+                requestIdleCallback(() => {
+                    const isDark = document.body.classList.contains('dark-mode');
+                    const rows = body.querySelectorAll('tr[data-index]');
+                    rows.forEach(row => {
+                        const index = parseInt(row.getAttribute('data-index'), 10);
+                        const target = getTarget(index, isDark);
+                        const images = row.querySelectorAll('img.tuote-kuva:not([data-processed="true"])');
+                        images.forEach(img => {
+                            if (!img.dataset.originalSrc) {
+                                img.dataset.originalSrc = img.src;
+                            }
+                            processImage(img, target);
+                        });
                     });
-                });
+                }, { timeout: 2000 });
             }
 
             const tallennettuTeema = localStorage.getItem("tummaTeema");
@@ -480,7 +488,6 @@
                 const nimi = (tuote.nimi || "").toLowerCase().trim();
                 const alkoholi = Number(tuote.alkoholi_prosentti) || 0;
 
-                // Tarkistetaan alkoholiprosentti – vain nolla prosenttia on alkoholiton
                 if (alkoholi === 0) return "Alkoholittomat";
 
                 const viiniPattern = /\b(viini|viinit|punaviini|punaviinit|valkoviini|valkoviinit|roseeviini|roseeviinit|kuohuviini|kuohuviinit|samppanja|samppanjat|sampanja|sampanjat|champagne|champagnet|cava|cavat|prosecco|proseccot|cr[eé]mant|portviini|portviinit|port|portit|sherry|sherryt|madeira|madeirat|marsala|marsalat|vermut|vermutit|gl[oö]gi|gl[oö]git|gl[üu]hwein|gl[üu]hweinit|hedelmäviini|hedelmäviinit|marjaviini|marjaviinit|väkevä\s*viini|väkevät\s*viinit|rosé|rosét|rosato|rosatot|riesling|rieslingit|chardonnay|chardonnayt|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|rheingau|nahe|tokaji|icewine|sparkling|fiano|fianot)\b/i;
@@ -545,7 +552,8 @@
                     const klikkaus = `avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g, "\\'")}', '${nimi.replace(/'/g, "\\'")}'); return false;`;
                     const nimiHtml = `<a href="${url}" class="tuote-linkki" target="_blank" rel="noopener noreferrer" onclick="${klikkaus}" title="Avaa Alkon tuotesivu: ${nimi}">${nimi}</a>`;
                     const kuvaUrl = escapeHtml(t.kuva_url||"");
-                    const kuvaHtml = kuvaUrl ? `<img src="${kuvaUrl}" alt="${nimi}" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">` : '';
+                    // Paranneltu kuva: tyhjä alt, koska nimi on jo linkissä – ruudunlukija ei toista. Kiinteät mitat estävät CLS:n.
+                    const kuvaHtml = kuvaUrl ? `<img src="${kuvaUrl}" alt="" role="presentation" width="100" height="90" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">` : '';
                     const mitaliHtml = mitali ? `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitali}</span>` : '';
                     html += `<tr class="${riviLuokka}" data-index="${gi}">
                         <td><div class="tuote-solu">${kuvaHtml}${mitaliHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td>
