@@ -504,10 +504,6 @@
             const KATEGORIA_NIMET = ["Viinit", "Oluet", "Siiderit", "Väkevät & Viskit", "Alkoholittomat", "Muut"];
 
             function getFilteredData() {
-                // Vikasieto: jos aktiivisia kategorioita ei ole asetettu, näytä kaikki tuotteet
-                if (!activeCategories.length) {
-                    return tuoteData;
-                }
                 return tuoteData.filter(t => activeCategories.includes(luokitteleKategoria(t)));
             }
 
@@ -698,18 +694,20 @@
                     });
                     tuoteData = [...map.values()];
                     if (!tuoteData.length) { infoDiv.innerHTML = "⚠️ Ei kelvollisia tuotteita."; return; }
-                    
-                    // Alustetaan kategoriat ja käyttöliittymä
                     luoCheckboxit();
                     
-                    // Varmistetaan, että oletusnäkymä on halvin alkoholiannos
+                    // VARMISTETAAN: Oletusnäkymä on halvin alkoholiannos
                     currentSort = 'annos';
                     startIndex = 0;
+                    
+                    // Varmistetaan, että painike on aktiivinen
                     btnAnnos.classList.add('aktiivinen');
                     btnHinta.classList.remove('aktiivinen');
                     
-                    // Näytetään tuotteet ja skrollataan ylös
+                    // Renderöidään sivu oikealla järjestyksellä
                     renderWindow();
+                    
+                    // Varmistetaan, että sivu on ylhäällä
                     window.scrollTo({ top: 0, behavior: 'instant' });
                 })
                 .catch(err => {
