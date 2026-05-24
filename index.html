@@ -289,7 +289,7 @@
         }
         .dropdown-toggle {
             padding: 10px 20px;
-            background-color: var(--btn-bg);
+            background-color: #2B6C75;  /* 1/3 vähemmän sininen */
             color: white;
             border: none;
             border-radius: 8px;
@@ -299,7 +299,7 @@
             touch-action: manipulation;
         }
         .dropdown-toggle:hover {
-            background-color: var(--btn-hover);
+            background-color: #1F4E55;  /* tummempi versio */
         }
         .dropdown-content {
             display: none;
@@ -528,6 +528,13 @@
             background-image: linear-gradient(110deg, #5c301c, #8a5028, #6e3a1f, #9c6038, #5c301c, #8a5028, #6e3a1f, #9c6038, #5c301c, #8a5028, #5c301c);
             color: #fdba74;
         }
+        /* Tumma teema: kategoria-nappi 1/3 vähemmän sininen */
+        body.dark-mode .dropdown-toggle {
+            background-color: #0EA59B;
+        }
+        body.dark-mode .dropdown-toggle:hover {
+            background-color: #028485;
+        }
         .sentinel {
             position: absolute;
             left: 0;
@@ -674,7 +681,7 @@
         <nav class="nappi-alue" aria-label="Järjestys- ja suodatusvalinnat">
             <button id="btnHinta" onclick="jarjesta('hinta')">Halvin hinta</button>
             <button id="btnAnnos" onclick="jarjesta('annos')">Halvin alkoholiannos</button>
-            <button id="btnLapsimoodi" onclick="vaihdaLapsimoodi()">lapsimoodi (≤22% alk.)</button>
+            <button id="btnLapsimoodi" onclick="vaihdaLapsimoodi()">Lapsimoodi (≤22% alk.)</button>
             <div class="kategoria-dropdown" id="kategoriaDropdown">
                 <button class="dropdown-toggle" id="dropdownToggle">Kategoriat ▾</button>
                 <div class="dropdown-content" id="dropdownContent"></div>
