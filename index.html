@@ -169,10 +169,10 @@
             border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
         }
         .taulukko-container { overflow-x: auto; border-radius: 8px; border: 1px solid var(--table-border); position: relative; }
-        table { width: 100%; border-collapse: collapse; background: var(--bg-container); table-layout: fixed; }
-        th, td { padding: 12px; border-bottom: 1px solid var(--row-border); text-align: left; vertical-align: top; word-wrap: break-word; }
+        table { width: 100%; border-collapse: collapse; background: var(--bg-container); }
+        th, td { padding: 12px; border-bottom: 1px solid var(--row-border); text-align: left; vertical-align: top; }
         th:nth-child(n+3), td:nth-child(n+3) { text-align: right; }
-        th:last-child, td:last-child { background-color: var(--last-col-bg); font-weight: 600; color: var(--text-heading); }
+        th:last-child, td:last-child { background-color: var(--last-col-bg); font-weight: 600; color: var(--text-heading); min-width: 100px; }
         tbody tr:hover td:last-child { background-color: var(--last-col-bg); }
         th { background-color: var(--th-bg); color: var(--text-muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid var(--th-border); }
         tbody tr { transition: background-color 0.15s; }
@@ -287,14 +287,6 @@
         <section class="taulukko-container" id="taulukkoContainer" aria-label="Tuotevertailutaulukko">
             <div id="topSentinel" class="sentinel" aria-hidden="true"></div>
             <table id="tuoteTaulukko" role="table" aria-label="Alkon halvimman alkoholin hintavertailu">
-                <colgroup>
-                    <col style="width:35%">
-                    <col style="width:15%">
-                    <col style="width:12%">
-                    <col style="width:16%">
-                    <col style="width:10%">
-                    <col style="width:12%">
-                </colgroup>
                 <thead>
                     <tr>
                         <th scope="col">Nimi</th>
