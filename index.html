@@ -334,7 +334,7 @@
                     if (rowIndex === 0) return { color: COLORS.light.gold, transparent: true };
                     if (rowIndex === 1) return { color: COLORS.light.silver, transparent: true };
                     if (rowIndex === 2) return { color: COLORS.light.bronze, transparent: true };
-                    return null;
+                    return null; // vaalea ei-mitali: ei käsittelyä
                 } else {
                     if (rowIndex === 0) return { color: COLORS.dark.gold, transparent: true };
                     if (rowIndex === 1) return { color: COLORS.dark.silver, transparent: true };
@@ -360,7 +360,6 @@
                 const visited = new Uint8Array(w * h);
                 const queue = [];
                 const isWhite = (idx) => data[idx] > 250 && data[idx+1] > 250 && data[idx+2] > 250;
-                // Lisää reunapikselit, jotka ovat valkoisia
                 for (let x = 0; x < w; x++) {
                     const topIdx = (0 * w + x) * 4;
                     if (isWhite(topIdx)) { queue.push(x, 0); visited[0 * w + x] = 1; }
@@ -373,7 +372,6 @@
                     const rightIdx = (y * w + (w-1)) * 4;
                     if (isWhite(rightIdx)) { queue.push(w-1, y); visited[y*w + (w-1)] = 1; }
                 }
-                // BFS
                 let qIdx = 0;
                 while (qIdx < queue.length) {
                     const cx = queue[qIdx++];
@@ -390,7 +388,6 @@
                         }
                     }
                 }
-                // Korvaa valkoiset, jotka on merkitty
                 const [r, g, b] = target.color;
                 for (let i = 0; i < visited.length; i++) {
                     if (visited[i]) {
@@ -410,7 +407,16 @@
             }
 
             function processImage(img, target) {
-                if (!target || img.dataset.processed === 'true') return;
+                // Jos target on null, palauta alkuperäinen kuva
+                if (!target) {
+                    const original = img.dataset.originalSrc;
+                    if (original && img.src !== original) {
+                        img.src = original;
+                    }
+                    img.dataset.processed = 'true';
+                    return;
+                }
+                if (img.dataset.processed === 'true') return;
                 if (!img.complete || img.naturalWidth === 0) {
                     if (!img.dataset.listenerAdded) {
                         img.addEventListener('load', () => processImage(img, target), { once: true });
@@ -432,9 +438,13 @@
                 rows.forEach(row => {
                     const index = parseInt(row.getAttribute('data-index'), 10);
                     const target = getTarget(index, isDark);
-                    if (!target) return;
                     const images = row.querySelectorAll('img.tuote-kuva:not([data-processed="true"])');
-                    images.forEach(img => processImage(img, target));
+                    images.forEach(img => {
+                        if (!img.dataset.originalSrc) {
+                            img.dataset.originalSrc = img.src;
+                        }
+                        processImage(img, target);
+                    });
                 });
             }
 
@@ -533,7 +543,7 @@
                     const klikkaus = `avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g, "\\'")}', '${nimi.replace(/'/g, "\\'")}'); return false;`;
                     const nimiHtml = `<a href="${url}" class="tuote-linkki" target="_blank" rel="noopener noreferrer" onclick="${klikkaus}" title="Avaa Alkon tuotesivu: ${nimi}">${nimi}</a>`;
                     const kuvaUrl = escapeHtml(t.kuva_url||"");
-                    const kuvaHtml = kuvaUrl ? `<img src="${kuvaUrl}" alt="${nimi}" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" onerror="this.style.display='none'">` : '';
+                    const kuvaHtml = kuvaUrl ? `<img src="${kuvaUrl}" alt="${nimi}" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">` : '';
                     const mitaliHtml = mitali ? `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitali}</span>` : '';
                     html += `<tr class="${riviLuokka}" data-index="${gi}">
                         <td><div class="tuote-solu">${kuvaHtml}${mitaliHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td>
