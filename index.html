@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Alkon halvin alkoholi 2025 – Hintavertailu & suorat linkit | Alko Tuotetiedot</title>
+    <title>Alkon halvin alkoholi 2025 – Hintavertailu &amp; suorat linkit | Alko Tuotetiedot</title>
     <meta name="description" content="Alkon halvin alkoholi löytyy täältä! Vertaa yli 2 000 Alkon tuotteen hintoja ja alkoholiannosten hintoja. Viinit, oluet, ginit, viskit – järjestä hinnan tai annoshinnan mukaan. Suorat linkit Alkon tuotesivuille.">
     <meta name="keywords" content="Alkon halvin alkoholi, Alko, tuotetiedot, hintavertailu, halpa alkoholi, alkoholiannos, alkoholin hinta, viini, olut, gin, viski, kuohuviini, samppanja, hinnat 2025, halvimmat juomat">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -12,7 +12,7 @@
     <meta name="format-detection" content="telephone=no">
     <link rel="canonical" href="https://SINUN-DOMAIN.com/alko-tuotetiedot">
     <link rel="alternate" hreflang="fi" href="https://SINUN-DOMAIN.com/alko-tuotetiedot">
-    <meta property="og:title" content="Alkon halvin alkoholi 2025 – Hintavertailu & suorat linkit">
+    <meta property="og:title" content="Alkon halvin alkoholi 2025 – Hintavertailu &amp; suorat linkit">
     <meta property="og:description" content="Alkon halvin alkoholi löytyy täältä! Kattava vertailu yli 2 000 Alkon tuotteesta. Järjestä hinnan tai alkoholiannoksen hinnan mukaan. Suorat linkit tuotesivuille.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://SINUN-DOMAIN.com/alko-tuotetiedot">
@@ -23,7 +23,7 @@
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Alkon halvin alkoholi 2025 – Hintavertailu & suorat linkit">
+    <meta name="twitter:title" content="Alkon halvin alkoholi 2025 – Hintavertailu &amp; suorat linkit">
     <meta name="twitter:description" content="Alkon halvin alkoholi löytyy täältä! Kattava vertailu yli 2 000 Alkon tuotteesta. Järjestä hinnan tai alkoholiannoksen hinnan mukaan. Suorat linkit tuotesivuille.">
     <meta name="twitter:image" content="https://SINUN-DOMAIN.com/Logo.png">
     <meta name="twitter:image:alt" content="Halvan alkoholin perässä -logo">
@@ -112,6 +112,7 @@
         }
         .header-rivi { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .logo-otsikko { display: flex; align-items: center; gap: 10px; }
+        /* Alkuperäinen mittasuhteiden säilyttävä logo + CLS-esto aspect-ratiolla */
         .logo { height: 112px; width: auto; aspect-ratio: 599 / 246; }
         h1 { font-size: 28px; font-weight: 700; color: #8B0000; margin: 0; }
         .alaotsikko { font-size: 14px; color: var(--text-muted); margin: 2px 0 0; }
@@ -253,6 +254,7 @@
     <main class="container" role="main" aria-labelledby="paaotsikko">
         <header class="header-rivi">
             <div class="logo-otsikko">
+                <!-- Oikea kuvasuhde 599:246 estää CLS:n ilman ulkoasun muutoksia -->
                 <img src="Logo.png" alt="Halvan alkoholin perässä -logo" class="logo"
                      fetchpriority="high" width="272" height="112"
                      onerror="this.style.display='none'">
@@ -341,19 +343,8 @@
     dropdownToggle.addEventListener('click',e=>{e.stopPropagation();dropdownContent.classList.toggle('visible')});document.addEventListener('click',e=>{if(!dropdownContent.contains(e.target)&&e.target!==dropdownToggle)dropdownContent.classList.remove('visible')});
     function luoCheckboxit(){activeCategories=[...KATEGORIA_NIMET];dropdownContent.innerHTML='';KATEGORIA_NIMET.forEach(kat=>{const label=document.createElement('label');label.className='kategoria-checkbox';const cb=document.createElement('input');cb.type='checkbox';cb.value=kat;cb.checked=!0;cb.addEventListener('change',e=>{if(e.target.checked){if(!activeCategories.includes(kat))activeCategories.push(kat)}else activeCategories=activeCategories.filter(c=>c!==kat);startIndex=0;clearTimeout(scrollDebounceTimer);isShifting=isUserScrolling=!1;renderWindow();window.scrollTo({top:0,behavior:'smooth'})});label.appendChild(cb);label.appendChild(document.createTextNode(kat));dropdownContent.appendChild(label)})}
     window.jarjesta=function(kriteeri){clearTimeout(scrollDebounceTimer);isShifting=isUserScrolling=!1;currentSort=kriteeri;startIndex=0;renderWindow();if(kriteeri==='hinta'){btnHinta.classList.add('aktiivinen');btnAnnos.classList.remove('aktiivinen')}else{btnAnnos.classList.add('aktiivinen');btnHinta.classList.remove('aktiivinen')}window.scrollTo({top:0,behavior:'smooth'})};
-    fetch('alko_tuotteet.json').then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(raw=>{if(!Array.isArray(raw))throw new Error("Ei taulukko");
-    // ---- KORJAUS: kaikki rivit mukaan, ei deduplikointia nimen perusteella ----
-    tuoteData = raw.filter(t => t?.nimi?.trim()).map(t => ({
-        nimi: t.nimi.trim(),
-        tyyppi: t.tyyppi || "Ei tiedossa",
-        hinta_eur: typeof t.hinta_eur === 'number' ? t.hinta_eur : parseFloat(t.hinta_eur) || 0,
-        tilavuus_litraa: typeof t.tilavuus_litraa === 'number' ? t.tilavuus_litraa : parseFloat(t.tilavuus_litraa) || 0,
-        alkoholi_prosentti: typeof t.alkoholi_prosentti === 'number' ? t.alkoholi_prosentti : parseFloat(t.alkoholi_prosentti) || 0,
-        linkki: t.linkki || "",
-        kuva_url: t.kuva_url || ""
-    }));
-    if(!tuoteData.length){infoDiv.innerHTML="⚠️ Ei kelvollisia tuotteita.";return}luoCheckboxit();currentSort='annos';startIndex=0;btnAnnos.classList.add('aktiivinen');btnHinta.classList.remove('aktiivinen');Promise.resolve().then(()=>{renderWindow();window.scrollTo({top:0,behavior:'instant'})})}).catch(err=>{console.error(err);infoDiv.innerHTML="❌ Virhe tuotetietojen lataamisessa.";body.innerHTML='<tr><td colspan="6" style="text-align:center;padding:30px;">Tietoja ei voitu ladata. <a href="https://www.alko.fi/fi/tuotteet" target="_blank">Siirry Alkon sivuille</a></td></tr>'});
+    fetch('alko_tuotteet.json').then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(raw=>{if(!Array.isArray(raw))throw new Error("Ei taulukko");const map=new Map();raw.forEach(t=>{if(t?.nimi?.trim()){const nimi=t.nimi.trim();if(!map.has(nimi))map.set(nimi,{nimi,tyyppi:t.tyyppi||"Ei tiedossa",hinta_eur:typeof t.hinta_eur==='number'?t.hinta_eur:parseFloat(t.hinta_eur)||0,tilavuus_litraa:typeof t.tilavuus_litraa==='number'?t.tilavuus_litraa:parseFloat(t.tilavuus_litraa)||0,alkoholi_prosentti:typeof t.alkoholi_prosentti==='number'?t.alkoholi_prosentti:parseFloat(t.alkoholi_prosentti)||0,linkki:t.linkki||"",kuva_url:t.kuva_url||""})}});tuoteData=[...map.values()];if(!tuoteData.length){infoDiv.innerHTML="⚠️ Ei kelvollisia tuotteita.";return}luoCheckboxit();currentSort='annos';startIndex=0;btnAnnos.classList.add('aktiivinen');btnHinta.classList.remove('aktiivinen');Promise.resolve().then(()=>{renderWindow();window.scrollTo({top:0,behavior:'instant'})})}).catch(err=>{console.error(err);infoDiv.innerHTML="❌ Virhe tuotetietojen lataamisessa.";body.innerHTML='<tr><td colspan="6" style="text-align:center;padding:30px;">Tietoja ei voitu ladata. <a href="https://www.alko.fi/fi/tuotteet" target="_blank">Siirry Alkon sivuille</a></td></tr>'});
     })();
     </script>
 </body>
-</html>
+</html>    tämä näyttää tuote luvun väärin
