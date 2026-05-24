@@ -674,6 +674,7 @@
         <nav class="nappi-alue" aria-label="Järjestys- ja suodatusvalinnat">
             <button id="btnHinta" onclick="jarjesta('hinta')">Halvin hinta</button>
             <button id="btnAnnos" onclick="jarjesta('annos')">Halvin alkoholiannos</button>
+            <button id="btnLapsimoodi" onclick="vaihdaLapsimoodi()">lapsimoodi (≤22% alk.)</button>
             <div class="kategoria-dropdown" id="kategoriaDropdown">
                 <button class="dropdown-toggle" id="dropdownToggle">Kategoriat ▾</button>
                 <div class="dropdown-content" id="dropdownContent"></div>
@@ -722,6 +723,7 @@
                 metaThemeColor = document.getElementById("metaThemeColor"),
                 btnHinta = document.getElementById('btnHinta'),
                 btnAnnos = document.getElementById('btnAnnos'),
+                btnLapsimoodi = document.getElementById('btnLapsimoodi'),
                 body = document.getElementById('taulukkoBody'),
                 infoDiv = document.getElementById('info'),
                 topSentinel = document.getElementById('topSentinel'),
@@ -886,7 +888,8 @@
                 isShifting = !1,
                 isUserScrolling = !1,
                 scrollDebounceTimer = null,
-                activeCategories = [];
+                activeCategories = [],
+                lapsimoodiPaalla = !1;
             const WINDOW_SIZE = 50,
                 SHIFT_AMOUNT = 30;
 
@@ -912,9 +915,13 @@
             const KATEGORIA_NIMET = ["Viinit", "Oluet", "Siiderit", "Väkevät & Viskit", "Alkoholittomat", "Muut"];
 
             function getFilteredData() {
-                return activeCategories.length ?
+                let suodatettu = activeCategories.length ?
                     tuoteData.filter(t => activeCategories.includes(luokitteleKategoria(t))) :
                     tuoteData;
+                if (lapsimoodiPaalla) {
+                    suodatettu = suodatettu.filter(t => t.alkoholi_prosentti <= 22);
+                }
+                return suodatettu;
             }
 
             function getSortedData() {
@@ -1129,6 +1136,19 @@
                     btnAnnos.classList.add('aktiivinen');
                     btnHinta.classList.remove('aktiivinen');
                 }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+            window.vaihdaLapsimoodi = function() {
+                clearTimeout(scrollDebounceTimer);
+                isShifting = isUserScrolling = !1;
+                lapsimoodiPaalla = !lapsimoodiPaalla;
+                if (lapsimoodiPaalla) {
+                    btnLapsimoodi.classList.add('aktiivinen');
+                } else {
+                    btnLapsimoodi.classList.remove('aktiivinen');
+                }
+                startIndex = 0;
+                renderWindow();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
             fetch('alko_tuotteet.json').then(r => {
