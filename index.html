@@ -477,9 +477,10 @@
             function luokitteleKategoria(tuote) {
                 const tyyppi = (tuote.tyyppi || "").toLowerCase().trim();
                 const nimi = (tuote.nimi || "").toLowerCase().trim();
+                const alkoholi = Number(tuote.alkoholi_prosentti) || 0;
 
-                if (tuote.alkoholi_prosentti === 0) return "Alkoholittomat";
-                if (/\balkoholiton\b/.test(tyyppi) || /\balkoholiton\b/.test(nimi)) return "Alkoholittomat";
+                // Tarkistetaan alkoholiprosentti – vain nolla prosenttia on alkoholiton
+                if (alkoholi === 0) return "Alkoholittomat";
 
                 const viiniPattern = /\b(viini|viinit|punaviini|punaviinit|valkoviini|valkoviinit|roseeviini|roseeviinit|kuohuviini|kuohuviinit|samppanja|samppanjat|sampanja|sampanjat|champagne|champagnet|cava|cavat|prosecco|proseccot|cr[eé]mant|portviini|portviinit|port|portit|sherry|sherryt|madeira|madeirat|marsala|marsalat|vermut|vermutit|gl[oö]gi|gl[oö]git|gl[üu]hwein|gl[üu]hweinit|hedelmäviini|hedelmäviinit|marjaviini|marjaviinit|väkevä\s*viini|väkevät\s*viinit|rosé|rosét|rosato|rosatot|riesling|rieslingit|chardonnay|chardonnayt|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|rheingau|nahe|tokaji|icewine|sparkling|fiano|fianot)\b/i;
                 if (viiniPattern.test(tyyppi) || viiniPattern.test(nimi)) return "Viinit";
