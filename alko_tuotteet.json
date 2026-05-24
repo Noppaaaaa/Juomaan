@@ -42415,5 +42415,95 @@
         "tyyppi": "Väkevä",
         "linkki": "https://www.alko.fi/fi/tuotteet/910263/hee-joy-vsop-dominican-rum",
         "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/910263/hee-joy-vsop-dominican-rum.jpg"
+    },
+    {
+        "nimi": "Taylor's 40 Year Old Tawny Port",
+        "hinta_eur": 239.98,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 20,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/939777/taylors-40-year-old-tawny-port",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/939777/taylors-40-year-old-tawny-port.jpg"
+    },
+    {
+        "nimi": "Cucielo Bianco Vermouth di Torino",
+        "hinta_eur": 34.1,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 16.8,
+        "tyyppi": "Siideri",
+        "linkki": "https://www.alko.fi/fi/tuotteet/902135/cucielo-bianco-vermouth-di-torino",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/902135/cucielo-bianco-vermouth-di-torino.jpg"
+    },
+    {
+        "nimi": "Kentucky Owl St. Patrick's Edition",
+        "hinta_eur": 130,
+        "tilavuus_litraa": 0.7,
+        "alkoholi_prosentti": 50,
+        "tyyppi": "Väkevä",
+        "linkki": "https://www.alko.fi/fi/tuotteet/128517/kentucky-owl-st-patricks-edition",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/128517/kentucky-owl-st-patricks-edition.jpg"
+    },
+    {
+        "nimi": "Tarón Reserva 2015",
+        "hinta_eur": 21.52,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/413137/tarn-reserva-2015",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/413137/tarn-reserva-2015.jpg"
+    },
+    {
+        "nimi": "Fever-Tree Raspberry & Rhubarb Tonic Water",
+        "hinta_eur": 4.59,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 0,
+        "tyyppi": "Long drink",
+        "linkki": "https://www.alko.fi/fi/tuotteet/953401/fever-tree-raspberry-rhubarb-tonic-water",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/953401/fever-tree-raspberry-rhubarb-tonic-water.jpg"
+    },
+    {
+        "nimi": "Conde Vimioso Superior Tinto 2021",
+        "hinta_eur": 22.99,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/900598/conde-vimioso-superior-tinto-2021",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/900598/conde-vimioso-superior-tinto-2021.jpg"
+    },
+    {
+        "nimi": "Nivarius Viura de Viñedos Viejas Reserva 2016",
+        "hinta_eur": 53.08,
+        "tilavuus_litraa": 0.75,
+        "alkoholi_prosentti": 13.5,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/555587/nivarius-viura-de-viedos-viejas-reserva-2016",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/555587/nivarius-viura-de-viedos-viejas-reserva-2016.jpg"
+    },
+    {
+        "nimi": "Mufloni CCCCC IPA",
+        "hinta_eur": 4.69,
+        "tilavuus_litraa": 0.5,
+        "alkoholi_prosentti": 7,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/783206/mufloni-ccccc-ipa",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/783206/mufloni-ccccc-ipa.jpg"
+    },
+    {
+        "nimi": "Chill Out Syrah Rosé California 2024 hanapakkaus",
+        "hinta_eur": 35.99,
+        "tilavuus_litraa": 3,
+        "alkoholi_prosentti": 13,
+        "tyyppi": "Viini",
+        "linkki": "https://www.alko.fi/fi/tuotteet/914468/chill-out-syrah-rose-california-2024-hanapakkaus",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/914468/chill-out-syrah-rose-california-2024-hanapakkaus.jpg"
+    },
+    {
+        "nimi": "Buxton Fresh Pulp DDH NEIPA tölkki",
+        "hinta_eur": 5.99,
+        "tilavuus_litraa": 0.44,
+        "alkoholi_prosentti": 6,
+        "tyyppi": "Olut",
+        "linkki": "https://www.alko.fi/fi/tuotteet/901183/buxton-fresh-pulp-ddh-neipa-tolkki",
+        "kuva_url": "https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/901183/buxton-fresh-pulp-ddh-neipa-tolkki.jpg"
     }
 ]
