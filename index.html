@@ -114,7 +114,7 @@
         }
         .header-rivi { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .logo-otsikko { display: flex; align-items: center; gap: 10px; }
-        .logo { height: 112px; width: auto; }
+        .logo { width: 112px; height: 112px; object-fit: contain; }
         h1 { font-size: 28px; font-weight: 700; color: #8B0000; margin: 0; }
         .alaotsikko { font-size: 14px; color: var(--text-muted); margin: 2px 0 0; }
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
@@ -227,11 +227,11 @@
             tr.mitali-kulta::after, tr.mitali-hopea::after, tr.mitali-pronssi::after { display: none; }
             .nappi-alue { flex-direction: column; align-items: flex-start; }
         }
-        @media (max-width: 1024px) { body { padding: 30px 15px; } .container { padding: 25px; } h1 { font-size: 24px; } .logo { height: 100px; } }
+        @media (max-width: 1024px) { body { padding: 30px 15px; } .container { padding: 25px; } h1 { font-size: 24px; } .logo { width: 100px; height: 100px; } }
         @media (max-width: 768px) {
             body { padding: 20px 10px; } .container { padding: 20px; }
             .header-rivi { flex-direction: column; align-items: flex-start; gap: 15px; }
-            .logo { height: 80px; } h1 { font-size: 22px; }
+            .logo { width: 80px; height: 80px; } h1 { font-size: 22px; }
             .info { font-size: 13px; }
             th, td { padding: 8px 10px; font-size: 13px; }
             .tuote-kuva { height: 70px; max-height: 70px; max-width: 70px; }
@@ -239,7 +239,7 @@
         }
         @media (max-width: 480px) {
             body { padding: 15px 5px; } .container { padding: 15px; }
-            .logo { height: 60px; } h1 { font-size: 20px; }
+            .logo { width: 60px; height: 60px; } h1 { font-size: 20px; }
             .teema-kytkin { width: 48px; height: 24px; }
             .liuku:before { height: 18px; width: 18px; left: 3px; bottom: 3px; font-size: 12px; }
             input:checked+.liuku:before { transform: translateX(24px); }
@@ -287,6 +287,14 @@
         <section class="taulukko-container" id="taulukkoContainer" aria-label="Tuotevertailutaulukko">
             <div id="topSentinel" class="sentinel" aria-hidden="true"></div>
             <table id="tuoteTaulukko" role="table" aria-label="Alkon halvimman alkoholin hintavertailu">
+                <colgroup>
+                    <col style="width:35%">
+                    <col style="width:15%">
+                    <col style="width:12%">
+                    <col style="width:16%">
+                    <col style="width:10%">
+                    <col style="width:12%">
+                </colgroup>
                 <thead>
                     <tr>
                         <th scope="col">Nimi</th>
