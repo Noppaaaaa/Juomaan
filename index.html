@@ -180,8 +180,7 @@
         tbody tr:hover { background-color: var(--row-hover); }
         .tuote-solu { display: flex; align-items: flex-start; gap: 8px; }
         .mitali-emoji { font-size: 2em; line-height: 1; flex-shrink: 0; }
-        .tuote-kuva { height: 90px; max-height: 90px; max-width: 100px; object-fit: contain; border-radius: 6px; border: 1px solid transparent; }
-        body.dark-mode .tuote-kuva { border-color: #334155; }
+        .tuote-kuva { height: 90px; max-height: 90px; max-width: 100px; object-fit: contain; border-radius: 6px; }
         .nimi-linkki { flex: 1; min-width: 0; }
         .tuote-linkki { color: var(--link-color); text-decoration: none; font-weight: 600; border-bottom: 1px dashed transparent; }
         .tuote-linkki:hover { border-bottom-color: var(--link-color); }
@@ -325,6 +324,85 @@
             const dropdownContent = document.getElementById('dropdownContent');
             const dropdownToggle = document.getElementById('dropdownToggle');
 
+            // Värit ja läpinäkyvyysasetus
+            const COLORS = {
+                light: {
+                    gold:   [207, 181, 59],
+                    silver: [192, 192, 192],
+                    bronze: [205, 127, 50]
+                },
+                dark: {
+                    gold:   [184, 160, 58],
+                    silver: [122, 126, 133],
+                    bronze: [138, 80, 40],
+                    defaultBg: [33, 37, 47]
+                }
+            };
+
+            function getTarget(rowIndex, isDark) {
+                if (!isDark) {
+                    if (rowIndex === 0) return { color: COLORS.light.gold, transparent: true };
+                    if (rowIndex === 1) return { color: COLORS.light.silver, transparent: true };
+                    if (rowIndex === 2) return { color: COLORS.light.bronze, transparent: true };
+                    return null;
+                } else {
+                    if (rowIndex === 0) return { color: COLORS.dark.gold, transparent: true };
+                    if (rowIndex === 1) return { color: COLORS.dark.silver, transparent: true };
+                    if (rowIndex === 2) return { color: COLORS.dark.bronze, transparent: true };
+                    return { color: COLORS.dark.defaultBg, transparent: false };
+                }
+            }
+
+            function processImage(img, target) {
+                if (!target || img.dataset.processed === 'true') return;
+                if (!img.complete || img.naturalWidth === 0) {
+                    if (!img.dataset.listenerAdded) {
+                        img.addEventListener('load', () => processImage(img, target), { once: true });
+                        img.dataset.listenerAdded = 'true';
+                    }
+                    return;
+                }
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d', { willReadFrequently: true });
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                try {
+                    ctx.drawImage(img, 0, 0);
+                } catch (e) {
+                    img.dataset.processed = 'true';
+                    return;
+                }
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const data = imageData.data;
+                const [r, g, b] = target.color;
+                for (let i = 0; i < data.length; i += 4) {
+                    if (data[i] > 250 && data[i+1] > 250 && data[i+2] > 250) {
+                        if (target.transparent) {
+                            data[i+3] = 0; // alpha = 0 (läpinäkyvä)
+                        } else {
+                            data[i] = r;
+                            data[i+1] = g;
+                            data[i+2] = b;
+                        }
+                    }
+                }
+                ctx.putImageData(imageData, 0, 0);
+                img.src = canvas.toDataURL('image/png');
+                img.dataset.processed = 'true';
+            }
+
+            function processAllImages() {
+                const isDark = document.body.classList.contains('dark-mode');
+                const rows = body.querySelectorAll('tr[data-index]');
+                rows.forEach(row => {
+                    const index = parseInt(row.getAttribute('data-index'), 10);
+                    const target = getTarget(index, isDark);
+                    if (!target) return;
+                    const images = row.querySelectorAll('img.tuote-kuva:not([data-processed="true"])');
+                    images.forEach(img => processImage(img, target));
+                });
+            }
+
             const tallennettuTeema = localStorage.getItem("tummaTeema");
             function paivitaTeemaTeksti() {
                 if (document.body.classList.contains("dark-mode")) {
@@ -341,6 +419,8 @@
                 document.body.classList.toggle("dark-mode");
                 localStorage.setItem("tummaTeema", document.body.classList.contains("dark-mode") ? "kylla" : "ei");
                 paivitaTeemaTeksti();
+                document.querySelectorAll('img.tuote-kuva').forEach(img => { img.dataset.processed = ''; });
+                processAllImages();
             };
 
             let tuoteData = [];
@@ -349,31 +429,22 @@
             let currentSort = 'annos', isShifting = false, isUserScrolling = false, scrollDebounceTimer = null;
             let activeCategories = [];
 
-            // Kattava luokittelu – hyödyntää sekä tyyppiä että nimeä
             function luokitteleKategoria(tuote) {
                 const tyyppi = (tuote.tyyppi || "").toLowerCase().trim();
                 const nimi = (tuote.nimi || "").toLowerCase().trim();
 
-                // Alkoholittomat automaattisesti
                 if (tuote.alkoholi_prosentti === 0) return "Alkoholittomat";
                 if (/\balkoholiton\b/.test(tyyppi) || /\balkoholiton\b/.test(nimi)) return "Alkoholittomat";
 
-                // Viinit – laaja valikoima suomenkielisiä sanoja ja monikkoja
                 const viiniPattern = /\b(viini|viinit|punaviini|punaviinit|valkoviini|valkoviinit|roseeviini|roseeviinit|kuohuviini|kuohuviinit|samppanja|samppanjat|sampanja|sampanjat|champagne|champagnet|cava|cavat|prosecco|proseccot|cr[eé]mant|portviini|portviinit|port|portit|sherry|sherryt|madeira|madeirat|marsala|marsalat|vermut|vermutit|gl[oö]gi|gl[oö]git|gl[üu]hwein|gl[üu]hweinit|hedelmäviini|hedelmäviinit|marjaviini|marjaviinit|väkevä\s*viini|väkevät\s*viinit|rosé|rosét|rosato|rosatot|riesling|rieslingit|chardonnay|chardonnayt|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|rheingau|nahe|tokaji|icewine|sparkling|fiano|fianot)\b/i;
+                if (viiniPattern.test(tyyppi) || viiniPattern.test(nimi)) return "Viinit";
 
-                if (viiniPattern.test(tyyppi) || viiniPattern.test(nimi)) {
-                    return "Viinit";
-                }
-
-                // Oluet
                 const olutPattern = /\b(olut|oluet|ale|alet|lager|lagerit|stout|stoutit|porter|porterit|ipa|ipat|pils|pilsit|vehnä|vehnät|saison|saisonit|sahti|sahdit|dubbel|dubbelit|tripel|tripelit|quadrupel|quadrupelit|barley\s*wine|pale\s*ale|neipa|neipat|imperial\s*stout|blond|blondit|dipa|dipat)\b/i;
                 if (olutPattern.test(tyyppi) || olutPattern.test(nimi)) return "Oluet";
 
-                // Siiderit & Seltzerit
                 const siideriPattern = /\b(siideri|siiderit|cider|ciderit|seltzer|seltzerit|hard\s*seltzer)\b/i;
                 if (siideriPattern.test(tyyppi) || siideriPattern.test(nimi)) return "Siiderit";
 
-                // Väkevät ja viskit (kattava lista, sis. monikot)
                 const vakevaPattern = /\b(vodka|vodkat|rommi|rommit|romm|gini|ginit|viski|viskit|whisky|whiskyt|whiskey|whiskeyt|brandy|brandyt|konjakki|konjakit|likööri|liköörit|viina|viinat|katkero|katkerot|absintti|absintit|tequila|tequilat|mezcal|mezcalit|sake|saket|long\s*drink|long\s*drinkit|väkevä|väkevät|maustettu\s*vodka|hedelmälikööri|hedelmäliköörit|maustelikööri|mausteliköörit|gin|rom|rum|aquavit|aquavitit|akvavit|akvavitit|akvaviitit|pastis|pastikset|ouzo|ouzoit|raki|rakit|soju|sojut|calvados|calvadokset|grappa|grappat|armagnac|armagnacit|cognac|cognacit|brandy|brandit|grogikatkerot|hedelmätisleet|tisleet|single\s*malt|single\s*cask|blended\s*malt|blended\s*scotch|single\s*grain|bourbon|bourbonit|scotch\s*whisky|irish\s*whiskey|distiller|vs|vsop|xo|extra\s*old|liquore|shot|shotit|leijona|koskenkorva|salmiakki|salmari)\b/i;
                 if (vakevaPattern.test(tyyppi) || vakevaPattern.test(nimi)) return "Väkevät & Viskit";
 
@@ -427,7 +498,7 @@
                     const klikkaus = `avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g, "\\'")}', '${nimi.replace(/'/g, "\\'")}'); return false;`;
                     const nimiHtml = `<a href="${url}" class="tuote-linkki" target="_blank" rel="noopener noreferrer" onclick="${klikkaus}" title="Avaa Alkon tuotesivu: ${nimi}">${nimi}</a>`;
                     const kuvaUrl = escapeHtml(t.kuva_url||"");
-                    const kuvaHtml = kuvaUrl ? `<img src="${kuvaUrl}" alt="${nimi}" class="tuote-kuva" loading="lazy" decoding="async" onerror="this.style.display='none'">` : '';
+                    const kuvaHtml = kuvaUrl ? `<img src="${kuvaUrl}" alt="${nimi}" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" onerror="this.style.display='none'">` : '';
                     const mitaliHtml = mitali ? `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitali}</span>` : '';
                     html += `<tr class="${riviLuokka}" data-index="${gi}">
                         <td><div class="tuote-solu">${kuvaHtml}${mitaliHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td>
@@ -441,6 +512,7 @@
                 body.innerHTML = html;
                 infoDiv.innerHTML = `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${sorted.length}</strong> tuotetta.`;
                 paivitaStructuredData();
+                processAllImages();
             }
 
             function paivitaStructuredData() {
