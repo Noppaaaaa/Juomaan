@@ -9,6 +9,7 @@
     <meta name="keywords" content="Alkon halvin alkoholi, Alko, tuotetiedot, hintavertailu, halpa alkoholi, alkoholiannos, alkoholin hinta, viini, olut, gin, viski, kuohuviini, samppanja, hinnat 2025, halvimmat juomat">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="author" content="Halvan alkoholin perässä">
+    <meta name="format-detection" content="telephone=no">
     <link rel="canonical" href="https://SINUN-DOMAIN.com/alko-tuotetiedot">
     <link rel="alternate" hreflang="fi" href="https://SINUN-DOMAIN.com/alko-tuotetiedot">
     <meta property="og:title" content="Alkon halvin alkoholi 2025 – Hintavertailu &amp; suorat linkit">
@@ -139,14 +140,14 @@
         button {
             padding: 10px 20px; cursor: pointer; background-color: var(--btn-bg); color: white; border: none;
             border-radius: 8px; font-size: 14px; font-weight: 600; transition: all 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            font-family: inherit;
+            font-family: inherit; touch-action: manipulation;
         }
         button:hover { background-color: var(--btn-hover); transform: translateY(-2px); }
         button:active { transform: translateY(0); }
         button:focus-visible { outline: 2px solid var(--btn-bg); outline-offset: 2px; }
         button.aktiivinen { background-color: var(--btn-active-bg); box-shadow: 0 0 0 2px rgba(255,255,255,0.3); transform: scale(0.98); }
         .kategoria-dropdown { position: relative; margin-left: auto; }
-        .dropdown-toggle { padding: 10px 20px; background-color: var(--btn-bg); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
+        .dropdown-toggle { padding: 10px 20px; background-color: var(--btn-bg); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; touch-action: manipulation; }
         .dropdown-toggle:hover { background-color: var(--btn-hover); }
         .dropdown-content {
             display: none; position: absolute; right: 0; top: 100%; margin-top: 8px; background: var(--dropdown-bg);
@@ -174,13 +175,13 @@
         th:last-child, td:last-child { background-color: var(--last-col-bg); font-weight: 600; color: var(--text-heading); min-width: 100px; }
         tbody tr:hover td:last-child { background-color: var(--last-col-bg); }
         th { background-color: var(--th-bg); color: var(--text-muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid var(--th-border); }
-        tbody tr { transition: background-color 0.15s; }
+        tbody tr { transition: background-color 0.15s; content-visibility: auto; contain-intrinsic-size: auto 60px; }
         tbody tr:hover { background-color: var(--row-hover); }
         .tuote-solu { display: flex; align-items: flex-start; gap: 8px; }
         .mitali-emoji { font-size: 2em; line-height: 1; flex-shrink: 0; }
         .tuote-kuva {
             height: 90px; max-height: 90px; max-width: 100px; object-fit: contain; border-radius: 6px;
-            aspect-ratio: auto;
+            aspect-ratio: auto; content-visibility: auto; contain-intrinsic-size: 100px 90px;
         }
         .nimi-linkki { flex: 1; min-width: 0; }
         .tuote-linkki { color: var(--link-color); text-decoration: none; font-weight: 600; border-bottom: 1px dashed transparent; }
@@ -436,7 +437,8 @@
             }
 
             function processAllImages() {
-                requestIdleCallback(() => {
+                // Käytä scheduler.postTask jos saatavilla, muuten requestIdleCallback, muuten setTimeout
+                const doWork = () => {
                     const isDark = document.body.classList.contains('dark-mode');
                     const rows = body.querySelectorAll('tr[data-index]');
                     rows.forEach(row => {
@@ -450,7 +452,14 @@
                             processImage(img, target);
                         });
                     });
-                }, { timeout: 2000 });
+                };
+                if ('scheduler' in window && 'postTask' in window.scheduler) {
+                    window.scheduler.postTask(doWork, { priority: 'background' });
+                } else if ('requestIdleCallback' in window) {
+                    requestIdleCallback(doWork, { timeout: 2000 });
+                } else {
+                    setTimeout(doWork, 0);
+                }
             }
 
             const tallennettuTeema = localStorage.getItem("tummaTeema");
@@ -504,6 +513,10 @@
             const KATEGORIA_NIMET = ["Viinit", "Oluet", "Siiderit", "Väkevät & Viskit", "Alkoholittomat", "Muut"];
 
             function getFilteredData() {
+                // Vikasieto: jos aktiivisia kategorioita ei ole asetettu, näytä kaikki tuotteet
+                if (!activeCategories.length) {
+                    return tuoteData;
+                }
                 return tuoteData.filter(t => activeCategories.includes(luokitteleKategoria(t)));
             }
 
@@ -694,21 +707,21 @@
                     });
                     tuoteData = [...map.values()];
                     if (!tuoteData.length) { infoDiv.innerHTML = "⚠️ Ei kelvollisia tuotteita."; return; }
+                    
+                    // Alustetaan kategoriat ja käyttöliittymä
                     luoCheckboxit();
                     
-                    // VARMISTETAAN: Oletusnäkymä on halvin alkoholiannos
+                    // Varmistetaan, että oletusnäkymä on halvin alkoholiannos
                     currentSort = 'annos';
                     startIndex = 0;
-                    
-                    // Varmistetaan, että painike on aktiivinen
                     btnAnnos.classList.add('aktiivinen');
                     btnHinta.classList.remove('aktiivinen');
                     
-                    // Renderöidään sivu oikealla järjestyksellä
-                    renderWindow();
-                    
-                    // Varmistetaan, että sivu on ylhäällä
-                    window.scrollTo({ top: 0, behavior: 'instant' });
+                    // Mobiilivarmistus: käytetään mikrotaskia, jotta DOM ehtii päivittyä ennen renderöintiä
+                    Promise.resolve().then(() => {
+                        renderWindow();
+                        window.scrollTo({ top: 0, behavior: 'instant' });
+                    });
                 })
                 .catch(err => {
                     console.error(err);
