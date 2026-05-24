@@ -31,7 +31,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Alko Tuotetiedot">
-    <!-- Optimoidut resurssivihjeet: preconnect korvaa dns-prefetchin ja avaa yhteyden valmiiksi -->
     <link rel="preconnect" href="https://images.alko.fi" crossorigin>
     <link rel="preconnect" href="https://www.alko.fi">
     <link rel="preconnect" href="https://cdn.alko.fi" crossorigin>
@@ -181,7 +180,6 @@
         .mitali-emoji { font-size: 2em; line-height: 1; flex-shrink: 0; }
         .tuote-kuva {
             height: 90px; max-height: 90px; max-width: 100px; object-fit: contain; border-radius: 6px;
-            /* Kiinteä kuvasuhde estää asettelun hyppimisen (CLS) */
             aspect-ratio: auto;
         }
         .nimi-linkki { flex: 1; min-width: 0; }
@@ -259,7 +257,6 @@
     <main class="container" role="main" aria-labelledby="paaotsikko">
         <header class="header-rivi">
             <div class="logo-otsikko">
-                <!-- Logo: lisätty fetchpriority="high" ja kiinteät mitat estämään CLS -->
                 <img src="Logo.png" alt="Halvan alkoholin perässä -logo" class="logo"
                      fetchpriority="high" width="112" height="112"
                      onerror="this.style.display='none'">
@@ -438,7 +435,6 @@
                 }
             }
 
-            // Optimointi: kuvankäsittely siirretään idle-hetkiin, jotta pääsäie ei tukkeudu
             function processAllImages() {
                 requestIdleCallback(() => {
                     const isDark = document.body.classList.contains('dark-mode');
@@ -552,7 +548,6 @@
                     const klikkaus = `avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g, "\\'")}', '${nimi.replace(/'/g, "\\'")}'); return false;`;
                     const nimiHtml = `<a href="${url}" class="tuote-linkki" target="_blank" rel="noopener noreferrer" onclick="${klikkaus}" title="Avaa Alkon tuotesivu: ${nimi}">${nimi}</a>`;
                     const kuvaUrl = escapeHtml(t.kuva_url||"");
-                    // Paranneltu kuva: tyhjä alt, koska nimi on jo linkissä – ruudunlukija ei toista. Kiinteät mitat estävät CLS:n.
                     const kuvaHtml = kuvaUrl ? `<img src="${kuvaUrl}" alt="" role="presentation" width="100" height="90" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">` : '';
                     const mitaliHtml = mitali ? `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitali}</span>` : '';
                     html += `<tr class="${riviLuokka}" data-index="${gi}">
@@ -700,6 +695,7 @@
                     tuoteData = [...map.values()];
                     if (!tuoteData.length) { infoDiv.innerHTML = "⚠️ Ei kelvollisia tuotteita."; return; }
                     luoCheckboxit();
+                    // Oletuksena näytetään halvimman alkoholiannoksen mukaan
                     currentSort = 'annos'; startIndex = 0; renderWindow();
                     btnAnnos.classList.add('aktiivinen');
                 })
