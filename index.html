@@ -66,16 +66,6 @@
             ]
         }
     </script>
-    <script type="application/ld+json" id="itemListSchema">
-        {
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            "name": "Alkon halvin alkoholi – tuotteet järjestettynä annoshinnan mukaan",
-            "description": "Listaus Alkon tuotteista järjestettynä alkoholiannoksen hinnan mukaan – Alkon halvin alkoholi löytyy kärjestä.",
-            "numberOfItems": 0,
-            "itemListElement": []
-        }
-    </script>
 
     <style>
         *,
@@ -146,6 +136,7 @@
             color: var(--text-main);
             min-height: 100vh;
             transition: background 0.3s, color 0.3s;
+            content-visibility: auto;
         }
         .container {
             max-width: 1100px;
@@ -168,7 +159,7 @@
             gap: 10px;
         }
         h1 {
-            font-size: 28px;
+            font-size: 42px;
             font-weight: 700;
             color: #8B0000;
             margin: 0;
@@ -274,6 +265,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             font-family: inherit;
             touch-action: manipulation;
+            will-change: transform;
         }
         button:hover {
             background-color: var(--btn-hover);
@@ -368,6 +360,8 @@
             border-radius: 8px;
             border: 1px solid var(--table-border);
             position: relative;
+            content-visibility: auto;
+            contain-intrinsic-size: auto 500px;
         }
         table {
             width: 100%;
@@ -573,7 +567,7 @@
                 padding: 25px;
             }
             h1 {
-                font-size: 24px;
+                font-size: 36px;
             }
         }
         @media (max-width: 768px) {
@@ -589,7 +583,7 @@
                 gap: 15px;
             }
             h1 {
-                font-size: 22px;
+                font-size: 33px;
             }
             .info {
                 font-size: 13px;
@@ -616,7 +610,7 @@
                 padding: 15px;
             }
             h1 {
-                font-size: 20px;
+                font-size: 30px;
             }
             .teema-kytkin {
                 width: 48px;
@@ -844,19 +838,24 @@
             function processAllImages() {
                 const doWork = () => {
                     const isDark = document.body.classList.contains('dark-mode');
-                    body.querySelectorAll('tr[data-index]').forEach(row => {
+                    const rows = body.querySelectorAll('tr[data-index]');
+                    for (let i = 0; i < rows.length; i++) {
+                        const row = rows[i];
                         const index = parseInt(row.getAttribute('data-index'), 10),
                             target = getTarget(index, isDark);
-                        row.querySelectorAll('img.tuote-kuva:not([data-processed="true"])').forEach(
-                        img => {
+                        const images = row.querySelectorAll('img.tuote-kuva:not([data-processed="true"])');
+                        for (let j = 0; j < images.length; j++) {
+                            const img = images[j];
                             if (!img.dataset.originalSrc) img.dataset.originalSrc = img.src;
                             processImage(img, target);
-                        });
-                    });
+                        }
+                    }
                 };
-                if (window.scheduler?.postTask) window.scheduler.postTask(doWork, { priority: 'background' });
-                else if (window.requestIdleCallback) requestIdleCallback(doWork, { timeout: 2000 });
-                else setTimeout(doWork, 0);
+                if (window.requestIdleCallback) {
+                    requestIdleCallback(doWork, { timeout: 2000 });
+                } else {
+                    setTimeout(doWork, 0);
+                }
             }
             const tallennettuTeema = localStorage.getItem("tummaTeema");
 
@@ -903,7 +902,7 @@
                     /\b(olut|oluet|ale|alet|lager|lagerit|stout|stoutit|porter|porterit|ipa|ipat|pils|pilsit|vehnä|vehnät|saison|saisonit|sahti|sahdit|dubbel|dubbelit|tripel|tripelit|quadrupel|quadrupelit|barley\s*wine|pale\s*ale|neipa|neipat|imperial\s*stout|blond|blondit|dipa|dipat)\b/i;
                 if (olutPattern.test(tyyppi) || olutPattern.test(nimi)) return "Oluet";
                 const siideriPattern =
-                /\b(siideri|siiderit|cider|ciderit|seltzer|seltzerit|hard\s*seltzer)\b/i;
+                    /\b(siideri|siiderit|cider|ciderit|seltzer|seltzerit|hard\s*seltzer)\b/i;
                 if (siideriPattern.test(tyyppi) || siideriPattern.test(nimi)) return "Siiderit";
                 const vakevaPattern =
                     /\b(vodka|vodkat|rommi|rommit|romm|gini|ginit|viski|viskit|whisky|whiskyt|whiskey|whiskeyt|brandy|brandyt|konjakki|konjakit|likööri|liköörit|viina|viinat|katkero|katkerot|absintti|absintit|tequila|tequilat|mezcal|mezcalit|sake|saket|long\s*drink|long\s*drinkit|väkevä|väkevät|maustettu\s*vodka|hedelmälikööri|hedelmäliköörit|maustelikööri|mausteliköörit|gin|rom|rum|aquavit|aquavitit|akvavit|akvavitit|akvaviitit|pastis|pastikset|ouzo|ouzoit|raki|rakit|soju|sojut|calvados|calvadokset|grappa|grappat|armagnac|armagnacit|cognac|cognacit|brandy|brandit|grogikatkerot|hedelmätisleet|tisleet|single\s*malt|single\s*cask|blended\s*malt|blended\s*scotch|single\s*grain|bourbon|bourbonit|scotch\s*whisky|irish\s*whiskey|distiller|vs|vsop|xo|extra\s*old|liquore|shot|shotit|leijona|koskenkorva|salmiakki|salmari)\b/i;
@@ -948,7 +947,8 @@
                     end = Math.min(startIndex + WINDOW_SIZE, sorted.length),
                     items = sorted.slice(startIndex, end);
                 let html = '';
-                items.forEach((t, i) => {
+                for (let i = 0; i < items.length; i++) {
+                    const t = items[i];
                     const gi = startIndex + i,
                         ah = laskeAnnosHinta(t);
                     let riviLuokka = '',
@@ -973,7 +973,7 @@
                         `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitali}</span>` : '';
                     html +=
                         `<tr class="${riviLuokka}" data-index="${gi}"><td><div class="tuote-solu">${kuvaHtml}${mitaliHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
-                });
+                }
                 body.innerHTML = html;
                 infoDiv.innerHTML =
                     `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${sorted.length}</strong> tuotetta.`;
@@ -1032,7 +1032,10 @@
                 renderWindow();
                 requestAnimationFrame(() => {
                     const newRow = document.querySelector(`tr[data-index="${anchor}"]`);
-                    if (newRow) window.scrollBy(0, newRow.getBoundingClientRect().top - oldTop);
+                    if (newRow) {
+                        const newTop = newRow.getBoundingClientRect().top;
+                        window.scrollBy(0, newTop - oldTop);
+                    }
                     isShifting = !1;
                 });
                 return !0;
@@ -1049,11 +1052,18 @@
                 else if (rect.bottom <= window.innerHeight + margin && startIndex + WINDOW_SIZE < sorted.length)
                     shiftWindow('forward');
             }
+            let ticking = false;
             window.addEventListener('scroll', () => {
                 isUserScrolling = !0;
                 clearTimeout(scrollDebounceTimer);
-                scrollDebounceTimer = setTimeout(() => { isUserScrolling = !1;
-                    checkStuck(); }, window.innerWidth < 768 ? 80 : 10);
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        scrollDebounceTimer = setTimeout(() => { isUserScrolling = !1;
+                            checkStuck(); }, window.innerWidth < 768 ? 80 : 10);
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
             }, { passive: !0 });
             let topObserver, bottomObserver;
 
@@ -1083,7 +1093,8 @@
             function luoCheckboxit() {
                 activeCategories = [...KATEGORIA_NIMET];
                 dropdownContent.innerHTML = '';
-                KATEGORIA_NIMET.forEach(kat => {
+                for (let i = 0; i < KATEGORIA_NIMET.length; i++) {
+                    const kat = KATEGORIA_NIMET[i];
                     const label = document.createElement('label');
                     label.className = 'kategoria-checkbox';
                     const cb = document.createElement('input');
@@ -1103,7 +1114,7 @@
                     label.appendChild(cb);
                     label.appendChild(document.createTextNode(kat));
                     dropdownContent.appendChild(label);
-                });
+                }
             }
             window.jarjesta = function(kriteeri) {
                 clearTimeout(scrollDebounceTimer);
@@ -1126,7 +1137,8 @@
             }).then(raw => {
                 if (!Array.isArray(raw)) throw new Error("Ei taulukko");
                 const map = new Map();
-                raw.forEach(t => {
+                for (let i = 0; i < raw.length; i++) {
+                    const t = raw[i];
                     if (t?.nimi?.trim()) {
                         const nimi = t.nimi.trim();
                         const alkoholi = typeof t.alkoholi_prosentti === 'number' ? t
@@ -1147,7 +1159,7 @@
                             });
                         }
                     }
-                });
+                }
                 tuoteData = [...map.values()];
                 if (!tuoteData.length) { infoDiv.innerHTML = "⚠️ Ei kelvollisia tuotteita."; return; }
                 luoCheckboxit();
