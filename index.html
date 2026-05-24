@@ -547,22 +547,25 @@
         #bottomSentinel {
             bottom: 0;
         }
+        .nappi-vasen-ryhma {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
         @media (max-width: 768px) {
-            .kategoria-dropdown {
-                margin-left: 0;
-                width: 100%;
+            .nappi-vasen-ryhma {
+                flex-direction: column;
+                align-items: flex-start;
             }
-            .dropdown-content {
-                width: 100%;
+            .kategoria-dropdown {
+                align-self: flex-end;
+                margin-top: 0;
             }
             tr.mitali-kulta::after,
             tr.mitali-hopea::after,
             tr.mitali-pronssi::after {
                 display: none;
-            }
-            .nappi-alue {
-                flex-direction: column;
-                align-items: flex-start;
             }
         }
         @media (max-width: 1024px) {
@@ -678,9 +681,11 @@
         <div id="info" class="info" role="status" aria-live="polite">Etsitkö Alkon halvinta alkoholia? Ladataan tuotteita...</div>
 
         <nav class="nappi-alue" aria-label="Järjestys- ja suodatusvalinnat">
-            <button id="btnHinta" onclick="jarjesta('hinta')">Halvin hinta</button>
-            <button id="btnAnnos" onclick="jarjesta('annos')">Halvin alkoholiannos</button>
-            <button id="btnLapsimoodi" onclick="vaihdaLapsimoodi()">lapsimoodi (≤22% alk.)</button>
+            <div class="nappi-vasen-ryhma">
+                <button id="btnHinta" onclick="jarjesta('hinta')">Halvin hinta</button>
+                <button id="btnAnnos" onclick="jarjesta('annos')">Halvin alkoholiannos</button>
+                <button id="btnLapsimoodi" onclick="vaihdaLapsimoodi()">lapsimoodi (≤22% alk.)</button>
+            </div>
             <div class="kategoria-dropdown" id="kategoriaDropdown">
                 <button class="dropdown-toggle" id="dropdownToggle">Kategoriat ▾</button>
                 <div class="dropdown-content" id="dropdownContent"></div>
