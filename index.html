@@ -424,9 +424,15 @@
             margin-right: -4px;
         }
         .mitali-emoji {
-            font-size: 2em;
-            line-height: 1;
+            font-weight: 600;
+            align-self: center;
             flex-shrink: 0;
+            min-width: 1.8em;
+            text-align: right;
+            margin-left: -6px;
+            margin-right: -4px;
+            font-size: inherit;
+            line-height: 1;
         }
         .tuote-kuva {
             height: 90px;
@@ -501,47 +507,47 @@
             background: transparent !important;
         }
         tr.mitali-kulta {
-            background-image: linear-gradient(110deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c, #fcf6ba, #b38728, #fbf5b7, #aa771c, #fcf6ba, #bf953f);
+            background-image: linear-gradient(110deg, #c9a85c, #e5d89b, #b39040, #e0d090, #a07530, #e5d89b, #b39040, #e0d090, #a07530, #e5d89b, #c9a85c);
             background-size: 400% 100%;
-            animation: kultakimallus 35s linear infinite;
+            animation: kultakimallus 70s linear infinite;
             color: #1a202c;
-            text-shadow: 0 0 6px rgba(255, 215, 0, 0.7);
+            text-shadow: 0 0 4px rgba(200, 180, 100, 0.5);
         }
         tr.mitali-kulta::after {
             content: '';
             position: absolute;
             inset: 0;
-            background-image: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.35) 45%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0.35) 55%, transparent 100%);
+            background-image: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.18) 45%, rgba(255,255,255,0.28) 50%, rgba(255,255,255,0.18) 55%, transparent 100%);
             background-size: 400% 100%;
-            animation: valokiilto 20s linear infinite;
+            animation: valokiilto 40s linear infinite;
             pointer-events: none;
             z-index: 0;
         }
         tr.mitali-hopea {
-            background-image: linear-gradient(110deg, #8a8d91, #e0e4e9, #b7bbc1, #f0f2f5, #9ca0a6, #e0e4e9, #b7bbc1, #f0f2f5, #9ca0a6, #e0e4e9, #8a8d91);
+            background-image: linear-gradient(110deg, #9a9ea3, #c8cdd3, #a8aeb5, #d8dde3, #8e9299, #c8cdd3, #a8aeb5, #d8dde3, #8e9299, #c8cdd3, #9a9ea3);
             background-size: 400% 100%;
-            animation: hopeakimallus 35s linear infinite;
+            animation: hopeakimallus 70s linear infinite;
             color: #1a202c;
-            text-shadow: 0 0 6px rgba(192, 192, 192, 0.8);
+            text-shadow: 0 0 4px rgba(160,160,170,0.5);
         }
         tr.mitali-pronssi {
-            background-image: linear-gradient(110deg, #a04f2e, #e2a87c, #cd7f4c, #f5c7a6, #b25d33, #e2a87c, #cd7f4c, #f5c7a6, #b25d33, #e2a87c, #a04f2e);
+            background-image: linear-gradient(110deg, #a86f4e, #d4a17a, #b87e58, #e0b595, #975d3a, #d4a17a, #b87e58, #e0b595, #975d3a, #d4a17a, #a86f4e);
             background-size: 400% 100%;
-            animation: pronssikimallus 35s linear infinite;
+            animation: pronssikimallus 70s linear infinite;
             color: #1a202c;
-            text-shadow: 0 0 6px rgba(184, 115, 51, 0.8);
+            text-shadow: 0 0 4px rgba(180,130,90,0.5);
         }
         body.dark-mode tr.mitali-kulta {
-            background-image: linear-gradient(110deg, #7a5c14, #b8a03a, #8f6e1d, #c4af45, #7a5c14, #b8a03a, #8f6e1d, #c4af45, #7a5c14, #b8a03a, #7a5c14);
-            color: #fde047;
+            background-image: linear-gradient(110deg, #8a6d2c, #b8a14a, #7d6020, #c4af55, #8a6d2c, #b8a14a, #7d6020, #c4af55, #8a6d2c, #b8a14a, #8a6d2c);
+            color: #f0d060;
         }
         body.dark-mode tr.mitali-hopea {
-            background-image: linear-gradient(110deg, #4a4d52, #7a7e85, #5c6066, #8e9299, #4a4d52, #7a7e85, #5c6066, #8e9299, #4a4d52, #7a7e85, #4a4d52);
-            color: #e2e8f0;
+            background-image: linear-gradient(110deg, #5c6066, #80858c, #4a4e54, #92989e, #5c6066, #80858c, #4a4e54, #92989e, #5c6066, #80858c, #5c6066);
+            color: #d0d5dc;
         }
         body.dark-mode tr.mitali-pronssi {
-            background-image: linear-gradient(110deg, #5c301c, #8a5028, #6e3a1f, #9c6038, #5c301c, #8a5028, #6e3a1f, #9c6038, #5c301c, #8a5028, #5c301c);
-            color: #fdba74;
+            background-image: linear-gradient(110deg, #6e4028, #9a6040, #5c301c, #ac724e, #6e4028, #9a6040, #5c301c, #ac724e, #6e4028, #9a6040, #6e4028);
+            color: #f0b078;
         }
         .sentinel {
             position: absolute;
@@ -752,8 +758,8 @@
                 dropdownContent = document.getElementById('dropdownContent'),
                 dropdownToggle = document.getElementById('dropdownToggle'),
                 COLORS = {
-                    light: { gold: [207, 181, 59], silver: [192, 192, 192], bronze: [205, 127, 50] },
-                    dark: { gold: [184, 160, 58], silver: [122, 126, 133], bronze: [138, 80, 40], defaultBg: [33,
+                    light: { gold: [199, 168, 92], silver: [154, 158, 163], bronze: [168, 111, 78] },
+                    dark: { gold: [138, 109, 44], silver: [92, 96, 102], bronze: [110, 64, 40], defaultBg: [33,
                             37, 47
                         ] }
                 };
@@ -979,11 +985,11 @@
                     const gi = startIndex + i,
                         ah = laskeAnnosHinta(t);
                     let riviLuokka = '',
-                        mitali = '';
+                        mitaliEmoji = '';
                     if (gi === 0) { riviLuokka = 'mitali-kulta';
-                        mitali = '🥇 '; } else if (gi === 1) { riviLuokka = 'mitali-hopea';
-                        mitali = '🥈 '; } else if (gi === 2) { riviLuokka = 'mitali-pronssi';
-                        mitali = '🥉 '; }
+                        mitaliEmoji = '🥇'; } else if (gi === 1) { riviLuokka = 'mitali-hopea';
+                        mitaliEmoji = '🥈'; } else if (gi === 2) { riviLuokka = 'mitali-pronssi';
+                        mitaliEmoji = '🥉'; }
                     const nimi = escapeHtml(t.nimi),
                         linkki = t.linkki || "",
                         url = linkki.trim() ? escapeHtml(linkki) :
@@ -995,11 +1001,15 @@
                         kuvaUrl = escapeHtml(t.kuva_url || ""),
                         kuvaHtml = kuvaUrl ?
                         `<img src="${kuvaUrl}" alt="" role="presentation" width="100" height="90" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">` :
-                        '',
-                        mitaliHtml = mitali ?
-                        `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitali}</span>` : '';
+                        '';
+                    let sijaintiHtml;
+                    if (gi < 3 && mitaliEmoji) {
+                        sijaintiHtml = `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitaliEmoji}</span>`;
+                    } else {
+                        sijaintiHtml = `<span class="tuote-numero">${gi + 1}</span>`;
+                    }
                     html +=
-                        `<tr class="${riviLuokka}" data-index="${gi}"><td><div class="tuote-solu"><span class="tuote-numero">${gi + 1}</span>${kuvaHtml}${mitaliHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
+                        `<tr class="${riviLuokka}" data-index="${gi}"><td><div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
                 }
                 body.innerHTML = html;
                 infoDiv.innerHTML =
