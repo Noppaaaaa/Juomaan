@@ -440,44 +440,13 @@
         .tuote-linkki:hover {
             border-bottom-color: var(--link-color);
         }
-        @keyframes valokiilto {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
-        }
-        @keyframes kultakimallus {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
-        }
-        @keyframes hopeakimallus {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
-        }
-        @keyframes pronssikimallus {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
-        }
         tr.mitali-kulta,
         tr.mitali-hopea,
         tr.mitali-pronssi {
             position: relative;
             isolation: isolate;
             font-weight: bold;
+            transition: none;  /* Estää taustavärin animaation */
         }
         tr.mitali-kulta td,
         tr.mitali-hopea td,
@@ -492,46 +461,30 @@
             background: transparent !important;
         }
         tr.mitali-kulta {
-            background-image: linear-gradient(110deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c, #fcf6ba, #b38728, #fbf5b7, #aa771c, #fcf6ba, #bf953f);
-            background-size: 400% 100%;
-            animation: kultakimallus 35s linear infinite;
+            background-color: rgba(207, 181, 59, 0.5);
             color: #1a202c;
             text-shadow: 0 0 6px rgba(255, 215, 0, 0.7);
         }
-        tr.mitali-kulta::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.35) 45%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0.35) 55%, transparent 100%);
-            background-size: 400% 100%;
-            animation: valokiilto 20s linear infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
         tr.mitali-hopea {
-            background-image: linear-gradient(110deg, #8a8d91, #e0e4e9, #b7bbc1, #f0f2f5, #9ca0a6, #e0e4e9, #b7bbc1, #f0f2f5, #9ca0a6, #e0e4e9, #8a8d91);
-            background-size: 400% 100%;
-            animation: hopeakimallus 35s linear infinite;
+            background-color: rgba(192, 192, 192, 0.5);
             color: #1a202c;
             text-shadow: 0 0 6px rgba(192, 192, 192, 0.8);
         }
         tr.mitali-pronssi {
-            background-image: linear-gradient(110deg, #a04f2e, #e2a87c, #cd7f4c, #f5c7a6, #b25d33, #e2a87c, #cd7f4c, #f5c7a6, #b25d33, #e2a87c, #a04f2e);
-            background-size: 400% 100%;
-            animation: pronssikimallus 35s linear infinite;
+            background-color: rgba(205, 127, 50, 0.5);
             color: #1a202c;
             text-shadow: 0 0 6px rgba(184, 115, 51, 0.8);
         }
         body.dark-mode tr.mitali-kulta {
-            background-image: linear-gradient(110deg, #7a5c14, #b8a03a, #8f6e1d, #c4af45, #7a5c14, #b8a03a, #8f6e1d, #c4af45, #7a5c14, #b8a03a, #7a5c14);
+            background-color: rgba(184, 160, 58, 0.5);
             color: #fde047;
         }
         body.dark-mode tr.mitali-hopea {
-            background-image: linear-gradient(110deg, #4a4d52, #7a7e85, #5c6066, #8e9299, #4a4d52, #7a7e85, #5c6066, #8e9299, #4a4d52, #7a7e85, #4a4d52);
+            background-color: rgba(122, 126, 133, 0.5);
             color: #e2e8f0;
         }
         body.dark-mode tr.mitali-pronssi {
-            background-image: linear-gradient(110deg, #5c301c, #8a5028, #6e3a1f, #9c6038, #5c301c, #8a5028, #6e3a1f, #9c6038, #5c301c, #8a5028, #5c301c);
+            background-color: rgba(138, 80, 40, 0.5);
             color: #fdba74;
         }
         .sentinel {
@@ -561,11 +514,6 @@
             .kategoria-dropdown {
                 align-self: flex-end;
                 margin-top: 0;
-            }
-            tr.mitali-kulta::after,
-            tr.mitali-hopea::after,
-            tr.mitali-pronssi::after {
-                display: none;
             }
         }
         @media (max-width: 1024px) {
@@ -901,8 +849,8 @@
                 scrollDebounceTimer = null,
                 activeCategories = [],
                 lapsimoodiPaalla = !1;
-            const WINDOW_SIZE = 50,
-                SHIFT_AMOUNT = 30;
+            const WINDOW_SIZE = 60,
+                SHIFT_AMOUNT = 50;
 
             function luokitteleKategoria(tuote) {
                 const tyyppi = (tuote.tyyppi || "").toLowerCase().trim(),
