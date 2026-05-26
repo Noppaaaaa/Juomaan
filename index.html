@@ -376,7 +376,7 @@
         }
         th,
         td {
-            padding: 12px;
+            padding: 6px;
             border-bottom: 1px solid var(--row-border);
             text-align: left;
             vertical-align: top;
@@ -431,7 +431,7 @@
             text-align: right;
             margin-left: -6px;
             margin-right: -4px;
-            font-size: inherit;
+            font-size: 1.5em;
             line-height: 1;
         }
         .tuote-kuva {
@@ -507,7 +507,7 @@
             background: transparent !important;
         }
         tr.mitali-kulta {
-            background-image: linear-gradient(110deg, #c9a85c, #e5d89b, #b39040, #e0d090, #a07530, #e5d89b, #b39040, #e0d090, #a07530, #e5d89b, #c9a85c);
+            background-image: linear-gradient(110deg, rgba(201,168,92,0.7), rgba(229,216,155,0.7), rgba(179,144,64,0.7), rgba(224,208,144,0.7), rgba(160,117,48,0.7), rgba(229,216,155,0.7), rgba(179,144,64,0.7), rgba(224,208,144,0.7), rgba(160,117,48,0.7), rgba(229,216,155,0.7), rgba(201,168,92,0.7));
             background-size: 400% 100%;
             animation: kultakimallus 70s linear infinite;
             color: #1a202c;
@@ -524,29 +524,29 @@
             z-index: 0;
         }
         tr.mitali-hopea {
-            background-image: linear-gradient(110deg, #9a9ea3, #c8cdd3, #a8aeb5, #d8dde3, #8e9299, #c8cdd3, #a8aeb5, #d8dde3, #8e9299, #c8cdd3, #9a9ea3);
+            background-image: linear-gradient(110deg, rgba(154,158,163,0.7), rgba(200,205,211,0.7), rgba(168,174,181,0.7), rgba(216,221,227,0.7), rgba(142,146,153,0.7), rgba(200,205,211,0.7), rgba(168,174,181,0.7), rgba(216,221,227,0.7), rgba(142,146,153,0.7), rgba(200,205,211,0.7), rgba(154,158,163,0.7));
             background-size: 400% 100%;
             animation: hopeakimallus 70s linear infinite;
             color: #1a202c;
             text-shadow: 0 0 4px rgba(160,160,170,0.5);
         }
         tr.mitali-pronssi {
-            background-image: linear-gradient(110deg, #a86f4e, #d4a17a, #b87e58, #e0b595, #975d3a, #d4a17a, #b87e58, #e0b595, #975d3a, #d4a17a, #a86f4e);
+            background-image: linear-gradient(110deg, rgba(168,111,78,0.7), rgba(212,161,122,0.7), rgba(184,126,88,0.7), rgba(224,181,149,0.7), rgba(151,93,58,0.7), rgba(212,161,122,0.7), rgba(184,126,88,0.7), rgba(224,181,149,0.7), rgba(151,93,58,0.7), rgba(212,161,122,0.7), rgba(168,111,78,0.7));
             background-size: 400% 100%;
             animation: pronssikimallus 70s linear infinite;
             color: #1a202c;
             text-shadow: 0 0 4px rgba(180,130,90,0.5);
         }
         body.dark-mode tr.mitali-kulta {
-            background-image: linear-gradient(110deg, #8a6d2c, #b8a14a, #7d6020, #c4af55, #8a6d2c, #b8a14a, #7d6020, #c4af55, #8a6d2c, #b8a14a, #8a6d2c);
+            background-image: linear-gradient(110deg, rgba(138,109,44,0.7), rgba(184,161,74,0.7), rgba(125,96,32,0.7), rgba(196,175,85,0.7), rgba(138,109,44,0.7), rgba(184,161,74,0.7), rgba(125,96,32,0.7), rgba(196,175,85,0.7), rgba(138,109,44,0.7), rgba(184,161,74,0.7), rgba(138,109,44,0.7));
             color: #f0d060;
         }
         body.dark-mode tr.mitali-hopea {
-            background-image: linear-gradient(110deg, #5c6066, #80858c, #4a4e54, #92989e, #5c6066, #80858c, #4a4e54, #92989e, #5c6066, #80858c, #5c6066);
+            background-image: linear-gradient(110deg, rgba(92,96,102,0.7), rgba(128,133,140,0.7), rgba(74,78,84,0.7), rgba(146,152,158,0.7), rgba(92,96,102,0.7), rgba(128,133,140,0.7), rgba(74,78,84,0.7), rgba(146,152,158,0.7), rgba(92,96,102,0.7), rgba(128,133,140,0.7), rgba(92,96,102,0.7));
             color: #d0d5dc;
         }
         body.dark-mode tr.mitali-pronssi {
-            background-image: linear-gradient(110deg, #6e4028, #9a6040, #5c301c, #ac724e, #6e4028, #9a6040, #5c301c, #ac724e, #6e4028, #9a6040, #6e4028);
+            background-image: linear-gradient(110deg, rgba(110,64,40,0.7), rgba(154,96,64,0.7), rgba(92,48,28,0.7), rgba(172,114,78,0.7), rgba(110,64,40,0.7), rgba(154,96,64,0.7), rgba(92,48,28,0.7), rgba(172,114,78,0.7), rgba(110,64,40,0.7), rgba(154,96,64,0.7), rgba(110,64,40,0.7));
             color: #f0b078;
         }
         .sentinel {
@@ -614,16 +614,13 @@
             }
             th,
             td {
-                padding: 8px 10px;
+                padding: 4px 5px;
                 font-size: 13px;
             }
             .tuote-kuva {
                 height: 70px;
                 max-height: 70px;
                 max-width: 70px;
-            }
-            .mitali-emoji {
-                font-size: 1.5em;
             }
         }
         @media (max-width: 480px) {
@@ -656,16 +653,13 @@
             }
             th,
             td {
-                padding: 6px 8px;
+                padding: 3px 4px;
                 font-size: 12px;
             }
             .tuote-kuva {
                 height: 50px;
                 max-height: 50px;
                 max-width: 50px;
-            }
-            .mitali-emoji {
-                font-size: 1.2em;
             }
             .dropdown-toggle {
                 font-size: 13px;
@@ -1001,7 +995,8 @@
                         kuvaUrl = escapeHtml(t.kuva_url || ""),
                         kuvaHtml = kuvaUrl ?
                         `<img src="${kuvaUrl}" alt="" role="presentation" width="100" height="90" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">` :
-                        '';
+                        '',
+                        tuoteKey = `${nimi}||${t.alkoholi_prosentti}||${t.hinta_eur}`;
                     let sijaintiHtml;
                     if (gi < 3 && mitaliEmoji) {
                         sijaintiHtml = `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitaliEmoji}</span>`;
@@ -1009,13 +1004,77 @@
                         sijaintiHtml = `<span class="tuote-numero">${gi + 1}</span>`;
                     }
                     html +=
-                        `<tr class="${riviLuokka}" data-index="${gi}"><td><div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
+                        `<tr class="${riviLuokka}" data-index="${gi}" data-key="${escapeHtml(tuoteKey)}"><td><div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
                 }
                 body.innerHTML = html;
                 infoDiv.innerHTML =
                     `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${sorted.length}</strong> tuotetta.`;
                 paivitaStructuredData();
                 processAllImages();
+            }
+
+            function animateSortAndRender() {
+                const oldRows = document.querySelectorAll('#taulukkoBody tr');
+                if (oldRows.length === 0) {
+                    renderWindow();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+
+                // Aseta fade out vanhoille riveille
+                oldRows.forEach(row => {
+                    row.style.transition = 'opacity 0.15s ease-in-out';
+                    row.style.opacity = '0';
+                });
+
+                // Odota, kunnes kaikki ovat häipyneet (tai 250ms)
+                const fadeOutPromise = new Promise(resolve => {
+                    let completed = 0;
+                    const total = oldRows.length;
+                    function onTransitionEnd(e) {
+                        if (e.propertyName === 'opacity') {
+                            completed++;
+                            if (completed >= total) {
+                                resolve();
+                            }
+                        }
+                    }
+                    oldRows.forEach(row => {
+                        row.addEventListener('transitionend', onTransitionEnd, { once: true });
+                    });
+                    // Varmuusaikakatkaisu
+                    setTimeout(() => {
+                        if (completed < total) resolve();
+                    }, 260);
+                });
+
+                fadeOutPromise.then(() => {
+                    // Renderöi uusi järjestys
+                    renderWindow();
+                    const newRows = document.querySelectorAll('#taulukkoBody tr');
+                    // Aseta alkuun opacity 0
+                    newRows.forEach(row => {
+                        row.style.transition = 'none';
+                        row.style.opacity = '0';
+                    });
+                    // Pakota reflow
+                    if (newRows.length > 0) {
+                        newRows[0].offsetHeight;
+                    }
+                    // Animaatio opacity 1
+                    newRows.forEach(row => {
+                        row.style.transition = 'opacity 0.15s ease-in-out';
+                        row.style.opacity = '1';
+                        row.addEventListener('transitionend', function handler(e) {
+                            if (e.propertyName === 'opacity') {
+                                row.removeEventListener('transitionend', handler);
+                                row.style.transition = '';
+                            }
+                        });
+                    });
+                    // Skrollaa ylös
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
             }
 
             function paivitaStructuredData() {
@@ -1145,8 +1204,7 @@
                         startIndex = 0;
                         clearTimeout(scrollDebounceTimer);
                         isShifting = isUserScrolling = !1;
-                        renderWindow();
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        animateSortAndRender();
                     });
                     label.appendChild(cb);
                     label.appendChild(document.createTextNode(kat));
@@ -1158,7 +1216,6 @@
                 isShifting = isUserScrolling = !1;
                 currentSort = kriteeri;
                 startIndex = 0;
-                renderWindow();
                 if (kriteeri === 'hinta') {
                     btnHinta.classList.add('aktiivinen');
                     btnAnnos.classList.remove('aktiivinen');
@@ -1166,7 +1223,7 @@
                     btnAnnos.classList.add('aktiivinen');
                     btnHinta.classList.remove('aktiivinen');
                 }
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                animateSortAndRender();
             };
             window.vaihdaLapsimoodi = function() {
                 clearTimeout(scrollDebounceTimer);
@@ -1178,8 +1235,7 @@
                     btnLapsimoodi.classList.remove('aktiivinen');
                 }
                 startIndex = 0;
-                renderWindow();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                animateSortAndRender();
             };
             fetch('alko_tuotteet.json').then(r => {
                 if (!r.ok) throw new Error('HTTP ' + r.status);
