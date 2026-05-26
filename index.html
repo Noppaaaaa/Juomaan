@@ -418,7 +418,7 @@
             font-weight: 600;
             align-self: center;
             flex-shrink: 0;
-            min-width: 1.8em;
+            min-width: 2.2em;
             text-align: right;
             margin-left: -6px;
             margin-right: -4px;
@@ -427,7 +427,7 @@
             font-weight: 600;
             align-self: center;
             flex-shrink: 0;
-            min-width: 1.8em;
+            min-width: 2.2em;
             text-align: right;
             margin-left: -6px;
             margin-right: -4px;
@@ -1001,7 +1001,8 @@
                     if (gi < 3 && mitaliEmoji) {
                         sijaintiHtml = `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitaliEmoji}</span>`;
                     } else {
-                        sijaintiHtml = `<span class="tuote-numero">${gi + 1}</span>`;
+                        // AINOA MUUTOS: numeron perään lisätään piste
+                        sijaintiHtml = `<span class="tuote-numero">${gi + 1}.</span>`;
                     }
                     html +=
                         `<tr class="${riviLuokka}" data-index="${gi}" data-key="${escapeHtml(tuoteKey)}"><td><div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
