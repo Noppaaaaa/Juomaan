@@ -420,6 +420,8 @@
             flex-shrink: 0;
             min-width: 1.8em;
             text-align: right;
+            margin-left: -6px;
+            margin-right: -4px;
         }
         .mitali-emoji {
             font-size: 2em;
@@ -908,8 +910,8 @@
                 scrollDebounceTimer = null,
                 activeCategories = [],
                 lapsimoodiPaalla = !1;
-            const WINDOW_SIZE = 50,
-                SHIFT_AMOUNT = 30;
+            const WINDOW_SIZE = 70,
+                SHIFT_AMOUNT = 50;
 
             function luokitteleKategoria(tuote) {
                 const tyyppi = (tuote.tyyppi || "").toLowerCase().trim(),
@@ -997,7 +999,7 @@
                         mitaliHtml = mitali ?
                         `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitali}</span>` : '';
                     html +=
-                        `<tr class="${riviLuokka}" data-index="${gi}"><td><div class="tuote-solu"><span class="tuote-numero">${gi + 1}.</span>${kuvaHtml}${mitaliHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
+                        `<tr class="${riviLuokka}" data-index="${gi}"><td><div class="tuote-solu"><span class="tuote-numero">${gi + 1}</span>${kuvaHtml}${mitaliHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
                 }
                 body.innerHTML = html;
                 infoDiv.innerHTML =
