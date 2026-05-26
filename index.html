@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Alkon halvin alkoholi – Hintavertailu &amp; suorat linkit | Alko Tuotetiedot</title>
+    <title>Alkon halvin alkoholi – Hintavertailu & suorat linkit | Alko Tuotetiedot</title>
     <meta name="description" content="Alkon halvin alkoholi löytyy täältä! Listassa on Alkon vakiovalikoiman tuotteet järjestettynä alkoholin hinnan mukaan halvimmasta kalleimpaan. Viinit, oluet, ginit, viskit – järjestä hinnan tai annoshinnan mukaan. Suorat linkit Alkon tuotesivuille.">
     <meta name="keywords" content="Alkon halvin alkoholi, Alko, tuotetiedot, hintavertailu, halpa alkoholi, alkoholiannos, alkoholin hinta, viini, olut, gin, viski, kuohuviini, samppanja, halvimmat juomat">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -12,14 +12,14 @@
     <meta name="format-detection" content="telephone=no">
     <link rel="canonical" href="https://SINUN-DOMAIN.com/alko-tuotetiedot">
     <link rel="alternate" hreflang="fi" href="https://SINUN-DOMAIN.com/alko-tuotetiedot">
-    <meta property="og:title" content="Alkon halvin alkoholi – Hintavertailu &amp; suorat linkit">
+    <meta property="og:title" content="Alkon halvin alkoholi – Hintavertailu & suorat linkit">
     <meta property="og:description" content="Alkon halvin alkoholi löytyy täältä! Järjestä hinnan tai alkoholiannoksen hinnan mukaan. Suorat linkit tuotesivuille.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://SINUN-DOMAIN.com/alko-tuotetiedot">
     <meta property="og:locale" content="fi_FI">
     <meta property="og:site_name" content="Halvan alkoholin perässä">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Alkon halvin alkoholi – Hintavertailu &amp; suorat linkit">
+    <meta name="twitter:title" content="Alkon halvin alkoholi – Hintavertailu & suorat linkit">
     <meta name="twitter:description" content="Alkon halvin alkoholi löytyy täältä! Järjestä hinnan tai alkoholiannoksen hinnan mukaan. Suorat linkit tuotesivuille.">
     <meta name="theme-color" content="#8B0000" id="metaThemeColor">
     <meta name="mobile-web-app-capable" content="yes">
@@ -411,28 +411,37 @@
         }
         .tuote-solu {
             display: flex;
-            align-items: flex-start;
-            gap: 8px;
+            align-items: center;
+            gap: 12px;
         }
-        .tuote-numero {
-            font-weight: 600;
-            align-self: center;
-            flex-shrink: 0;
-            min-width: 1.8em;
-            text-align: right;
-            margin-left: -6px;
-            margin-right: -4px;
-        }
-        .mitali-emoji {
-            font-weight: 600;
-            align-self: center;
-            flex-shrink: 0;
-            min-width: 1.8em;
-            text-align: right;
-            margin-left: -6px;
-            margin-right: -4px;
-            font-size: inherit;
+        /* Suurennettu mitali/numeroiden osio – 2x koko ja enemmän vasemmalle */
+        .mitali-emoji, .tuote-numero {
+            font-size: 2rem;          /* Kaksi kertaa suurempi (normaalisti ~1rem) */
+            font-weight: 700;
             line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            min-width: 2.2rem;        /* Riittävä tila suurelle fontille */
+            margin-right: 12px;
+            margin-left: -14px;        /* Vie enemmän vasemmalle ylittääkseen solun reunuksen */
+            flex-shrink: 0;
+            text-align: left;
+        }
+        /* Erityisesti varotaan ettei mitali-emoji näytä epäselvältä */
+        .mitali-emoji {
+            letter-spacing: 0;
+            font-size: 2.2rem;         /* Hieman isompi jotta emoji loistaa */
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+        }
+        /* Sijaintinumeron tasaus */
+        .tuote-numero {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+        body.dark-mode .tuote-numero {
+            color: var(--text-main);
         }
         .tuote-kuva {
             height: 90px;
@@ -441,10 +450,12 @@
             object-fit: contain;
             border-radius: 6px;
             aspect-ratio: auto;
+            flex-shrink: 0;
         }
         .nimi-linkki {
             flex: 1;
             min-width: 0;
+            word-break: break-word;
         }
         .tuote-linkki {
             color: var(--link-color);
@@ -582,6 +593,12 @@
             tr.mitali-pronssi::after {
                 display: none;
             }
+            /* Pienellä ruudulla hieman vähennetään marginaalia, mutta pidetään isona */
+            .mitali-emoji, .tuote-numero {
+                font-size: 1.8rem;
+                margin-left: -8px;
+                margin-right: 8px;
+            }
         }
         @media (max-width: 1024px) {
             body {
@@ -622,9 +639,6 @@
                 max-height: 70px;
                 max-width: 70px;
             }
-            .mitali-emoji {
-                font-size: 1.5em;
-            }
         }
         @media (max-width: 480px) {
             body {
@@ -664,8 +678,11 @@
                 max-height: 50px;
                 max-width: 50px;
             }
-            .mitali-emoji {
-                font-size: 1.2em;
+            .mitali-emoji, .tuote-numero {
+                font-size: 1.6rem;
+                margin-left: -4px;
+                margin-right: 6px;
+                min-width: 1.8rem;
             }
             .dropdown-toggle {
                 font-size: 13px;
@@ -754,7 +771,6 @@
                 infoDiv = document.getElementById('info'),
                 topSentinel = document.getElementById('topSentinel'),
                 bottomSentinel = document.getElementById('bottomSentinel'),
-                itemListSchema = document.getElementById('itemListSchema'),
                 dropdownContent = document.getElementById('dropdownContent'),
                 dropdownToggle = document.getElementById('dropdownToggle'),
                 COLORS = {
@@ -924,17 +940,13 @@
                     nimi = (tuote.nimi || "").toLowerCase().trim(),
                     alkoholi = Number(tuote.alkoholi_prosentti) || 0;
                 if (alkoholi === 0) return "Alkoholittomat";
-                const viiniPattern =
-                    /\b(viini|viinit|punaviini|punaviinit|valkoviini|valkoviinit|roseeviini|roseeviinit|kuohuviini|kuohuviinit|samppanja|samppanjat|sampanja|sampanjat|champagne|champagnet|cava|cavat|prosecco|proseccot|cr[eé]mant|portviini|portviinit|port|portit|sherry|sherryt|madeira|madeirat|marsala|marsalat|vermut|vermutit|gl[oö]gi|gl[oö]git|gl[üu]hwein|gl[üu]hweinit|hedelmäviini|hedelmäviinit|marjaviini|marjaviinit|väkevä\s*viini|väkevät\s*viinit|rosé|rosét|rosato|rosatot|riesling|rieslingit|chardonnay|chardonnayt|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|rheingau|nahe|tokaji|icewine|sparkling|fiano|fianot)\b/i;
+                const viiniPattern = /\b(viini|viinit|punaviini|punaviinit|valkoviini|valkoviinit|roseeviini|roseeviinit|kuohuviini|kuohuviinit|samppanja|samppanjat|sampanja|champagne|cava|prosecco|portviini|port|sherry|madeira|marsala|vermut|gl[oö]gi|hedelmäviini|marjaviini|väkevä\s*viini|rosé|riesling|chardonnay|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|rheingau|nahe|tokaji|icewine|sparkling)\b/i;
                 if (viiniPattern.test(tyyppi) || viiniPattern.test(nimi)) return "Viinit";
-                const olutPattern =
-                    /\b(olut|oluet|ale|alet|lager|lagerit|stout|stoutit|porter|porterit|ipa|ipat|pils|pilsit|vehnä|vehnät|saison|saisonit|sahti|sahdit|dubbel|dubbelit|tripel|tripelit|quadrupel|quadrupelit|barley\s*wine|pale\s*ale|neipa|neipat|imperial\s*stout|blond|blondit|dipa|dipat)\b/i;
+                const olutPattern = /\b(olut|oluet|ale|alet|lager|lagerit|stout|stoutit|porter|porterit|ipa|ipat|pils|pilsit|vehnä|vehnät|saison|sahti|dubbel|tripel|quadrupel|barley\s*wine|pale\s*ale|neipa|imperial\s*stout|blond|dipa)\b/i;
                 if (olutPattern.test(tyyppi) || olutPattern.test(nimi)) return "Oluet";
-                const siideriPattern =
-                    /\b(siideri|siiderit|cider|ciderit|seltzer|seltzerit|hard\s*seltzer)\b/i;
+                const siideriPattern = /\b(siideri|siiderit|cider|ciderit|seltzer|hard\s*seltzer)\b/i;
                 if (siideriPattern.test(tyyppi) || siideriPattern.test(nimi)) return "Siiderit";
-                const vakevaPattern =
-                    /\b(vodka|vodkat|rommi|rommit|romm|gini|ginit|viski|viskit|whisky|whiskyt|whiskey|whiskeyt|brandy|brandyt|konjakki|konjakit|likööri|liköörit|viina|viinat|katkero|katkerot|absintti|absintit|tequila|tequilat|mezcal|mezcalit|sake|saket|long\s*drink|long\s*drinkit|väkevä|väkevät|maustettu\s*vodka|hedelmälikööri|hedelmäliköörit|maustelikööri|mausteliköörit|gin|rom|rum|aquavit|aquavitit|akvavit|akvavitit|akvaviitit|pastis|pastikset|ouzo|ouzoit|raki|rakit|soju|sojut|calvados|calvadokset|grappa|grappat|armagnac|armagnacit|cognac|cognacit|brandy|brandit|grogikatkerot|hedelmätisleet|tisleet|single\s*malt|single\s*cask|blended\s*malt|blended\s*scotch|single\s*grain|bourbon|bourbonit|scotch\s*whisky|irish\s*whiskey|distiller|vs|vsop|xo|extra\s*old|liquore|shot|shotit|leijona|koskenkorva|salmiakki|salmari)\b/i;
+                const vakevaPattern = /\b(vodka|vodkat|rommi|rommit|gini|ginit|viski|viskit|whisky|whiskyt|brandy|brandyt|konjakki|konjakit|likööri|liköörit|viina|viinat|katkero|katkerot|absintti|absintit|tequila|tequilat|mezcal|mezcalit|sake|saket|long\s*drink|väkevä|väkevät|gin|rom|rum|aquavit|akvavit|pastis|ouzo|raki|soju|calvados|grappa|armagnac|cognac|single\s*malt|bourbon|scotch|irish\s*whiskey|leijona|koskenkorva|salmiakki)\b/i;
                 if (vakevaPattern.test(tyyppi) || vakevaPattern.test(nimi)) return "Väkevät & Viskit";
                 return "Muut";
             }
@@ -1009,50 +1021,12 @@
                         sijaintiHtml = `<span class="tuote-numero">${gi + 1}</span>`;
                     }
                     html +=
-                        `<tr class="${riviLuokka}" data-index="${gi}"><td><div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
+                        `<tr class="${riviLuokka}" data-index="${gi}"><td><div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td></td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
                 }
                 body.innerHTML = html;
                 infoDiv.innerHTML =
                     `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${sorted.length}</strong> tuotetta.`;
-                paivitaStructuredData();
                 processAllImages();
-            }
-
-            function paivitaStructuredData() {
-                if (!itemListSchema) return;
-                const sorted = getSortedData();
-                itemListSchema.textContent = JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "ItemList",
-                    "name": `Alkon halvin alkoholi – ${currentSort==='hinta'?'hinnan':'alkoholiannoksen hinnan'} mukaan`,
-                    "description": `Listaus ${sorted.length} Alkon tuotteesta.`,
-                    "numberOfItems": sorted.length,
-                    "itemListElement": sorted.map((t, i) => {
-                        const url = t.linkki?.trim() ? t.linkki :
-                            `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(t.nimi)}`;
-                        return {
-                            "@type": "ListItem",
-                            "position": i + 1,
-                            "item": {
-                                "@type": "Product",
-                                "name": t.nimi,
-                                "url": url,
-                                "category": t.tyyppi || "Ei tiedossa",
-                                "offers": {
-                                    "@type": "Offer",
-                                    "price": t.hinta_eur.toFixed(2),
-                                    "priceCurrency": "EUR",
-                                    "availability": "https://schema.org/InStock",
-                                    "url": url
-                                },
-                                ...(t.kuva_url && { "image": t.kuva_url }),
-                                ...(t.alkoholi_prosentti > 0 && {
-                                    "description": `${t.alkoholi_prosentti.toFixed(1)}% alkoholia, ${t.tilavuus_litraa.toFixed(2)} L`
-                                })
-                            }
-                        };
-                    })
-                });
             }
 
             function shiftWindow(dir) {
