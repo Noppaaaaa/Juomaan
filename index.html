@@ -1001,7 +1001,6 @@
                     if (gi < 3 && mitaliEmoji) {
                         sijaintiHtml = `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitaliEmoji}</span>`;
                     } else {
-                        // AINOA MUUTOS: numeron perään lisätään piste
                         sijaintiHtml = `<span class="tuote-numero">${gi + 1}.</span>`;
                     }
                     html +=
@@ -1274,8 +1273,64 @@
                 startIndex = 0;
                 btnAnnos.classList.add('aktiivinen');
                 btnHinta.classList.remove('aktiivinen');
-                Promise.resolve().then(() => { renderWindow();
-                    window.scrollTo({ top: 0, behavior: 'instant' }); });
+
+                // Asteittainen lataus (10 tuotetta kerrallaan) vain sivun avauksessa
+                const INITIAL_CHUNK = 10;
+                const TOTAL_TO_LOAD = Math.min(WINDOW_SIZE, tuoteData.length);
+                let loadedSoFar = 0;
+                const sortedAll = getSortedData();
+                infoDiv.innerHTML = `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${sortedAll.length}</strong> tuotetta.`;
+
+                function appendChunk() {
+                    const chunk = sortedAll.slice(loadedSoFar, loadedSoFar + INITIAL_CHUNK);
+                    if (chunk.length === 0) {
+                        processAllImages();
+                        paivitaStructuredData();
+                        return;
+                    }
+                    let html = '';
+                    for (let i = 0; i < chunk.length; i++) {
+                        const t = chunk[i];
+                        const gi = loadedSoFar + i;
+                        const ah = laskeAnnosHinta(t);
+                        let riviLuokka = '', mitaliEmoji = '';
+                        if (gi === 0) { riviLuokka = 'mitali-kulta'; mitaliEmoji = '🥇'; }
+                        else if (gi === 1) { riviLuokka = 'mitali-hopea'; mitaliEmoji = '🥈'; }
+                        else if (gi === 2) { riviLuokka = 'mitali-pronssi'; mitaliEmoji = '🥉'; }
+
+                        const nimi = escapeHtml(t.nimi);
+                        const linkki = t.linkki || "";
+                        const url = linkki.trim() ? escapeHtml(linkki) : `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(t.nimi)}`;
+                        const klikkaus = `avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g,"\\'")}','${nimi.replace(/'/g,"\\'")}');return false;`;
+                        const nimiHtml = `<a href="${url}" class="tuote-linkki" target="_blank" rel="noopener noreferrer" onclick="${klikkaus}" title="Avaa Alkon tuotesivu: ${nimi}">${nimi}</a>`;
+                        const kuvaUrl = escapeHtml(t.kuva_url || "");
+                        const kuvaHtml = kuvaUrl ? `<img src="${kuvaUrl}" alt="" role="presentation" width="100" height="90" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">` : '';
+
+                        let sijaintiHtml;
+                        if (gi < 3 && mitaliEmoji) {
+                            sijaintiHtml = `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitaliEmoji}</span>`;
+                        } else {
+                            sijaintiHtml = `<span class="tuote-numero">${gi + 1}.</span>`;
+                        }
+                        html += `<tr class="${riviLuokka}" data-index="${gi}" data-key="${escapeHtml(nimi+'||'+t.alkoholi_prosentti+'||'+t.hinta_eur)}"><td><div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
+                    }
+                    body.innerHTML += html;
+                    loadedSoFar += chunk.length;
+
+                    if (loadedSoFar < TOTAL_TO_LOAD) {
+                        requestAnimationFrame(() => {
+                            setTimeout(appendChunk, 0);
+                        });
+                    } else {
+                        processAllImages();
+                        paivitaStructuredData();
+                    }
+                }
+
+                body.innerHTML = '';
+                startIndex = 0;
+                appendChunk();
+                window.scrollTo({ top: 0, behavior: 'instant' });
             }).catch(err => {
                 console.error(err);
                 infoDiv.innerHTML = "❌ Virhe tuotetietojen lataamisessa.";
