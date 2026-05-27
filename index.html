@@ -366,8 +366,6 @@
             border-radius: 8px;
             border: 1px solid var(--table-border);
             position: relative;
-            content-visibility: auto;
-            contain-intrinsic-size: auto 500px;
         }
         table {
             width: 100%;
@@ -456,36 +454,20 @@
             border-bottom-color: var(--link-color);
         }
         @keyframes valokiilto {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
         @keyframes kultakimallus {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
         @keyframes hopeakimallus {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
         @keyframes pronssikimallus {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
         tr.mitali-kulta,
         tr.mitali-hopea,
@@ -548,6 +530,25 @@
         body.dark-mode tr.mitali-pronssi {
             background-image: linear-gradient(110deg, rgba(110,64,40,0.7), rgba(154,96,64,0.7), rgba(92,48,28,0.7), rgba(172,114,78,0.7), rgba(110,64,40,0.7), rgba(154,96,64,0.7), rgba(92,48,28,0.7), rgba(172,114,78,0.7), rgba(110,64,40,0.7), rgba(154,96,64,0.7), rgba(110,64,40,0.7));
             color: #f0b078;
+        }
+        .sentinel {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            pointer-events: none;
+        }
+        #topSentinel {
+            top: 0;
+        }
+        #bottomSentinel {
+            bottom: 0;
+        }
+        .nappi-vasen-ryhma {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
         }
         @media (max-width: 768px) {
             .nappi-vasen-ryhma {
@@ -683,6 +684,7 @@
         </nav>
 
         <section class="taulukko-container" id="taulukkoContainer" aria-label="Tuotevertailutaulukko">
+            <div id="topSentinel" class="sentinel" aria-hidden="true"></div>
             <table id="tuoteTaulukko" role="table" aria-label="Alkon halvimman alkoholin hintavertailu">
                 <colgroup>
                     <col style="width:35%">
@@ -704,6 +706,7 @@
                 </thead>
                 <tbody id="taulukkoBody"></tbody>
             </table>
+            <div id="bottomSentinel" class="sentinel" aria-hidden="true"></div>
         </section>
 
         <noscript>
@@ -725,14 +728,14 @@
                 btnLapsimoodi = document.getElementById('btnLapsimoodi'),
                 body = document.getElementById('taulukkoBody'),
                 infoDiv = document.getElementById('info'),
+                topSentinel = document.getElementById('topSentinel'),
+                bottomSentinel = document.getElementById('bottomSentinel'),
                 itemListSchema = document.getElementById('itemListSchema'),
                 dropdownContent = document.getElementById('dropdownContent'),
                 dropdownToggle = document.getElementById('dropdownToggle'),
                 COLORS = {
                     light: { gold: [199, 168, 92], silver: [154, 158, 163], bronze: [168, 111, 78] },
-                    dark: { gold: [138, 109, 44], silver: [92, 96, 102], bronze: [110, 64, 40], defaultBg: [33,
-                            37, 47
-                        ] }
+                    dark: { gold: [138, 109, 44], silver: [92, 96, 102], bronze: [110, 64, 40], defaultBg: [33, 37, 47] }
                 };
 
             function getTarget(i, d) {
@@ -769,45 +772,34 @@
                     isWhite = idx => data[idx] > 250 && data[idx + 1] > 250 && data[idx + 2] > 250;
                 for (let x = 0; x < w; x++) {
                     const topIdx = 4 * x;
-                    if (isWhite(topIdx)) { queue.push(x, 0);
-                        visited[x] = 1 }
+                    if (isWhite(topIdx)) { queue.push(x, 0); visited[x] = 1 }
                     const bottomIdx = ((h - 1) * w + x) * 4;
-                    if (isWhite(bottomIdx)) { queue.push(x, h - 1);
-                        visited[(h - 1) * w + x] = 1 }
+                    if (isWhite(bottomIdx)) { queue.push(x, h - 1); visited[(h - 1) * w + x] = 1 }
                 }
                 for (let y = 1; y < h - 1; y++) {
                     const leftIdx = y * w * 4;
-                    if (isWhite(leftIdx)) { queue.push(0, y);
-                        visited[y * w] = 1 }
+                    if (isWhite(leftIdx)) { queue.push(0, y); visited[y * w] = 1 }
                     const rightIdx = (y * w + w - 1) * 4;
-                    if (isWhite(rightIdx)) { queue.push(w - 1, y);
-                        visited[y * w + w - 1] = 1 }
+                    if (isWhite(rightIdx)) { queue.push(w - 1, y); visited[y * w + w - 1] = 1 }
                 }
                 let qIdx = 0;
                 while (qIdx < queue.length) {
                     const cx = queue[qIdx++],
                         cy = queue[qIdx++],
-                        neighbors = [
-                            [cx - 1, cy],
-                            [cx + 1, cy],
-                            [cx, cy - 1],
-                            [cx, cy + 1]
-                        ];
+                        neighbors = [[cx - 1, cy], [cx + 1, cy], [cx, cy - 1], [cx, cy + 1]];
                     for (const [nx, ny] of neighbors) {
                         if (nx < 0 || nx >= w || ny < 0 || ny >= h) continue;
                         const idx = ny * w + nx;
                         if (visited[idx]) continue;
                         const pIdx = idx * 4;
-                        if (isWhite(pIdx)) { visited[idx] = 1;
-                            queue.push(nx, ny) }
+                        if (isWhite(pIdx)) { visited[idx] = 1; queue.push(nx, ny) }
                     }
                 }
                 const [r, g, b] = target.color;
                 for (let i = 0; i < visited.length; i++) {
                     if (visited[i]) {
                         const pIdx = i * 4;
-                        target.transparent ? data[pIdx + 3] = 0 : (data[pIdx] = r, data[pIdx + 1] = g, data[pIdx + 2] =
-                            b)
+                        target.transparent ? data[pIdx + 3] = 0 : (data[pIdx] = r, data[pIdx + 1] = g, data[pIdx + 2] = b)
                     }
                 }
                 ctx.putImageData(imageData, 0, 0);
@@ -830,8 +822,7 @@
                     }
                     return;
                 }
-                try { floodFillReplace(img, target); } catch (e) { console.warn('Kuvan käsittely epäonnistui:', e);
-                    img.dataset.processed = 'true'; }
+                try { floodFillReplace(img, target); } catch (e) { console.warn('Kuvan käsittely epäonnistui:', e); img.dataset.processed = 'true'; }
             }
 
             function processAllImages() {
@@ -880,26 +871,28 @@
                 processAllImages();
             };
             let tuoteData = [],
+                startIndex = 0,
                 currentSort = 'annos',
+                isShifting = !1,
+                isUserScrolling = !1,
+                scrollDebounceTimer = null,
                 activeCategories = [],
                 lapsimoodiPaalla = !1;
+            const WINDOW_SIZE = 100,
+                SHIFT_AMOUNT = 50;
 
             function luokitteleKategoria(tuote) {
                 const tyyppi = (tuote.tyyppi || "").toLowerCase().trim(),
                     nimi = (tuote.nimi || "").toLowerCase().trim(),
                     alkoholi = Number(tuote.alkoholi_prosentti) || 0;
                 if (alkoholi === 0) return "Alkoholittomat";
-                const viiniPattern =
-                    /\b(viini|viinit|punaviini|punaviinit|valkoviini|valkoviinit|roseeviini|roseeviinit|kuohuviini|kuohuviinit|samppanja|samppanjat|sampanja|sampanjat|champagne|champagnet|cava|cavat|prosecco|proseccot|cr[eé]mant|portviini|portviinit|port|portit|sherry|sherryt|madeira|madeirat|marsala|marsalat|vermut|vermutit|gl[oö]gi|gl[oö]git|gl[üu]hwein|gl[üu]hweinit|hedelmäviini|hedelmäviinit|marjaviini|marjaviinit|väkevä\s*viini|väkevät\s*viinit|rosé|rosét|rosato|rosatot|riesling|rieslingit|chardonnay|chardonnayt|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|rheingau|nahe|tokaji|icewine|sparkling|fiano|fianot)\b/i;
+                const viiniPattern = /\b(viini|viinit|punaviini|punaviinit|valkoviini|valkoviinit|roseeviini|roseeviinit|kuohuviini|kuohuviinit|samppanja|samppanjat|sampanja|sampanjat|champagne|champagnet|cava|cavat|prosecco|proseccot|cr[eé]mant|portviini|portviinit|port|portit|sherry|sherryt|madeira|madeirat|marsala|marsalat|vermut|vermutit|gl[oö]gi|gl[oö]git|gl[üu]hwein|gl[üu]hweinit|hedelmäviini|hedelmäviinit|marjaviini|marjaviinit|väkevä\s*viini|väkevät\s*viinit|rosé|rosét|rosato|rosatot|riesling|rieslingit|chardonnay|chardonnayt|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|rheingau|nahe|tokaji|icewine|sparkling|fiano|fianot)\b/i;
                 if (viiniPattern.test(tyyppi) || viiniPattern.test(nimi)) return "Viinit";
-                const olutPattern =
-                    /\b(olut|oluet|ale|alet|lager|lagerit|stout|stoutit|porter|porterit|ipa|ipat|pils|pilsit|vehnä|vehnät|saison|saisonit|sahti|sahdit|dubbel|dubbelit|tripel|tripelit|quadrupel|quadrupelit|barley\s*wine|pale\s*ale|neipa|neipat|imperial\s*stout|blond|blondit|dipa|dipat)\b/i;
+                const olutPattern = /\b(olut|oluet|ale|alet|lager|lagerit|stout|stoutit|porter|porterit|ipa|ipat|pils|pilsit|vehnä|vehnät|saison|saisonit|sahti|sahdit|dubbel|dubbelit|tripel|tripelit|quadrupel|quadrupelit|barley\s*wine|pale\s*ale|neipa|neipat|imperial\s*stout|blond|blondit|dipa|dipat)\b/i;
                 if (olutPattern.test(tyyppi) || olutPattern.test(nimi)) return "Oluet";
-                const siideriPattern =
-                    /\b(siideri|siiderit|cider|ciderit|seltzer|seltzerit|hard\s*seltzer)\b/i;
+                const siideriPattern = /\b(siideri|siiderit|cider|ciderit|seltzer|seltzerit|hard\s*seltzer)\b/i;
                 if (siideriPattern.test(tyyppi) || siideriPattern.test(nimi)) return "Siiderit";
-                const vakevaPattern =
-                    /\b(vodka|vodkat|rommi|rommit|romm|gini|ginit|viski|viskit|whisky|whiskyt|whiskey|whiskeyt|brandy|brandyt|konjakki|konjakit|likööri|liköörit|viina|viinat|katkero|katkerot|absintti|absintit|tequila|tequilat|mezcal|mezcalit|sake|saket|long\s*drink|long\s*drinkit|väkevä|väkevät|maustettu\s*vodka|hedelmälikööri|hedelmäliköörit|maustelikööri|mausteliköörit|gin|rom|rum|aquavit|aquavitit|akvavit|akvavitit|akvaviitit|pastis|pastikset|ouzo|ouzoit|raki|rakit|soju|sojut|calvados|calvadokset|grappa|grappat|armagnac|armagnacit|cognac|cognacit|brandy|brandit|grogikatkerot|hedelmätisleet|tisleet|single\s*malt|single\s*cask|blended\s*malt|blended\s*scotch|single\s*grain|bourbon|bourbonit|scotch\s*whisky|irish\s*whiskey|distiller|vs|vsop|xo|extra\s*old|liquore|shot|shotit|leijona|koskenkorva|salmiakki|salmari)\b/i;
+                const vakevaPattern = /\b(vodka|vodkat|rommi|rommit|romm|gini|ginit|viski|viskit|whisky|whiskyt|whiskey|whiskeyt|brandy|brandyt|konjakki|konjakit|likööri|liköörit|viina|viinat|katkero|katkerot|absintti|absintit|tequila|tequilat|mezcal|mezcalit|sake|saket|long\s*drink|long\s*drinkit|väkevä|väkevät|maustettu\s*vodka|hedelmälikööri|hedelmäliköörit|maustelikööri|mausteliköörit|gin|rom|rum|aquavit|aquavitit|akvavit|akvavitit|akvaviitit|pastis|pastikset|ouzo|ouzoit|raki|rakit|soju|sojut|calvados|calvadokset|grappa|grappat|armagnac|armagnacit|cognac|cognacit|brandy|brandit|grogikatkerot|hedelmätisleet|tisleet|single\s*malt|single\s*cask|blended\s*malt|blended\s*scotch|single\s*grain|bourbon|bourbonit|scotch\s*whisky|irish\s*whiskey|distiller|vs|vsop|xo|extra\s*old|liquore|shot|shotit|leijona|koskenkorva|salmiakki|salmari)\b/i;
                 if (vakevaPattern.test(tyyppi) || vakevaPattern.test(nimi)) return "Väkevät & Viskit";
                 return "Muut";
             }
@@ -931,102 +924,121 @@
 
             function avaaAlkonTuoteSivu(linkki, nimi) {
                 if (linkki?.trim()) window.open(linkki, '_blank', 'noopener,noreferrer');
-                else window.open(`https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(nimi)}`, '_blank',
-                    'noopener,noreferrer');
+                else window.open(`https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(nimi)}`, '_blank', 'noopener,noreferrer');
             }
 
             function escapeHtml(s) {
-                return String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;',
-                    "'": '&#39;' })[m]);
+                return String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]);
             }
 
-            function renderAllPlaceholders(items) {
-                let html = '';
-                for (let i = 0; i < items.length; i++) {
-                    const riviLuokka = i === 0 ? 'mitali-kulta' : i === 1 ? 'mitali-hopea' : i === 2 ? 'mitali-pronssi' : '';
-                    html +=
-                        `<tr class="${riviLuokka}" data-index="${i}"><td><div class="tuote-solu"><span class="tuote-numero">${i+1}.</span><span class="nimi-linkki"></span></div></td><td></td><td></td><td></td><td></td><td></td></tr>`;
+            // Mittaa yhden rivin korkeuden, jotta voimme asettaa tbody:n korkeuden oikein
+            function mittaaRivinKorkeus() {
+                const rows = body.querySelectorAll('tr');
+                if (rows.length > 0) {
+                    const eka = rows[0];
+                    return eka.getBoundingClientRect().height;
                 }
-                body.innerHTML = html;
+                return 100; // oletusarvo, jos rivejä ei vielä ole
             }
 
-            function fillRowContent(row, t, index) {
-                const ah = laskeAnnosHinta(t);
-                let riviLuokka = '';
-                let mitaliEmoji = '';
-                if (index === 0) { riviLuokka = 'mitali-kulta';
-                    mitaliEmoji = '🥇'; } else if (index === 1) { riviLuokka = 'mitali-hopea';
-                    mitaliEmoji = '🥈'; } else if (index === 2) { riviLuokka = 'mitali-pronssi';
-                    mitaliEmoji = '🥉'; }
-                row.className = riviLuokka;
-                row.setAttribute('data-index', index);
-                const nimi = escapeHtml(t.nimi),
-                    linkki = t.linkki || "",
-                    url = linkki.trim() ? escapeHtml(linkki) :
-                    `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(t.nimi)}`,
-                    klikkaus =
-                    `avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g,"\\'")}','${nimi.replace(/'/g,"\\'")}');return false;`,
-                    nimiHtml =
-                    `<a href="${url}" class="tuote-linkki" target="_blank" rel="noopener noreferrer" onclick="${klikkaus}" title="Avaa Alkon tuotesivu: ${nimi}">${nimi}</a>`,
-                    kuvaUrl = escapeHtml(t.kuva_url || ""),
-                    kuvaHtml = kuvaUrl ?
-                    `<img src="${kuvaUrl}" alt="" role="presentation" width="100" height="90" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">` :
-                    '',
-                    tuoteKey = `${nimi}||${t.alkoholi_prosentti}||${t.hinta_eur}`;
-                let sijaintiHtml;
-                if (index < 3 && mitaliEmoji) {
-                    sijaintiHtml = `<span class="mitali-emoji" aria-label="Sija ${index+1}">${mitaliEmoji}</span>`;
-                } else {
-                    sijaintiHtml = `<span class="tuote-numero">${index + 1}.</span>`;
+            function paivitaTbodyKorkeus(sortedLista) {
+                const riveja = sortedLista.length;
+                if (riveja === 0) {
+                    body.style.height = '';
+                    body.style.display = '';
+                    return;
                 }
-                const solut = row.querySelectorAll('td');
-                if (solut.length >= 6) {
-                    solut[0].innerHTML =
-                        `<div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}</span></div>`;
-                    solut[1].textContent = escapeHtml(t.tyyppi);
-                    solut[2].textContent = t.hinta_eur.toFixed(2);
-                    solut[3].textContent = ah === Infinity ? '∞' : ah.toFixed(2) + ' €';
-                    solut[4].textContent = t.alkoholi_prosentti.toFixed(1) + '%';
-                    solut[5].textContent = t.tilavuus_litraa.toFixed(2);
-                }
-                row.setAttribute('data-key', tuoteKey);
+                const rivinkorkeus = mittaaRivinKorkeus() || 100;
+                body.style.display = 'block'; // tarvitaan, jotta height toimii odotetusti
+                body.style.height = (riveja * rivinkorkeus) + 'px';
             }
 
-            function renderAllFull(items) {
+            function renderWindow() {
+                const sorted = getSortedData(),
+                    end = Math.min(startIndex + WINDOW_SIZE, sorted.length),
+                    items = sorted.slice(startIndex, end);
                 let html = '';
                 for (let i = 0; i < items.length; i++) {
                     const t = items[i];
-                    const ah = laskeAnnosHinta(t);
+                    const gi = startIndex + i,
+                        ah = laskeAnnosHinta(t);
                     let riviLuokka = '',
                         mitaliEmoji = '';
-                    if (i === 0) { riviLuokka = 'mitali-kulta';
-                        mitaliEmoji = '🥇'; } else if (i === 1) { riviLuokka = 'mitali-hopea';
-                        mitaliEmoji = '🥈'; } else if (i === 2) { riviLuokka = 'mitali-pronssi';
-                        mitaliEmoji = '🥉'; }
+                    if (gi === 0) { riviLuokka = 'mitali-kulta'; mitaliEmoji = '🥇'; }
+                    else if (gi === 1) { riviLuokka = 'mitali-hopea'; mitaliEmoji = '🥈'; }
+                    else if (gi === 2) { riviLuokka = 'mitali-pronssi'; mitaliEmoji = '🥉'; }
                     const nimi = escapeHtml(t.nimi),
                         linkki = t.linkki || "",
-                        url = linkki.trim() ? escapeHtml(linkki) :
-                        `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(t.nimi)}`,
-                        klikkaus =
-                        `avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g,"\\'")}','${nimi.replace(/'/g,"\\'")}');return false;`,
-                        nimiHtml =
-                        `<a href="${url}" class="tuote-linkki" target="_blank" rel="noopener noreferrer" onclick="${klikkaus}" title="Avaa Alkon tuotesivu: ${nimi}">${nimi}</a>`,
+                        url = linkki.trim() ? escapeHtml(linkki) : `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(t.nimi)}`,
+                        klikkaus = `avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g,"\\'")}','${nimi.replace(/'/g,"\\'")}');return false;`,
+                        nimiHtml = `<a href="${url}" class="tuote-linkki" target="_blank" rel="noopener noreferrer" onclick="${klikkaus}" title="Avaa Alkon tuotesivu: ${nimi}">${nimi}</a>`,
                         kuvaUrl = escapeHtml(t.kuva_url || ""),
-                        kuvaHtml = kuvaUrl ?
-                        `<img src="${kuvaUrl}" alt="" role="presentation" width="100" height="90" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">` :
-                        '',
+                        kuvaHtml = kuvaUrl ? `<img src="${kuvaUrl}" alt="" role="presentation" width="100" height="90" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">` : '',
                         tuoteKey = `${nimi}||${t.alkoholi_prosentti}||${t.hinta_eur}`;
                     let sijaintiHtml;
-                    if (i < 3 && mitaliEmoji) {
-                        sijaintiHtml =
-                            `<span class="mitali-emoji" aria-label="Sija ${i+1}">${mitaliEmoji}</span>`;
+                    if (gi < 3 && mitaliEmoji) {
+                        sijaintiHtml = `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitaliEmoji}</span>`;
                     } else {
-                        sijaintiHtml = `<span class="tuote-numero">${i + 1}.</span>`;
+                        sijaintiHtml = `<span class="tuote-numero">${gi + 1}.</span>`;
                     }
-                    html +=
-                        `<tr class="${riviLuokka}" data-index="${i}" data-key="${escapeHtml(tuoteKey)}"><td><div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
+                    html += `<tr class="${riviLuokka}" data-index="${gi}" data-key="${escapeHtml(tuoteKey)}"><td><div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
                 }
                 body.innerHTML = html;
+                infoDiv.innerHTML = `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${sorted.length}</strong> tuotetta.`;
+                paivitaStructuredData();
+                processAllImages();
+                // Päivitä tbody:n korkeus, jotta vierityspalkki vastaa koko listaa
+                paivitaTbodyKorkeus(sorted);
+            }
+
+            function animateSortAndRender() {
+                const oldRows = document.querySelectorAll('#taulukkoBody tr');
+                if (oldRows.length === 0) {
+                    renderWindow();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+
+                oldRows.forEach(row => {
+                    row.style.transition = 'opacity 0.15s ease-in-out';
+                    row.style.opacity = '0';
+                });
+
+                const fadeOutPromise = new Promise(resolve => {
+                    let completed = 0;
+                    const total = oldRows.length;
+                    function onTransitionEnd(e) {
+                        if (e.propertyName === 'opacity') {
+                            completed++;
+                            if (completed >= total) resolve();
+                        }
+                    }
+                    oldRows.forEach(row => {
+                        row.addEventListener('transitionend', onTransitionEnd, { once: true });
+                    });
+                    setTimeout(() => { if (completed < total) resolve(); }, 260);
+                });
+
+                fadeOutPromise.then(() => {
+                    renderWindow();
+                    const newRows = document.querySelectorAll('#taulukkoBody tr');
+                    newRows.forEach(row => {
+                        row.style.transition = 'none';
+                        row.style.opacity = '0';
+                    });
+                    if (newRows.length > 0) newRows[0].offsetHeight;
+                    newRows.forEach(row => {
+                        row.style.transition = 'opacity 0.15s ease-in-out';
+                        row.style.opacity = '1';
+                        row.addEventListener('transitionend', function handler(e) {
+                            if (e.propertyName === 'opacity') {
+                                row.removeEventListener('transitionend', handler);
+                                row.style.transition = '';
+                            }
+                        });
+                    });
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
             }
 
             function paivitaStructuredData() {
@@ -1039,8 +1051,7 @@
                     "description": `Listaus ${sorted.length} Alkon tuotteesta.`,
                     "numberOfItems": sorted.length,
                     "itemListElement": sorted.map((t, i) => {
-                        const url = t.linkki?.trim() ? t.linkki :
-                            `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(t.nimi)}`;
+                        const url = t.linkki?.trim() ? t.linkki : `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(t.nimi)}`;
                         return {
                             "@type": "ListItem",
                             "position": i + 1,
@@ -1057,31 +1068,77 @@
                                     "url": url
                                 },
                                 ...(t.kuva_url && { "image": t.kuva_url }),
-                                ...(t.alkoholi_prosentti > 0 && {
-                                    "description": `${t.alkoholi_prosentti.toFixed(1)}% alkoholia, ${t.tilavuus_litraa.toFixed(2)} L`
-                                })
+                                ...(t.alkoholi_prosentti > 0 && { "description": `${t.alkoholi_prosentti.toFixed(1)}% alkoholia, ${t.tilavuus_litraa.toFixed(2)} L` })
                             }
                         };
                     })
                 });
             }
 
-            function animateSortAndRender() {
+            function shiftWindow(dir) {
+                if (isShifting || isUserScrolling) return !1;
                 const sorted = getSortedData();
-                // Renderöidään kaikki rivit kerralla (full)
-                renderAllFull(sorted);
-                infoDiv.innerHTML =
-                    `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${sorted.length}</strong> tuotetta.`;
-                paivitaStructuredData();
-                processAllImages();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (dir === 'forward' && startIndex + WINDOW_SIZE >= sorted.length || dir === 'backward' && startIndex === 0) return !1;
+                const anchor = dir === 'forward' ? startIndex + SHIFT_AMOUNT : startIndex,
+                    row = document.querySelector(`tr[data-index="${anchor}"]`);
+                if (!row) return !1;
+                const oldTop = row.getBoundingClientRect().top;
+                isShifting = !0;
+                startIndex = dir === 'forward' ? startIndex + SHIFT_AMOUNT : Math.max(0, startIndex - SHIFT_AMOUNT);
+                renderWindow();
+                requestAnimationFrame(() => {
+                    const newRow = document.querySelector(`tr[data-index="${anchor}"]`);
+                    if (newRow) {
+                        const newTop = newRow.getBoundingClientRect().top;
+                        window.scrollBy(0, newTop - oldTop);
+                    }
+                    isShifting = !1;
+                });
+                return !0;
             }
 
-            dropdownToggle.addEventListener('click', e => { e.stopPropagation();
-                dropdownContent.classList.toggle('visible'); });
+            function checkStuck() {
+                if (isShifting || isUserScrolling) return;
+                const table = document.getElementById('tuoteTaulukko');
+                if (!table) return;
+                const sorted = getSortedData(),
+                    rect = table.getBoundingClientRect(),
+                    margin = window.innerWidth < 768 ? 300 : 400;
+                if (rect.top >= -margin && startIndex > 0) shiftWindow('backward');
+                else if (rect.bottom <= window.innerHeight + margin && startIndex + WINDOW_SIZE < sorted.length) shiftWindow('forward');
+            }
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                isUserScrolling = !0;
+                clearTimeout(scrollDebounceTimer);
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        scrollDebounceTimer = setTimeout(() => { isUserScrolling = !1; checkStuck(); }, window.innerWidth < 768 ? 80 : 10);
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: !0 });
+            let topObserver, bottomObserver;
+
+            function setupObservers() {
+                topObserver?.disconnect();
+                bottomObserver?.disconnect();
+                const opts = { rootMargin: window.innerWidth < 768 ? '500px 0px' : '800px 0px' };
+                topObserver = new IntersectionObserver(entries => {
+                    if (entries[0].isIntersecting && !isShifting && !isUserScrolling && startIndex > 0) shiftWindow('backward');
+                }, opts);
+                bottomObserver = new IntersectionObserver(entries => {
+                    if (entries[0].isIntersecting && !isShifting && !isUserScrolling) shiftWindow('forward');
+                }, opts);
+                topObserver.observe(topSentinel);
+                bottomObserver.observe(bottomSentinel);
+            }
+            setupObservers();
+            window.addEventListener('resize', setupObservers);
+            dropdownToggle.addEventListener('click', e => { e.stopPropagation(); dropdownContent.classList.toggle('visible'); });
             document.addEventListener('click', e => {
-                if (!dropdownContent.contains(e.target) && e.target !== dropdownToggle) dropdownContent.classList
-                    .remove('visible');
+                if (!dropdownContent.contains(e.target) && e.target !== dropdownToggle) dropdownContent.classList.remove('visible');
             });
 
             function luoCheckboxit() {
@@ -1099,6 +1156,9 @@
                         if (e.target.checked) {
                             if (!activeCategories.includes(kat)) activeCategories.push(kat);
                         } else activeCategories = activeCategories.filter(c => c !== kat);
+                        startIndex = 0;
+                        clearTimeout(scrollDebounceTimer);
+                        isShifting = isUserScrolling = !1;
                         animateSortAndRender();
                     });
                     label.appendChild(cb);
@@ -1107,7 +1167,10 @@
                 }
             }
             window.jarjesta = function(kriteeri) {
+                clearTimeout(scrollDebounceTimer);
+                isShifting = isUserScrolling = !1;
                 currentSort = kriteeri;
+                startIndex = 0;
                 if (kriteeri === 'hinta') {
                     btnHinta.classList.add('aktiivinen');
                     btnAnnos.classList.remove('aktiivinen');
@@ -1118,12 +1181,15 @@
                 animateSortAndRender();
             };
             window.vaihdaLapsimoodi = function() {
+                clearTimeout(scrollDebounceTimer);
+                isShifting = isUserScrolling = !1;
                 lapsimoodiPaalla = !lapsimoodiPaalla;
                 if (lapsimoodiPaalla) {
                     btnLapsimoodi.classList.add('aktiivinen');
                 } else {
                     btnLapsimoodi.classList.remove('aktiivinen');
                 }
+                startIndex = 0;
                 animateSortAndRender();
             };
             fetch('alko_tuotteet.json').then(r => {
@@ -1136,18 +1202,15 @@
                     const t = raw[i];
                     if (t?.nimi?.trim()) {
                         const nimi = t.nimi.trim();
-                        const alkoholi = typeof t.alkoholi_prosentti === 'number' ? t
-                            .alkoholi_prosentti : parseFloat(t.alkoholi_prosentti) || 0;
-                        const hinta = typeof t.hinta_eur === 'number' ? t.hinta_eur : parseFloat(t
-                            .hinta_eur) || 0;
+                        const alkoholi = typeof t.alkoholi_prosentti === 'number' ? t.alkoholi_prosentti : parseFloat(t.alkoholi_prosentti) || 0;
+                        const hinta = typeof t.hinta_eur === 'number' ? t.hinta_eur : parseFloat(t.hinta_eur) || 0;
                         const key = `${nimi}||${alkoholi}||${hinta}`;
                         if (!map.has(key)) {
                             map.set(key, {
                                 nimi,
                                 tyyppi: t.tyyppi || "Ei tiedossa",
                                 hinta_eur: hinta,
-                                tilavuus_litraa: typeof t.tilavuus_litraa === 'number' ? t
-                                    .tilavuus_litraa : parseFloat(t.tilavuus_litraa) || 0,
+                                tilavuus_litraa: typeof t.tilavuus_litraa === 'number' ? t.tilavuus_litraa : parseFloat(t.tilavuus_litraa) || 0,
                                 alkoholi_prosentti: alkoholi,
                                 linkki: t.linkki || "",
                                 kuva_url: t.kuva_url || ""
@@ -1159,41 +1222,15 @@
                 if (!tuoteData.length) { infoDiv.innerHTML = "⚠️ Ei kelvollisia tuotteita."; return; }
                 luoCheckboxit();
                 currentSort = 'annos';
+                startIndex = 0;
                 btnAnnos.classList.add('aktiivinen');
                 btnHinta.classList.remove('aktiivinen');
-
-                const sortedAll = getSortedData();
-                infoDiv.innerHTML =
-                    `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${sortedAll.length}</strong> tuotetta.`;
-                // Luo ensin koko taulukon luuranko, jotta vierityspalkki on oikean mittainen
-                renderAllPlaceholders(sortedAll);
-
-                const INITIAL_CHUNK = 10;
-                let loadedSoFar = 0;
-                const rows = body.querySelectorAll('tr[data-index]');
-
-                function appendChunk() {
-                    const end = Math.min(loadedSoFar + INITIAL_CHUNK, sortedAll.length);
-                    for (let i = loadedSoFar; i < end; i++) {
-                        if (rows[i]) fillRowContent(rows[i], sortedAll[i], i);
-                    }
-                    loadedSoFar = end;
-                    if (loadedSoFar < sortedAll.length) {
-                        requestAnimationFrame(() => {
-                            setTimeout(appendChunk, 0);
-                        });
-                    } else {
-                        processAllImages();
-                        paivitaStructuredData();
-                    }
-                }
-                appendChunk();
+                renderWindow();
                 window.scrollTo({ top: 0, behavior: 'instant' });
             }).catch(err => {
                 console.error(err);
                 infoDiv.innerHTML = "❌ Virhe tuotetietojen lataamisessa.";
-                body.innerHTML =
-                    '<tr><td colspan="6" style="text-align:center;padding:30px;">Tietoja ei voitu ladata. <a href="https://www.alko.fi/fi/tuotteet" target="_blank">Siirry Alkon sivuille</a></td></tr>';
+                body.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;">Tietoja ei voitu ladata. <a href="https://www.alko.fi/fi/tuotteet" target="_blank">Siirry Alkon sivuille</a></td></tr>';
             });
         })();
     </script>
