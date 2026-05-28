@@ -946,6 +946,9 @@
                     alkoholi = Number(tuote.alkoholi_prosentti) || 0;
                 if (alkoholi === 0) return "Alkoholittomat";
 
+                // Poikkeus: Grandiosa Crispy Blanc hanapakkaus kuuluu viineihin, ei kuohuviineihin
+                if (nimi === 'grandiosa crispy blanc hanapakkaus') return "Viinit";
+
                 const kuohuviiniPattern = /\b(kuohuviini|kuohuviinit|samppanja|samppanjat|sampanja|sampanjat|champagne|champagnet|cava|cavat|prosecco|proseccot|cr[eé]mant|spumante|spumantit|frizzante|frizzantit|moscato\s*d'asti|asti\s*spumante|lambrusco|lambruscot|sekt|sektit|pétillant|pét-nat|crémant|rosé\s*kuohu|kupliva|kuplivat|sparkling|sparklingit|bubbly|bubblies)\b/i;
                 if (kuohuviiniPattern.test(tyyppi) || kuohuviiniPattern.test(nimi)) return "Kuohuviinit";
 
