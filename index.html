@@ -34,7 +34,7 @@
             "@type": "WebSite",
             "name": "Alkon halvin alkoholi – Halvan alkoholin perässä",
             "url": "https://juomaan.fi",
-            "description": "Alkon halvin alkoholi löytyy täältä! Kattava hintavertailu Alkon tuotteista. Löydä edullisimmat alkoholiannokset ja selaa yli 2 000 tuotetta.",
+            "description": "Alkon halvin alkoholi löytyy täältä! Kattava hintavertailu Alkon tuotteista. Löydä edullisimmat alkoholiannokset.",
             "inLanguage": "fi",
             "potentialAction": {
                 "@type": "SearchAction",
@@ -101,6 +101,7 @@
             --dropdown-border: #e2e8f0;
             --checkbox-bg: #ffffff;
             --checkbox-border: #cbd5e0;
+            --mittari-border: #000000;
         }
         body.dark-mode {
             --bg-body: #1a1e26;
@@ -127,6 +128,7 @@
             --dropdown-border: #3a4049;
             --checkbox-bg: #2d3748;
             --checkbox-border: #4a5568;
+            --mittari-border: #cccccc;
         }
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -381,6 +383,10 @@
             text-align: left;
             vertical-align: top;
         }
+        /* Varaa aina tilaa mittarille rivin alaosaan – ei muuta mittarin ulkonäköä */
+        td {
+            padding-bottom: 34px !important;
+        }
         th:nth-child(n+3),
         td:nth-child(n+3) {
             text-align: right;
@@ -456,36 +462,20 @@
             border-bottom-color: var(--link-color);
         }
         @keyframes valokiilto {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
         @keyframes kultakimallus {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
         @keyframes hopeakimallus {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
         @keyframes pronssikimallus {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
-            }
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
         tr.mitali-kulta,
         tr.mitali-hopea,
@@ -556,12 +546,8 @@
             height: 1px;
             pointer-events: none;
         }
-        #topSentinel {
-            top: 0;
-        }
-        #bottomSentinel {
-            bottom: 0;
-        }
+        #topSentinel { top: 0; }
+        #bottomSentinel { bottom: 0; }
         .nappi-vasen-ryhma {
             display: flex;
             flex-wrap: wrap;
@@ -584,87 +570,74 @@
             }
         }
         @media (max-width: 1024px) {
-            body {
-                padding: 30px 15px;
-            }
-            .container {
-                padding: 25px;
-            }
-            h1 {
-                font-size: 36px;
-            }
+            body { padding: 30px 15px; }
+            .container { padding: 25px; }
+            h1 { font-size: 36px; }
         }
         @media (max-width: 768px) {
-            body {
-                padding: 20px 10px;
-            }
-            .container {
-                padding: 20px;
-            }
-            .header-rivi {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            h1 {
-                font-size: 33px;
-            }
-            .info {
-                font-size: 13px;
-            }
-            th,
-            td {
-                padding: 4px 5px;
-                font-size: 13px;
-            }
-            .tuote-kuva {
-                height: 70px;
-                max-height: 70px;
-                max-width: 70px;
-            }
+            body { padding: 20px 10px; }
+            .container { padding: 20px; }
+            .header-rivi { flex-direction: column; align-items: flex-start; gap: 15px; }
+            h1 { font-size: 33px; }
+            .info { font-size: 13px; }
+            th, td { padding: 4px 5px; font-size: 13px; }
+            .tuote-kuva { height: 70px; max-height: 70px; max-width: 70px; }
         }
         @media (max-width: 480px) {
-            body {
-                padding: 15px 5px;
-            }
-            .container {
-                padding: 15px;
-            }
-            h1 {
-                font-size: 30px;
-            }
-            .teema-kytkin {
-                width: 48px;
-                height: 24px;
-            }
-            .liuku:before {
-                height: 18px;
-                width: 18px;
-                left: 3px;
-                bottom: 3px;
-                font-size: 12px;
-            }
-            input:checked+.liuku:before {
-                transform: translateX(24px);
-            }
-            button {
-                padding: 8px 16px;
-                font-size: 13px;
-            }
-            th,
-            td {
-                padding: 3px 4px;
-                font-size: 12px;
-            }
-            .tuote-kuva {
-                height: 50px;
-                max-height: 50px;
-                max-width: 50px;
-            }
-            .dropdown-toggle {
-                font-size: 13px;
-                padding: 8px 16px;
-            }
+            body { padding: 15px 5px; }
+            .container { padding: 15px; }
+            h1 { font-size: 30px; }
+            .teema-kytkin { width: 48px; height: 24px; }
+            .liuku:before { height: 18px; width: 18px; left: 3px; bottom: 3px; font-size: 12px; }
+            input:checked+.liuku:before { transform: translateX(24px); }
+            button { padding: 8px 16px; font-size: 13px; }
+            th, td { padding: 3px 4px; font-size: 12px; }
+            .tuote-kuva { height: 50px; max-height: 50px; max-width: 50px; }
+            .dropdown-toggle { font-size: 13px; padding: 8px 16px; }
+        }
+
+        /* ========== MITTARIN OVERLAY ========== */
+        .mittari-overlay {
+            position: absolute;
+            pointer-events: none;
+            z-index: 5;
+            background: transparent;
+            padding: 4px 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .mittari-teksti {
+            text-align: right;
+            color: var(--text-main);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            line-height: 1.3;
+            text-shadow: 0 0 2px rgba(255,255,255,0.7);
+        }
+        body.dark-mode .mittari-teksti {
+            text-shadow: 0 0 2px rgba(0,0,0,0.7);
+        }
+        .mittari-palkki {
+            position: relative;
+            height: 8px;
+            width: 100%;
+            border-radius: 4px;
+            background: linear-gradient(to right, red, orange, yellow, lime);
+            border: 1px solid var(--mittari-border);
+        }
+        .mittari-osoitin {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #000000;
+        }
+        body.dark-mode .mittari-osoitin {
+            background-color: #ffffff;
         }
     </style>
 </head>
@@ -751,86 +724,148 @@
                 itemListSchema = document.getElementById('itemListSchema'),
                 dropdownContent = document.getElementById('dropdownContent'),
                 dropdownToggle = document.getElementById('dropdownToggle'),
+                container = document.getElementById('taulukkoContainer'),
                 COLORS = {
                     light: { gold: [199, 168, 92], silver: [154, 158, 163], bronze: [168, 111, 78] },
-                    dark: { gold: [138, 109, 44], silver: [92, 96, 102], bronze: [110, 64, 40], defaultBg: [33,
-                            37, 47
-                        ] }
+                    dark: { gold: [138, 109, 44], silver: [92, 96, 102], bronze: [110, 64, 40], defaultBg: [33, 37, 47] }
                 };
+
+            let nykyisetTuotteet = [];
+
+            function laskeGrammatPerEuro(tuote) {
+                if (!tuote.hinta_eur || tuote.hinta_eur <= 0) return 0;
+                const alkoholiGrammat = tuote.tilavuus_litraa * 1000 * (tuote.alkoholi_prosentti / 100);
+                return alkoholiGrammat / tuote.hinta_eur;
+            }
+
+            function paivitaMittarit() {
+                document.querySelectorAll('.mittari-overlay').forEach(el => el.remove());
+                if (!nykyisetTuotteet.length) return;
+
+                const rivit = document.querySelectorAll('#taulukkoBody tr.tuote-rivi');
+                const containerRect = container.getBoundingClientRect();
+                const table = document.getElementById('tuoteTaulukko');
+                const tableRect = table.getBoundingClientRect();
+                const tableScrollLeft = container.scrollLeft;
+                const tableFullWidth = table.scrollWidth;
+                const mittarinOikeaReunaProsentti = 0.88;
+                const isMobile = window.innerWidth < 768;
+
+                rivit.forEach((row, index) => {
+                    const tuote = nykyisetTuotteet[index];
+                    if (!tuote) return;
+
+                    const gPerEuro = laskeGrammatPerEuro(tuote);
+                    if (gPerEuro <= 0) return;
+
+                    let taso = 'Matala';
+                    if (gPerEuro > 10) taso = 'Korkea';
+                    else if (gPerEuro >= 5) taso = 'Keskitaso';
+                    const maksimi = 15;
+                    let prosentti = (gPerEuro / maksimi) * 100;
+                    if (prosentti > 100) prosentti = 100;
+                    const arvoTeksti = gPerEuro.toFixed(2);
+
+                    const rect = row.getBoundingClientRect();
+
+                    let leftOffset = 140;
+                    const kuva = row.querySelector('.tuote-kuva');
+                    if (kuva) {
+                        const kuvaRect = kuva.getBoundingClientRect();
+                        leftOffset = kuvaRect.right - containerRect.left + 8;
+                    }
+
+                    let rightEdge = tableRect.left + tableScrollLeft + tableFullWidth * mittarinOikeaReunaProsentti - containerRect.left - 8;
+                    const maxRight = containerRect.width - 5;
+                    if (rightEdge > maxRight) rightEdge = maxRight;
+
+                    const width = rightEdge - leftOffset;
+                    if (width < 50) return;
+
+                    const overlay = document.createElement('div');
+                    overlay.className = 'mittari-overlay';
+                    overlay.innerHTML = `
+                        <div class="mittari-teksti">Alkoholigrammat / €: ${arvoTeksti} g - ${taso}</div>
+                        <div class="mittari-palkki">
+                            <div class="mittari-osoitin" style="left: ${prosentti}%;"></div>
+                        </div>
+                    `;
+
+                    overlay.style.left = leftOffset + 'px';
+                    overlay.style.width = width + 'px';
+
+                    if (isMobile) {
+                        const gaugeTotalHeight = 28;
+                        overlay.style.top = (rect.bottom - containerRect.top - gaugeTotalHeight - 2) + 'px';
+                        overlay.style.height = gaugeTotalHeight + 'px';
+                    } else {
+                        overlay.style.top = (rect.top - containerRect.top + 10) + 'px';
+                        overlay.style.height = (rect.height - 12) + 'px';
+                    }
+
+                    overlay.style.zIndex = '5';
+                    overlay.style.pointerEvents = 'none';
+                    container.appendChild(overlay);
+                });
+            }
 
             function getTarget(i, d) {
                 if (!d) {
-                    if (i === 0) return { color: COLORS.light.gold, transparent: !0 };
-                    if (i === 1) return { color: COLORS.light.silver, transparent: !0 };
-                    if (i === 2) return { color: COLORS.light.bronze, transparent: !0 };
+                    if (i === 0) return { color: COLORS.light.gold, transparent: true };
+                    if (i === 1) return { color: COLORS.light.silver, transparent: true };
+                    if (i === 2) return { color: COLORS.light.bronze, transparent: true };
                     return null;
                 } else {
-                    if (i === 0) return { color: COLORS.dark.gold, transparent: !0 };
-                    if (i === 1) return { color: COLORS.dark.silver, transparent: !0 };
-                    if (i === 2) return { color: COLORS.dark.bronze, transparent: !0 };
-                    return { color: COLORS.dark.defaultBg, transparent: !1 };
+                    if (i === 0) return { color: COLORS.dark.gold, transparent: true };
+                    if (i === 1) return { color: COLORS.dark.silver, transparent: true };
+                    if (i === 2) return { color: COLORS.dark.bronze, transparent: true };
+                    return { color: COLORS.dark.defaultBg, transparent: false };
                 }
             }
 
             function floodFillReplace(img, target) {
                 const maxDim = 200;
-                let w = img.naturalWidth,
-                    h = img.naturalHeight;
+                let w = img.naturalWidth, h = img.naturalHeight;
                 if (!w || !h) return;
                 const scale = Math.min(maxDim / w, maxDim / h, 1);
                 w = Math.round(w * scale);
                 h = Math.round(h * scale);
                 const canvas = document.createElement('canvas');
-                canvas.width = w;
-                canvas.height = h;
-                const ctx = canvas.getContext('2d', { willReadFrequently: !0 });
+                canvas.width = w; canvas.height = h;
+                const ctx = canvas.getContext('2d', { willReadFrequently: true });
                 ctx.drawImage(img, 0, 0, w, h);
-                const imageData = ctx.getImageData(0, 0, w, h),
-                    data = imageData.data,
-                    visited = new Uint8Array(w * h),
-                    queue = [],
-                    isWhite = idx => data[idx] > 250 && data[idx + 1] > 250 && data[idx + 2] > 250;
+                const imageData = ctx.getImageData(0, 0, w, h), data = imageData.data;
+                const visited = new Uint8Array(w * h), queue = [];
+                const isWhite = idx => data[idx] > 250 && data[idx + 1] > 250 && data[idx + 2] > 250;
                 for (let x = 0; x < w; x++) {
                     const topIdx = 4 * x;
-                    if (isWhite(topIdx)) { queue.push(x, 0);
-                        visited[x] = 1 }
+                    if (isWhite(topIdx)) { queue.push(x, 0); visited[x] = 1; }
                     const bottomIdx = ((h - 1) * w + x) * 4;
-                    if (isWhite(bottomIdx)) { queue.push(x, h - 1);
-                        visited[(h - 1) * w + x] = 1 }
+                    if (isWhite(bottomIdx)) { queue.push(x, h - 1); visited[(h - 1) * w + x] = 1; }
                 }
                 for (let y = 1; y < h - 1; y++) {
                     const leftIdx = y * w * 4;
-                    if (isWhite(leftIdx)) { queue.push(0, y);
-                        visited[y * w] = 1 }
+                    if (isWhite(leftIdx)) { queue.push(0, y); visited[y * w] = 1; }
                     const rightIdx = (y * w + w - 1) * 4;
-                    if (isWhite(rightIdx)) { queue.push(w - 1, y);
-                        visited[y * w + w - 1] = 1 }
+                    if (isWhite(rightIdx)) { queue.push(w - 1, y); visited[y * w + w - 1] = 1; }
                 }
                 let qIdx = 0;
                 while (qIdx < queue.length) {
-                    const cx = queue[qIdx++],
-                        cy = queue[qIdx++],
-                        neighbors = [
-                            [cx - 1, cy],
-                            [cx + 1, cy],
-                            [cx, cy - 1],
-                            [cx, cy + 1]
-                        ];
+                    const cx = queue[qIdx++], cy = queue[qIdx++];
+                    const neighbors = [[cx - 1, cy], [cx + 1, cy], [cx, cy - 1], [cx, cy + 1]];
                     for (const [nx, ny] of neighbors) {
                         if (nx < 0 || nx >= w || ny < 0 || ny >= h) continue;
                         const idx = ny * w + nx;
                         if (visited[idx]) continue;
                         const pIdx = idx * 4;
-                        if (isWhite(pIdx)) { visited[idx] = 1;
-                            queue.push(nx, ny) }
+                        if (isWhite(pIdx)) { visited[idx] = 1; queue.push(nx, ny); }
                     }
                 }
                 const [r, g, b] = target.color;
                 for (let i = 0; i < visited.length; i++) {
                     if (visited[i]) {
                         const pIdx = i * 4;
-                        target.transparent ? data[pIdx + 3] = 0 : (data[pIdx] = r, data[pIdx + 1] = g, data[pIdx + 2] =
-                            b)
+                        target.transparent ? data[pIdx + 3] = 0 : (data[pIdx] = r, data[pIdx + 1] = g, data[pIdx + 2] = b);
                     }
                 }
                 ctx.putImageData(imageData, 0, 0);
@@ -839,48 +874,42 @@
             }
 
             function processImage(img, target) {
-                if (!target) {
-                    const orig = img.dataset.originalSrc;
-                    if (orig && img.src !== orig) img.src = orig;
-                    img.dataset.processed = 'true';
-                    return;
-                }
                 if (img.dataset.processed === 'true') return;
                 if (!img.complete || !img.naturalWidth) {
                     if (!img.dataset.listenerAdded) {
-                        img.addEventListener('load', () => processImage(img, target), { once: !0 });
+                        img.addEventListener('load', () => processImage(img, target), { once: true });
                         img.dataset.listenerAdded = 'true';
                     }
                     return;
                 }
-                try { floodFillReplace(img, target); } catch (e) { console.warn('Kuvan käsittely epäonnistui:', e);
-                    img.dataset.processed = 'true'; }
+                try {
+                    if (target) floodFillReplace(img, target);
+                    img.dataset.processed = 'true';
+                } catch (e) {
+                    console.warn('Kuvan käsittely epäonnistui:', e);
+                    img.dataset.processed = 'true';
+                }
             }
 
             function processAllImages() {
                 const doWork = () => {
                     const isDark = document.body.classList.contains('dark-mode');
                     const rows = body.querySelectorAll('tr[data-index]');
-                    for (let i = 0; i < rows.length; i++) {
-                        const row = rows[i];
-                        const index = parseInt(row.getAttribute('data-index'), 10),
-                            target = getTarget(index, isDark);
+                    for (const row of rows) {
+                        const index = parseInt(row.getAttribute('data-index'), 10);
+                        const target = getTarget(index, isDark);
                         const images = row.querySelectorAll('img.tuote-kuva:not([data-processed="true"])');
-                        for (let j = 0; j < images.length; j++) {
-                            const img = images[j];
+                        for (const img of images) {
                             if (!img.dataset.originalSrc) img.dataset.originalSrc = img.src;
                             processImage(img, target);
                         }
                     }
                 };
-                if (window.requestIdleCallback) {
-                    requestIdleCallback(doWork, { timeout: 2000 });
-                } else {
-                    setTimeout(doWork, 0);
-                }
+                if (window.requestIdleCallback) requestIdleCallback(doWork, { timeout: 2000 });
+                else setTimeout(doWork, 0);
             }
-            const tallennettuTeema = localStorage.getItem("tummaTeema");
 
+            const tallennettuTeema = localStorage.getItem("tummaTeema");
             function paivitaTeemaTeksti() {
                 if (document.body.classList.contains("dark-mode")) {
                     teemaTeksti.textContent = "Tumma teema";
@@ -892,55 +921,50 @@
             }
             if (tallennettuTeema === "kylla") {
                 document.body.classList.add("dark-mode");
-                teemaToggle.checked = !0;
+                teemaToggle.checked = true;
             }
             paivitaTeemaTeksti();
             window.vaihdaTeema = function() {
                 document.body.classList.toggle("dark-mode");
                 localStorage.setItem("tummaTeema", document.body.classList.contains("dark-mode") ? "kylla" : "ei");
                 paivitaTeemaTeksti();
-                document.querySelectorAll('img.tuote-kuva').forEach(img => { img.dataset.processed = ''; });
+                document.querySelectorAll('img.tuote-kuva').forEach(img => {
+                    img.dataset.processed = '';
+                    if (img.dataset.originalSrc) img.src = img.dataset.originalSrc;
+                });
                 processAllImages();
+                paivitaMittarit();
             };
-            let tuoteData = [],
-                startIndex = 0,
-                currentSort = 'annos',
-                isShifting = !1,
-                isUserScrolling = !1,
-                scrollDebounceTimer = null,
-                activeCategories = [],
-                lapsimoodiPaalla = !1;
-            const WINDOW_SIZE = 100,
-                SHIFT_AMOUNT = 50;
+
+            let tuoteData = [], startIndex = 0, currentSort = 'annos', isShifting = false,
+                isUserScrolling = false, scrollDebounceTimer = null, activeCategories = [], lapsimoodiPaalla = false;
+            const WINDOW_SIZE = 100, SHIFT_AMOUNT = 50;
 
             function luokitteleKategoria(tuote) {
                 const tyyppi = (tuote.tyyppi || "").toLowerCase().trim(),
                     nimi = (tuote.nimi || "").toLowerCase().trim(),
                     alkoholi = Number(tuote.alkoholi_prosentti) || 0;
                 if (alkoholi === 0) return "Alkoholittomat";
-                const viiniPattern =
-                    /\b(viini|viinit|punaviini|punaviinit|valkoviini|valkoviinit|roseeviini|roseeviinit|kuohuviini|kuohuviinit|samppanja|samppanjat|sampanja|sampanjat|champagne|champagnet|cava|cavat|prosecco|proseccot|cr[eé]mant|portviini|portviinit|port|portit|sherry|sherryt|madeira|madeirat|marsala|marsalat|vermut|vermutit|gl[oö]gi|gl[oö]git|gl[üu]hwein|gl[üu]hweinit|hedelmäviini|hedelmäviinit|marjaviini|marjaviinit|väkevä\s*viini|väkevät\s*viinit|rosé|rosét|rosato|rosatot|riesling|rieslingit|chardonnay|chardonnayt|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|rheingau|nahe|tokaji|icewine|sparkling|fiano|fianot)\b/i;
+
+                const kuohuviiniPattern = /\b(kuohuviini|kuohuviinit|samppanja|samppanjat|sampanja|sampanjat|champagne|champagnet|cava|cavat|prosecco|proseccot|cr[eé]mant|spumante|spumantit|frizzante|frizzantit|moscato\s*d'asti|asti\s*spumante|lambrusco|lambruscot|sekt|sektit|pétillant|pét-nat|crémant|rosé\s*kuohu|kupliva|kuplivat|sparkling|sparklingit|bubbly|bubblies)\b/i;
+                if (kuohuviiniPattern.test(tyyppi) || kuohuviiniPattern.test(nimi)) return "Kuohuviinit";
+
+                const viiniPattern = /\b(viini|viinit|punaviini|punaviinit|valkoviini|valkoviinit|roseeviini|roseeviinit|portviini|portviinit|port|portit|sherry|sherryt|madeira|madeirat|marsala|marsalat|vermut|vermutit|gl[oö]gi|gl[oö]git|gl[üu]hwein|gl[üu]hweinit|hedelmäviini|hedelmäviinit|marjaviini|marjaviinit|väkevä\s*viini|väkevät\s*viinit|rosé|rosét|rosato|rosatot|riesling|rieslingit|chardonnay|chardonnayt|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|rheingau|nahe|tokaji|icewine|fiano|fianot)\b/i;
                 if (viiniPattern.test(tyyppi) || viiniPattern.test(nimi)) return "Viinit";
-                const olutPattern =
-                    /\b(olut|oluet|ale|alet|lager|lagerit|stout|stoutit|porter|porterit|ipa|ipat|pils|pilsit|vehnä|vehnät|saison|saisonit|sahti|sahdit|dubbel|dubbelit|tripel|tripelit|quadrupel|quadrupelit|barley\s*wine|pale\s*ale|neipa|neipat|imperial\s*stout|blond|blondit|dipa|dipat)\b/i;
+
+                const olutPattern = /\b(olut|oluet|ale|alet|lager|lagerit|stout|stoutit|porter|porterit|ipa|ipat|pils|pilsit|vehnä|vehnät|saison|saisonit|sahti|sahdit|dubbel|dubbelit|tripel|tripelit|quadrupel|quadrupelit|barley\s*wine|pale\s*ale|neipa|neipat|imperial\s*stout|blond|blondit|dipa|dipat)\b/i;
                 if (olutPattern.test(tyyppi) || olutPattern.test(nimi)) return "Oluet";
-                const siideriPattern =
-                    /\b(siideri|siiderit|cider|ciderit|seltzer|seltzerit|hard\s*seltzer)\b/i;
+                const siideriPattern = /\b(siideri|siiderit|cider|ciderit|seltzer|seltzerit|hard\s*seltzer)\b/i;
                 if (siideriPattern.test(tyyppi) || siideriPattern.test(nimi)) return "Siiderit";
-                const vakevaPattern =
-                    /\b(vodka|vodkat|rommi|rommit|romm|gini|ginit|viski|viskit|whisky|whiskyt|whiskey|whiskeyt|brandy|brandyt|konjakki|konjakit|likööri|liköörit|viina|viinat|katkero|katkerot|absintti|absintit|tequila|tequilat|mezcal|mezcalit|sake|saket|long\s*drink|long\s*drinkit|väkevä|väkevät|maustettu\s*vodka|hedelmälikööri|hedelmäliköörit|maustelikööri|mausteliköörit|gin|rom|rum|aquavit|aquavitit|akvavit|akvavitit|akvaviitit|pastis|pastikset|ouzo|ouzoit|raki|rakit|soju|sojut|calvados|calvadokset|grappa|grappat|armagnac|armagnacit|cognac|cognacit|brandy|brandit|grogikatkerot|hedelmätisleet|tisleet|single\s*malt|single\s*cask|blended\s*malt|blended\s*scotch|single\s*grain|bourbon|bourbonit|scotch\s*whisky|irish\s*whiskey|distiller|vs|vsop|xo|extra\s*old|liquore|shot|shotit|leijona|koskenkorva|salmiakki|salmari)\b/i;
+                const vakevaPattern = /\b(vodka|vodkat|rommi|rommit|romm|gini|ginit|viski|viskit|whisky|whiskyt|whiskey|whiskeyt|brandy|brandyt|konjakki|konjakit|likööri|liköörit|viina|viinat|katkero|katkerot|absintti|absintit|tequila|tequilat|mezcal|mezcalit|sake|saket|long\s*drink|long\s*drinkit|väkevä|väkevät|maustettu\s*vodka|hedelmälikööri|hedelmäliköörit|maustelikööri|mausteliköörit|gin|rom|rum|aquavit|aquavitit|akvavit|akvavitit|akvaviitit|pastis|pastikset|ouzo|ouzoit|raki|rakit|soju|sojut|calvados|calvadokset|grappa|grappat|armagnac|armagnacit|cognac|cognacit|brandy|brandit|grogikatkerot|hedelmätisleet|tisleet|single\s*malt|single\s*cask|blended\s*malt|blended\s*scotch|single\s*grain|bourbon|bourbonit|scotch\s*whisky|irish\s*whiskey|distiller|vs|vsop|xo|extra\s*old|liquore|shot|shotit|leijona|koskenkorva|salmiakki|salmari)\b/i;
                 if (vakevaPattern.test(tyyppi) || vakevaPattern.test(nimi)) return "Väkevät & Viskit";
                 return "Muut";
             }
-            const KATEGORIA_NIMET = ["Viinit", "Oluet", "Siiderit", "Väkevät & Viskit", "Alkoholittomat", "Muut"];
+            const KATEGORIA_NIMET = ["Kuohuviinit", "Viinit", "Oluet", "Siiderit", "Väkevät & Viskit", "Alkoholittomat", "Muut"];
 
             function getFilteredData() {
-                let suodatettu = activeCategories.length ?
-                    tuoteData.filter(t => activeCategories.includes(luokitteleKategoria(t))) :
-                    tuoteData;
-                if (lapsimoodiPaalla) {
-                    suodatettu = suodatettu.filter(t => t.alkoholi_prosentti <= 22);
-                }
+                let suodatettu = activeCategories.length ? tuoteData.filter(t => activeCategories.includes(luokitteleKategoria(t))) : tuoteData;
+                if (lapsimoodiPaalla) suodatettu = suodatettu.filter(t => t.alkoholi_prosentti <= 22);
                 return suodatettu;
             }
 
@@ -952,127 +976,84 @@
             }
 
             function laskeAnnosHinta(t) {
-                const cl = t.tilavuus_litraa * 100,
-                    puhdas = cl * (t.alkoholi_prosentti / 100);
+                const cl = t.tilavuus_litraa * 100, puhdas = cl * (t.alkoholi_prosentti / 100);
                 if (puhdas === 0) return Infinity;
                 return t.hinta_eur / (puhdas / 1.5);
             }
 
             function avaaAlkonTuoteSivu(linkki, nimi) {
                 if (linkki?.trim()) window.open(linkki, '_blank', 'noopener,noreferrer');
-                else window.open(`https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(nimi)}`, '_blank',
-                    'noopener,noreferrer');
+                else window.open(`https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(nimi)}`, '_blank', 'noopener,noreferrer');
             }
 
             function escapeHtml(s) {
-                return String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;',
-                    "'": '&#39;' })[m]);
+                return String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]);
+            }
+
+            function luoNimiSpan(nimi, url, klikkaus) {
+                const maxPituus = 40;
+                const pituus = nimi.length;
+                let fontSize = 14;
+                if (pituus > maxPituus) {
+                    fontSize = Math.max(11, 14 - (pituus - maxPituus) * 0.25);
+                }
+                const lineHeight = (fontSize * 1.3).toFixed(1);
+                return `<a href="${url}" class="tuote-linkki" target="_blank" rel="noopener noreferrer" onclick="${klikkaus}" title="Avaa Alkon tuotesivu: ${escapeHtml(nimi)}" style="font-size:${fontSize}px; line-height:${lineHeight}px;">${escapeHtml(nimi)}</a>`;
             }
 
             function renderWindow() {
-                const sorted = getSortedData(),
-                    end = Math.min(startIndex + WINDOW_SIZE, sorted.length),
+                const sorted = getSortedData(), end = Math.min(startIndex + WINDOW_SIZE, sorted.length),
                     items = sorted.slice(startIndex, end);
+                nykyisetTuotteet = items;
                 let html = '';
                 for (let i = 0; i < items.length; i++) {
                     const t = items[i];
-                    const gi = startIndex + i,
-                        ah = laskeAnnosHinta(t);
-                    let riviLuokka = '',
-                        mitaliEmoji = '';
-                    if (gi === 0) { riviLuokka = 'mitali-kulta';
-                        mitaliEmoji = '🥇'; } else if (gi === 1) { riviLuokka = 'mitali-hopea';
-                        mitaliEmoji = '🥈'; } else if (gi === 2) { riviLuokka = 'mitali-pronssi';
-                        mitaliEmoji = '🥉'; }
-                    const nimi = escapeHtml(t.nimi),
-                        linkki = t.linkki || "",
-                        url = linkki.trim() ? escapeHtml(linkki) :
-                        `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(t.nimi)}`,
-                        klikkaus =
-                        `avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g,"\\'")}','${nimi.replace(/'/g,"\\'")}');return false;`,
-                        nimiHtml =
-                        `<a href="${url}" class="tuote-linkki" target="_blank" rel="noopener noreferrer" onclick="${klikkaus}" title="Avaa Alkon tuotesivu: ${nimi}">${nimi}</a>`,
+                    const gi = startIndex + i, ah = laskeAnnosHinta(t);
+                    let riviLuokka = '', mitaliEmoji = '';
+                    if (gi === 0) { riviLuokka = 'mitali-kulta'; mitaliEmoji = '🥇'; }
+                    else if (gi === 1) { riviLuokka = 'mitali-hopea'; mitaliEmoji = '🥈'; }
+                    else if (gi === 2) { riviLuokka = 'mitali-pronssi'; mitaliEmoji = '🥉'; }
+                    const nimi = t.nimi, linkki = t.linkki || "",
+                        url = linkki.trim() ? escapeHtml(linkki) : `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(nimi)}`,
+                        klikkaus = `avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g,"\\'")}','${nimi.replace(/'/g,"\\'")}');return false;`,
+                        nimiHtml = luoNimiSpan(nimi, url, klikkaus),
                         kuvaUrl = escapeHtml(t.kuva_url || ""),
-                        kuvaHtml = kuvaUrl ?
-                        `<img src="${kuvaUrl}" alt="" role="presentation" width="100" height="90" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">` :
-                        '',
-                        tuoteKey = `${nimi}||${t.alkoholi_prosentti}||${t.hinta_eur}`;
+                        kuvaHtml = kuvaUrl ? `<img src="${kuvaUrl}" alt="" role="presentation" width="100" height="90" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">` : '',
+                        tuoteKey = `${escapeHtml(nimi)}||${t.alkoholi_prosentti}||${t.hinta_eur}`;
                     let sijaintiHtml;
                     if (gi < 3 && mitaliEmoji) {
                         sijaintiHtml = `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitaliEmoji}</span>`;
                     } else {
                         sijaintiHtml = `<span class="tuote-numero">${gi + 1}.</span>`;
                     }
-                    html +=
-                        `<tr class="${riviLuokka}" data-index="${gi}" data-key="${escapeHtml(tuoteKey)}"><td><div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
+                    html += `<tr class="tuote-rivi ${riviLuokka}" data-index="${gi}" data-key="${tuoteKey}"><td><div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
                 }
                 body.innerHTML = html;
-                infoDiv.innerHTML =
-                    `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${sorted.length}</strong> tuotetta.`;
+                infoDiv.innerHTML = `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${sorted.length}</strong> tuotetta.`;
                 paivitaStructuredData();
                 processAllImages();
+                paivitaMittarit();
             }
 
             function animateSortAndRender() {
                 const oldRows = document.querySelectorAll('#taulukkoBody tr');
-                if (oldRows.length === 0) {
-                    renderWindow();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    return;
-                }
-
-                // Aseta fade out vanhoille riveille
-                oldRows.forEach(row => {
-                    row.style.transition = 'opacity 0.15s ease-in-out';
-                    row.style.opacity = '0';
-                });
-
-                // Odota, kunnes kaikki ovat häipyneet (tai 250ms)
+                if (oldRows.length === 0) { renderWindow(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+                oldRows.forEach(row => { row.style.transition = 'opacity 0.15s ease-in-out'; row.style.opacity = '0'; });
                 const fadeOutPromise = new Promise(resolve => {
-                    let completed = 0;
-                    const total = oldRows.length;
-                    function onTransitionEnd(e) {
-                        if (e.propertyName === 'opacity') {
-                            completed++;
-                            if (completed >= total) {
-                                resolve();
-                            }
-                        }
-                    }
-                    oldRows.forEach(row => {
-                        row.addEventListener('transitionend', onTransitionEnd, { once: true });
-                    });
-                    // Varmuusaikakatkaisu
-                    setTimeout(() => {
-                        if (completed < total) resolve();
-                    }, 260);
+                    let completed = 0; const total = oldRows.length;
+                    function onTransitionEnd(e) { if (e.propertyName === 'opacity') { completed++; if (completed >= total) resolve(); } }
+                    oldRows.forEach(row => row.addEventListener('transitionend', onTransitionEnd, { once: true }));
+                    setTimeout(() => { if (completed < total) resolve(); }, 260);
                 });
-
                 fadeOutPromise.then(() => {
-                    // Renderöi uusi järjestys
                     renderWindow();
                     const newRows = document.querySelectorAll('#taulukkoBody tr');
-                    // Aseta alkuun opacity 0
+                    newRows.forEach(row => { row.style.transition = 'none'; row.style.opacity = '0'; });
+                    if (newRows.length > 0) newRows[0].offsetHeight;
                     newRows.forEach(row => {
-                        row.style.transition = 'none';
-                        row.style.opacity = '0';
+                        row.style.transition = 'opacity 0.15s ease-in-out'; row.style.opacity = '1';
+                        row.addEventListener('transitionend', function handler(e) { if (e.propertyName === 'opacity') { row.removeEventListener('transitionend', handler); row.style.transition = ''; } });
                     });
-                    // Pakota reflow
-                    if (newRows.length > 0) {
-                        newRows[0].offsetHeight;
-                    }
-                    // Animaatio opacity 1
-                    newRows.forEach(row => {
-                        row.style.transition = 'opacity 0.15s ease-in-out';
-                        row.style.opacity = '1';
-                        row.addEventListener('transitionend', function handler(e) {
-                            if (e.propertyName === 'opacity') {
-                                row.removeEventListener('transitionend', handler);
-                                row.style.transition = '';
-                            }
-                        });
-                    });
-                    // Skrollaa ylös
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             }
@@ -1087,27 +1068,14 @@
                     "description": `Listaus ${sorted.length} Alkon tuotteesta.`,
                     "numberOfItems": sorted.length,
                     "itemListElement": sorted.map((t, i) => {
-                        const url = t.linkki?.trim() ? t.linkki :
-                            `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(t.nimi)}`;
+                        const url = t.linkki?.trim() ? t.linkki : `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(t.nimi)}`;
                         return {
-                            "@type": "ListItem",
-                            "position": i + 1,
+                            "@type": "ListItem", "position": i + 1,
                             "item": {
-                                "@type": "Product",
-                                "name": t.nimi,
-                                "url": url,
-                                "category": t.tyyppi || "Ei tiedossa",
-                                "offers": {
-                                    "@type": "Offer",
-                                    "price": t.hinta_eur.toFixed(2),
-                                    "priceCurrency": "EUR",
-                                    "availability": "https://schema.org/InStock",
-                                    "url": url
-                                },
+                                "@type": "Product", "name": t.nimi, "url": url, "category": t.tyyppi || "Ei tiedossa",
+                                "offers": { "@type": "Offer", "price": t.hinta_eur.toFixed(2), "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": url },
                                 ...(t.kuva_url && { "image": t.kuva_url }),
-                                ...(t.alkoholi_prosentti > 0 && {
-                                    "description": `${t.alkoholi_prosentti.toFixed(1)}% alkoholia, ${t.tilavuus_litraa.toFixed(2)} L`
-                                })
+                                ...(t.alkoholi_prosentti > 0 && { "description": `${t.alkoholi_prosentti.toFixed(1)}% alkoholia, ${t.tilavuus_litraa.toFixed(2)} L` })
                             }
                         };
                     })
@@ -1115,95 +1083,81 @@
             }
 
             function shiftWindow(dir) {
-                if (isShifting || isUserScrolling) return !1;
+                if (isShifting || isUserScrolling) return false;
                 const sorted = getSortedData();
-                if (dir === 'forward' && startIndex + WINDOW_SIZE >= sorted.length || dir === 'backward' && startIndex ===
-                    0) return !1;
-                const anchor = dir === 'forward' ? startIndex + SHIFT_AMOUNT : startIndex,
-                    row = document.querySelector(`tr[data-index="${anchor}"]`);
-                if (!row) return !1;
+                if ((dir === 'forward' && startIndex + WINDOW_SIZE >= sorted.length) || (dir === 'backward' && startIndex === 0)) return false;
+                const anchor = dir === 'forward' ? startIndex + SHIFT_AMOUNT : startIndex;
+                const row = document.querySelector(`tr[data-index="${anchor}"]`);
+                if (!row) return false;
                 const oldTop = row.getBoundingClientRect().top;
-                isShifting = !0;
+                isShifting = true;
                 startIndex = dir === 'forward' ? startIndex + SHIFT_AMOUNT : Math.max(0, startIndex - SHIFT_AMOUNT);
                 renderWindow();
                 requestAnimationFrame(() => {
                     const newRow = document.querySelector(`tr[data-index="${anchor}"]`);
-                    if (newRow) {
-                        const newTop = newRow.getBoundingClientRect().top;
-                        window.scrollBy(0, newTop - oldTop);
-                    }
-                    isShifting = !1;
+                    if (newRow) { const newTop = newRow.getBoundingClientRect().top; window.scrollBy(0, newTop - oldTop); }
+                    isShifting = false;
                 });
-                return !0;
+                return true;
             }
 
             function checkStuck() {
                 if (isShifting || isUserScrolling) return;
-                const table = document.getElementById('tuoteTaulukko');
-                if (!table) return;
-                const sorted = getSortedData(),
-                    rect = table.getBoundingClientRect(),
-                    margin = window.innerWidth < 768 ? 300 : 400;
+                const table = document.getElementById('tuoteTaulukko'); if (!table) return;
+                const sorted = getSortedData(), rect = table.getBoundingClientRect(), margin = window.innerWidth < 768 ? 300 : 400;
                 if (rect.top >= -margin && startIndex > 0) shiftWindow('backward');
-                else if (rect.bottom <= window.innerHeight + margin && startIndex + WINDOW_SIZE < sorted.length)
-                    shiftWindow('forward');
+                else if (rect.bottom <= window.innerHeight + margin && startIndex + WINDOW_SIZE < sorted.length) shiftWindow('forward');
             }
             let ticking = false;
             window.addEventListener('scroll', () => {
-                isUserScrolling = !0;
+                isUserScrolling = true;
                 clearTimeout(scrollDebounceTimer);
                 if (!ticking) {
                     requestAnimationFrame(() => {
-                        scrollDebounceTimer = setTimeout(() => { isUserScrolling = !1;
-                            checkStuck(); }, window.innerWidth < 768 ? 80 : 10);
+                        paivitaMittarit();
+                        scrollDebounceTimer = setTimeout(() => { isUserScrolling = false; checkStuck(); }, window.innerWidth < 768 ? 80 : 10);
                         ticking = false;
                     });
                     ticking = true;
                 }
-            }, { passive: !0 });
-            let topObserver, bottomObserver;
+            }, { passive: true });
 
-            function setupObservers() {
-                topObserver?.disconnect();
-                bottomObserver?.disconnect();
-                const opts = { rootMargin: window.innerWidth < 768 ? '500px 0px' : '800px 0px' };
-                topObserver = new IntersectionObserver(entries => {
-                    if (entries[0].isIntersecting && !isShifting && !isUserScrolling && startIndex > 0)
-                        shiftWindow('backward');
-                }, opts);
-                bottomObserver = new IntersectionObserver(entries => {
-                    if (entries[0].isIntersecting && !isShifting && !isUserScrolling) shiftWindow('forward');
-                }, opts);
-                topObserver.observe(topSentinel);
-                bottomObserver.observe(bottomSentinel);
-            }
-            setupObservers();
-            window.addEventListener('resize', setupObservers);
-            dropdownToggle.addEventListener('click', e => { e.stopPropagation();
-                dropdownContent.classList.toggle('visible'); });
-            document.addEventListener('click', e => {
-                if (!dropdownContent.contains(e.target) && e.target !== dropdownToggle) dropdownContent.classList
-                    .remove('visible');
+            container.addEventListener('scroll', () => {
+                paivitaMittarit();
             });
+
+            let resizeDebounce;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeDebounce);
+                resizeDebounce = setTimeout(() => {
+                    paivitaMittarit();
+                }, 100);
+            });
+
+            let topObserver, bottomObserver;
+            function setupObservers() {
+                topObserver?.disconnect(); bottomObserver?.disconnect();
+                const opts = { rootMargin: window.innerWidth < 768 ? '500px 0px' : '800px 0px' };
+                topObserver = new IntersectionObserver(entries => { if (entries[0].isIntersecting && !isShifting && !isUserScrolling && startIndex > 0) shiftWindow('backward'); }, opts);
+                bottomObserver = new IntersectionObserver(entries => { if (entries[0].isIntersecting && !isShifting && !isUserScrolling) shiftWindow('forward'); }, opts);
+                topObserver.observe(topSentinel); bottomObserver.observe(bottomSentinel);
+            }
+            setupObservers(); window.addEventListener('resize', setupObservers);
+            dropdownToggle.addEventListener('click', e => { e.stopPropagation(); dropdownContent.classList.toggle('visible'); });
+            document.addEventListener('click', e => { if (!dropdownContent.contains(e.target) && e.target !== dropdownToggle) dropdownContent.classList.remove('visible'); });
 
             function luoCheckboxit() {
                 activeCategories = [...KATEGORIA_NIMET];
                 dropdownContent.innerHTML = '';
-                for (let i = 0; i < KATEGORIA_NIMET.length; i++) {
-                    const kat = KATEGORIA_NIMET[i];
+                for (const kat of KATEGORIA_NIMET) {
                     const label = document.createElement('label');
                     label.className = 'kategoria-checkbox';
                     const cb = document.createElement('input');
-                    cb.type = 'checkbox';
-                    cb.value = kat;
-                    cb.checked = !0;
+                    cb.type = 'checkbox'; cb.value = kat; cb.checked = true;
                     cb.addEventListener('change', e => {
-                        if (e.target.checked) {
-                            if (!activeCategories.includes(kat)) activeCategories.push(kat);
-                        } else activeCategories = activeCategories.filter(c => c !== kat);
-                        startIndex = 0;
-                        clearTimeout(scrollDebounceTimer);
-                        isShifting = isUserScrolling = !1;
+                        if (e.target.checked) { if (!activeCategories.includes(kat)) activeCategories.push(kat); }
+                        else activeCategories = activeCategories.filter(c => c !== kat);
+                        startIndex = 0; clearTimeout(scrollDebounceTimer); isShifting = isUserScrolling = false;
                         animateSortAndRender();
                     });
                     label.appendChild(cb);
@@ -1212,131 +1166,65 @@
                 }
             }
             window.jarjesta = function(kriteeri) {
-                clearTimeout(scrollDebounceTimer);
-                isShifting = isUserScrolling = !1;
-                currentSort = kriteeri;
-                startIndex = 0;
-                if (kriteeri === 'hinta') {
-                    btnHinta.classList.add('aktiivinen');
-                    btnAnnos.classList.remove('aktiivinen');
-                } else {
-                    btnAnnos.classList.add('aktiivinen');
-                    btnHinta.classList.remove('aktiivinen');
-                }
+                clearTimeout(scrollDebounceTimer); isShifting = isUserScrolling = false;
+                currentSort = kriteeri; startIndex = 0;
+                if (kriteeri === 'hinta') { btnHinta.classList.add('aktiivinen'); btnAnnos.classList.remove('aktiivinen'); }
+                else { btnAnnos.classList.add('aktiivinen'); btnHinta.classList.remove('aktiivinen'); }
                 animateSortAndRender();
             };
             window.vaihdaLapsimoodi = function() {
-                clearTimeout(scrollDebounceTimer);
-                isShifting = isUserScrolling = !1;
+                clearTimeout(scrollDebounceTimer); isShifting = isUserScrolling = false;
                 lapsimoodiPaalla = !lapsimoodiPaalla;
-                if (lapsimoodiPaalla) {
-                    btnLapsimoodi.classList.add('aktiivinen');
-                } else {
-                    btnLapsimoodi.classList.remove('aktiivinen');
-                }
-                startIndex = 0;
-                animateSortAndRender();
+                if (lapsimoodiPaalla) btnLapsimoodi.classList.add('aktiivinen');
+                else btnLapsimoodi.classList.remove('aktiivinen');
+                startIndex = 0; animateSortAndRender();
             };
-            fetch('alko_tuotteet.json').then(r => {
-                if (!r.ok) throw new Error('HTTP ' + r.status);
-                return r.json();
-            }).then(raw => {
+
+            fetch('alko_tuotteet.json').then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(raw => {
                 if (!Array.isArray(raw)) throw new Error("Ei taulukko");
                 const map = new Map();
-                for (let i = 0; i < raw.length; i++) {
-                    const t = raw[i];
-                    if (t?.nimi?.trim()) {
-                        const nimi = t.nimi.trim();
-                        const alkoholi = typeof t.alkoholi_prosentti === 'number' ? t
-                            .alkoholi_prosentti : parseFloat(t.alkoholi_prosentti) || 0;
-                        const hinta = typeof t.hinta_eur === 'number' ? t.hinta_eur : parseFloat(t
-                            .hinta_eur) || 0;
-                        const key = `${nimi}||${alkoholi}||${hinta}`;
-                        if (!map.has(key)) {
-                            map.set(key, {
-                                nimi,
-                                tyyppi: t.tyyppi || "Ei tiedossa",
-                                hinta_eur: hinta,
-                                tilavuus_litraa: typeof t.tilavuus_litraa === 'number' ? t
-                                    .tilavuus_litraa : parseFloat(t.tilavuus_litraa) || 0,
-                                alkoholi_prosentti: alkoholi,
-                                linkki: t.linkki || "",
-                                kuva_url: t.kuva_url || ""
-                            });
-                        }
-                    }
+                for (const t of raw) {
+                    if (!t?.nimi?.trim()) continue;
+                    const nimi = t.nimi.trim(), alkoholi = typeof t.alkoholi_prosentti === 'number' ? t.alkoholi_prosentti : parseFloat(t.alkoholi_prosentti) || 0,
+                        hinta = typeof t.hinta_eur === 'number' ? t.hinta_eur : parseFloat(t.hinta_eur) || 0;
+                    const key = `${nimi}||${alkoholi}||${hinta}`;
+                    if (!map.has(key)) map.set(key, { nimi, tyyppi: t.tyyppi || "Ei tiedossa", hinta_eur: hinta, tilavuus_litraa: typeof t.tilavuus_litraa === 'number' ? t.tilavuus_litraa : parseFloat(t.tilavuus_litraa) || 0, alkoholi_prosentti: alkoholi, linkki: t.linkki || "", kuva_url: t.kuva_url || "" });
                 }
                 tuoteData = [...map.values()];
                 if (!tuoteData.length) { infoDiv.innerHTML = "⚠️ Ei kelvollisia tuotteita."; return; }
-                luoCheckboxit();
-                currentSort = 'annos';
-                startIndex = 0;
-                btnAnnos.classList.add('aktiivinen');
-                btnHinta.classList.remove('aktiivinen');
-
-                // Asteittainen lataus (10 tuotetta kerrallaan) vain sivun avauksessa
-                const INITIAL_CHUNK = 10;
-                const TOTAL_TO_LOAD = Math.min(WINDOW_SIZE, tuoteData.length);
-                let loadedSoFar = 0;
-                const sortedAll = getSortedData();
-                infoDiv.innerHTML = `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${sortedAll.length}</strong> tuotetta.`;
-
+                luoCheckboxit(); currentSort = 'annos'; startIndex = 0; btnAnnos.classList.add('aktiivinen'); btnHinta.classList.remove('aktiivinen');
+                const INITIAL_CHUNK = 10, TOTAL_TO_LOAD = Math.min(WINDOW_SIZE, tuoteData.length); let loadedSoFar = 0;
+                const sortedAll = getSortedData(); infoDiv.innerHTML = `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${sortedAll.length}</strong> tuotetta.`;
                 function appendChunk() {
                     const chunk = sortedAll.slice(loadedSoFar, loadedSoFar + INITIAL_CHUNK);
-                    if (chunk.length === 0) {
-                        processAllImages();
-                        paivitaStructuredData();
-                        return;
-                    }
+                    if (chunk.length === 0) { processAllImages(); paivitaStructuredData(); paivitaMittarit(); return; }
                     let html = '';
                     for (let i = 0; i < chunk.length; i++) {
-                        const t = chunk[i];
-                        const gi = loadedSoFar + i;
-                        const ah = laskeAnnosHinta(t);
+                        const t = chunk[i], gi = loadedSoFar + i, ah = laskeAnnosHinta(t);
                         let riviLuokka = '', mitaliEmoji = '';
                         if (gi === 0) { riviLuokka = 'mitali-kulta'; mitaliEmoji = '🥇'; }
                         else if (gi === 1) { riviLuokka = 'mitali-hopea'; mitaliEmoji = '🥈'; }
                         else if (gi === 2) { riviLuokka = 'mitali-pronssi'; mitaliEmoji = '🥉'; }
-
-                        const nimi = escapeHtml(t.nimi);
-                        const linkki = t.linkki || "";
-                        const url = linkki.trim() ? escapeHtml(linkki) : `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(t.nimi)}`;
-                        const klikkaus = `avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g,"\\'")}','${nimi.replace(/'/g,"\\'")}');return false;`;
-                        const nimiHtml = `<a href="${url}" class="tuote-linkki" target="_blank" rel="noopener noreferrer" onclick="${klikkaus}" title="Avaa Alkon tuotesivu: ${nimi}">${nimi}</a>`;
-                        const kuvaUrl = escapeHtml(t.kuva_url || "");
-                        const kuvaHtml = kuvaUrl ? `<img src="${kuvaUrl}" alt="" role="presentation" width="100" height="90" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">` : '';
-
-                        let sijaintiHtml;
-                        if (gi < 3 && mitaliEmoji) {
-                            sijaintiHtml = `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitaliEmoji}</span>`;
-                        } else {
-                            sijaintiHtml = `<span class="tuote-numero">${gi + 1}.</span>`;
-                        }
-                        html += `<tr class="${riviLuokka}" data-index="${gi}" data-key="${escapeHtml(nimi+'||'+t.alkoholi_prosentti+'||'+t.hinta_eur)}"><td><div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
+                        const nimi = t.nimi, linkki = t.linkki || "", url = linkki.trim() ? escapeHtml(linkki) : `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(nimi)}`,
+                            klikkaus = `avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g,"\\'")}','${nimi.replace(/'/g,"\\'")}');return false;`,
+                            nimiHtml = luoNimiSpan(nimi, url, klikkaus), kuvaUrl = escapeHtml(t.kuva_url || ""),
+                            kuvaHtml = kuvaUrl ? `<img src="${kuvaUrl}" alt="" role="presentation" width="100" height="90" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">` : '',
+                            tuoteKey = `${escapeHtml(nimi+'||'+t.alkoholi_prosentti+'||'+t.hinta_eur)}`;
+                        let sijaintiHtml = (gi < 3 && mitaliEmoji) ? `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitaliEmoji}</span>` : `<span class="tuote-numero">${gi + 1}.</span>`;
+                        html += `<tr class="tuote-rivi ${riviLuokka}" data-index="${gi}" data-key="${tuoteKey}"><td><div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}<br></span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
                     }
                     body.innerHTML += html;
                     loadedSoFar += chunk.length;
-
                     if (loadedSoFar < TOTAL_TO_LOAD) {
-                        requestAnimationFrame(() => {
-                            setTimeout(appendChunk, 0);
-                        });
+                        requestAnimationFrame(() => { setTimeout(appendChunk, 0); });
                     } else {
-                        processAllImages();
-                        paivitaStructuredData();
+                        processAllImages(); paivitaStructuredData();
+                        nykyisetTuotteet = sortedAll.slice(0, loadedSoFar);
+                        paivitaMittarit();
                     }
                 }
-
-                body.innerHTML = '';
-                startIndex = 0;
-                appendChunk();
-                window.scrollTo({ top: 0, behavior: 'instant' });
-            }).catch(err => {
-                console.error(err);
-                infoDiv.innerHTML = "❌ Virhe tuotetietojen lataamisessa.";
-                body.innerHTML =
-                    '<tr><td colspan="6" style="text-align:center;padding:30px;">Tietoja ei voitu ladata. <a href="https://www.alko.fi/fi/tuotteet" target="_blank">Siirry Alkon sivuille</a></td></tr>';
-            });
+                body.innerHTML = ''; startIndex = 0; appendChunk(); window.scrollTo({ top: 0, behavior: 'instant' });
+            }).catch(err => { console.error(err); infoDiv.innerHTML = "❌ Virhe tuotetietojen lataamisessa."; body.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;">Tietoja ei voitu ladata. <a href="https://www.alko.fi/fi/tuotteet" target="_blank">Siirry Alkon sivuille</a></td></tr>'; });
         })();
     </script>
 </body>
