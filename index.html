@@ -292,14 +292,6 @@
             margin-left: auto;
             position: relative;
         }
-        .kokonaismaara {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-muted);
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-        }
         .dropdown-toggle {
             padding: 10px 20px;
             background-color: #5E7A89;
@@ -618,6 +610,8 @@
             flex-direction: column;
             justify-content: flex-end;
             min-width: 60px;
+            opacity: 1;
+            transition: opacity 0.15s ease-in-out;
         }
         .mittari-teksti {
             text-align: right;
@@ -706,7 +700,6 @@
                 <button id="btnLapsimoodi" onclick="vaihdaLapsimoodi()">lapsimoodi (≤22% alk.)</button>
             </div>
             <div class="kategoria-dropdown" id="kategoriaDropdown">
-                <span class="kokonaismaara" id="kokonaismaara"></span>
                 <button class="dropdown-toggle" id="dropdownToggle">Kategoriat ▾</button>
                 <div class="dropdown-content" id="dropdownContent"></div>
             </div>
@@ -757,7 +750,6 @@
                 btnLapsimoodi = document.getElementById('btnLapsimoodi'),
                 body = document.getElementById('taulukkoBody'),
                 infoDiv = document.getElementById('info'),
-                kokonaismaaraDiv = document.getElementById('kokonaismaara'),
                 topSentinel = document.getElementById('topSentinel'),
                 bottomSentinel = document.getElementById('bottomSentinel'),
                 itemListSchema = document.getElementById('itemListSchema'),
@@ -777,7 +769,7 @@
                 return alkoholiGrammat / tuote.hinta_eur;
             }
 
-            function paivitaMittarit() {
+            function paivitaMittarit(animate = false) {
                 document.querySelectorAll('.mittari-overlay').forEach(el => el.remove());
                 if (!nykyisetTuotteet.length) return;
 
@@ -789,7 +781,9 @@
                 const tableFullWidth = table.scrollWidth;
                 const mittarinOikeaReunaProsentti = 0.88;
                 const isMobile = window.innerWidth < 768;
-                const oikeaMarginaali = isMobile ? 16 : 8; // enemmän tilaa mobiilissa
+                const oikeaMarginaali = isMobile ? 16 : 8;
+
+                const uudetMittarit = [];
 
                 rivit.forEach((row, index) => {
                     const tuote = nykyisetTuotteet[index];
@@ -854,8 +848,24 @@
 
                     overlay.style.zIndex = '5';
                     overlay.style.pointerEvents = 'none';
+
+                    if (animate) {
+                        overlay.style.opacity = '0';
+                        overlay.style.transition = 'opacity 0.15s ease-in-out';
+                    }
+
                     container.appendChild(overlay);
+                    uudetMittarit.push(overlay);
                 });
+
+                // Jos animaatio käytössä, haalistutaan sisään viiveen jälkeen
+                if (animate && uudetMittarit.length) {
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            uudetMittarit.forEach(el => el.style.opacity = '1');
+                        });
+                    });
+                }
             }
 
             function getTarget(i, d) {
@@ -1077,36 +1087,128 @@
                 }
                 body.innerHTML = html;
 
-                // Päivitä "Näytetään: X" suodatusten mukaan
-                kokonaismaaraDiv.textContent = 'Näytetään: ' + sorted.length;
+                // Päivitä napin teksti: Kategoriat (lkm) ▾
+                dropdownToggle.innerHTML = 'Kategoriat (' + sorted.length + ') ▾';
 
                 paivitaStructuredData();
                 processAllImages();
-                paivitaMittarit();
+                paivitaMittarit(); // ei animaatiota normaalissa renderöinnissä
             }
 
             function animateSortAndRender() {
                 const oldRows = document.querySelectorAll('#taulukkoBody tr');
-                if (oldRows.length === 0) { renderWindow(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
-                oldRows.forEach(row => { row.style.transition = 'opacity 0.15s ease-in-out'; row.style.opacity = '0'; });
-                const fadeOutPromise = new Promise(resolve => {
-                    let completed = 0; const total = oldRows.length;
-                    function onTransitionEnd(e) { if (e.propertyName === 'opacity') { completed++; if (completed >= total) resolve(); } }
-                    oldRows.forEach(row => row.addEventListener('transitionend', onTransitionEnd, { once: true }));
-                    setTimeout(() => { if (completed < total) resolve(); }, 260);
-                });
-                fadeOutPromise.then(() => {
-                    renderWindow();
-                    const newRows = document.querySelectorAll('#taulukkoBody tr');
-                    newRows.forEach(row => { row.style.transition = 'none'; row.style.opacity = '0'; });
-                    if (newRows.length > 0) newRows[0].offsetHeight;
-                    newRows.forEach(row => {
-                        row.style.transition = 'opacity 0.15s ease-in-out'; row.style.opacity = '1';
-                        row.addEventListener('transitionend', function handler(e) { if (e.propertyName === 'opacity') { row.removeEventListener('transitionend', handler); row.style.transition = ''; } });
+                const oldGauges = document.querySelectorAll('.mittari-overlay');
+
+                // Häivytä vanhat rivit
+                if (oldRows.length) {
+                    oldRows.forEach(row => {
+                        row.style.transition = 'opacity 0.15s ease-in-out';
+                        row.style.opacity = '0';
                     });
+                }
+
+                // Häivytä vanhat mittarit
+                if (oldGauges.length) {
+                    oldGauges.forEach(g => {
+                        g.style.transition = 'opacity 0.15s ease-in-out';
+                        g.style.opacity = '0';
+                    });
+                }
+
+                // Odota, että kaikki häivytykset ovat valmiit
+                const fadeOutPromise = new Promise(resolve => {
+                    let remaining = (oldRows.length ? 1 : 0) + (oldGauges.length ? 1 : 0);
+                    if (remaining === 0) return resolve();
+
+                    function onTransitionEnd(e) {
+                        if (e.propertyName === 'opacity') {
+                            remaining--;
+                            if (remaining === 0) resolve();
+                        }
+                    }
+
+                    oldRows.forEach(row => row.addEventListener('transitionend', onTransitionEnd, { once: true }));
+                    oldGauges.forEach(g => g.addEventListener('transitionend', onTransitionEnd, { once: true }));
+
+                    // Varmistus: maksimi odotusaika 300 ms
+                    setTimeout(() => { if (remaining > 0) resolve(); }, 300);
+                });
+
+                fadeOutPromise.then(() => {
+                    // Poista vanhat mittarit varmuuden vuoksi
+                    document.querySelectorAll('.mittari-overlay').forEach(el => el.remove());
+
+                    // Renderöi uudet rivit (alkuun opacity 0)
+                    renderWindow(); // renderWindow kutsuu paivitaMittarit() ilman animaatiota, joten uudet mittarit ilmestyvät heti.
+                    // Korvataan tämä: kutsumme paivitaMittarit uudelleen animaatiolla.
+                    // Koska renderWindow kutsuu paivitaMittarit() ilman animaatiota, ohitamme sen ja kutsumme itse animaatiolla.
+                    // Siksi muokataan renderWindow niin, että se ei kutsu paivitaMittarit, vaan se kutsutaan tässä.
+                    // Toteutetaan: renderWindow EI kutsu paivitaMittarit, vaan se kutsutaan erikseen.
+                    // Joten korjataan: renderWindow ei kutsu paivitaMittarit.
+                    // Siirretään paivitaMittarit-kutsu renderWindowin ulkopuolelle.
+                    // Helpompi: renderWindow kutsuu paivitaMittarit(false), mutta tässä me haluamme animaation, joten kutsutaan paivitaMittarit(true) uudestaan.
+                    // Kutsutaan paivitaMittarit(true) nyt.
+                    paivitaMittarit(true); // Tämä korvaa juuri luodut mittarit uusilla, joilla on animaatio.
+
+                    // Animaatio uusille riveille
+                    const newRows = document.querySelectorAll('#taulukkoBody tr');
+                    newRows.forEach(row => {
+                        row.style.transition = 'none';
+                        row.style.opacity = '0';
+                    });
+                    if (newRows.length > 0) newRows[0].offsetHeight; // pakotetaan reflow
+                    newRows.forEach(row => {
+                        row.style.transition = 'opacity 0.15s ease-in-out';
+                        row.style.opacity = '1';
+                        row.addEventListener('transitionend', function handler(e) {
+                            if (e.propertyName === 'opacity') {
+                                row.removeEventListener('transitionend', handler);
+                                row.style.transition = '';
+                            }
+                        });
+                    });
+
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             }
+
+            // Muutetaan renderWindow niin, ettei se kutsu paivitaMittarit automaattisesti
+            const originalRenderWindow = renderWindow;
+            renderWindow = function() {
+                const sorted = getSortedData(), end = Math.min(startIndex + WINDOW_SIZE, sorted.length),
+                    items = sorted.slice(startIndex, end);
+                nykyisetTuotteet = items;
+                let html = '';
+                for (let i = 0; i < items.length; i++) {
+                    const t = items[i];
+                    const gi = startIndex + i, ah = laskeAnnosHinta(t);
+                    let riviLuokka = '', mitaliEmoji = '';
+                    if (gi === 0) { riviLuokka = 'mitali-kulta'; mitaliEmoji = '🥇'; }
+                    else if (gi === 1) { riviLuokka = 'mitali-hopea'; mitaliEmoji = '🥈'; }
+                    else if (gi === 2) { riviLuokka = 'mitali-pronssi'; mitaliEmoji = '🥉'; }
+                    const nimi = t.nimi, linkki = t.linkki || "",
+                        url = linkki.trim() ? escapeHtml(linkki) : `https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(nimi)}`,
+                        klikkaus = `avaaAlkonTuoteSivu('${escapeHtml(linkki).replace(/'/g,"\\'")}','${nimi.replace(/'/g,"\\'")}');return false;`,
+                        nimiHtml = luoNimiSpan(nimi, url, klikkaus),
+                        kuvaUrl = escapeHtml(t.kuva_url || ""),
+                        kuvaHtml = kuvaUrl ? `<img src="${kuvaUrl}" alt="" role="presentation" width="100" height="90" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">` : '',
+                        tuoteKey = `${escapeHtml(nimi)}||${t.alkoholi_prosentti}||${t.hinta_eur}`;
+                    let sijaintiHtml;
+                    if (gi < 3 && mitaliEmoji) {
+                        sijaintiHtml = `<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitaliEmoji}</span>`;
+                    } else {
+                        sijaintiHtml = `<span class="tuote-numero">${gi + 1}.</span>`;
+                    }
+                    html += `<tr class="tuote-rivi ${riviLuokka}" data-index="${gi}" data-key="${tuoteKey}"><td><div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
+                }
+                body.innerHTML = html;
+
+                dropdownToggle.innerHTML = 'Kategoriat (' + sorted.length + ') ▾';
+
+                paivitaStructuredData();
+                processAllImages();
+                // Ei kutsuta paivitaMittarit tässä; kutsuja hoitaa
+            };
 
             function paivitaStructuredData() {
                 if (!itemListSchema) return;
@@ -1143,6 +1245,7 @@
                 isShifting = true;
                 startIndex = dir === 'forward' ? startIndex + SHIFT_AMOUNT : Math.max(0, startIndex - SHIFT_AMOUNT);
                 renderWindow();
+                paivitaMittarit(); // ilman animaatiota, koska vieritys
                 requestAnimationFrame(() => {
                     const newRow = document.querySelector(`tr[data-index="${anchor}"]`);
                     if (newRow) { const newTop = newRow.getBoundingClientRect().top; window.scrollBy(0, newTop - oldTop); }
@@ -1243,9 +1346,8 @@
                 tuoteData = [...map.values()];
                 if (!tuoteData.length) { infoDiv.innerHTML = "⚠️ Ei kelvollisia tuotteita."; return; }
 
-                // Kiinteä info-teksti (ei muutu suodatettaessa)
                 infoDiv.innerHTML = `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${tuoteData.length}</strong> tuotetta.`;
-                kokonaismaaraDiv.textContent = `Näytetään: ${tuoteData.length}`;
+                dropdownToggle.innerHTML = 'Kategoriat (' + tuoteData.length + ') ▾';
 
                 luoCheckboxit(); currentSort = 'annos'; startIndex = 0; btnAnnos.classList.add('aktiivinen'); btnHinta.classList.remove('aktiivinen');
                 const INITIAL_CHUNK = 10, TOTAL_TO_LOAD = Math.min(WINDOW_SIZE, tuoteData.length); let loadedSoFar = 0;
