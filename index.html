@@ -286,8 +286,19 @@
             transform: scale(0.98);
         }
         .kategoria-dropdown {
-            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             margin-left: auto;
+            position: relative;
+        }
+        .kokonaismaara {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
         }
         .dropdown-toggle {
             padding: 10px 20px;
@@ -383,7 +394,6 @@
             text-align: left;
             vertical-align: top;
         }
-        /* Varaa aina tilaa mittarille rivin alaosaan – ei muuta mittarin ulkonäköä */
         td {
             padding-bottom: 34px !important;
         }
@@ -562,6 +572,7 @@
             .kategoria-dropdown {
                 align-self: flex-end;
                 margin-top: 0;
+                flex-wrap: wrap;
             }
             tr.mitali-kulta::after,
             tr.mitali-hopea::after,
@@ -602,11 +613,11 @@
             pointer-events: none;
             z-index: 5;
             background: transparent;
-            padding: 4px 0;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            min-width: 60px;
         }
         .mittari-teksti {
             text-align: right;
@@ -635,9 +646,35 @@
             bottom: 0;
             width: 2px;
             background-color: #000000;
+            /* Ei transitionia – ei animaatiota scrollatessa */
         }
         body.dark-mode .mittari-osoitin {
             background-color: #ffffff;
+        }
+
+        /* Mobiiliversion litteä mittari (ei tekstiä, ohut palkki) */
+        @media (max-width: 767px) {
+            .mittari-overlay {
+                min-width: 40px;
+                flex-direction: row;
+                align-items: center;
+                gap: 4px;
+                height: auto !important;
+                padding: 2px 0;
+                margin-right: 8px; /* visuaalinen marginaali oikealle */
+            }
+            .mittari-teksti {
+                display: none;
+            }
+            .mittari-palkki {
+                height: 6px;
+                width: 100%;
+                border-radius: 3px;
+            }
+            .mittari-osoitin {
+                width: 3px;
+                height: 100%;
+            }
         }
     </style>
 </head>
@@ -669,6 +706,7 @@
                 <button id="btnLapsimoodi" onclick="vaihdaLapsimoodi()">lapsimoodi (≤22% alk.)</button>
             </div>
             <div class="kategoria-dropdown" id="kategoriaDropdown">
+                <span class="kokonaismaara" id="kokonaismaara"></span>
                 <button class="dropdown-toggle" id="dropdownToggle">Kategoriat ▾</button>
                 <div class="dropdown-content" id="dropdownContent"></div>
             </div>
@@ -719,6 +757,7 @@
                 btnLapsimoodi = document.getElementById('btnLapsimoodi'),
                 body = document.getElementById('taulukkoBody'),
                 infoDiv = document.getElementById('info'),
+                kokonaismaaraDiv = document.getElementById('kokonaismaara'),
                 topSentinel = document.getElementById('topSentinel'),
                 bottomSentinel = document.getElementById('bottomSentinel'),
                 itemListSchema = document.getElementById('itemListSchema'),
@@ -750,6 +789,7 @@
                 const tableFullWidth = table.scrollWidth;
                 const mittarinOikeaReunaProsentti = 0.88;
                 const isMobile = window.innerWidth < 768;
+                const oikeaMarginaali = isMobile ? 16 : 8; // enemmän tilaa mobiilissa
 
                 rivit.forEach((row, index) => {
                     const tuote = nykyisetTuotteet[index];
@@ -775,29 +815,38 @@
                         leftOffset = kuvaRect.right - containerRect.left + 8;
                     }
 
-                    let rightEdge = tableRect.left + tableScrollLeft + tableFullWidth * mittarinOikeaReunaProsentti - containerRect.left - 8;
-                    const maxRight = containerRect.width - 5;
+                    let rightEdge = tableRect.left + tableScrollLeft + tableFullWidth * mittarinOikeaReunaProsentti - containerRect.left;
+                    const maxRight = containerRect.width - oikeaMarginaali;
                     if (rightEdge > maxRight) rightEdge = maxRight;
 
-                    const width = rightEdge - leftOffset;
-                    if (width < 50) return;
+                    let width = rightEdge - leftOffset;
+                    if (isMobile) {
+                        width = Math.max(50, width);
+                    } else if (width < 50) return;
 
                     const overlay = document.createElement('div');
                     overlay.className = 'mittari-overlay';
-                    overlay.innerHTML = `
-                        <div class="mittari-teksti">Alkoholigrammat / €: ${arvoTeksti} g - ${taso}</div>
-                        <div class="mittari-palkki">
-                            <div class="mittari-osoitin" style="left: ${prosentti}%;"></div>
-                        </div>
-                    `;
+
+                    if (isMobile) {
+                        overlay.innerHTML = `
+                            <div class="mittari-palkki">
+                                <div class="mittari-osoitin" style="left: ${prosentti}%;"></div>
+                            </div>
+                        `;
+                    } else {
+                        overlay.innerHTML = `
+                            <div class="mittari-teksti">Alkoholigrammat / €: ${arvoTeksti} g - ${taso}</div>
+                            <div class="mittari-palkki">
+                                <div class="mittari-osoitin" style="left: ${prosentti}%;"></div>
+                            </div>
+                        `;
+                    }
 
                     overlay.style.left = leftOffset + 'px';
                     overlay.style.width = width + 'px';
 
                     if (isMobile) {
-                        const gaugeTotalHeight = 28;
-                        overlay.style.top = (rect.bottom - containerRect.top - gaugeTotalHeight - 2) + 'px';
-                        overlay.style.height = gaugeTotalHeight + 'px';
+                        overlay.style.top = (rect.bottom - containerRect.top - 10) + 'px';
                     } else {
                         overlay.style.top = (rect.top - containerRect.top + 10) + 'px';
                         overlay.style.height = (rect.height - 12) + 'px';
@@ -945,16 +994,11 @@
                     nimi = (tuote.nimi || "").toLowerCase().trim(),
                     alkoholi = Number(tuote.alkoholi_prosentti) || 0;
                 if (alkoholi === 0) return "Alkoholittomat";
-
-                // Poikkeus: Grandiosa Crispy Blanc hanapakkaus kuuluu viineihin, ei kuohuviineihin
                 if (nimi === 'grandiosa crispy blanc hanapakkaus') return "Viinit";
-
                 const kuohuviiniPattern = /\b(kuohuviini|kuohuviinit|samppanja|samppanjat|sampanja|sampanjat|champagne|champagnet|cava|cavat|prosecco|proseccot|cr[eé]mant|spumante|spumantit|frizzante|frizzantit|moscato\s*d'asti|asti\s*spumante|lambrusco|lambruscot|sekt|sektit|pétillant|pét-nat|crémant|rosé\s*kuohu|kupliva|kuplivat|sparkling|sparklingit|bubbly|bubblies)\b/i;
                 if (kuohuviiniPattern.test(tyyppi) || kuohuviiniPattern.test(nimi)) return "Kuohuviinit";
-
                 const viiniPattern = /\b(viini|viinit|punaviini|punaviinit|valkoviini|valkoviinit|roseeviini|roseeviinit|portviini|portviinit|port|portit|sherry|sherryt|madeira|madeirat|marsala|marsalat|vermut|vermutit|gl[oö]gi|gl[oö]git|gl[üu]hwein|gl[üu]hweinit|hedelmäviini|hedelmäviinit|marjaviini|marjaviinit|väkevä\s*viini|väkevät\s*viinit|rosé|rosét|rosato|rosatot|riesling|rieslingit|chardonnay|chardonnayt|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|rheingau|nahe|tokaji|icewine|fiano|fianot)\b/i;
                 if (viiniPattern.test(tyyppi) || viiniPattern.test(nimi)) return "Viinit";
-
                 const olutPattern = /\b(olut|oluet|ale|alet|lager|lagerit|stout|stoutit|porter|porterit|ipa|ipat|pils|pilsit|vehnä|vehnät|saison|saisonit|sahti|sahdit|dubbel|dubbelit|tripel|tripelit|quadrupel|quadrupelit|barley\s*wine|pale\s*ale|neipa|neipat|imperial\s*stout|blond|blondit|dipa|dipat)\b/i;
                 if (olutPattern.test(tyyppi) || olutPattern.test(nimi)) return "Oluet";
                 const siideriPattern = /\b(siideri|siiderit|cider|ciderit|seltzer|seltzerit|hard\s*seltzer)\b/i;
@@ -1032,7 +1076,10 @@
                     html += `<tr class="tuote-rivi ${riviLuokka}" data-index="${gi}" data-key="${tuoteKey}"><td><div class="tuote-solu">${sijaintiHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${t.hinta_eur.toFixed(2)}</td><td>${ah===Infinity?'∞':ah.toFixed(2)+' €'}</td><td>${t.alkoholi_prosentti.toFixed(1)}%</td><td>${t.tilavuus_litraa.toFixed(2)}</td></tr>`;
                 }
                 body.innerHTML = html;
-                infoDiv.innerHTML = `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${sorted.length}</strong> tuotetta.`;
+
+                // Päivitä "Näytetään: X" suodatusten mukaan
+                kokonaismaaraDiv.textContent = 'Näytetään: ' + sorted.length;
+
                 paivitaStructuredData();
                 processAllImages();
                 paivitaMittarit();
@@ -1195,9 +1242,14 @@
                 }
                 tuoteData = [...map.values()];
                 if (!tuoteData.length) { infoDiv.innerHTML = "⚠️ Ei kelvollisia tuotteita."; return; }
+
+                // Kiinteä info-teksti (ei muutu suodatettaessa)
+                infoDiv.innerHTML = `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${tuoteData.length}</strong> tuotetta.`;
+                kokonaismaaraDiv.textContent = `Näytetään: ${tuoteData.length}`;
+
                 luoCheckboxit(); currentSort = 'annos'; startIndex = 0; btnAnnos.classList.add('aktiivinen'); btnHinta.classList.remove('aktiivinen');
                 const INITIAL_CHUNK = 10, TOTAL_TO_LOAD = Math.min(WINDOW_SIZE, tuoteData.length); let loadedSoFar = 0;
-                const sortedAll = getSortedData(); infoDiv.innerHTML = `Alkon halvin alkoholi vertailussa – löytyi yhteensä <strong>${sortedAll.length}</strong> tuotetta.`;
+                const sortedAll = getSortedData();
                 function appendChunk() {
                     const chunk = sortedAll.slice(loadedSoFar, loadedSoFar + INITIAL_CHUNK);
                     if (chunk.length === 0) { processAllImages(); paivitaStructuredData(); paivitaMittarit(); return; }
