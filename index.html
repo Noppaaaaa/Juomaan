@@ -54,7 +54,7 @@
         /* Numerot tasaleveiksi (viimeistely) */
         #tuoteTaulukko td:nth-child(n+3){font-variant-numeric:tabular-nums}
         /* Oikean reunan suodattimet pinottuna (myymälät kategorioiden yläpuolella) */
-        .suodatin-ryhma{margin-left:auto;display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:230px}
+        .suodatin-ryhma{margin-left:auto;display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:230px}@media(max-width:768px){.suodatin-ryhma{margin-left:0}}
         .suodatin-ryhma .kategoria-dropdown{margin-left:0;width:100%}
         .suodatin-ryhma .dropdown-toggle{width:100%;text-align:left;display:flex;justify-content:space-between;gap:8px}
         .myymala-label{display:block;font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:10px;white-space:nowrap}
