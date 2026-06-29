@@ -7,7 +7,7 @@ const MAX_VOTES = 3;
 function corsHeaders(origin) {
   return {
     "Access-Control-Allow-Origin": origin || "*",
-    "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+    "Access-Control-Allow-Methods": "GET,POST,DELETE,OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Max-Age": "86400",
   };
@@ -89,6 +89,35 @@ export default {
           "INSERT OR IGNORE INTO votes (client_id, product_key, created_at) VALUES (?, ?, ?)"
         ).bind(clientId, key, Date.now()).run();
       }
+
+      const total = await env.DB.prepare(
+        "SELECT COUNT(*) AS c FROM votes WHERE product_key = ?"
+      ).bind(key).first();
+
+      return json(
+        { ok: true, key, count: total?.c || 0, omat: await omatAanet(env, clientId), max: MAX_VOTES },
+        200,
+        origin
+      );
+    }
+
+    // DELETE: peru oma ääni. Body: { clientId, key }.
+    if (request.method === "DELETE") {
+      let body;
+      try {
+        body = await request.json();
+      } catch {
+        return json({ error: "bad_json" }, 400, origin);
+      }
+      const clientId = (body.clientId || "").toString().slice(0, 64);
+      const key = (body.key || "").toString().slice(0, 300);
+      if (!clientId || !key) {
+        return json({ error: "missing_fields" }, 400, origin);
+      }
+
+      await env.DB.prepare(
+        "DELETE FROM votes WHERE client_id = ? AND product_key = ?"
+      ).bind(clientId, key).run();
 
       const total = await env.DB.prepare(
         "SELECT COUNT(*) AS c FROM votes WHERE product_key = ?"
