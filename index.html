@@ -130,11 +130,16 @@
         .paavalikko .yp-nappi:active,.nappi-alue button:active,.dropdown-toggle:active{transform:translateY(0);box-shadow:0 1px 2px rgba(0,0,0,.14)}
         .paavalikko .yp-nappi:focus-visible,.dropdown-toggle:focus-visible{outline:2px solid var(--btn-bg);outline-offset:2px}
         /* ===== Varit: paavalikko omana menunaan (tumma), toimintonapit kirkkaampi sininen ===== */
-        :root{--btn-bg:#2563eb;--btn-hover:#1d4ed8;--btn-active-bg:#1e40af;--link-color:#2563eb;--nav-bg:#1f2937;--nav-hover:#111827;--nav-active:#8B0000}
-        body.dark-mode{--btn-bg:#3b82f6;--btn-hover:#2563eb;--btn-active-bg:#1d4ed8;--link-color:#93c5fd;--nav-bg:#374151;--nav-hover:#1f2937;--nav-active:#b91c1c}
+        :root{--btn-bg:#3d6a9e;--btn-hover:#335a86;--btn-active-bg:#2a4a6e;--link-color:#3667a0;--nav-bg:#1f2937;--nav-hover:#111827;--nav-active:#8B0000}
+        body.dark-mode{--btn-bg:#4d80b8;--btn-hover:#40699a;--btn-active-bg:#365a82;--link-color:#8fbce8;--nav-bg:#374151;--nav-hover:#1f2937;--nav-active:#b91c1c}
         .paavalikko .yp-nappi{background-color:var(--nav-bg)}
         .paavalikko .yp-nappi:hover{background-color:var(--nav-hover)}
         .paavalikko .yp-nappi.aktiivinen{background-color:var(--nav-active)}
+        /* Paavalikon napit tayttavat koko vaakatilan */
+        .paavalikko .ylapalkki-napit{flex:1;display:flex;gap:10px}
+        .paavalikko .ylapalkki-napit .yp-nappi{flex:1;justify-content:center;text-align:center}
+        @media(max-width:768px){.paavalikko .ylapalkki-napit{flex-basis:100%;gap:8px}.paavalikko .ylapalkki-napit .yp-nappi{white-space:normal;line-height:1.2}}
+        @media(max-width:480px){.paavalikko .ylapalkki-napit .yp-nappi{font-size:12px;padding:8px 6px}}
     </style>
 </head>
 <body>
