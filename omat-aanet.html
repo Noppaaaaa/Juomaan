@@ -12,12 +12,15 @@
         *,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
         :root{--bg-body:#f0f4f8;--bg-container:#ffffff;--text-main:#1a202c;--text-heading:#2d3748;--text-muted:#4a5568;--info-bg:#ebf8ff;--info-text:#2b6cb0;--info-border:#3182ce;--btn-bg:#2b6cb0;--btn-hover:#2c5282;--btn-active-bg:#1e4a6b;--table-border:#e2e8f0;--row-border:#edf2f7;--kytkin-bg:#cbd5e0;--link-color:#2b6cb0;--kortti-bg:#f8fafc}
         body.dark-mode{--bg-body:#1a1e26;--bg-container:#21252f;--text-main:#e2e8f0;--text-heading:#f8fafc;--text-muted:#94a3b8;--info-bg:#1a1e26;--info-text:#38bdf8;--info-border:#0ea5e9;--btn-bg:#0ea5e9;--btn-hover:#0284c7;--btn-active-bg:#0369a1;--table-border:#2d333b;--row-border:#2d333b;--kytkin-bg:#3a4049;--link-color:#7dd3fc;--kortti-bg:#1a1e26}
-        body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;margin:0;padding:40px 20px;background:var(--bg-body);color:var(--text-main);min-height:100vh;transition:background .3s,color .3s}
+        body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;margin:0;padding:40px 20px;background:var(--bg-body);color:var(--text-main);min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s}
         .container{max-width:800px;margin:0 auto;background:var(--bg-container);border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.05);padding:30px;transition:background .3s}
         h1{font-size:34px;font-weight:700;color:#8B0000;margin:0}
         .alaotsikko{font-size:14px;color:var(--text-muted);margin:4px 0 0}
         /* Yläpalkki */
         .ylapalkki{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;padding-bottom:18px;margin-bottom:18px;border-bottom:2px solid var(--table-border)}
+        .paavalikko{position:sticky;top:0;z-index:200;width:100vw;margin-left:calc(50% - 50vw);margin-top:-40px;margin-bottom:24px;background:var(--bg-container);border-bottom:2px solid var(--table-border);box-shadow:0 2px 10px rgba(0,0,0,.06)}
+        .paavalikko .ylapalkki{max-width:800px;margin:0 auto;padding:12px 20px;border-bottom:none}
+        @media(max-width:480px){.paavalikko{margin-top:-15px}}
         .ylapalkki-napit{display:flex;gap:10px;flex-wrap:wrap}
         .yp-nappi{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;background-color:var(--btn-bg);color:#fff;text-decoration:none;border-radius:8px;font-size:14px;font-weight:600;transition:all .2s;box-shadow:0 4px 6px rgba(0,0,0,.1);white-space:nowrap;cursor:pointer}
         .yp-nappi:hover{background-color:var(--btn-hover);transform:translateY(-2px)}
@@ -51,11 +54,23 @@
         footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--kytkin-bg);text-align:center;font-size:13px;color:var(--text-muted)}
         footer a{color:var(--link-color)}
         @media(max-width:480px){body{padding:15px 5px}.container{padding:18px}h1{font-size:26px}.aani-kortti{flex-wrap:wrap}.teema-kytkin{width:48px;height:24px}.liuku:before{height:18px;width:18px;font-size:12px}input:checked+.liuku:before{transform:translateX(24px)}}
+        /* ===== Ulkoasun hionta — ei kosketa asettelua ===== */
+        html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+        h1{letter-spacing:-.02em}
+        .container{box-shadow:0 1px 2px rgba(0,0,0,.05),0 18px 42px -14px rgba(0,0,0,.14)}
+        body.dark-mode .container{box-shadow:0 1px 2px rgba(0,0,0,.3),0 18px 42px -14px rgba(0,0,0,.6)}
+        .paavalikko{box-shadow:0 1px 0 rgba(0,0,0,.04),0 6px 18px -10px rgba(0,0,0,.2)}
+        .info{box-shadow:0 1px 2px rgba(0,0,0,.05)}
+        .aani-kortti{box-shadow:0 1px 2px rgba(0,0,0,.04),0 6px 16px -8px rgba(0,0,0,.12)}
+        .paavalikko .yp-nappi{background-image:linear-gradient(180deg,rgba(255,255,255,.10),rgba(0,0,0,.06));box-shadow:0 1px 2px rgba(0,0,0,.10),0 5px 12px -4px rgba(0,0,0,.20);transition:transform .15s ease,box-shadow .2s ease,background-color .2s ease}
+        .paavalikko .yp-nappi:hover{box-shadow:0 2px 5px rgba(0,0,0,.12),0 10px 22px -6px rgba(0,0,0,.28)}
+        .paavalikko .yp-nappi:active{transform:translateY(0);box-shadow:0 1px 2px rgba(0,0,0,.14)}
+        .paavalikko .yp-nappi:focus-visible{outline:2px solid var(--btn-bg);outline-offset:2px}
     </style>
 </head>
 <body>
-    <main class="container" role="main">
-        <nav class="ylapalkki" aria-label="Sivunavigointi">
+    <nav class="paavalikko" aria-label="Sivunavigointi">
+        <div class="ylapalkki">
             <div class="ylapalkki-napit">
                 <a href="index.html" class="yp-nappi" title="Etusivu – hintavertailu">Etusivulle</a>
                 <a href="omat-aanet.html" class="yp-nappi aktiivinen" aria-current="page" title="Omat antamasi äänet">Omat annetut äänet</a>
@@ -68,7 +83,9 @@
                     <span class="liuku"></span>
                 </label>
             </div>
-        </nav>
+        </div>
+    </nav>
+    <main class="container" role="main">
 
         <header>
             <h1>Omat annetut äänet</h1>
