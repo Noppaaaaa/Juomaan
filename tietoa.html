@@ -9,42 +9,55 @@
     <meta name="robots" content="index,follow">
     <meta name="theme-color" content="#8B0000" id="metaThemeColor">
     <style>
-        *,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}:root{--bg-body:#f0f4f8;--bg-container:#ffffff;--text-main:#1a202c;--text-heading:#2d3748;--text-muted:#4a5568;--info-bg:#ebf8ff;--info-text:#2b6cb0;--info-border:#3182ce;--btn-bg:#2b6cb0;--btn-hover:#2c5282;--kytkin-bg:#cbd5e0;--link-color:#2b6cb0}body.dark-mode{--bg-body:#1a1e26;--bg-container:#21252f;--text-main:#e2e8f0;--text-heading:#f8fafc;--text-muted:#94a3b8;--info-bg:#1a1e26;--info-text:#38bdf8;--info-border:#0ea5e9;--btn-bg:#0ea5e9;--btn-hover:#0284c7;--kytkin-bg:#3a4049;--link-color:#7dd3fc}body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;margin:0;padding:40px 20px;background:var(--bg-body);color:var(--text-main);min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s}.container{max-width:800px;margin:0 auto;background:var(--bg-container);border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.05);padding:40px;transition:background .3s}.header-rivi{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;flex-wrap:wrap;gap:15px}.logo-otsikko h1{font-size:36px;font-weight:700;color:#8B0000;margin:0}.alaotsikko{font-size:14px;color:var(--text-muted);margin:4px 0 0}.oikea-ylapalkki{display:flex;align-items:center;gap:15px}.etusivu-linkki{display:inline-flex;align-items:center;padding:8px 16px;background-color:var(--btn-bg);color:white;text-decoration:none;border-radius:8px;font-size:14px;font-weight:600;transition:all .2s;box-shadow:0 4px 6px rgba(0,0,0,.1);font-family:inherit;white-space:nowrap}.etusivu-linkki:hover{background-color:var(--btn-hover);transform:translateY(-2px)}.kytkin-wrapper{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--text-muted)}.teema-kytkin{position:relative;display:inline-block;width:56px;height:28px}.teema-kytkin input{opacity:0;width:0;height:0}.liuku{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:var(--kytkin-bg);transition:.3s;border-radius:34px}.liuku:before{position:absolute;content:"☀️";font-size:16px;display:flex;align-items:center;justify-content:center;height:22px;width:22px;left:3px;bottom:3px;background-color:white;transition:.3s;border-radius:50%;color:#f59e0b;box-shadow:0 1px 3px rgba(0,0,0,.2)}input:checked+.liuku:before{content:"🌙";color:#3b82f6;transform:translateX(28px)}input:checked+.liuku{background-color:var(--btn-bg)}.sisalto{line-height:1.7;font-size:17px}.sisalto p{margin-bottom:20px}.sisalto a{color:var(--link-color);text-decoration:underline;font-weight:600}.sisalto a:hover{text-decoration:none}footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--kytkin-bg);text-align:center;font-size:13px;color:var(--text-muted)}@media(max-width:768px){body{padding:20px 10px}.container{padding:25px}h1{font-size:28px}.header-rivi{flex-direction:column;align-items:flex-start}.sisalto{font-size:16px}}@media(max-width:480px){body{padding:15px 5px}.container{padding:18px}h1{font-size:24px}.teema-kytkin{width:48px;height:24px}.liuku:before{height:18px;width:18px;left:3px;bottom:3px;font-size:12px}input:checked+.liuku:before{transform:translateX(24px)}.sisalto{font-size:15px}}
-        .ylapalkki{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;padding-bottom:18px;margin-bottom:24px;border-bottom:2px solid var(--kytkin-bg)}
-        .paavalikko{position:sticky;top:0;z-index:200;width:100vw;margin-left:calc(50% - 50vw);margin-top:-40px;margin-bottom:24px;background:var(--bg-container);border-bottom:2px solid var(--kytkin-bg);box-shadow:0 2px 10px rgba(0,0,0,.06)}
-        .paavalikko .ylapalkki{max-width:800px;margin:0 auto;padding:12px 20px;border-bottom:none}
-        @media(max-width:768px){.paavalikko{margin-top:-20px}}
-        @media(max-width:480px){.paavalikko{margin-top:-15px}}
-        .ylapalkki-napit{display:flex;gap:10px;flex-wrap:wrap}
-        .yp-nappi{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;background-color:var(--btn-bg);color:#fff;text-decoration:none;border-radius:8px;font-size:14px;font-weight:600;transition:all .2s;box-shadow:0 4px 6px rgba(0,0,0,.1);white-space:nowrap}
-        .yp-nappi:hover{background-color:var(--btn-hover);transform:translateY(-2px)}
-        .yp-nappi.aktiivinen{background-color:#1e4a6b;box-shadow:0 0 0 2px rgba(255,255,255,.3)}
-        body.dark-mode .yp-nappi.aktiivinen{background-color:#0369a1}
-        @media(max-width:480px){.yp-nappi{padding:8px 12px;font-size:13px}}
-        /* ===== Ulkoasun hionta — ei kosketa asettelua ===== */
-        html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
-        h1{letter-spacing:-.02em}
-        .container{box-shadow:0 1px 2px rgba(0,0,0,.05),0 18px 42px -14px rgba(0,0,0,.14)}
-        body.dark-mode .container{box-shadow:0 1px 2px rgba(0,0,0,.3),0 18px 42px -14px rgba(0,0,0,.6)}
-        .paavalikko{box-shadow:0 1px 0 rgba(0,0,0,.04),0 6px 18px -10px rgba(0,0,0,.2)}
-        .paavalikko .yp-nappi{background-image:linear-gradient(180deg,rgba(255,255,255,.10),rgba(0,0,0,.06));box-shadow:0 1px 2px rgba(0,0,0,.10),0 5px 12px -4px rgba(0,0,0,.20);transition:transform .15s ease,box-shadow .2s ease,background-color .2s ease}
-        .paavalikko .yp-nappi:hover{box-shadow:0 2px 5px rgba(0,0,0,.12),0 10px 22px -6px rgba(0,0,0,.28)}
-        .paavalikko .yp-nappi:active{transform:translateY(0);box-shadow:0 1px 2px rgba(0,0,0,.14)}
-        .paavalikko .yp-nappi:focus-visible{outline:2px solid var(--btn-bg);outline-offset:2px}
-        /* ===== Varit: paavalikko omana menunaan (tumma), toimintonapit kirkkaampi sininen ===== */
-        :root{--btn-bg:#3d6a9e;--btn-hover:#335a86;--btn-active-bg:#2a4a6e;--link-color:#3667a0;--nav-bg:#1f2937;--nav-hover:#111827;--nav-active:#8B0000}
-        body.dark-mode{--btn-bg:#4d80b8;--btn-hover:#40699a;--btn-active-bg:#365a82;--link-color:#8fbce8;--nav-bg:#374151;--nav-hover:#1f2937;--nav-active:#b91c1c}
-        .paavalikko .yp-nappi{background-color:var(--nav-bg)}
-        .paavalikko .yp-nappi:hover{background-color:var(--nav-hover)}
-        .paavalikko .yp-nappi.aktiivinen{background-color:var(--nav-active)}
-        /* Paavalikon napit tayttavat koko vaakatilan */
-        .paavalikko .ylapalkki-napit{flex:1;display:flex;gap:10px}
+        *,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}:root{--bg-body:#f0f4f8;--bg-container:#ffffff;--text-main:#1a202c;--text-heading:#2d3748;--text-muted:#4a5568;--info-bg:#ebf8ff;--info-text:#2b6cb0;--info-border:#3182ce;--btn-bg:#2b6cb0;--btn-hover:#2c5282;--kytkin-bg:#cbd5e0;--link-color:#2b6cb0;--nav-btn-text:#1a202c;--nav-btn-text-active:#161b25;--nav-btn-outline:rgba(0,0,0,0.12);--c-glass:#bbbbbc;--c-light:#fff;--c-dark:#000;--glass-reflex-dark:1;--glass-reflex-light:1;--saturation:150%;--nav-active-bg:rgba(208,208,208,0.6)}body.dark-mode{--bg-body:#1a1e26;--nav-active-bg:rgba(144,144,144,0.6);--bg-container:#21252f;--text-main:#e2e8f0;--text-heading:#f8fafc;--text-muted:#94a3b8;--info-bg:#1a1e26;--info-text:#38bdf8;--info-border:#0ea5e9;--btn-bg:#0ea5e9;--btn-hover:#0284c7;--kytkin-bg:#3a4049;--link-color:#7dd3fc;--nav-btn-text:#e2e8f0;--nav-btn-text-active:#e2e8f0;--nav-btn-outline:rgba(255,255,255,0.15);--c-glass:#bbbbbc;--c-light:#fff;--c-dark:#000;--glass-reflex-dark:2;--glass-reflex-light:0.3;--saturation:150%}body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;margin:0;padding:100px 20px 40px;background:var(--bg-body);color:var(--text-main);min-height:100vh;transition:background .3s,color .3s}.container{max-width:800px;margin:0 auto;background:var(--bg-container);border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.05);padding:40px;transition:background .3s}.header-rivi{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;flex-wrap:wrap;gap:15px}.logo-otsikko h1{font-size:36px;font-weight:700;color:#8B0000;margin:0}.alaotsikko{font-size:14px;color:var(--text-muted);margin:4px 0 0}.oikea-ylapalkki{display:flex;align-items:center;gap:15px}.etusivu-linkki{display:inline-flex;align-items:center;padding:8px 16px;background-color:var(--btn-bg);color:white;text-decoration:none;border-radius:8px;font-size:14px;font-weight:600;transition:all .2s;box-shadow:0 4px 6px rgba(0,0,0,.1);font-family:inherit;white-space:nowrap}.etusivu-linkki:hover{background-color:var(--btn-hover);transform:translateY(-2px)}.kytkin-wrapper{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--text-muted)}.teema-kytkin{position:relative;display:inline-block;width:56px;height:28px}.teema-kytkin input{opacity:0;width:0;height:0}.liuku{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:var(--kytkin-bg);transition:.3s;border-radius:34px}.liuku:before{position:absolute;content:"";height:20px;width:20px;left:4px;bottom:4px;background-color:white;transition:.3s;border-radius:50%}.teema-kytkin input:checked+.liuku{background-color:var(--btn-active-bg)}.teema-kytkin input:checked+.liuku:before{transform:translateX(28px)}@media(max-width:1024px){body{padding:85px 15px 20px}.container{padding:30px}.logo-otsikko h1{font-size:30px}}@media(max-width:768px){body{padding:80px 10px 20px}.container{padding:25px}.logo-otsikko h1{font-size:26px}.etusivu-linkki{padding:6px 12px;font-size:13px}}@media(max-width:480px){body{padding:80px 5px 15px}.container{padding:18px}.logo-otsikko h1{font-size:22px}.etusivu-linkki{padding:5px 10px;font-size:12px}}
+        /* ===== Nav (vain napit, ei glass-taustaa) ===== */
+        .paavalikko{position:fixed;top:0;left:0;right:0;z-index:99999;width:100vw;box-shadow:0 1px 0 rgba(0,0,0,.04),0 6px 18px -10px rgba(0,0,0,.2)}
+        .paavalikko .ylapalkki{max-width:800px;margin:0 auto;padding:12px 20px}
+        .paavalikko .ylapalkki-napit{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
         .paavalikko .ylapalkki-napit .yp-nappi{flex:1;justify-content:center;text-align:center}
         @media(max-width:768px){.paavalikko .ylapalkki-napit{flex-basis:100%;gap:8px}.paavalikko .ylapalkki-napit .yp-nappi{white-space:normal;line-height:1.2}}
         @media(max-width:480px){.paavalikko .ylapalkki-napit .yp-nappi{font-size:12px;padding:8px 6px}}
+        .yp-nappi{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:9px 16px;background:transparent;border-radius:9999px;text-decoration:none;color:var(--nav-btn-text);font-size:14px;font-weight:600;z-index:1;white-space:nowrap;transition:transform .2s;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+        .yp-nappi::before{content:'';position:absolute;z-index:-1;inset:0;border-radius:9999px;background-color:rgba(20,27,40,.30);border:1px solid var(--nav-btn-outline);-webkit-backdrop-filter:blur(6px) saturate(1.6);backdrop-filter:blur(6px) saturate(1.6);-webkit-backdrop-filter:url(#container-glass) saturate(1.6);backdrop-filter:url(#container-glass) saturate(1.6)}
+        .yp-nappi:hover{transform:scale(1.05)}
+        .nav-active{position:absolute;top:0;left:0;height:100%;border-radius:9999px;background-color:var(--nav-active-bg);z-index:2;pointer-events:none;transition:transform .12s cubic-bezier(.22,1,.36,1),width .12s cubic-bezier(.22,1,.36,1)}.yp-nappi.aktiivinen{color:var(--nav-btn-text-active)}
+
+        .switcher-rivi .switcher{margin:0 0 0 auto}
+        .switcher-rivi{display:flex;justify-content:flex-end;margin:10px 0 6px}
+        /* ===== Teema-switcher (glass, 2 opt) ===== */
+        .switcher{all:unset;display:flex;align-items:center;gap:4px;width:112px;height:32px;box-sizing:border-box;padding:3px 4px;margin:0 auto;border:none;border-radius:99em;background-color:color-mix(in srgb,var(--c-glass) 12%,transparent);-webkit-backdrop-filter:blur(8px) url(#switcher) saturate(var(--saturation));backdrop-filter:blur(8px) url(#switcher) saturate(var(--saturation));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*10%),transparent),inset 1.8px 3px 0px -2px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*90%),transparent),inset -2px -2px 0px -2px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*80%),transparent),inset -3px -8px 1px -6px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*60%),transparent),inset -0.3px -1px 4px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*12%),transparent),inset -1.5px 2.5px 0px -2px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*20%),transparent),inset 0px 3px 4px -2px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*20%),transparent),inset 2px -6.5px 1px -4px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*10%),transparent),0px 1px 5px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*10%),transparent),0px 6px 16px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*8%),transparent);transition:background-color 400ms cubic-bezier(1,0,0.4,1),box-shadow 400ms cubic-bezier(1,0,0.4,1);position:relative}
+        .switcher__legend{position:absolute;width:1px;height:1px;margin:-1px;border:0;padding:0;white-space:nowrap;clip-path:inset(100%);clip:rect(0 0 0 0);overflow:hidden}
+        .switcher__input{clip:rect(0 0 0 0);clip-path:inset(100%);height:1px;width:1px;overflow:hidden;position:absolute;white-space:nowrap}
+        .switcher__icon{display:block;width:22px;height:22px;transition:scale 200ms cubic-bezier(0.5,0,0,1)}
+        .switcher__filter{position:absolute;width:0;height:0;z-index:-1}
+        .switcher__option{--c:var(--nav-btn-text);display:flex;justify-content:center;align-items:center;padding:0 2px;width:48px;height:100%;box-sizing:border-box;border-radius:99em;opacity:1;transition:all 160ms}
+        .switcher__option:hover{--c:var(--link-color);cursor:pointer}
+        .switcher__option:hover .switcher__icon{scale:1.2}
+        .switcher__option:has(input:checked){--c:var(--nav-btn-text);cursor:auto}
+        .switcher__option:has(input:checked) .switcher__icon{scale:1}
+        .switcher::after{content:'';position:absolute;left:2px;top:3px;display:block;width:52px;height:calc(100% - 8px);border-radius:99em;background-color:color-mix(in srgb,var(--c-glass) 36%,transparent);z-index:-1;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*10%),transparent),inset 2px 1px 0px -1px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*90%),transparent),inset -1.5px -1px 0px -1px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*80%),transparent),inset -2px -6px 1px -5px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*60%),transparent),inset -1px 2px 3px -1px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*20%),transparent),inset 0px -4px 1px -2px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*10%),transparent),0px 3px 6px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*8%),transparent)}
+        .switcher:has(input[c-option="1"]:checked)::after{translate:0 0;transform-origin:right;transition:background-color 400ms cubic-bezier(1,0,0.4,1),box-shadow 400ms cubic-bezier(1,0,0.4,1),translate 400ms cubic-bezier(1,0,0.4,1);animation:scaleToggle 440ms ease}
+        .switcher[c-previous="1"]:has(input[c-option="2"]:checked)::after{transform-origin:left}
+        .switcher:has(input[c-option="2"]:checked)::after{translate:48px 0;transition:background-color 400ms cubic-bezier(1,0,0.4,1),box-shadow 400ms cubic-bezier(1,0,0.4,1),translate 400ms cubic-bezier(1,0,0.4,1);animation:scaleToggle2 440ms ease}
+        @keyframes scaleToggle{0%{scale:1 1}50%{scale:1.1 1}100%{scale:1 1}}
+        @keyframes scaleToggle2{0%{scale:1 1}50%{scale:1.2 1}100%{scale:1 1}}
     </style>
 </head>
 <body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none;position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <filter id="switcher">
+    <feTurbulence type="fractalNoise" baseFrequency="0.01 0.08" numOctaves="3" result="noise" />
+    <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 3 -1" in="noise" result="coloredNoise" />
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+    <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.2" result="shadowed" />
+    <feComposite in="SourceGraphic" in2="shadowed" operator="over" />
+  </filter>
+  <filter id="container-glass" x="0%" y="0%" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.008 0.008" numOctaves="2" seed="92" result="noise" />
+    <feGaussianBlur in="noise" stdDeviation="0.02" result="blur" />
+    <feDisplacementMap in="SourceGraphic" in2="blur" scale="77" xChannelSelector="R" yChannelSelector="G" />
+  </filter>
+</svg>
     <nav class="paavalikko" aria-label="Sivunavigointi">
         <div class="ylapalkki">
             <div class="ylapalkki-napit">
@@ -52,15 +65,37 @@
                 <a href="omat-aanet.html" class="yp-nappi" title="Omat antamasi äänet">Omat annetut äänet</a>
                 <a href="tietoa.html" class="yp-nappi aktiivinen" aria-current="page" title="Tietoa sivustosta ja tekijöistä">Tietoja</a>
             </div>
-            <div class="kytkin-wrapper">
-                <span id="teemaTeksti" aria-live="polite">Tumma teema</span>
-                <label class="teema-kytkin" aria-label="Vaihda tumman ja vaalean teeman välillä">
-                    <input type="checkbox" id="teemaToggle" onchange="vaihdaTeema()">
-                    <span class="liuku"></span>
-                </label>
-            </div>
         </div>
     </nav>
+    <div class="switcher-rivi">
+        <fieldset class="switcher" data-switcher>
+            <legend class="switcher__legend">Theme</legend>
+            <label class="switcher__option">
+                <input class="switcher__input" type="radio" name="theme" value="light" c-option="1" checked/>
+                <svg class="switcher__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 36 36">
+                    <path fill="var(--c)" fill-rule="evenodd" d="M18 12a6 6 0 1 1 0 12 6 6 0 0 1 0-12Zm0 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z" clip-rule="evenodd"/>
+                    <path fill="var(--c)" d="M17 6.038a1 1 0 1 1 2 0v3a1 1 0 0 1-2 0v-3ZM24.244 7.742a1 1 0 1 1 1.618 1.176L24.1 11.345a1 1 0 1 1-1.618-1.176l1.763-2.427ZM29.104 13.379a1 1 0 0 1 .618 1.902l-2.854.927a1 1 0 1 1-.618-1.902l2.854-.927ZM29.722 20.795a1 1 0 0 1-.619 1.902l-2.853-.927a1 1 0 1 1 .618-1.902l2.854.927ZM25.862 27.159a1 1 0 0 1-1.618 1.175l-1.763-2.427a1 1 0 1 1 1.618-1.175l1.763 2.427ZM19 30.038a1 1 0 0 1-2 0v-3a1 1 0 1 1 2 0v3ZM11.755 28.334a1 1 0 0 1-1.618-1.175l1.764-2.427a1 1 0 1 1 1.618 1.175l-1.764 2.427ZM6.896 22.697a1 1 0 1 1-.618-1.902l2.853-.927a1 1 0 1 1 .618 1.902l-2.853.927ZM6.278 15.28a1 1 0 1 1 .618-1.901l2.853.927a1 1 0 1 1-.618 1.902l-2.853-.927ZM10.137 8.918a1 1 0 0 1 1.618-1.176l1.764 2.427a1 1 0 0 1-1.618 1.176l-1.764-2.427Z"/>
+                </svg>
+            </label>
+            <label class="switcher__option">
+                <input class="switcher__input" type="radio" name="theme" value="dark" c-option="2"/>
+                <svg class="switcher__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 36 36">
+                    <path fill="var(--c)" d="M12.5 8.473a10.968 10.968 0 0 1 8.785-.97 7.435 7.435 0 0 0-3.737 4.672l-.09.373A7.454 7.454 0 0 0 28.732 20.4a10.97 10.97 0 0 1-5.232 7.125l-.497.27c-5.014 2.566-11.175.916-14.234-3.813l-.295-.483C5.53 18.403 7.13 11.93 12.017 8.77l.483-.297Zm4.234.616a8.946 8.946 0 0 0-2.805.883l-.429.234A9 9 0 0 0 10.206 22.5l.241.395A9 9 0 0 0 22.5 25.794l.416-.255a8.94 8.94 0 0 0 2.167-1.99 9.433 9.433 0 0 1-2.782-.313c-5.043-1.352-8.036-6.535-6.686-11.578l.147-.491c.242-.745.573-1.44.972-2.078Z"/>
+                </svg>
+            </label>
+            <div class="switcher__filter">
+                <svg>
+                    <filter id="switcher" primitiveUnits="objectBoundingBox">
+                        <feImage result="map" width="100%" height="100%" x="0" y="0" href="data:image/webp;base64,UklGRq4vAABXRUJQVlA4WAoAAAAQAAAA5wEAhwAAQUxQSOYWAAABHAVpGzCrf9t7EiJCYdIGTDpvURGm9n7K+YS32rZ1W8q0LSSEBCQgAQlIwEGGA3CQOAAHSEDCJSEk4KDvUmL31vrYkSX3ufgXEb4gSbKt2LatxlqIgNBBzbM3ikHVkvUvq7btKpaOBCQgIRIiAQeNg46DwgE4oB1QDuKgS0IcXBykXieHkwdjX/4iAhZtK3ErSBYGEelp+4aM/5/+z14+//jLlz/++s/Xr4//kl9C8Ns8DaajU+lPX/74+viv/eWxOXsO+eHL3/88/ut/2b0zref99evjX8NLmNt1fP7178e/jJcw9k3G//XP49/Iy2qaa7328Xkk9ZnWx0VUj3bcyCY4Pi7C6reeEagEohnRCbQQwFmUp9ggYQj8MChjTSI0Ck7G/bh6P5ykNU9yP+10G8I2UAwXeQ96DQwNjqyPu/c4tK+5CtGOK0oM7AH5f767lHpotXVYYI66B+HjMhHj43C5wok3YDH4/vZFZRkB7rNnEfC39WS2Q3K78y525wFNTPf5f+/fN9YI1YyDvjuzV5rQtsfn1Ez1ka3PkeGxOZ6IODxDJqCLpF7vdb9Z3s/ufLr6jf/55zbW3LodwwVVg7Lmao+p3eGcqDFDGuuKnlBZAPSbnkYtTX+mZl2y57Gq85F3tDv7m7/yzpjXHoVA3YUObsHz80W3IUK1E8yRqggxTMzD4If2230ys7RDxWrLu9o9GdSWNwNRC2yMIg+HkTVT3BOZER49XLBMdljemLFMjw8VwZ8OdBti4lWdt7c7dzaSc5yILtztsTMT1GFGn/tysM23nF3xbOsnh/eQGKkxhWGEalljCvWZ+LDE+9t97uqEfb08rdYwZGhheLzG2SJzKS77OIAVgPDjf9jHt6c+0mjinS/v13iz9RV3vsPdmbNG1E+nD6s83jBrBEnlBiTojuJogGJNtzxtsIoD2CFuXYipzhGWHhWqCBSqd7l7GMrnuHzH6910FO+XYwgcDxoFRJNk2GUcpQ6I/GhLmqisuBS6uSFpfAz3Yb9Yatyed7r781ZYfr3+3FfXs1MykSbVcg4GiOKX19SZ9xFRwhG+UZGiROjsXhePVu12fCZTJ3CJ4Z3uXnyxz28RutHa5yCKG6jgfTBPuA9jHL7YdlAa2trNEr7BLANd3qNYcWZqnkvlDe8+F5Q/9k8jCFk17ObrIf0O/5U/iDnqcqA70mURr8FUN5pmQEzDcxuWvOPd1+KrbO4fd0vXK5OTtYEy5C2TA5L4ok6Y31WHR9ZR9lQr6IjwruSd775W6NVa2zz1fir2k1GWnT573Eu3mfMjIikYZkM4MDCnTWbmLrpK/Hs0KD5C8rZ3n0tnw0j76WuU8P1YBIjsvcESbnOQMY+gGC/sd/gG+hKKtDijJHhrcSj/GHa/FZ8oGLXeLx1IW+cgU8pqD0PzMzU3oG5lQ/ZaDPDMYq+aAPSEmHN+JiVIp0haHTvPt77732z5ed2K7NHs9FtCIk4BdNkKLRLvOKlFcw+UiovM4OB5sGgepyML+a4TEu/I29/dFtjJulojJR4Tg71ybApEdca0TSnaumNJyCWH2pjENASlQS/NIXMWtiPV9CHsvuftev08/lemYIcUnHSu6XEMvaBq41tqf/m0siLj7xeXsnBmhxY5z+nCwX4Iu4euTPaE4EQorgogisHrBtsAMdX+Huje7nlx3hMpKovdf+YftDQqytChXfEh7D5nyC8rzNTICINmpK5Ni0ngcAMzpmiYDwOMtmUTiCjvx2S2dIeSguP/QHZ3xYIeGhTt1CsCOIiEuVw8pGjVznDJppuojl30i9RvXccXzmXGj2b3H3XM38c/PZseyeOdpl... (line truncated to 2000 chars)
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="0.04" result="blur"/>
+                        <feDisplacementMap id="disp" in="blur" in2="map" scale="0.5" xChannelSelector="R" yChannelSelector="G"/>
+                    </filter>
+                </svg>
+            </div>
+        </fieldset>
+    </div>
+        </fieldset>
+    </div>
     <main class="container" role="main">
         <header class="header-rivi">
             <div class="logo-otsikko">
@@ -94,34 +129,60 @@
 
     <script>
         (function() {
-            const teemaToggle = document.getElementById("teemaToggle");
-            const teemaTeksti = document.getElementById("teemaTeksti");
+            const switcher = document.querySelector('[data-switcher]');
             const metaThemeColor = document.getElementById("metaThemeColor");
-            const tallennettuTeema = localStorage.getItem("tummaTeema");
+            const inputs = switcher.querySelectorAll('.switcher__input');
+            const tallennettu = localStorage.getItem("teema");
 
-            function paivitaTeemaTeksti() {
-                if (document.body.classList.contains("dark-mode")) {
-                    teemaTeksti.textContent = "Tumma teema";
-                    metaThemeColor?.setAttribute("content", "#1a1e26");
-                } else {
-                    teemaTeksti.textContent = "Vaalea teema";
-                    metaThemeColor?.setAttribute("content", "#8B0000");
-                }
+            function asetaTeema(arvo) {
+                document.body.classList.toggle("dark-mode", arvo === "dark");
+                switcher.dataset.value = arvo;
+                inputs.forEach(function(inp) { inp.checked = inp.value === arvo; });
+                localStorage.setItem("teema", arvo);
+                metaThemeColor?.setAttribute("content", arvo === "dark" ? "#1a1e26" : "#8B0000");
             }
 
-            if (tallennettuTeema === "kylla") {
-                document.body.classList.add("dark-mode");
-                teemaToggle.checked = true;
+            if (tallennettu === "light" || tallennettu === "dark") {
+                asetaTeema(tallennettu);
+            } else {
+                asetaTeema("light");
             }
-            paivitaTeemaTeksti();
 
-            window.vaihdaTeema = function() {
-                document.body.classList.toggle("dark-mode");
-                const onTumma = document.body.classList.contains("dark-mode");
-                localStorage.setItem("tummaTeema", onTumma ? "kylla" : "ei");
-                paivitaTeemaTeksti();
-            };
+            inputs.forEach(function(inp) {
+                inp.addEventListener("change", function() {
+                    if (this.checked) asetaTeema(this.value);
+                });
+            });
         })();
+    </script>
+
+    <script>
+    (function(){
+      var napit=document.querySelector('.paavalikko .ylapalkki-napit');
+      if(!napit)return;
+      var btns=[].slice.call(napit.querySelectorAll('.yp-nappi'));
+      if(!btns.length)return;
+      var el=document.createElement('span');
+      el.className='nav-active';
+      napit.insertBefore(el,napit.firstChild);
+      var activeIdx=btns.findIndex(function(b){return b.classList.contains('aktiivinen');});
+      if(activeIdx<0)activeIdx=0;
+      function place(idx,animate){
+        var b=btns[idx];if(!b)return;
+        el.style.transition=animate?'':'none';
+        el.style.width=b.offsetWidth+'px';
+        el.style.transform='translateX('+b.offsetLeft+'px)';
+        if(!animate)void el.offsetWidth;
+      }
+      var prev=sessionStorage.getItem('navIdx');
+      var prevIdx=(prev!==null)?parseInt(prev,10):activeIdx;
+      if(isNaN(prevIdx)||prevIdx<0||prevIdx>=btns.length)prevIdx=activeIdx;
+      place(prevIdx,false);
+      requestAnimationFrame(function(){requestAnimationFrame(function(){place(activeIdx,true);});});
+      try{sessionStorage.setItem('navIdx',activeIdx);}catch(e){}
+      var rt;
+      window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){place(activeIdx,false);},80);});
+    })();
     </script>
 </body>
 </html>
