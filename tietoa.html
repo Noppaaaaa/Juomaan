@@ -174,10 +174,7 @@
         })();
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-    emailjs.init('YOUR_PUBLIC_KEY');
-
     function lahetaPalaute() {
         var teksti = document.getElementById('palaute-teksti').value.trim();
         if (!teksti) return;
@@ -189,16 +186,26 @@
         btn.textContent = '\u23F3 L\u00e4hetet\u00e4\u00e4n...';
         status.style.display = 'none';
 
-        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
-            feedback: teksti,
-        }).then(function () {
-            status.textContent = '\u2705 Palaute l\u00e4hetetty! Kiitos.';
-            status.style.display = 'block';
-            btn.textContent = '\u2709\uFE0F L\u00e4het\u00e4 palautetta';
-            btn.disabled = false;
-            document.getElementById('palaute-teksti').value = '';
-        }, function (err) {
-            status.textContent = '\u274C Virhe l\u00e4hetyksess\u00e4. Yrit\u00e4 uudelleen tai l\u00e4het\u00e4 s\u00e4hk\u00f6postitse: juomaanfi@gmail.com';
+        var formData = new FormData();
+        formData.append('_replyto', 'juomaanfi@gmail.com');
+        formData.append('_subject', 'Palaute \u2013 juomaan.fi');
+        formData.append('message', teksti);
+
+        fetch('https://formsubmit.co/ajax/juomaanfi@gmail.com', {
+            method: 'POST',
+            body: formData
+        }).then(function (r) { return r.json(); }).then(function (data) {
+            if (data.success) {
+                status.textContent = '\u2705 Palaute l\u00e4hetetty! Kiitos.';
+                status.style.display = 'block';
+                btn.textContent = '\u2709\uFE0F L\u00e4het\u00e4 palautetta';
+                btn.disabled = false;
+                document.getElementById('palaute-teksti').value = '';
+            } else {
+                throw new Error('send_failed');
+            }
+        }).catch(function () {
+            status.textContent = '\u274C Virhe l\u00e4hetyksess\u00e4. Yrit\u00e4 uudelleen.';
             status.style.display = 'block';
             btn.textContent = '\u2709\uFE0F L\u00e4het\u00e4 palautetta';
             btn.disabled = false;
