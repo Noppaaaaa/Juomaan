@@ -57,6 +57,9 @@
         .palaute p{margin:0 0 18px;color:var(--text-muted);font-size:15px;line-height:1.55}
         .palaute-nappi{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:var(--btn-bg);color:#fff;text-decoration:none;border-radius:8px;font-size:15px;font-weight:600;box-shadow:0 4px 6px rgba(0,0,0,.1);transition:background .2s,transform .2s,box-shadow .2s}
         .palaute-nappi:hover{background:var(--btn-hover);transform:translateY(-1px);box-shadow:0 6px 12px rgba(0,0,0,.12)}
+        .palaute textarea{width:100%;padding:12px;border:1px solid var(--info-border);border-radius:8px;background:var(--bg-container);color:var(--text-main);font-family:inherit;font-size:14px;resize:vertical;margin-bottom:12px;box-sizing:border-box}
+        .palaute textarea:focus{outline:2px solid var(--btn-bg);outline-offset:1px}
+        .palaute-nappi:disabled{opacity:.6;cursor:not-allowed;transform:none}
         .palaute-osoite{margin:14px 0 0!important;font-size:14px;color:var(--text-muted)}
         .palaute-osoite a{color:var(--link-color);font-weight:600}
     </style>
@@ -127,8 +130,9 @@
         <section class="palaute" aria-labelledby="palaute-otsikko">
             <h2 id="palaute-otsikko">Palaute ja yhteydenotot</h2>
             <p>Löysitkö virheen, puuttuuko jokin tuote tai onko sinulla parannusehdotus? Otamme palautetta mielellämme vastaan.</p>
-            <a class="palaute-nappi" href="mailto:juomaanfi@gmail.com?subject=Palaute%20%E2%80%93%20juomaan.fi">✉️ Lähetä palautetta</a>
-            <p class="palaute-osoite">Tai kirjoita suoraan osoitteeseen <a href="mailto:juomaanfi@gmail.com">juomaanfi@gmail.com</a></p>
+            <textarea id="palaute-teksti" rows="4" placeholder="Kirjoita palautteesi tähän..." aria-label="Palaute"></textarea>
+            <button class="palaute-nappi" id="palaute-laheta" onclick="lahetaPalaute()">✉️ Lähetä palautetta</button>
+            <p class="palaute-osoite" id="palaute-status" style="display:none"></p>
         </section>
 
         <footer>
@@ -170,6 +174,37 @@
         })();
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+    emailjs.init('YOUR_PUBLIC_KEY');
+
+    function lahetaPalaute() {
+        var teksti = document.getElementById('palaute-teksti').value.trim();
+        if (!teksti) return;
+
+        var btn = document.getElementById('palaute-laheta');
+        var status = document.getElementById('palaute-status');
+
+        btn.disabled = true;
+        btn.textContent = '\u23F3 L\u00e4hetet\u00e4\u00e4n...';
+        status.style.display = 'none';
+
+        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+            feedback: teksti,
+        }).then(function () {
+            status.textContent = '\u2705 Palaute l\u00e4hetetty! Kiitos.';
+            status.style.display = 'block';
+            btn.textContent = '\u2709\uFE0F L\u00e4het\u00e4 palautetta';
+            btn.disabled = false;
+            document.getElementById('palaute-teksti').value = '';
+        }, function (err) {
+            status.textContent = '\u274C Virhe l\u00e4hetyksess\u00e4. Yrit\u00e4 uudelleen tai l\u00e4het\u00e4 s\u00e4hk\u00f6postitse: juomaanfi@gmail.com';
+            status.style.display = 'block';
+            btn.textContent = '\u2709\uFE0F L\u00e4het\u00e4 palautetta';
+            btn.disabled = false;
+        });
+    }
+    </script>
     <script>
     (function(){
       var napit=document.querySelector('.paavalikko .ylapalkki-napit');
