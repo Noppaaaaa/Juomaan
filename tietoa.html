@@ -250,7 +250,6 @@
         el.style.transition=animate?'':'none';
         el.style.width=b.offsetWidth+'px';
         el.style.transform='translateX('+b.offsetLeft+'px)';
-        if(!animate)void el.offsetWidth;
       }
       var prev=sessionStorage.getItem('navIdx');
       var prevIdx=(prev!==null)?parseInt(prev,10):activeIdx;
