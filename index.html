@@ -89,19 +89,19 @@
         .valinta-kytkin input{opacity:0;width:0;height:0}
         /* ===== Liquid-kytkimet (lapsimoodi & pantti) – nesteefekti goo-filtterillä ===== */
         @property --complete{syntax:"<number>";inherits:true;initial-value:0}
-        .liquid-kytkin{--hue:204;--s-add:48;--l-start:81;--l-end:27;--border:2px;--kh:26;--kw:48;--checked:hsl(var(--hue) calc((8 + (var(--complete)/100)*var(--s-add))*1%) calc((var(--l-start) - (var(--complete)/100)*(var(--l-start) - var(--l-end)))*1%));position:absolute;inset:0;border-radius:100px;cursor:pointer;container-type:inline-size;transition:--complete .32s linear(0,0.5007 7.21%,0.7803 12.29%,0.8883 14.93%,0.9724 17.63%,1.0343 20.44%,1.0754 23.44%,1.0898 25.22%,1.0984 27.11%,1.1014 29.15%,1.0989 31.4%,1.0854 35.23%,1.0196 48.86%,1.0043 54.06%,0.9956 59.6%,0.9925 68.11%,1 100%)}
+        .liquid-kytkin{--hue:204;--s-add:48;--l-start:81;--l-end:27;--border:2px;--kh:26;--kw:48;--checked:hsl(var(--hue) calc((8 + (var(--complete)/100)*var(--s-add))*1%) calc((var(--l-start) - (var(--complete)/100)*(var(--l-start) - var(--l-end)))*1%));position:absolute;inset:0;border-radius:100px;cursor:pointer;container-type:inline-size;transition:--complete .55s linear(0,0.5007 7.21%,0.7803 12.29%,0.8883 14.93%,0.9724 17.63%,1.0343 20.44%,1.0754 23.44%,1.0898 25.22%,1.0984 27.11%,1.1014 29.15%,1.0989 31.4%,1.0854 35.23%,1.0196 48.86%,1.0043 54.06%,0.9956 59.6%,0.9925 68.11%,1 100%)}
         body.dark-mode .liquid-kytkin{--hue:201;--s-add:88;--l-start:26;--l-end:32}
         .liquid-kytkin span{pointer-events:none}
         .lk-knockout{position:absolute;inset:0;border-radius:100px;filter:url(#kytkin-poisto)}
         .lk-indicator{position:absolute;inset:0;border-radius:100px;background:var(--checked);container-type:inline-size}
-        .lk-mask{position:absolute;top:50%;left:var(--border);height:calc(100% - 2*var(--border));width:calc(60% - 2*var(--border));background:#000;border-radius:100px;translate:calc((var(--complete)/100)*40cqi) -50%;transition:height .15s ease-out,width .15s ease-out,margin .15s ease-out}
-        .lk-liquid{position:absolute;top:50%;left:var(--border);height:calc(100% - 2*var(--border));width:calc(60% - 2*var(--border));border-radius:100px;container-type:inline-size;translate:calc((var(--complete)/100)*(100cqi - 100% - 2*var(--border))) -50%;transition:scale .15s ease-out}
-        .lk-shadow{opacity:0;position:absolute;inset:0;border-radius:100px;z-index:20;transition:opacity .15s ease-out;box-shadow:1px -1px 2px hsl(0 0% 100%/.5) inset,0 -1px 2px hsl(0 0% 100%/.5) inset,-1px -1px 2px hsl(0 0% 100%/.5) inset,1px 1px 2px hsl(0 0% 30%/.5) inset,-4px 2px 5px -3px hsl(0 0% 30%/.25) inset,-1px 1px 3px hsl(0 0% 30%/.25) inset,-1px -1px 4px hsl(0 0% 60%/.15),1px 1px 2px hsl(0 0% 30%/.15),2px 2px 3px hsl(0 0% 30%/.15),-2px -1px 2px hsl(0 0% 100%/.25) inset,2px 3px 8px -3px hsl(0 0% 30%/.5)}
-        .lk-wrapper{position:absolute;inset:0;border-radius:100px;clip-path:inset(0 0 0 0 round 100px);filter:blur(1.5px);transition:filter .15s ease-out}
+        .lk-mask{position:absolute;top:50%;left:var(--border);height:calc(100% - 2*var(--border));width:calc(60% - 2*var(--border));background:#000;border-radius:100px;translate:calc((var(--complete)/100)*40cqi) -50%;transition:height .2s ease-out,width .2s ease-out,margin .2s ease-out}
+        .lk-liquid{position:absolute;top:50%;left:var(--border);height:calc(100% - 2*var(--border));width:calc(60% - 2*var(--border));border-radius:100px;container-type:inline-size;translate:calc((var(--complete)/100)*(100cqi - 100% - 2*var(--border))) -50%;transition:scale .2s ease-out}
+        .lk-shadow{opacity:0;position:absolute;inset:0;border-radius:100px;z-index:20;transition:opacity .2s ease-out;box-shadow:1px -1px 2px hsl(0 0% 100%/.5) inset,0 -1px 2px hsl(0 0% 100%/.5) inset,-1px -1px 2px hsl(0 0% 100%/.5) inset,1px 1px 2px hsl(0 0% 30%/.5) inset,-4px 2px 5px -3px hsl(0 0% 30%/.25) inset,-1px 1px 3px hsl(0 0% 30%/.25) inset,-1px -1px 4px hsl(0 0% 60%/.15),1px 1px 2px hsl(0 0% 30%/.15),2px 2px 3px hsl(0 0% 30%/.15),-2px -1px 2px hsl(0 0% 100%/.25) inset,2px 3px 8px -3px hsl(0 0% 30%/.5)}
+        .lk-wrapper{position:absolute;inset:0;border-radius:100px;clip-path:inset(0 0 0 0 round 100px);filter:blur(1.5px);transition:filter .2s ease-out}
         .lk-liquids{position:absolute;inset:0;border-radius:100px;overflow:hidden;filter:url(#kytkin-goo)}
         .lk-liquid-shadow{position:absolute;inset:0;border-radius:100px;box-shadow:inset 0 0 2px 2px var(--checked),inset calc(((var(--complete)/100)*6px) - 3px) 0 2px 2px var(--checked)}
-        .lk-track{position:absolute;top:50%;left:0;height:calc(var(--kh)*1px);width:calc(var(--kw)*1px);background:var(--checked);border-radius:100px;translate:calc((var(--complete)/100)*(100cqi - 100% - 6*var(--border))) -50%;transition:height .15s ease-out,width .15s ease-out,left .15s ease-out}
-        .lk-cover{position:absolute;inset:0;background:#fff;border-radius:100px;transition:opacity .15s ease-out}
+        .lk-track{position:absolute;top:50%;left:0;height:calc(var(--kh)*1px);width:calc(var(--kw)*1px);background:var(--checked);border-radius:100px;translate:calc((var(--complete)/100)*(100cqi - 100% - 6*var(--border))) -50%;transition:height .2s ease-out,width .2s ease-out,left .2s ease-out}
+        .lk-cover{position:absolute;inset:0;background:#fff;border-radius:100px;transition:opacity .2s ease-out}
         .valinta-kytkin:has(input:checked) .liquid-kytkin{--complete:100}
         .valinta-kytkin:has(input:checked):not([data-active]) .lk-track{left:calc(var(--border)*6)}
         .valinta-kytkin[data-active] .lk-mask{height:calc((100% - 2*var(--border))*1.35);width:calc((60% - 2*var(--border))*1.35);margin-left:calc((60% - 2*var(--border))*-0.175)}
@@ -428,10 +428,10 @@
         var lab=k.closest('label')||k,inp=k.querySelector('input'),t;
         function pois(d){clearTimeout(t);t=setTimeout(function(){k.removeAttribute('data-active')},d)}
         lab.addEventListener('pointerdown',function(){clearTimeout(t);k.setAttribute('data-active','')});
-        lab.addEventListener('pointerup',function(){pois(300)});
+        lab.addEventListener('pointerup',function(){pois(420)});
         lab.addEventListener('pointercancel',function(){pois(60)});
-        lab.addEventListener('pointerleave',function(){if(!k.hasAttribute('data-active'))return;pois(140)});
-        if(inp)inp.addEventListener('change',function(){k.setAttribute('data-active','');pois(300)});
+        lab.addEventListener('pointerleave',function(){if(!k.hasAttribute('data-active'))return;pois(200)});
+        if(inp)inp.addEventListener('change',function(){k.setAttribute('data-active','');pois(420)});
       });
     })();
     </script>
