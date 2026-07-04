@@ -182,6 +182,26 @@
         var btn = document.getElementById('palaute-laheta');
         var status = document.getElementById('palaute-status');
 
+        var nyt = Date.now();
+        var tunniksi = 3600000;
+        var raja = 2;
+        var ls = window.localStorage;
+        var laskuri = parseInt(ls.getItem('palaute_lkm') || '0', 10);
+        var resetAika = parseInt(ls.getItem('palaute_reset') || '0', 10);
+
+        if (nyt > resetAika) {
+            laskuri = 0;
+            resetAika = nyt + tunniksi;
+            ls.setItem('palaute_reset', resetAika.toString());
+        }
+
+        if (laskuri >= raja) {
+            var minuuttia = Math.ceil((resetAika - nyt) / 60000);
+            status.textContent = '\u23F1\uFE0F Voit l\u00e4hett\u00e4\u00e4 enint\u00e4\u00e4n ' + raja + ' palautetta tunnissa. Yrit\u00e4 uudelleen ' + minuuttia + ' minuutin p\u00e4\u00e4st\u00e4.';
+            status.style.display = 'block';
+            return;
+        }
+
         btn.disabled = true;
         btn.textContent = '\u23F3 L\u00e4hetet\u00e4\u00e4n...';
         status.style.display = 'none';
@@ -196,6 +216,8 @@
             body: formData
         }).then(function (r) { return r.json(); }).then(function (data) {
             if (data.success) {
+                laskuri++;
+                ls.setItem('palaute_lkm', laskuri.toString());
                 status.textContent = '\u2705 Palaute l\u00e4hetetty! Kiitos.';
                 status.style.display = 'block';
                 btn.textContent = '\u2709\uFE0F L\u00e4het\u00e4 palautetta';
