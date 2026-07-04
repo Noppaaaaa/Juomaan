@@ -51,6 +51,14 @@
         .switcher:has(input[c-option="2"]:checked)::after{translate:48px 0;transition:background-color 400ms cubic-bezier(1,0,0.4,1),box-shadow 400ms cubic-bezier(1,0,0.4,1),translate 400ms cubic-bezier(1,0,0.4,1);animation:scaleToggle2 440ms ease}
         @keyframes scaleToggle{0%{scale:1 1}50%{scale:1.1 1}100%{scale:1 1}}
         @keyframes scaleToggle2{0%{scale:1 1}50%{scale:1.2 1}100%{scale:1 1}}
+        /* ===== Palaute ===== */
+        .palaute{margin-top:36px;padding:24px 26px;background:var(--info-bg);border:1px solid var(--info-border);border-radius:12px}
+        .palaute h2{margin:0 0 8px;font-size:20px;color:var(--text-heading)}
+        .palaute p{margin:0 0 18px;color:var(--text-muted);font-size:15px;line-height:1.55}
+        .palaute-nappi{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:var(--btn-bg);color:#fff;text-decoration:none;border-radius:8px;font-size:15px;font-weight:600;box-shadow:0 4px 6px rgba(0,0,0,.1);transition:background .2s,transform .2s,box-shadow .2s}
+        .palaute-nappi:hover{background:var(--btn-hover);transform:translateY(-1px);box-shadow:0 6px 12px rgba(0,0,0,.12)}
+        .palaute-osoite{margin:14px 0 0!important;font-size:14px;color:var(--text-muted)}
+        .palaute-osoite a{color:var(--link-color);font-weight:600}
     </style>
 </head>
 <body>
@@ -115,6 +123,13 @@
         </header>
 
         <div class="sisalto" id="sisalto"></div>
+
+        <section class="palaute" aria-labelledby="palaute-otsikko">
+            <h2 id="palaute-otsikko">Palaute ja yhteydenotot</h2>
+            <p>Löysitkö virheen, puuttuuko jokin tuote tai onko sinulla parannusehdotus? Otamme palautetta mielellämme vastaan.</p>
+            <a class="palaute-nappi" href="mailto:juomaanfi@gmail.com?subject=Palaute%20%E2%80%93%20juomaan.fi">✉️ Lähetä palautetta</a>
+            <p class="palaute-osoite">Tai kirjoita suoraan osoitteeseen <a href="mailto:juomaanfi@gmail.com">juomaanfi@gmail.com</a></p>
+        </section>
 
         <footer>
             <p>© <span id="copy-year">2026–2026</span> juomaan.fi – Halvimman alkoholiannoksen perässä. 
