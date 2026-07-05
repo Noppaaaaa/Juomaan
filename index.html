@@ -177,7 +177,7 @@
         @keyframes scaleToggle{0%{scale:1 1}50%{scale:1.1 1}100%{scale:1 1}}
         @keyframes scaleToggle2{0%{scale:1 1}50%{scale:1.2 1}100%{scale:1 1}}
         /* ===== Tuotehaku (sama lasiefekti + fallback kuin ylänapeissa/dropdowneissa) ===== */
-        .haku-rivi{position:relative;display:flex;align-items:center;flex:0 1 380px;min-width:200px;height:34px;border-radius:9999px;isolation:isolate}
+        .haku-rivi{position:relative;display:flex;align-items:center;flex:0 1 300px;min-width:180px;height:34px;border-radius:9999px;isolation:isolate}
         .haku-rivi::before{content:'';position:absolute;z-index:-1;inset:0;border-radius:9999px;background-color:var(--dropdown-glass);border:2px solid var(--nav-btn-outline);-webkit-backdrop-filter:blur(6px) saturate(1.6);backdrop-filter:blur(6px) saturate(1.6);transition:border-color .15s}
         @supports (backdrop-filter:url(#container-glass)) or (-webkit-backdrop-filter:url(#container-glass)){.haku-rivi::before{-webkit-backdrop-filter:url(#container-glass) blur(2px) saturate(1.6);backdrop-filter:url(#container-glass) blur(2px) saturate(1.6)}}
         @supports (-webkit-touch-callout:none){.haku-rivi::before{-webkit-backdrop-filter:blur(6px) saturate(1.6);backdrop-filter:blur(6px) saturate(1.6)}}
