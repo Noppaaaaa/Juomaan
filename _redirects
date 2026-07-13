@@ -1,0 +1,7 @@
+# Vanhat .html-osoitteet → uudet siistit URL-osoitteet
+/tietoa.html        /tietoa/    301
+/omat-aanet.html    /omat-aanet/    301
+
+# Ilman päätekenovaa → päätekenovan kanssa (Cloudflare Pages tarjoilee index.html)
+/tietoa             /tietoa/    301
+/omat-aanet         /omat-aanet/    301

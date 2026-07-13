@@ -3,8 +3,21 @@
   "model": "ollama/qwen2.5-coder:14b",
   "provider": {
     "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
       "options": {
-        "baseUrl": "http://localhost:11434"
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen2.5-coder:14b": {
+          "name": "Qwen2.5 Coder 14B"
+        },
+        "qwen2.5-coder:7b": {
+          "name": "Qwen2.5 Coder 7B"
+        },
+        "qwen2.5:32b": {
+          "name": "Qwen2.5 32B"
+        }
       }
     }
   }
