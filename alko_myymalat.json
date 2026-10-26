@@ -1,0 +1,1797 @@
+[
+  {
+    "id": "2440",
+    "name": "Akaa Toijala",
+    "city": "Akaa"
+  },
+  {
+    "id": "2277",
+    "name": "Alajärvi",
+    "city": "Alajärvi"
+  },
+  {
+    "id": "2274",
+    "name": "Alavus keskusta",
+    "city": "Alavus"
+  },
+  {
+    "id": "2428",
+    "name": "Asikkala Vääksy",
+    "city": "Asikkala"
+  },
+  {
+    "id": "2223",
+    "name": "Aura",
+    "city": "Aura"
+  },
+  {
+    "id": "2888",
+    "name": "Enontekiö Hetta",
+    "city": "Enontekiö"
+  },
+  {
+    "id": "2890",
+    "name": "Enontekiö Kilpisjärvi",
+    "city": "Enontekiö"
+  },
+  {
+    "id": "2154",
+    "name": "Espoo Espoon keskus Entresse",
+    "city": "Espoo"
+  },
+  {
+    "id": "2156",
+    "name": "Espoo Espoonlahti Lippulaiva",
+    "city": "Espoo"
+  },
+  {
+    "id": "2157",
+    "name": "Espoo Kauklahti",
+    "city": "Espoo"
+  },
+  {
+    "id": "2153",
+    "name": "Espoo Leppävaara Sello",
+    "city": "Espoo"
+  },
+  {
+    "id": "2149",
+    "name": "Espoo Lähderanta",
+    "city": "Espoo"
+  },
+  {
+    "id": "2160",
+    "name": "Espoo Mankkaa",
+    "city": "Espoo"
+  },
+  {
+    "id": "2158",
+    "name": "Espoo Matinkylä Iso Omena",
+    "city": "Espoo"
+  },
+  {
+    "id": "2155",
+    "name": "Espoo Niittykumpu",
+    "city": "Espoo"
+  },
+  {
+    "id": "2150",
+    "name": "Espoo Olari Prisma",
+    "city": "Espoo"
+  },
+  {
+    "id": "2152",
+    "name": "Espoo Tapiola Ainoa",
+    "city": "Espoo"
+  },
+  {
+    "id": "2266",
+    "name": "Eura",
+    "city": "Eura"
+  },
+  {
+    "id": "2264",
+    "name": "Eurajoki",
+    "city": "Eurajoki"
+  },
+  {
+    "id": "2406",
+    "name": "Forssa Kutomo",
+    "city": "Forssa"
+  },
+  {
+    "id": "2405",
+    "name": "Forssa Prismakeskus",
+    "city": "Forssa"
+  },
+  {
+    "id": "2807",
+    "name": "Haapajärvi",
+    "city": "Haapajärvi"
+  },
+  {
+    "id": "2811",
+    "name": "Haapavesi",
+    "city": "Haapavesi"
+  },
+  {
+    "id": "2772",
+    "name": "Hamina",
+    "city": "Hamina"
+  },
+  {
+    "id": "2498",
+    "name": "Hankasalmi",
+    "city": "Hankasalmi"
+  },
+  {
+    "id": "2171",
+    "name": "Hanko",
+    "city": "Hanko"
+  },
+  {
+    "id": "2262",
+    "name": "Harjavalta",
+    "city": "Harjavalta"
+  },
+  {
+    "id": "2418",
+    "name": "Hartola",
+    "city": "Hartola"
+  },
+  {
+    "id": "2413",
+    "name": "Hausjärvi Oitti",
+    "city": "Hausjärvi"
+  },
+  {
+    "id": "2414",
+    "name": "Heinola Citymarket",
+    "city": "Heinola"
+  },
+  {
+    "id": "2411",
+    "name": "Heinola keskusta",
+    "city": "Heinola"
+  },
+  {
+    "id": "2727",
+    "name": "Heinävesi",
+    "city": "Heinävesi"
+  },
+  {
+    "id": "2116",
+    "name": "Helsinki Arabianranta Arabia",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2104",
+    "name": "Helsinki Bulevardi",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2120",
+    "name": "Helsinki Hakaniemi Ympyrätalo",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2131",
+    "name": "Helsinki Herttoniemi Hertta",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2137",
+    "name": "Helsinki Itäkeskus Easton",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2134",
+    "name": "Helsinki Itäkeskus Prisma",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2146",
+    "name": "Helsinki Jakomäki",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2196",
+    "name": "Helsinki Kalasatama Redi",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2107",
+    "name": "Helsinki Kallio",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2132",
+    "name": "Helsinki Kannelmäki Kaari",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2103",
+    "name": "Helsinki Kasarmitori",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2303",
+    "name": "Helsinki Katajanokka",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2102",
+    "name": "Helsinki keskusta Arkadia",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2105",
+    "name": "Helsinki keskusta Citycenter",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2129",
+    "name": "Helsinki keskusta Eteläesplanadi",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2144",
+    "name": "Helsinki keskusta Kamppi",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2128",
+    "name": "Helsinki keskusta Stockmann",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2142",
+    "name": "Helsinki Konalan Portti",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2135",
+    "name": "Helsinki Kontula",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2117",
+    "name": "Helsinki Kruununhaka",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2110",
+    "name": "Helsinki Käpylä",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2197",
+    "name": "Helsinki Laajasalo",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2119",
+    "name": "Helsinki Lauttasaari",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2130",
+    "name": "Helsinki Malmi Nova",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2140",
+    "name": "Helsinki Mellunmäki",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2199",
+    "name": "Helsinki Myllypuro",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2121",
+    "name": "Helsinki Pakila",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2198",
+    "name": "Helsinki Pasila Tripla",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2141",
+    "name": "Helsinki Pikku Huopalahti",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2123",
+    "name": "Helsinki Pitäjänmäki",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2115",
+    "name": "Helsinki Ruoholahti",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2143",
+    "name": "Helsinki Taivallahti",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2122",
+    "name": "Helsinki Töölöntori",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2106",
+    "name": "Helsinki Ullanlinna",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2126",
+    "name": "Helsinki Viikki Prisma",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2136",
+    "name": "Helsinki Vuosaari Columbus",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2425",
+    "name": "Hollola Salpakangas",
+    "city": "Hollola"
+  },
+  {
+    "id": "2268",
+    "name": "Huittinen",
+    "city": "Huittinen"
+  },
+  {
+    "id": "2824",
+    "name": "Hyrynsalmi",
+    "city": "Hyrynsalmi"
+  },
+  {
+    "id": "2186",
+    "name": "Hyvinkää Willa Citymarket",
+    "city": "Hyvinkää"
+  },
+  {
+    "id": "2188",
+    "name": "Hyvinkää Willa Prisma",
+    "city": "Hyvinkää"
+  },
+  {
+    "id": "2475",
+    "name": "Hämeenkyrö",
+    "city": "Hämeenkyrö"
+  },
+  {
+    "id": "2402",
+    "name": "Hämeenlinna Goodman",
+    "city": "Hämeenlinna"
+  },
+  {
+    "id": "2403",
+    "name": "Hämeenlinna Hauho",
+    "city": "Hämeenlinna"
+  },
+  {
+    "id": "2417",
+    "name": "Hämeenlinna Idänpää",
+    "city": "Hämeenlinna"
+  },
+  {
+    "id": "2407",
+    "name": "Hämeenlinna Lammi",
+    "city": "Hämeenlinna"
+  },
+  {
+    "id": "2401",
+    "name": "Hämeenlinna Tiiriö Citymarket",
+    "city": "Hämeenlinna"
+  },
+  {
+    "id": "2300",
+    "name": "Hämeenlinna Tiiriö Prisma",
+    "city": "Hämeenlinna"
+  },
+  {
+    "id": "2840",
+    "name": "Ii",
+    "city": "Ii"
+  },
+  {
+    "id": "2741",
+    "name": "Iisalmi",
+    "city": "Iisalmi"
+  },
+  {
+    "id": "2769",
+    "name": "Iitti Kausala",
+    "city": "Iitti"
+  },
+  {
+    "id": "2438",
+    "name": "Ikaalinen",
+    "city": "Ikaalinen"
+  },
+  {
+    "id": "2271",
+    "name": "Ilmajoki",
+    "city": "Ilmajoki"
+  },
+  {
+    "id": "2708",
+    "name": "Ilomantsi",
+    "city": "Ilomantsi"
+  },
+  {
+    "id": "2795",
+    "name": "Imatra Mansikkala",
+    "city": "Imatra"
+  },
+  {
+    "id": "2796",
+    "name": "Imatra Vuoksenniska",
+    "city": "Imatra"
+  },
+  {
+    "id": "2851",
+    "name": "Inari Ivalo",
+    "city": "Inari"
+  },
+  {
+    "id": "2852",
+    "name": "Inari Saariselkä",
+    "city": "Inari"
+  },
+  {
+    "id": "2174",
+    "name": "Inkoo",
+    "city": "Inkoo"
+  },
+  {
+    "id": "2404",
+    "name": "Janakkala Turenki",
+    "city": "Janakkala"
+  },
+  {
+    "id": "2705",
+    "name": "Joensuu Eno",
+    "city": "Joensuu"
+  },
+  {
+    "id": "2701",
+    "name": "Joensuu keskusta Sokos",
+    "city": "Joensuu"
+  },
+  {
+    "id": "2702",
+    "name": "Joensuu Käpykangas Prisma",
+    "city": "Joensuu"
+  },
+  {
+    "id": "2703",
+    "name": "Joensuu Pilkko Citymarket",
+    "city": "Joensuu"
+  },
+  {
+    "id": "2246",
+    "name": "Jomala Maxinge Center",
+    "city": "Jomala"
+  },
+  {
+    "id": "2497",
+    "name": "Joutsa",
+    "city": "Joutsa"
+  },
+  {
+    "id": "2717",
+    "name": "Juuka",
+    "city": "Juuka"
+  },
+  {
+    "id": "2725",
+    "name": "Juva",
+    "city": "Juva"
+  },
+  {
+    "id": "2493",
+    "name": "Jyväskylä Keljo Keljon kauppakeskus",
+    "city": "Jyväskylä"
+  },
+  {
+    "id": "2491",
+    "name": "Jyväskylä keskusta Sokkari",
+    "city": "Jyväskylä"
+  },
+  {
+    "id": "2490",
+    "name": "Jyväskylä Palokka Prisma",
+    "city": "Jyväskylä"
+  },
+  {
+    "id": "2458",
+    "name": "Jyväskylä Seppä",
+    "city": "Jyväskylä"
+  },
+  {
+    "id": "2456",
+    "name": "Jyväskylä Seppälä Citymarket",
+    "city": "Jyväskylä"
+  },
+  {
+    "id": "2495",
+    "name": "Jyväskylä Vaajakoski",
+    "city": "Jyväskylä"
+  },
+  {
+    "id": "2496",
+    "name": "Jämsä",
+    "city": "Jämsä"
+  },
+  {
+    "id": "2183",
+    "name": "Järvenpää Citymarket",
+    "city": "Järvenpää"
+  },
+  {
+    "id": "2185",
+    "name": "Järvenpää Prisma",
+    "city": "Järvenpää"
+  },
+  {
+    "id": "2210",
+    "name": "Kaarina",
+    "city": "Kaarina"
+  },
+  {
+    "id": "2218",
+    "name": "Kaarina Piikkiö",
+    "city": "Kaarina"
+  },
+  {
+    "id": "2757",
+    "name": "Kaavi",
+    "city": "Kaavi"
+  },
+  {
+    "id": "2825",
+    "name": "Kajaani keskusta Citymarket",
+    "city": "Kajaani"
+  },
+  {
+    "id": "2821",
+    "name": "Kajaani Prisma",
+    "city": "Kajaani"
+  },
+  {
+    "id": "2802",
+    "name": "Kalajoki",
+    "city": "Kalajoki"
+  },
+  {
+    "id": "2467",
+    "name": "Kangasala keskusta",
+    "city": "Kangasala"
+  },
+  {
+    "id": "2476",
+    "name": "Kangasala Prisma",
+    "city": "Kangasala"
+  },
+  {
+    "id": "2723",
+    "name": "Kangasniemi",
+    "city": "Kangasniemi"
+  },
+  {
+    "id": "2260",
+    "name": "Kankaanpää",
+    "city": "Kankaanpää"
+  },
+  {
+    "id": "2801",
+    "name": "Kannus",
+    "city": "Kannus"
+  },
+  {
+    "id": "2178",
+    "name": "Karkkila",
+    "city": "Karkkila"
+  },
+  {
+    "id": "2484",
+    "name": "Karstula",
+    "city": "Karstula"
+  },
+  {
+    "id": "2281",
+    "name": "Kauhajoki",
+    "city": "Kauhajoki"
+  },
+  {
+    "id": "2283",
+    "name": "Kauhava Alahärmä",
+    "city": "Kauhava"
+  },
+  {
+    "id": "2275",
+    "name": "Kauhava keskusta",
+    "city": "Kauhava"
+  },
+  {
+    "id": "2165",
+    "name": "Kauniainen",
+    "city": "Kauniainen"
+  },
+  {
+    "id": "2806",
+    "name": "Kaustinen",
+    "city": "Kaustinen"
+  },
+  {
+    "id": "2865",
+    "name": "Kemi",
+    "city": "Kemi"
+  },
+  {
+    "id": "2885",
+    "name": "Kemijärvi",
+    "city": "Kemijärvi"
+  },
+  {
+    "id": "2866",
+    "name": "Keminmaa",
+    "city": "Keminmaa"
+  },
+  {
+    "id": "2235",
+    "name": "Kemiönsaari Kemiö",
+    "city": "Kemiönsaari"
+  },
+  {
+    "id": "2835",
+    "name": "Kempele",
+    "city": "Kempele"
+  },
+  {
+    "id": "2189",
+    "name": "Kerava Citymarket",
+    "city": "Kerava"
+  },
+  {
+    "id": "2182",
+    "name": "Kerava Prisma",
+    "city": "Kerava"
+  },
+  {
+    "id": "2482",
+    "name": "Keuruu",
+    "city": "Keuruu"
+  },
+  {
+    "id": "2159",
+    "name": "Kirkkonummi Munkinmäki Prisma",
+    "city": "Kirkkonummi"
+  },
+  {
+    "id": "2707",
+    "name": "Kitee",
+    "city": "Kitee"
+  },
+  {
+    "id": "2878",
+    "name": "Kittilä keskusta",
+    "city": "Kittilä"
+  },
+  {
+    "id": "2881",
+    "name": "Kittilä Levi",
+    "city": "Kittilä"
+  },
+  {
+    "id": "2744",
+    "name": "Kiuruvesi",
+    "city": "Kiuruvesi"
+  },
+  {
+    "id": "2267",
+    "name": "Kokemäki",
+    "city": "Kokemäki"
+  },
+  {
+    "id": "2813",
+    "name": "Kokkola keskusta K-Supermarket",
+    "city": "Kokkola"
+  },
+  {
+    "id": "2803",
+    "name": "Kokkola Kosila Prisma",
+    "city": "Kokkola"
+  },
+  {
+    "id": "2880",
+    "name": "Kolari keskusta",
+    "city": "Kolari"
+  },
+  {
+    "id": "2882",
+    "name": "Kolari Ylläs Äkäslompolo",
+    "city": "Kolari"
+  },
+  {
+    "id": "2783",
+    "name": "Kotka Karhula Lidl",
+    "city": "Kotka"
+  },
+  {
+    "id": "2781",
+    "name": "Kotka Pasaati",
+    "city": "Kotka"
+  },
+  {
+    "id": "2782",
+    "name": "Kotka Sutela Prisma",
+    "city": "Kotka"
+  },
+  {
+    "id": "2765",
+    "name": "Kouvola Inkeroinen",
+    "city": "Kouvola"
+  },
+  {
+    "id": "2767",
+    "name": "Kouvola keskusta",
+    "city": "Kouvola"
+  },
+  {
+    "id": "2768",
+    "name": "Kouvola Korjala Prisma",
+    "city": "Kouvola"
+  },
+  {
+    "id": "2762",
+    "name": "Kouvola Kuusankoski",
+    "city": "Kouvola"
+  },
+  {
+    "id": "2763",
+    "name": "Kouvola Tervaskangas",
+    "city": "Kouvola"
+  },
+  {
+    "id": "2280",
+    "name": "Kristiinankaupunki",
+    "city": "Kristiinankaupunki"
+  },
+  {
+    "id": "2823",
+    "name": "Kuhmo",
+    "city": "Kuhmo"
+  },
+  {
+    "id": "2499",
+    "name": "Kuhmoinen",
+    "city": "Kuhmoinen"
+  },
+  {
+    "id": "2753",
+    "name": "Kuopio Haapaniemi",
+    "city": "Kuopio"
+  },
+  {
+    "id": "2758",
+    "name": "Kuopio Karttula",
+    "city": "Kuopio"
+  },
+  {
+    "id": "2752",
+    "name": "Kuopio keskusta Sokos",
+    "city": "Kuopio"
+  },
+  {
+    "id": "2305",
+    "name": "Kuopio Kolmisoppi Citymarket",
+    "city": "Kuopio"
+  },
+  {
+    "id": "2747",
+    "name": "Kuopio Nilsiä",
+    "city": "Kuopio"
+  },
+  {
+    "id": "2751",
+    "name": "Kuopio Petonen",
+    "city": "Kuopio"
+  },
+  {
+    "id": "2755",
+    "name": "Kuopio Päiväranta Citymarket",
+    "city": "Kuopio"
+  },
+  {
+    "id": "2754",
+    "name": "Kuopio Savilahti Prisma",
+    "city": "Kuopio"
+  },
+  {
+    "id": "2276",
+    "name": "Kurikka",
+    "city": "Kurikka"
+  },
+  {
+    "id": "2279",
+    "name": "Kurikka Jalasjärvi",
+    "city": "Kurikka"
+  },
+  {
+    "id": "2220",
+    "name": "Kustavi",
+    "city": "Kustavi"
+  },
+  {
+    "id": "2846",
+    "name": "Kuusamo keskusta",
+    "city": "Kuusamo"
+  },
+  {
+    "id": "2848",
+    "name": "Kuusamo Ruka",
+    "city": "Kuusamo"
+  },
+  {
+    "id": "2480",
+    "name": "Kyyjärvi",
+    "city": "Kyyjärvi"
+  },
+  {
+    "id": "2410",
+    "name": "Kärkölä Järvelä",
+    "city": "Kärkölä"
+  },
+  {
+    "id": "2814",
+    "name": "Kärsämäki",
+    "city": "Kärsämäki"
+  },
+  {
+    "id": "2424",
+    "name": "Lahti Holma",
+    "city": "Lahti"
+  },
+  {
+    "id": "2419",
+    "name": "Lahti Karisma",
+    "city": "Lahti"
+  },
+  {
+    "id": "2420",
+    "name": "Lahti Laune Citymarket",
+    "city": "Lahti"
+  },
+  {
+    "id": "2423",
+    "name": "Lahti Laune Prisma",
+    "city": "Lahti"
+  },
+  {
+    "id": "2426",
+    "name": "Lahti Nastola Rakokivi",
+    "city": "Lahti"
+  },
+  {
+    "id": "2422",
+    "name": "Lahti Sokos",
+    "city": "Lahti"
+  },
+  {
+    "id": "2421",
+    "name": "Lahti Syke",
+    "city": "Lahti"
+  },
+  {
+    "id": "2295",
+    "name": "Laihia",
+    "city": "Laihia"
+  },
+  {
+    "id": "2222",
+    "name": "Laitila",
+    "city": "Laitila"
+  },
+  {
+    "id": "2742",
+    "name": "Lapinlahti",
+    "city": "Lapinlahti"
+  },
+  {
+    "id": "2270",
+    "name": "Lappajärvi",
+    "city": "Lappajärvi"
+  },
+  {
+    "id": "2792",
+    "name": "Lappeenranta Citymarket",
+    "city": "Lappeenranta"
+  },
+  {
+    "id": "2794",
+    "name": "Lappeenranta Joutseno",
+    "city": "Lappeenranta"
+  },
+  {
+    "id": "2791",
+    "name": "Lappeenranta keskusta Iso Kristiina",
+    "city": "Lappeenranta"
+  },
+  {
+    "id": "2793",
+    "name": "Lappeenranta Leiri Prisma",
+    "city": "Lappeenranta"
+  },
+  {
+    "id": "2278",
+    "name": "Lapua",
+    "city": "Lapua"
+  },
+  {
+    "id": "2494",
+    "name": "Laukaa",
+    "city": "Laukaa"
+  },
+  {
+    "id": "2478",
+    "name": "Lempäälä Ideapark",
+    "city": "Lempäälä"
+  },
+  {
+    "id": "2469",
+    "name": "Lempäälä keskusta",
+    "city": "Lempäälä"
+  },
+  {
+    "id": "2737",
+    "name": "Leppävirta",
+    "city": "Leppävirta"
+  },
+  {
+    "id": "2715",
+    "name": "Lieksa",
+    "city": "Lieksa"
+  },
+  {
+    "id": "2211",
+    "name": "Lieto",
+    "city": "Lieto"
+  },
+  {
+    "id": "2820",
+    "name": "Liminka",
+    "city": "Liminka"
+  },
+  {
+    "id": "2704",
+    "name": "Liperi",
+    "city": "Liperi"
+  },
+  {
+    "id": "2177",
+    "name": "Lohja keskusta Lohi",
+    "city": "Lohja"
+  },
+  {
+    "id": "2176",
+    "name": "Lohja Ojamo",
+    "city": "Lohja"
+  },
+  {
+    "id": "2238",
+    "name": "Loimaa",
+    "city": "Loimaa"
+  },
+  {
+    "id": "2409",
+    "name": "Loppi",
+    "city": "Loppi"
+  },
+  {
+    "id": "2192",
+    "name": "Loviisa",
+    "city": "Loviisa"
+  },
+  {
+    "id": "2790",
+    "name": "Luumäki Taavetti",
+    "city": "Luumäki"
+  },
+  {
+    "id": "2247",
+    "name": "Maarianhamina Telegrafen",
+    "city": "Maarianhamina"
+  },
+  {
+    "id": "2306",
+    "name": "Masku",
+    "city": "Masku"
+  },
+  {
+    "id": "2255",
+    "name": "Merikarvia",
+    "city": "Merikarvia"
+  },
+  {
+    "id": "2732",
+    "name": "Mikkeli Graani",
+    "city": "Mikkeli"
+  },
+  {
+    "id": "2722",
+    "name": "Mikkeli keskusta Stella",
+    "city": "Mikkeli"
+  },
+  {
+    "id": "2720",
+    "name": "Mikkeli Ristiina",
+    "city": "Mikkeli"
+  },
+  {
+    "id": "2837",
+    "name": "Muhos",
+    "city": "Muhos"
+  },
+  {
+    "id": "2879",
+    "name": "Muonio",
+    "city": "Muonio"
+  },
+  {
+    "id": "2479",
+    "name": "Muurame",
+    "city": "Muurame"
+  },
+  {
+    "id": "2224",
+    "name": "Mynämäki",
+    "city": "Mynämäki"
+  },
+  {
+    "id": "2184",
+    "name": "Mäntsälä",
+    "city": "Mäntsälä"
+  },
+  {
+    "id": "2451",
+    "name": "Mänttä",
+    "city": "Mänttä-Vilppula"
+  },
+  {
+    "id": "2724",
+    "name": "Mäntyharju keskusta",
+    "city": "Mäntyharju"
+  },
+  {
+    "id": "2730",
+    "name": "Mäntyharju Kuortti",
+    "city": "Mäntyharju"
+  },
+  {
+    "id": "2225",
+    "name": "Naantali",
+    "city": "Naantali"
+  },
+  {
+    "id": "2810",
+    "name": "Nivala",
+    "city": "Nivala"
+  },
+  {
+    "id": "2435",
+    "name": "Nokia",
+    "city": "Nokia"
+  },
+  {
+    "id": "2711",
+    "name": "Nurmes",
+    "city": "Nurmes"
+  },
+  {
+    "id": "2180",
+    "name": "Nurmijärvi Kirkonkylä",
+    "city": "Nurmijärvi"
+  },
+  {
+    "id": "2181",
+    "name": "Nurmijärvi Klaukkala Citymarket",
+    "city": "Nurmijärvi"
+  },
+  {
+    "id": "2290",
+    "name": "Närpiö",
+    "city": "Närpiö"
+  },
+  {
+    "id": "2427",
+    "name": "Orimattila",
+    "city": "Orimattila"
+  },
+  {
+    "id": "2453",
+    "name": "Orivesi",
+    "city": "Orivesi"
+  },
+  {
+    "id": "2805",
+    "name": "Oulainen",
+    "city": "Oulainen"
+  },
+  {
+    "id": "2836",
+    "name": "Oulu Haukipudas",
+    "city": "Oulu"
+  },
+  {
+    "id": "2829",
+    "name": "Oulu Kaakkuri",
+    "city": "Oulu"
+  },
+  {
+    "id": "2831",
+    "name": "Oulu keskusta Pekuri",
+    "city": "Oulu"
+  },
+  {
+    "id": "2838",
+    "name": "Oulu Kiiminki",
+    "city": "Oulu"
+  },
+  {
+    "id": "2833",
+    "name": "Oulu Limingantulli",
+    "city": "Oulu"
+  },
+  {
+    "id": "2830",
+    "name": "Oulu Linnanmaa",
+    "city": "Oulu"
+  },
+  {
+    "id": "2812",
+    "name": "Oulu Rusko Citymarket",
+    "city": "Oulu"
+  },
+  {
+    "id": "2834",
+    "name": "Oulu Välivainio",
+    "city": "Oulu"
+  },
+  {
+    "id": "2706",
+    "name": "Outokumpu",
+    "city": "Outokumpu"
+  },
+  {
+    "id": "2429",
+    "name": "Padasjoki",
+    "city": "Padasjoki"
+  },
+  {
+    "id": "2217",
+    "name": "Paimio",
+    "city": "Paimio"
+  },
+  {
+    "id": "2826",
+    "name": "Paltamo",
+    "city": "Paltamo"
+  },
+  {
+    "id": "2227",
+    "name": "Parainen keskusta",
+    "city": "Parainen"
+  },
+  {
+    "id": "2228",
+    "name": "Parainen Nauvo",
+    "city": "Parainen"
+  },
+  {
+    "id": "2798",
+    "name": "Parikkala",
+    "city": "Parikkala"
+  },
+  {
+    "id": "2437",
+    "name": "Parkano",
+    "city": "Parkano"
+  },
+  {
+    "id": "2877",
+    "name": "Pello",
+    "city": "Pello"
+  },
+  {
+    "id": "2731",
+    "name": "Pieksämäki",
+    "city": "Pieksämäki"
+  },
+  {
+    "id": "2743",
+    "name": "Pielavesi",
+    "city": "Pielavesi"
+  },
+  {
+    "id": "2286",
+    "name": "Pietarsaari",
+    "city": "Pietarsaari"
+  },
+  {
+    "id": "2487",
+    "name": "Pihtipudas",
+    "city": "Pihtipudas"
+  },
+  {
+    "id": "2473",
+    "name": "Pirkkala keskusta",
+    "city": "Pirkkala"
+  },
+  {
+    "id": "2477",
+    "name": "Pirkkala Partola",
+    "city": "Pirkkala"
+  },
+  {
+    "id": "2254",
+    "name": "Pori Itäkeskus Prisma",
+    "city": "Pori"
+  },
+  {
+    "id": "2251",
+    "name": "Pori keskusta Sokos",
+    "city": "Pori"
+  },
+  {
+    "id": "2252",
+    "name": "Pori Länsi-Pori",
+    "city": "Pori"
+  },
+  {
+    "id": "2257",
+    "name": "Pori Noormarkku",
+    "city": "Pori"
+  },
+  {
+    "id": "2259",
+    "name": "Pori Puuvilla",
+    "city": "Pori"
+  },
+  {
+    "id": "2190",
+    "name": "Porvoo Näsi",
+    "city": "Porvoo"
+  },
+  {
+    "id": "2191",
+    "name": "Porvoo Tarmola",
+    "city": "Porvoo"
+  },
+  {
+    "id": "2304",
+    "name": "Porvoo vanhakaupunki",
+    "city": "Porvoo"
+  },
+  {
+    "id": "2859",
+    "name": "Posio",
+    "city": "Posio"
+  },
+  {
+    "id": "2843",
+    "name": "Pudasjärvi",
+    "city": "Pudasjärvi"
+  },
+  {
+    "id": "2808",
+    "name": "Pulkkila",
+    "city": "Siikalatva"
+  },
+  {
+    "id": "2827",
+    "name": "Puolanka",
+    "city": "Puolanka"
+  },
+  {
+    "id": "2721",
+    "name": "Puumala",
+    "city": "Puumala"
+  },
+  {
+    "id": "2809",
+    "name": "Pyhäjärvi",
+    "city": "Pyhäjärvi"
+  },
+  {
+    "id": "2815",
+    "name": "Raahe",
+    "city": "Raahe"
+  },
+  {
+    "id": "2175",
+    "name": "Raasepori Karjaa",
+    "city": "Raasepori"
+  },
+  {
+    "id": "2173",
+    "name": "Raasepori Tammisaari",
+    "city": "Raasepori"
+  },
+  {
+    "id": "2215",
+    "name": "Raisio keskusta",
+    "city": "Raisio"
+  },
+  {
+    "id": "2203",
+    "name": "Raisio Mylly",
+    "city": "Raisio"
+  },
+  {
+    "id": "2728",
+    "name": "Rantasalmi",
+    "city": "Rantasalmi"
+  },
+  {
+    "id": "2858",
+    "name": "Ranua",
+    "city": "Ranua"
+  },
+  {
+    "id": "2265",
+    "name": "Rauma keskusta",
+    "city": "Rauma"
+  },
+  {
+    "id": "2269",
+    "name": "Rauma Äyhö",
+    "city": "Rauma"
+  },
+  {
+    "id": "2408",
+    "name": "Riihimäki Atomikortteli",
+    "city": "Riihimäki"
+  },
+  {
+    "id": "2415",
+    "name": "Riihimäki Merkos",
+    "city": "Riihimäki"
+  },
+  {
+    "id": "2857",
+    "name": "Rovaniemi Eteläkeskus",
+    "city": "Rovaniemi"
+  },
+  {
+    "id": "2855",
+    "name": "Rovaniemi keskusta",
+    "city": "Rovaniemi"
+  },
+  {
+    "id": "2856",
+    "name": "Rovaniemi Saarenkylä",
+    "city": "Rovaniemi"
+  },
+  {
+    "id": "2481",
+    "name": "Ruovesi",
+    "city": "Ruovesi"
+  },
+  {
+    "id": "2483",
+    "name": "Saarijärvi",
+    "city": "Saarijärvi"
+  },
+  {
+    "id": "2887",
+    "name": "Salla",
+    "city": "Salla"
+  },
+  {
+    "id": "2232",
+    "name": "Salo Halikko",
+    "city": "Salo"
+  },
+  {
+    "id": "2231",
+    "name": "Salo keskusta",
+    "city": "Salo"
+  },
+  {
+    "id": "2234",
+    "name": "Salo Perniö",
+    "city": "Salo"
+  },
+  {
+    "id": "2432",
+    "name": "Sastamala Vammala",
+    "city": "Sastamala"
+  },
+  {
+    "id": "2797",
+    "name": "Savitaipale",
+    "city": "Savitaipale"
+  },
+  {
+    "id": "2729",
+    "name": "Savonlinna Kerimäki",
+    "city": "Savonlinna"
+  },
+  {
+    "id": "2726",
+    "name": "Savonlinna keskusta",
+    "city": "Savonlinna"
+  },
+  {
+    "id": "2716",
+    "name": "Savonlinna Nojanmaa Prisma",
+    "city": "Savonlinna"
+  },
+  {
+    "id": "2288",
+    "name": "Seinäjoki Ideapark",
+    "city": "Seinäjoki"
+  },
+  {
+    "id": "2272",
+    "name": "Seinäjoki keskusta Megakeskus",
+    "city": "Seinäjoki"
+  },
+  {
+    "id": "2287",
+    "name": "Seinäjoki Nurmo Prisma",
+    "city": "Seinäjoki"
+  },
+  {
+    "id": "2289",
+    "name": "Seinäjoki Pohja Minimani",
+    "city": "Seinäjoki"
+  },
+  {
+    "id": "2745",
+    "name": "Siilinjärvi",
+    "city": "Siilinjärvi"
+  },
+  {
+    "id": "2187",
+    "name": "Sipoo Nikkilä",
+    "city": "Sipoo"
+  },
+  {
+    "id": "2193",
+    "name": "Sipoo Söderkulla",
+    "city": "Sipoo"
+  },
+  {
+    "id": "2853",
+    "name": "Sodankylä",
+    "city": "Sodankylä"
+  },
+  {
+    "id": "2233",
+    "name": "Somero",
+    "city": "Somero"
+  },
+  {
+    "id": "2822",
+    "name": "Sotkamo",
+    "city": "Sotkamo"
+  },
+  {
+    "id": "2738",
+    "name": "Sulkava",
+    "city": "Sulkava"
+  },
+  {
+    "id": "2828",
+    "name": "Suomussalmi",
+    "city": "Suomussalmi"
+  },
+  {
+    "id": "2756",
+    "name": "Suonenjoki",
+    "city": "Suonenjoki"
+  },
+  {
+    "id": "2416",
+    "name": "Sysmä",
+    "city": "Sysmä"
+  },
+  {
+    "id": "2263",
+    "name": "Säkylä",
+    "city": "Säkylä"
+  },
+  {
+    "id": "2847",
+    "name": "Taivalkoski",
+    "city": "Taivalkoski"
+  },
+  {
+    "id": "2470",
+    "name": "Tampere Hervanta Duo",
+    "city": "Tampere"
+  },
+  {
+    "id": "2463",
+    "name": "Tampere Kaleva Prisma",
+    "city": "Tampere"
+  },
+  {
+    "id": "2466",
+    "name": "Tampere Koivistonkylä Prisma",
+    "city": "Tampere"
+  },
+  {
+    "id": "2471",
+    "name": "Tampere Lielahti Citymarket",
+    "city": "Tampere"
+  },
+  {
+    "id": "2468",
+    "name": "Tampere Linnainmaa Prisma",
+    "city": "Tampere"
+  },
+  {
+    "id": "2457",
+    "name": "Tampere Ratina",
+    "city": "Tampere"
+  },
+  {
+    "id": "2464",
+    "name": "Tampere Sokos",
+    "city": "Tampere"
+  },
+  {
+    "id": "2462",
+    "name": "Tampere Stockmann",
+    "city": "Tampere"
+  },
+  {
+    "id": "2465",
+    "name": "Tampere Tammela Stadion",
+    "city": "Tampere"
+  },
+  {
+    "id": "2460",
+    "name": "Tampere Tesoma",
+    "city": "Tampere"
+  },
+  {
+    "id": "2472",
+    "name": "Tampere Turtola Citymarket",
+    "city": "Tampere"
+  },
+  {
+    "id": "2285",
+    "name": "Teuva",
+    "city": "Teuva"
+  },
+  {
+    "id": "2875",
+    "name": "Tornio",
+    "city": "Tornio"
+  },
+  {
+    "id": "2213",
+    "name": "Turku Hirvensalo",
+    "city": "Turku"
+  },
+  {
+    "id": "2202",
+    "name": "Turku Itäharju",
+    "city": "Turku"
+  },
+  {
+    "id": "2208",
+    "name": "Turku keskusta Stockmann",
+    "city": "Turku"
+  },
+  {
+    "id": "2206",
+    "name": "Turku keskusta Wiklund",
+    "city": "Turku"
+  },
+  {
+    "id": "2204",
+    "name": "Turku Kupittaa",
+    "city": "Turku"
+  },
+  {
+    "id": "2207",
+    "name": "Turku Länsikeskus Citymarket",
+    "city": "Turku"
+  },
+  {
+    "id": "2205",
+    "name": "Turku Manhattan",
+    "city": "Turku"
+  },
+  {
+    "id": "2209",
+    "name": "Turku Skanssi",
+    "city": "Turku"
+  },
+  {
+    "id": "2214",
+    "name": "Turku Tampereentie",
+    "city": "Turku"
+  },
+  {
+    "id": "2170",
+    "name": "Tuusula Hyrylä",
+    "city": "Tuusula"
+  },
+  {
+    "id": "2256",
+    "name": "Ulvila",
+    "city": "Ulvila"
+  },
+  {
+    "id": "2441",
+    "name": "Urjala",
+    "city": "Urjala"
+  },
+  {
+    "id": "2883",
+    "name": "Utsjoki Karigasniemi",
+    "city": "Utsjoki"
+  },
+  {
+    "id": "2889",
+    "name": "Utsjoki Nuorgam",
+    "city": "Utsjoki"
+  },
+  {
+    "id": "2284",
+    "name": "Uusikaarlepyy",
+    "city": "Uusikaarlepyy"
+  },
+  {
+    "id": "2221",
+    "name": "Uusikaupunki",
+    "city": "Uusikaupunki"
+  },
+  {
+    "id": "2841",
+    "name": "Vaala",
+    "city": "Vaala"
+  },
+  {
+    "id": "2292",
+    "name": "Vaasa Asevelikylä Prisma",
+    "city": "Vaasa"
+  },
+  {
+    "id": "2291",
+    "name": "Vaasa keskusta Citymarket",
+    "city": "Vaasa"
+  },
+  {
+    "id": "2293",
+    "name": "Vaasa Kivihaka Citymarket",
+    "city": "Vaasa"
+  },
+  {
+    "id": "2301",
+    "name": "Vaasa Liisanlehto",
+    "city": "Vaasa"
+  },
+  {
+    "id": "2442",
+    "name": "Valkeakoski",
+    "city": "Valkeakoski"
+  },
+  {
+    "id": "2302",
+    "name": "Vantaa Hakunila",
+    "city": "Vantaa"
+  },
+  {
+    "id": "2166",
+    "name": "Vantaa Hämeenkylä",
+    "city": "Vantaa"
+  },
+  {
+    "id": "2308",
+    "name": "Vantaa Kivistö",
+    "city": "Vantaa"
+  },
+  {
+    "id": "2194",
+    "name": "Vantaa Koivuhaka",
+    "city": "Vantaa"
+  },
+  {
+    "id": "2172",
+    "name": "Vantaa Koivukylä Citymarket",
+    "city": "Vantaa"
+  },
+  {
+    "id": "2163",
+    "name": "Vantaa Korso",
+    "city": "Vantaa"
+  },
+  {
+    "id": "2162",
+    "name": "Vantaa Myyrmäki Myyrmanni",
+    "city": "Vantaa"
+  },
+  {
+    "id": "2164",
+    "name": "Vantaa Pakkala Jumbo",
+    "city": "Vantaa"
+  },
+  {
+    "id": "2168",
+    "name": "Vantaa Tammisto Citymarket",
+    "city": "Vantaa"
+  },
+  {
+    "id": "2161",
+    "name": "Vantaa Tikkurila",
+    "city": "Vantaa"
+  },
+  {
+    "id": "2736",
+    "name": "Varkaus",
+    "city": "Varkaus"
+  },
+  {
+    "id": "2179",
+    "name": "Vihti Nummela Citymarket",
+    "city": "Vihti"
+  },
+  {
+    "id": "2485",
+    "name": "Viitasaari",
+    "city": "Viitasaari"
+  },
+  {
+    "id": "2436",
+    "name": "Virrat",
+    "city": "Virrat"
+  },
+  {
+    "id": "2876",
+    "name": "Ylitornio",
+    "city": "Ylitornio"
+  },
+  {
+    "id": "2804",
+    "name": "Ylivieska",
+    "city": "Ylivieska"
+  },
+  {
+    "id": "2474",
+    "name": "Ylöjärvi",
+    "city": "Ylöjärvi"
+  },
+  {
+    "id": "2273",
+    "name": "Ähtäri",
+    "city": "Ähtäri"
+  },
+  {
+    "id": "2455",
+    "name": "Äänekoski Hirvaskangas",
+    "city": "Äänekoski"
+  },
+  {
+    "id": "2488",
+    "name": "Äänekoski keskusta",
+    "city": "Äänekoski"
+  }
+]

@@ -42,6 +42,7 @@
         .aani-kortti .nimi{font-weight:700;font-size:16px;color:var(--text-heading);margin:0 0 4px;word-break:break-word}
         .aani-kortti .nimi a{color:var(--link-color);text-decoration:none}
         .aani-kortti .nimi a:hover{text-decoration:underline}
+        .aani-kortti .kauppa-logo{height:22px;width:22px;max-width:22px;border-radius:0;background:none;vertical-align:middle;margin-right:6px}
         .aani-kortti .meta{font-size:13px;color:var(--text-muted)}
         .peru-nappi{padding:8px 14px;font-size:13px;font-weight:600;border:1px solid #e03131;border-radius:8px;background:transparent;color:#e03131;cursor:pointer;transition:background .15s,color .15s;white-space:nowrap;flex-shrink:0;font-family:inherit}
         .peru-nappi:hover:not(:disabled){background:#e03131;color:#fff}
@@ -152,27 +153,29 @@
         const AANI_URL=(AANI_API?AANI_API.replace(/\/$/,''):'')+'/api/votes';
         const infoDiv=document.getElementById('info'),lista=document.getElementById('lista');
         const clientId=localStorage.getItem('aaniClientId')||'';
-        let AANI_MAX=3,tuoteKartta={};
+        let AANI_MAX=3,tuoteKartta=Object.create(null),tuoteNimet=Object.create(null);
 
         function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m])}
         function tuoteAvain(t){return (t.nimi||'').trim()+'||'+t.alkoholi_prosentti+'||'+t.hinta_eur}
 
-        function naytaTyhja(){lista.innerHTML='';infoDiv.style.display='none';lista.innerHTML='<div class="tyhja">Et ole vielä antanut yhtään ääntä.<br>Siirry <a href="index.html">etusivulle</a> ja äänestä juomia 👍</div>'}
+        function naytaTyhja(){lista.innerHTML='';infoDiv.style.display='none';lista.innerHTML='<div class="tyhja">Et ole vielä antanut yhtään ääntä.<br>Siirry <a href="../">etusivulle</a> ja äänestä juomia 👍</div>'}
 
         function renderoi(omat){
             if(!omat.length){naytaTyhja();return}
             infoDiv.innerHTML=`Olet antanut <strong>${omat.length}/${AANI_MAX}</strong> ääntä. Voit perua äänen alta.`;
             lista.innerHTML='';
             for(const avain of omat){
-                const t=tuoteKartta[avain];
+                const t=tuoteKartta[avain]||tuoteNimet[avain.split('||').slice(0,-1).join('||')];
                 const nimi=t?t.nimi:avain.split('||')[0];
-                const url=t&&t.linkki&&t.linkki.trim()?t.linkki:`https://www.alko.fi/fi/tuotteet?q=${encodeURIComponent(nimi)}`;
+                const url=t&&t.linkki?`../?tuote=${encodeURIComponent(t.lahde+':'+t.id)}`:'';
                 const kuva=t&&t.kuva_url?`<img src="${escapeHtml(t.kuva_url)}" alt="" onerror="this.style.display='none'">`:'';
-                const meta=t?`${Number(t.alkoholi_prosentti).toFixed(1)} % · ${Number(t.hinta_eur).toFixed(2)} €`:'';
+                const meta=t?`${t.alkoholi_prosentti==null?'Pitoisuus ei tiedossa':Number(t.alkoholi_prosentti).toFixed(1)+' %'} · ${t.lahde==='sryhma'?'alk. ':''}${(t.hinta_eur+t.pantti_eur).toFixed(2)} €`:'';
+                const logo=t?`<img class="kauppa-logo" src="../logos/${t.lahde==='sryhma'?'s-ryhma':'alko'}.svg" alt="${t.lahde==='sryhma'?'S-ryhmä':'Alko'}">`:'';
+                const nimiHtml=url?`<a href="${escapeHtml(url)}">${escapeHtml(nimi)}</a>`:escapeHtml(nimi);
                 const kortti=document.createElement('div');
                 kortti.className='aani-kortti';
                 kortti.dataset.avain=avain;
-                kortti.innerHTML=`${kuva}<div class="tiedot"><p class="nimi"><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(nimi)}</a></p><div class="meta">${escapeHtml(meta)}</div></div><button type="button" class="peru-nappi">✕ Peru ääni</button>`;
+                kortti.innerHTML=`${kuva}<div class="tiedot"><p class="nimi">${nimiHtml}</p><div class="meta">${logo}${escapeHtml(meta)}</div></div><button type="button" class="peru-nappi">✕ Peru ääni</button>`;
                 kortti.querySelector('.peru-nappi').addEventListener('click',function(){peruAani(avain,this,kortti)});
                 lista.appendChild(kortti);
             }
@@ -196,14 +199,20 @@
             try{
                 const [vastaus,tuotteet]=await Promise.all([
                     fetch(`${AANI_URL}?clientId=${encodeURIComponent(clientId)}`).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}),
-                    fetch('alko_tuotteet.json').then(r=>r.ok?r.json():[]).catch(()=>[])
+                    Promise.all(['../alko_tuotteet.json','../s_ryhma_tuotteet.json'].map(url=>fetch(url).then(r=>r.ok?r.json():[]).catch(()=>[]))).then(items=>items.flat())
                 ]);
                 if(typeof vastaus.max==='number')AANI_MAX=vastaus.max;
-                if(Array.isArray(tuotteet)){for(const t of tuotteet){if(!t||!t.nimi)continue;const avain=tuoteAvain({nimi:t.nimi,alkoholi_prosentti:Number(t.alkoholi_prosentti)||0,hinta_eur:Number(t.hinta_eur)||0});if(!(avain in tuoteKartta))tuoteKartta[avain]={nimi:t.nimi.trim(),alkoholi_prosentti:Number(t.alkoholi_prosentti)||0,hinta_eur:Number(t.hinta_eur)||0,linkki:t.linkki||'',kuva_url:t.kuva_url||''}}}
+                if(Array.isArray(tuotteet)){for(const raw of tuotteet){
+                    if(!raw?.nimi?.trim()||!raw.linkki)continue;
+                    const t={...raw,nimi:raw.nimi.trim(),alkoholi_prosentti:raw.alkoholi_prosentti==null?null:Number(raw.alkoholi_prosentti),hinta_eur:Number(raw.hinta_eur)||0,pantti_eur:Number(raw.pantti_eur)||0,lahde:raw.lahde||'alko'};
+                    const key=tuoteAvain(t),name=t.nimi+'||'+t.alkoholi_prosentti;
+                    if(!(key in tuoteKartta))tuoteKartta[key]=t;
+                    if(!(name in tuoteNimet))tuoteNimet[name]=t;
+                }}
                 infoDiv.style.display='block';
                 renderoi(Array.isArray(vastaus.omat)?vastaus.omat:[]);
             }catch(e){
-                infoDiv.innerHTML='❌ Ääniä ei voitu ladata juuri nyt. <a href="index.html">Takaisin etusivulle</a>.';
+                infoDiv.innerHTML='❌ Ääniä ei voitu ladata juuri nyt. <a href="../">Takaisin etusivulle</a>.';
             }
         }
         lataa();

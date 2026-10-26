@@ -1,0 +1,5951 @@
+[
+  {
+    "id": "631852910",
+    "name": "ABC Heinolankaari Kokkola",
+    "brand": "abc",
+    "city": "Kokkola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "650625411",
+    "name": "ABC Hiekkasärkät Kalajoki",
+    "brand": "abc",
+    "city": "Kalajoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542873088",
+    "name": "ABC Joutsentie Ylivieska",
+    "brand": "abc",
+    "city": "Ylivieska",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "637705823",
+    "name": "ABC Kajaani",
+    "brand": "abc",
+    "city": "Kajaani",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542869136",
+    "name": "ABC Kortela Rauma",
+    "brand": "abc",
+    "city": "Kortela",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "649107562",
+    "name": "ABC Lahdesjärvi Tampere",
+    "brand": "abc",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "507224467",
+    "name": "ABC Oravainen",
+    "brand": "abc",
+    "city": "Oravainen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685833857",
+    "name": "ABC Pietarsaari",
+    "brand": "abc",
+    "city": "Pietarsaari",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "517608931",
+    "name": "Alepa Erätori",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726171743",
+    "name": "Alepa Etelä-Haaga",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "552106999",
+    "name": "Alepa Herttoniemi",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "552112617",
+    "name": "Alepa Hyvinkää",
+    "brand": "alepa",
+    "city": "Hyvinkää",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "720567478",
+    "name": "Alepa Ilola",
+    "brand": "alepa",
+    "city": "Vantaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "666494307",
+    "name": "Alepa Jollas",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "512413469",
+    "name": "Alepa Joosepinkuja",
+    "brand": "alepa",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726334901",
+    "name": "Alepa Jupperi",
+    "brand": "alepa",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "522856947",
+    "name": "Alepa Kaleva",
+    "brand": "alepa",
+    "city": "Kerava",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "552105918",
+    "name": "Alepa Kamppi",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726019165",
+    "name": "Alepa Kannelmäki",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726256634",
+    "name": "Alepa Kannisto",
+    "brand": "alepa",
+    "city": "Kerava",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726620710",
+    "name": "Alepa Karakallio",
+    "brand": "alepa",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708270509",
+    "name": "Alepa Kartanonkoski",
+    "brand": "alepa",
+    "city": "Vantaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726261758",
+    "name": "Alepa Kauklahti",
+    "brand": "alepa",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725884551",
+    "name": "Alepa Kellokoski",
+    "brand": "alepa",
+    "city": "Kellokoski",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "619730872",
+    "name": "Alepa Kivenlahti",
+    "brand": "alepa",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726350200",
+    "name": "Alepa Kivistön asema",
+    "brand": "alepa",
+    "city": "Vantaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "515536274",
+    "name": "Alepa Kruununhaka",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "517744116",
+    "name": "Alepa Kulosaari",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726256637",
+    "name": "Alepa Kuparitalo",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "500321112",
+    "name": "Alepa Kuusitie",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "512680745",
+    "name": "Alepa Käpylä",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "500666441",
+    "name": "Alepa Laajalahti",
+    "brand": "alepa",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726256639",
+    "name": "Alepa Lahela",
+    "brand": "alepa",
+    "city": "Lahela",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725801958",
+    "name": "Alepa Lehtisaari",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "550097497",
+    "name": "Alepa Länsimäki",
+    "brand": "alepa",
+    "city": "Vantaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726007267",
+    "name": "Alepa Malmin Nova",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542869649",
+    "name": "Alepa Mankkaa",
+    "brand": "alepa",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725917627",
+    "name": "Alepa Martinlaakso",
+    "brand": "alepa",
+    "city": "Vantaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726256631",
+    "name": "Alepa Matinkylä",
+    "brand": "alepa",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613761972",
+    "name": "Alepa Maunula",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725854105",
+    "name": "Alepa Mechelininkatu",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "660918079",
+    "name": "Alepa Metsolantie",
+    "brand": "alepa",
+    "city": "Kerava",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "512413626",
+    "name": "Alepa Mikkola",
+    "brand": "alepa",
+    "city": "Vantaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "660917931",
+    "name": "Alepa Nissas",
+    "brand": "alepa",
+    "city": "Vantaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "500322359",
+    "name": "Alepa Pajamäki",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "517608774",
+    "name": "Alepa Paloheinä",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "663516599",
+    "name": "Alepa Pellonkulma",
+    "brand": "alepa",
+    "city": "Järvenpää",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "546284563",
+    "name": "Alepa Pihlajisto",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590774782",
+    "name": "Alepa Pikku Huopalahti",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726256633",
+    "name": "Alepa Porttipuisto",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "660919390",
+    "name": "Alepa Puistola",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "500289202",
+    "name": "Alepa Päiväkumpu",
+    "brand": "alepa",
+    "city": "Vantaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708270699",
+    "name": "Alepa Ruoholahdenkatu",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725796790",
+    "name": "Alepa Siltamäki",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "625942131",
+    "name": "Alepa Soukka",
+    "brand": "alepa",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "514030782",
+    "name": "Alepa Sturenkatu 40",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726171802",
+    "name": "Alepa Teerisuontie",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725704256",
+    "name": "Alepa Tuomarila",
+    "brand": "alepa",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542858444",
+    "name": "Alepa Töölöntori",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "531632586",
+    "name": "Alepa Vartiokylä",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726256636",
+    "name": "Alepa Verkkosaari",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725871160",
+    "name": "Alepa Viertola",
+    "brand": "alepa",
+    "city": "Vantaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726007218",
+    "name": "Alepa Viikinmäki",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "638123281",
+    "name": "Alepa Viikki",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "552109589",
+    "name": "Alepa Viiskulma",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "552108268",
+    "name": "Alepa Vuosaari",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "513929851",
+    "name": "Alepa Wallininkuja",
+    "brand": "alepa",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726350198",
+    "name": "Alepa Westend",
+    "brand": "alepa",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725928078",
+    "name": "Alepa Ymmersta",
+    "brand": "alepa",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "720571157",
+    "name": "Food Market Herkku Helsingin Keskusta",
+    "brand": "herkku",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "519684690",
+    "name": "Mestarin Herkku",
+    "brand": "s-market",
+    "city": "Jyväskylä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685839284",
+    "name": "Prisma Forssa",
+    "brand": "prisma",
+    "city": "Forssa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613764729",
+    "name": "Prisma Halikko",
+    "brand": "prisma",
+    "city": "Halikko",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726109200",
+    "name": "Prisma Herttoniemi",
+    "brand": "prisma",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708269170",
+    "name": "Prisma Hollola",
+    "brand": "prisma",
+    "city": "Hollola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "666709282",
+    "name": "Prisma Holma Lahti",
+    "brand": "prisma",
+    "city": "Lahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "634976534",
+    "name": "Prisma Hyvinkää",
+    "brand": "prisma",
+    "city": "Hyvinkää",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "666706775",
+    "name": "Prisma Hämeenlinna",
+    "brand": "prisma",
+    "city": "Hämeenlinna",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "677095416",
+    "name": "Prisma Ideapark Lempäälä",
+    "brand": "prisma",
+    "city": "Lempäälä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "516415981",
+    "name": "Prisma Iisalmi",
+    "brand": "prisma",
+    "city": "Iisalmi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708279138",
+    "name": "Prisma Imatra",
+    "brand": "prisma",
+    "city": "Imatra",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "647396324",
+    "name": "Prisma Iso Omena",
+    "brand": "prisma",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590784583",
+    "name": "Prisma Itäharju",
+    "brand": "prisma",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "660924630",
+    "name": "Prisma Itäkeskus",
+    "brand": "prisma",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "519900302",
+    "name": "Prisma Joensuu",
+    "brand": "prisma",
+    "city": "Joensuu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613759802",
+    "name": "Prisma Järvenpää",
+    "brand": "prisma",
+    "city": "Järvenpää",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "513971200",
+    "name": "Prisma Kaari Kannelmäki",
+    "brand": "prisma",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590772240",
+    "name": "Prisma Kajaani",
+    "brand": "prisma",
+    "city": "Kajaani",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "517609418",
+    "name": "Prisma Kaleva Tampere",
+    "brand": "prisma",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542868245",
+    "name": "Prisma Kangasala",
+    "brand": "prisma",
+    "city": "Kangasala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590771861",
+    "name": "Prisma Keljo Jyväskylä",
+    "brand": "prisma",
+    "city": "Jyväskylä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "637803164",
+    "name": "Prisma Kemi",
+    "brand": "prisma",
+    "city": "Kemi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "552099178",
+    "name": "Prisma Kerava",
+    "brand": "prisma",
+    "city": "Kerava",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613762350",
+    "name": "Prisma Kirkkonummi",
+    "brand": "prisma",
+    "city": "Kirkkonummi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "516079340",
+    "name": "Prisma Koivistonkylä Tampere",
+    "brand": "prisma",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "513275040",
+    "name": "Prisma Kokkola",
+    "brand": "prisma",
+    "city": "Kokkola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "518636626",
+    "name": "Prisma Kotiranta Vaasa",
+    "brand": "prisma",
+    "city": "Vaasa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "515205409",
+    "name": "Prisma Kotka",
+    "brand": "prisma",
+    "city": "Kotka",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "515204949",
+    "name": "Prisma Kouvola",
+    "brand": "prisma",
+    "city": "Kouvola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590778791",
+    "name": "Prisma Kuopio",
+    "brand": "prisma",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "634976617",
+    "name": "Prisma Kuusamo",
+    "brand": "prisma",
+    "city": "Kuusamo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726491091",
+    "name": "Prisma Lappee",
+    "brand": "prisma",
+    "city": "Lappeenranta",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613758325",
+    "name": "Prisma Lappeenranta",
+    "brand": "prisma",
+    "city": "Lappeenranta",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590784096",
+    "name": "Prisma Laune",
+    "brand": "prisma",
+    "city": "Lahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697940575",
+    "name": "Prisma Lielahti Tampere",
+    "brand": "prisma",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726235149",
+    "name": "Prisma Liisanlehto Vaasa",
+    "brand": "prisma",
+    "city": "Vaasa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "627829302",
+    "name": "Prisma Limingantulli Oulu",
+    "brand": "prisma",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613756972",
+    "name": "Prisma Linnainmaa Tampere",
+    "brand": "prisma",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603116906",
+    "name": "Prisma Linnanmaa Oulu",
+    "brand": "prisma",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726308752",
+    "name": "Prisma Lippulaiva",
+    "brand": "prisma",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697949170",
+    "name": "Prisma Loimaa",
+    "brand": "prisma",
+    "city": "Loimaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708267208",
+    "name": "Prisma Länsikeskus",
+    "brand": "prisma",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "519896369",
+    "name": "Prisma Malmi",
+    "brand": "prisma",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590772166",
+    "name": "Prisma Mikkeli",
+    "brand": "prisma",
+    "city": "Mikkeli",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "634975387",
+    "name": "Prisma Mylly",
+    "brand": "prisma",
+    "city": "Raisio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726707572",
+    "name": "Prisma Naantali",
+    "brand": "prisma",
+    "city": "Naantali",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708269337",
+    "name": "Prisma Nokia",
+    "brand": "prisma",
+    "city": "Nokia",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613759562",
+    "name": "Prisma Nummela",
+    "brand": "prisma",
+    "city": "Nummela",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542862479",
+    "name": "Prisma Olari",
+    "brand": "prisma",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726544075",
+    "name": "Prisma Orimattila",
+    "brand": "prisma",
+    "city": "Orimattila",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "631792405",
+    "name": "Prisma Palokka",
+    "brand": "prisma",
+    "city": "Palokka",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708273362",
+    "name": "Prisma Pieksämäki",
+    "brand": "prisma",
+    "city": "Pieksämäki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542859095",
+    "name": "Prisma Pietarsaari",
+    "brand": "prisma",
+    "city": "Pietarsaari",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "518451844",
+    "name": "Prisma Piispanristi",
+    "brand": "prisma",
+    "city": "Piispanristi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726188684",
+    "name": "Prisma Pirkkala",
+    "brand": "prisma",
+    "city": "Pirkkala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "549977817",
+    "name": "Prisma Pori Länsi-Pori",
+    "brand": "prisma",
+    "city": "Pori",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "514390483",
+    "name": "Prisma Pori Mikkola",
+    "brand": "prisma",
+    "city": "Pori",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726668937",
+    "name": "Prisma Raahe",
+    "brand": "prisma",
+    "city": "Raahe",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603211814",
+    "name": "Prisma Rauma",
+    "brand": "prisma",
+    "city": "Rauma",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603217266",
+    "name": "Prisma Riihimäki",
+    "brand": "prisma",
+    "city": "Riihimäki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "552112880",
+    "name": "Prisma Rovaniemi",
+    "brand": "prisma",
+    "city": "Rovaniemi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726278877",
+    "name": "Prisma Sastamala",
+    "brand": "prisma",
+    "city": "Sastamala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "552105082",
+    "name": "Prisma Savonlinna",
+    "brand": "prisma",
+    "city": "Savonlinna",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "516242633",
+    "name": "Prisma Seinäjoki",
+    "brand": "prisma",
+    "city": "Hyllykallio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "512413972",
+    "name": "Prisma Sello",
+    "brand": "prisma",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725799735",
+    "name": "Prisma Seppälä Jyväskylä",
+    "brand": "prisma",
+    "city": "Jyväskylä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726170469",
+    "name": "Prisma Syke",
+    "brand": "prisma",
+    "city": "Lahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "512905688",
+    "name": "Prisma Tampereentie",
+    "brand": "prisma",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542865571",
+    "name": "Prisma Tikkurila",
+    "brand": "prisma",
+    "city": "Vantaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603216615",
+    "name": "Prisma Tornio",
+    "brand": "prisma",
+    "city": "Tornio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726025995",
+    "name": "Prisma Tripla",
+    "brand": "prisma",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "411300380",
+    "name": "Prisma Valkeakoski",
+    "brand": "prisma",
+    "city": "Valkeakoski",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726015093",
+    "name": "Prisma Varkaus",
+    "brand": "prisma",
+    "city": "Varkaus",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603215211",
+    "name": "Prisma Viikki",
+    "brand": "prisma",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726783796",
+    "name": "Prisma Wiklund",
+    "brand": "prisma",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685834236",
+    "name": "Prisma Ylivieska",
+    "brand": "prisma",
+    "city": "Ylivieska",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726308750",
+    "name": "Prisma Ylöjärvi",
+    "brand": "prisma",
+    "city": "Ylöjärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "638143040",
+    "name": "Prisma Zeppelin",
+    "brand": "prisma",
+    "city": "Kempele",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726522643",
+    "name": "S-Market Muonio",
+    "brand": "s-market",
+    "city": "Muonio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726638046",
+    "name": "S-Market Pello Uusi",
+    "brand": "s-market",
+    "city": "Pello",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726425628",
+    "name": "S-Market Rajakylä",
+    "brand": "s-market",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726478723",
+    "name": "S-Market Sonkajärvi",
+    "brand": "s-market",
+    "city": "Sonkajärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "512035411",
+    "name": "S-market Ahola Posio",
+    "brand": "s-market",
+    "city": "Posio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "649122447",
+    "name": "S-market Ahtiala",
+    "brand": "s-market",
+    "city": "Lahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501591671",
+    "name": "S-market Alahärmä",
+    "brand": "s-market",
+    "city": "Härmä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501576110",
+    "name": "S-market Alajärvi",
+    "brand": "s-market",
+    "city": "Alajärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613760149",
+    "name": "S-market Alakylä",
+    "brand": "s-market",
+    "city": "Seinäjoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502117831",
+    "name": "S-market Alavieska",
+    "brand": "s-market",
+    "city": "Alavieska",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "519893770",
+    "name": "S-market Alavus",
+    "brand": "s-market",
+    "city": "Alavus",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "660869439",
+    "name": "S-market Ankkuri Lahti",
+    "brand": "s-market",
+    "city": "Lahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542854880",
+    "name": "S-market Arabia",
+    "brand": "s-market",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725895133",
+    "name": "S-market Aura",
+    "brand": "s-market",
+    "city": "Aura",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726308856",
+    "name": "S-market Auranlaakso",
+    "brand": "s-market",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590781746",
+    "name": "S-market Columbus Vuosaari",
+    "brand": "s-market",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501900724",
+    "name": "S-market Eno",
+    "brand": "s-market",
+    "city": "Eno",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "512054636",
+    "name": "S-market Erätuli Salla",
+    "brand": "s-market",
+    "city": "Salla",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725612617",
+    "name": "S-market Eskolanmäki",
+    "brand": "s-market",
+    "city": "Kouvola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "606790046",
+    "name": "S-market Espoonlahti",
+    "brand": "s-market",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542858873",
+    "name": "S-market Eura",
+    "brand": "s-market",
+    "city": "Eura",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726457682",
+    "name": "S-market Eurajoki",
+    "brand": "s-market",
+    "city": "Eurajoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501497309",
+    "name": "S-market Evijärvi",
+    "brand": "s-market",
+    "city": "Evijärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "634976377",
+    "name": "S-market Forssa",
+    "brand": "s-market",
+    "city": "Forssa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "639126291",
+    "name": "S-market Gerby Vaasa",
+    "brand": "s-market",
+    "city": "Vaasa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708354790",
+    "name": "S-market Goodman Hämeenlinna",
+    "brand": "s-market",
+    "city": "Hämeenlinna",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "643819774",
+    "name": "S-market Grani",
+    "brand": "s-market",
+    "city": "Kauniainen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502084809",
+    "name": "S-market Haapajärvi",
+    "brand": "s-market",
+    "city": "Haapajärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502119027",
+    "name": "S-market Haapavesi",
+    "brand": "s-market",
+    "city": "Haapavesi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603212622",
+    "name": "S-market Halinen",
+    "brand": "s-market",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "693042640",
+    "name": "S-market Halkokari",
+    "brand": "s-market",
+    "city": "Kokkola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590773800",
+    "name": "S-market Hamina",
+    "brand": "s-market",
+    "city": "Hamina",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "517594297",
+    "name": "S-market Hammaslahti",
+    "brand": "s-market",
+    "city": "Hammaslahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726522760",
+    "name": "S-market Hanko",
+    "brand": "s-market",
+    "city": "Hanko",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725923333",
+    "name": "S-market Hansa Herkku",
+    "brand": "s-market",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "536831068",
+    "name": "S-market Harjavalta",
+    "brand": "s-market",
+    "city": "Harjavalta",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "720563055",
+    "name": "S-market Haukipudas",
+    "brand": "s-market",
+    "city": "Haukipudas",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501889497",
+    "name": "S-market Haukivuori",
+    "brand": "s-market",
+    "city": "Haukivuori",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "532519410",
+    "name": "S-market Heinoska",
+    "brand": "s-market",
+    "city": "Heinola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "511782831",
+    "name": "S-market Heinävesi",
+    "brand": "s-market",
+    "city": "Heinävesi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "720566314",
+    "name": "S-market Herkku Oulu",
+    "brand": "s-market",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "519681241",
+    "name": "S-market Herkku Pori",
+    "brand": "s-market",
+    "city": "Pori",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726354360",
+    "name": "S-market Herralahti",
+    "brand": "s-market",
+    "city": "Pori",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "631940293",
+    "name": "S-market Herttoniemi",
+    "brand": "s-market",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603211061",
+    "name": "S-market Hervanta Tampere",
+    "brand": "s-market",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501502595",
+    "name": "S-market Himanka",
+    "brand": "s-market",
+    "city": "Himanka",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "539680660",
+    "name": "S-market Hirsimäki",
+    "brand": "s-market",
+    "city": "Riihimäki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501861728",
+    "name": "S-market Hirvensalmi",
+    "brand": "s-market",
+    "city": "Hirvensalmi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726722520",
+    "name": "S-market Hiukkavaara",
+    "brand": "s-market",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "511769739",
+    "name": "S-market Huittinen",
+    "brand": "s-market",
+    "city": "Huittinen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725804992",
+    "name": "S-market Hyhky Tampere",
+    "brand": "s-market",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726620729",
+    "name": "S-market Häijää Sastamala",
+    "brand": "s-market",
+    "city": "Sastamala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "500935010",
+    "name": "S-market Hämeenkyrö",
+    "brand": "s-market",
+    "city": "Hämeenkyrö",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590766861",
+    "name": "S-market Idänpää",
+    "brand": "s-market",
+    "city": "Hämeenlinna",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "503138661",
+    "name": "S-market Ii",
+    "brand": "s-market",
+    "city": "Ii",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685849184",
+    "name": "S-market Iisalmi",
+    "brand": "s-market",
+    "city": "Iisalmi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501258420",
+    "name": "S-market Iittala",
+    "brand": "s-market",
+    "city": "Iittala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "639124163",
+    "name": "S-market Ikaalinen",
+    "brand": "s-market",
+    "city": "Ikaalinen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501582332",
+    "name": "S-market Ilmajoki",
+    "brand": "s-market",
+    "city": "Ilmajoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501896005",
+    "name": "S-market Ilomantsi",
+    "brand": "s-market",
+    "city": "Ilomantsi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603216029",
+    "name": "S-market Imatrankoski",
+    "brand": "s-market",
+    "city": "Imatra",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "511787046",
+    "name": "S-market Inkeroinen",
+    "brand": "s-market",
+    "city": "Inkeroinen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502536808",
+    "name": "S-market Inkoo",
+    "brand": "s-market",
+    "city": "Inkoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "511778219",
+    "name": "S-market Isojoki",
+    "brand": "s-market",
+    "city": "Isojoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502960966",
+    "name": "S-market Isokyrö",
+    "brand": "s-market",
+    "city": "Isokyrö",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726771429",
+    "name": "S-market Itikanristeys",
+    "brand": "s-market",
+    "city": "Seinäjoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "513927723",
+    "name": "S-market Itälahdenkatu",
+    "brand": "s-market",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502098866",
+    "name": "S-market Ivalo",
+    "brand": "s-market",
+    "city": "Ivalo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "517608857",
+    "name": "S-market Jakomäki",
+    "brand": "s-market",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501446587",
+    "name": "S-market Jalasjärvi",
+    "brand": "s-market",
+    "city": "Jalasjärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "516923117",
+    "name": "S-market Jalkaranta",
+    "brand": "s-market",
+    "city": "Lahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "512034604",
+    "name": "S-market Joki-Jussi Taivalkoski",
+    "brand": "s-market",
+    "city": "Taivalkoski",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501901888",
+    "name": "S-market Joroinen",
+    "brand": "s-market",
+    "city": "Joroinen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685834491",
+    "name": "S-market Jouppi",
+    "brand": "s-market",
+    "city": "Seinäjoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "639126101",
+    "name": "S-market Joutseno",
+    "brand": "s-market",
+    "city": "Joutseno",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "512012477",
+    "name": "S-market Juankoski",
+    "brand": "s-market",
+    "city": "Juankoski",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726268437",
+    "name": "S-market Jukola",
+    "brand": "s-market",
+    "city": "Hämeenlinna",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542859251",
+    "name": "S-market Jurva",
+    "brand": "s-market",
+    "city": "Jurva",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725905179",
+    "name": "S-market Juuka",
+    "brand": "s-market",
+    "city": "Juuka",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501862619",
+    "name": "S-market Juva",
+    "brand": "s-market",
+    "city": "Juva",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697949600",
+    "name": "S-market Juvankartano",
+    "brand": "s-market",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "660919473",
+    "name": "S-market Jämsä",
+    "brand": "s-market",
+    "city": "Jämsä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697941466",
+    "name": "S-market Järvenpää",
+    "brand": "s-market",
+    "city": "Järvenpää",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726638148",
+    "name": "S-market Jääli",
+    "brand": "s-market",
+    "city": "Jääli",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685842171",
+    "name": "S-market Kaakkuri Oulu",
+    "brand": "s-market",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725726475",
+    "name": "S-market Kaarina",
+    "brand": "s-market",
+    "city": "Kaarina",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "503064875",
+    "name": "S-market Kaavi",
+    "brand": "s-market",
+    "city": "Kaavi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "519685903",
+    "name": "S-market Kajaani",
+    "brand": "s-market",
+    "city": "Kajaani",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502079809",
+    "name": "S-market Kalajoki",
+    "brand": "s-market",
+    "city": "Kalajoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "626131668",
+    "name": "S-market Kaleva Tampere",
+    "brand": "s-market",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613768555",
+    "name": "S-market Kallentori Kokkola",
+    "brand": "s-market",
+    "city": "Kokkola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "664266459",
+    "name": "S-market Kangasala",
+    "brand": "s-market",
+    "city": "Kangasala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697950962",
+    "name": "S-market Kankaanpää",
+    "brand": "s-market",
+    "city": "Kankaanpää",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501503569",
+    "name": "S-market Kannus",
+    "brand": "s-market",
+    "city": "Kannus",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613757277",
+    "name": "S-market Karhula",
+    "brand": "s-market",
+    "city": "Kotka",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "519826747",
+    "name": "S-market Karhuvuori",
+    "brand": "s-market",
+    "city": "Kotka",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "649121837",
+    "name": "S-market Karjaa",
+    "brand": "s-market",
+    "city": "Karjaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613764646",
+    "name": "S-market Karkkila",
+    "brand": "s-market",
+    "city": "Karkkila",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "511779456",
+    "name": "S-market Karstula",
+    "brand": "s-market",
+    "city": "Karstula",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726512252",
+    "name": "S-market Karttula",
+    "brand": "s-market",
+    "city": "Karttula",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708266820",
+    "name": "S-market Kastelli",
+    "brand": "s-market",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "511778052",
+    "name": "S-market Kauhajoki",
+    "brand": "s-market",
+    "city": "Kauhajoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726119471",
+    "name": "S-market Kauhava",
+    "brand": "s-market",
+    "city": "Kauhava",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "549989150",
+    "name": "S-market Kaukajärvi Tampere",
+    "brand": "s-market",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726171826",
+    "name": "S-market Kausala",
+    "brand": "s-market",
+    "city": "Kausala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501498703",
+    "name": "S-market Kaustinen",
+    "brand": "s-market",
+    "city": "Kaustinen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685845190",
+    "name": "S-market Kehätie",
+    "brand": "s-market",
+    "city": "Rauma",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685845000",
+    "name": "S-market Keilankanta Kuopio",
+    "brand": "s-market",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685839037",
+    "name": "S-market Keitele",
+    "brand": "s-market",
+    "city": "Keitele",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "503142853",
+    "name": "S-market Kello",
+    "brand": "s-market",
+    "city": "Kello",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "522770049",
+    "name": "S-market Kemi",
+    "brand": "s-market",
+    "city": "Kemi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "500988563",
+    "name": "S-market Kemiö",
+    "brand": "s-market",
+    "city": "Kemiö",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726283697",
+    "name": "S-market Kempele",
+    "brand": "s-market",
+    "city": "Kempele",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "519893937",
+    "name": "S-market Kesälahti",
+    "brand": "s-market",
+    "city": "Kesälahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "511779373",
+    "name": "S-market Keuruu",
+    "brand": "s-market",
+    "city": "Keuruu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "518798186",
+    "name": "S-market Kevätkumpu Porvoo",
+    "brand": "s-market",
+    "city": "Porvoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685838229",
+    "name": "S-market Kiiminki",
+    "brand": "s-market",
+    "city": "Kiiminki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501922298",
+    "name": "S-market Kitee",
+    "brand": "s-market",
+    "city": "Kitee",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613757699",
+    "name": "S-market Kittilä",
+    "brand": "s-market",
+    "city": "Kittilä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501924583",
+    "name": "S-market Kiuruvesi",
+    "brand": "s-market",
+    "city": "Kiuruvesi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542864418",
+    "name": "S-market Kiveriö",
+    "brand": "s-market",
+    "city": "Lahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "625910120",
+    "name": "S-market Kivistö Seinäjoki",
+    "brand": "s-market",
+    "city": "Seinäjoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726342402",
+    "name": "S-market Kivistö Vantaa",
+    "brand": "s-market",
+    "city": "Vantaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726334895",
+    "name": "S-market Klaukkala",
+    "brand": "s-market",
+    "city": "Klaukkala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726171071",
+    "name": "S-market Koivuhaka",
+    "brand": "s-market",
+    "city": "Vantaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "644409864",
+    "name": "S-market Kolari",
+    "brand": "s-market",
+    "city": "Kolari",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613758971",
+    "name": "S-market Komiaho",
+    "brand": "s-market",
+    "city": "Kajaani",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708276035",
+    "name": "S-market Kommila Varkaus",
+    "brand": "s-market",
+    "city": "Varkaus",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725704258",
+    "name": "S-market Konala",
+    "brand": "s-market",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "517601092",
+    "name": "S-market Kontiolahti",
+    "brand": "s-market",
+    "city": "Kontiolahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502294960",
+    "name": "S-market Koria",
+    "brand": "s-market",
+    "city": "Koria",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613760065",
+    "name": "S-market Korso",
+    "brand": "s-market",
+    "city": "Vantaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726119470",
+    "name": "S-market Kortesjärvi",
+    "brand": "s-market",
+    "city": "Kortesjärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501456628",
+    "name": "S-market Koskenkorva",
+    "brand": "s-market",
+    "city": "Koskenkorva",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726620267",
+    "name": "S-market Kotkansaari",
+    "brand": "s-market",
+    "city": "Kotka",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708274410",
+    "name": "S-market Kourula",
+    "brand": "s-market",
+    "city": "Lappeenranta",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "634974166",
+    "name": "S-market Kristiinankaupunki",
+    "brand": "s-market",
+    "city": "Kristiinankaupunki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "514789817",
+    "name": "S-market Kronoby",
+    "brand": "s-market",
+    "city": "Kruunupyy",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502096142",
+    "name": "S-market Kuhmo",
+    "brand": "s-market",
+    "city": "Kuhmo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542868831",
+    "name": "S-market Kuokkala",
+    "brand": "s-market",
+    "city": "Jyväskylä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "519685234",
+    "name": "S-market Kuopio",
+    "brand": "s-market",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501568695",
+    "name": "S-market Kuortane",
+    "brand": "s-market",
+    "city": "Kuortane",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501613434",
+    "name": "S-market Kurikka",
+    "brand": "s-market",
+    "city": "Kurikka",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "677199291",
+    "name": "S-market Kuusaankeskus",
+    "brand": "s-market",
+    "city": "Kuusankoski",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501499198",
+    "name": "S-market Kälviä",
+    "brand": "s-market",
+    "city": "Kälviä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "503133191",
+    "name": "S-market Kärsämäki",
+    "brand": "s-market",
+    "city": "Kärsämäki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501531859",
+    "name": "S-market Köpings Malax",
+    "brand": "s-market",
+    "city": "Maalahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502960883",
+    "name": "S-market Laihia",
+    "brand": "s-market",
+    "city": "Laihia",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726414253",
+    "name": "S-market Laitaatsilta",
+    "brand": "s-market",
+    "city": "Savonlinna",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "684473200",
+    "name": "S-market Laitila",
+    "brand": "s-market",
+    "city": "Laitila",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501263826",
+    "name": "S-market Lammi",
+    "brand": "s-market",
+    "city": "Lammi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726620728",
+    "name": "S-market Lamminpää",
+    "brand": "s-market",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501907901",
+    "name": "S-market Lapinlahti",
+    "brand": "s-market",
+    "city": "Lapinlahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "720571660",
+    "name": "S-market Lappajärvi",
+    "brand": "s-market",
+    "city": "Lappajärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "584209217",
+    "name": "S-market Lapua",
+    "brand": "s-market",
+    "city": "Lapua",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "660915802",
+    "name": "S-market Larsmo",
+    "brand": "s-market",
+    "city": "Luoto",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501607501",
+    "name": "S-market Laukaa",
+    "brand": "s-market",
+    "city": "Laukaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "584197610",
+    "name": "S-market Lauritsala",
+    "brand": "s-market",
+    "city": "Lappeenranta",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725873625",
+    "name": "S-market Lehmo",
+    "brand": "s-market",
+    "city": "Lehmo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726203039",
+    "name": "S-market Lehtomäki",
+    "brand": "s-market",
+    "city": "Kouvola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726675436",
+    "name": "S-market Leinola Tampere",
+    "brand": "s-market",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685117673",
+    "name": "S-market Lempola",
+    "brand": "s-market",
+    "city": "Lohja",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "634971980",
+    "name": "S-market Lempäälä",
+    "brand": "s-market",
+    "city": "Lempäälä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "517598603",
+    "name": "S-market Leppävirta",
+    "brand": "s-market",
+    "city": "Leppävirta",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726760136",
+    "name": "S-market Levi Uusi",
+    "brand": "s-market",
+    "city": "Sirkka",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501855084",
+    "name": "S-market Lieksa",
+    "brand": "s-market",
+    "city": "Lieksa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "639125806",
+    "name": "S-market Lieto",
+    "brand": "s-market",
+    "city": "Lieto",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "511786493",
+    "name": "S-market Liminka",
+    "brand": "s-market",
+    "city": "Liminka",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501857882",
+    "name": "S-market Liperi",
+    "brand": "s-market",
+    "city": "Liperi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590772752",
+    "name": "S-market Lohi Lohja",
+    "brand": "s-market",
+    "city": "Lohja",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613765023",
+    "name": "S-market Loppi",
+    "brand": "s-market",
+    "city": "Loppi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "649119302",
+    "name": "S-market Loviisa",
+    "brand": "s-market",
+    "city": "Loviisa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "649122793",
+    "name": "S-market Lukkarinsanta",
+    "brand": "s-market",
+    "city": "Pori",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697942431",
+    "name": "S-market Lähderanta",
+    "brand": "s-market",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726144817",
+    "name": "S-market Maaninka",
+    "brand": "s-market",
+    "city": "Maaninka",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "660939828",
+    "name": "S-market Majakkaranta",
+    "brand": "s-market",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726338814",
+    "name": "S-market Maljalahti",
+    "brand": "s-market",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726124249",
+    "name": "S-market Masala",
+    "brand": "s-market",
+    "city": "Masala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697944643",
+    "name": "S-market Mertala Savonlinna",
+    "brand": "s-market",
+    "city": "Savonlinna",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613757863",
+    "name": "S-market Mikkeli",
+    "brand": "s-market",
+    "city": "Mikkeli",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726544241",
+    "name": "S-market Moisio",
+    "brand": "s-market",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502126824",
+    "name": "S-market Muhos",
+    "brand": "s-market",
+    "city": "Muhos",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726661170",
+    "name": "S-market Muurame",
+    "brand": "s-market",
+    "city": "Muurame",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "589166792",
+    "name": "S-market Myllyhaka Nokia",
+    "brand": "s-market",
+    "city": "Nokia",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "503217374",
+    "name": "S-market Myllykoski",
+    "brand": "s-market",
+    "city": "Myllykoski",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "634973788",
+    "name": "S-market Mynämäki",
+    "brand": "s-market",
+    "city": "Mynämäki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "660917857",
+    "name": "S-market Mäntsälä",
+    "brand": "s-market",
+    "city": "Mäntsälä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502832108",
+    "name": "S-market Mänttä",
+    "brand": "s-market",
+    "city": "Mänttä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542861232",
+    "name": "S-market Mäntyharju",
+    "brand": "s-market",
+    "city": "Mäntyharju",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542863444",
+    "name": "S-market Nastola",
+    "brand": "s-market",
+    "city": "Nastola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726386925",
+    "name": "S-market Niemenranta",
+    "brand": "s-market",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590782207",
+    "name": "S-market Nikkilä",
+    "brand": "s-market",
+    "city": "Sipoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501844633",
+    "name": "S-market Nilsiä",
+    "brand": "s-market",
+    "city": "Nilsiä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502082274",
+    "name": "S-market Nivala",
+    "brand": "s-market",
+    "city": "Nivala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "518860184",
+    "name": "S-market Noormarkku",
+    "brand": "s-market",
+    "city": "Noormarkku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685836959",
+    "name": "S-market Nousiainen",
+    "brand": "s-market",
+    "city": "Nousiainen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542872866",
+    "name": "S-market Nurmijärvi",
+    "brand": "s-market",
+    "city": "Nurmijärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590778015",
+    "name": "S-market Närpiö",
+    "brand": "s-market",
+    "city": "Närpiö",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613756626",
+    "name": "S-market Näsi Porvoo",
+    "brand": "s-market",
+    "city": "Porvoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501265011",
+    "name": "S-market Orivesi",
+    "brand": "s-market",
+    "city": "Orivesi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "503134249",
+    "name": "S-market Oulainen",
+    "brand": "s-market",
+    "city": "Oulainen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "513470526",
+    "name": "S-market Outokumpu",
+    "brand": "s-market",
+    "city": "Outokumpu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613764216",
+    "name": "S-market Padasjoki",
+    "brand": "s-market",
+    "city": "Padasjoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542854377",
+    "name": "S-market Paimio",
+    "brand": "s-market",
+    "city": "Paimio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725917629",
+    "name": "S-market Pajuluoma",
+    "brand": "s-market",
+    "city": "Seinäjoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "666622592",
+    "name": "S-market Pallo Lappeenranta",
+    "brand": "s-market",
+    "city": "Lappeenranta",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "519887772",
+    "name": "S-market Palokka",
+    "brand": "s-market",
+    "city": "Palokka",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "518618566",
+    "name": "S-market Palosaari",
+    "brand": "s-market",
+    "city": "Vaasa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502097462",
+    "name": "S-market Paltamo",
+    "brand": "s-market",
+    "city": "Paltamo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603212705",
+    "name": "S-market Pansio",
+    "brand": "s-market",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613764489",
+    "name": "S-market Parainen",
+    "brand": "s-market",
+    "city": "Parainen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502258494",
+    "name": "S-market Parikkala",
+    "brand": "s-market",
+    "city": "Parikkala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "631661659",
+    "name": "S-market Parkano",
+    "brand": "s-market",
+    "city": "Parkano",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "584197453",
+    "name": "S-market Parola",
+    "brand": "s-market",
+    "city": "Parola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "513630129",
+    "name": "S-market Pateniemi",
+    "brand": "s-market",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708272208",
+    "name": "S-market Pattijoki",
+    "brand": "s-market",
+    "city": "Pattijoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "527256119",
+    "name": "S-market Peitsari",
+    "brand": "s-market",
+    "city": "Mikkeli",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726765990",
+    "name": "S-market Peltola",
+    "brand": "s-market",
+    "city": "Järvenpää",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542868161",
+    "name": "S-market Pendoliino Tampere",
+    "brand": "s-market",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501499693",
+    "name": "S-market Perho",
+    "brand": "s-market",
+    "city": "Perho",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542862040",
+    "name": "S-market Perniö",
+    "brand": "s-market",
+    "city": "Perniö",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "511777757",
+    "name": "S-market Peräseinäjoki",
+    "brand": "s-market",
+    "city": "Peräseinäjoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "589150796",
+    "name": "S-market Petonen",
+    "brand": "s-market",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726144818",
+    "name": "S-market Pielavesi",
+    "brand": "s-market",
+    "city": "Pielavesi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726666571",
+    "name": "S-market Pietarsaari",
+    "brand": "s-market",
+    "city": "Pietarsaari",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501594014",
+    "name": "S-market Pihtipudas",
+    "brand": "s-market",
+    "city": "Pihtipudas",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "515890440",
+    "name": "S-market Piikkiö",
+    "brand": "s-market",
+    "city": "Piikkiö",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725706653",
+    "name": "S-market Pitkälahti",
+    "brand": "s-market",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "552105678",
+    "name": "S-market Plaza Salo",
+    "brand": "s-market",
+    "city": "Salo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697942514",
+    "name": "S-market Pohjois-Tapiola",
+    "brand": "s-market",
+    "city": "Espoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501833610",
+    "name": "S-market Polvijärvi",
+    "brand": "s-market",
+    "city": "Polvijärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501828941",
+    "name": "S-market Porokylä Nurmes",
+    "brand": "s-market",
+    "city": "Nurmes",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726435565",
+    "name": "S-market Porttipuisto",
+    "brand": "s-market",
+    "city": "Vantaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502142003",
+    "name": "S-market Pudasjärvi",
+    "brand": "s-market",
+    "city": "Pudasjärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501913545",
+    "name": "S-market Puijonlaakso",
+    "brand": "s-market",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726261341",
+    "name": "S-market Pukinmäki",
+    "brand": "s-market",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726638045",
+    "name": "S-market Pulkkila",
+    "brand": "s-market",
+    "city": "Pulkkila",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "649123841",
+    "name": "S-market Puolanka",
+    "brand": "s-market",
+    "city": "Puolanka",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725903167",
+    "name": "S-market Pyhäjoki",
+    "brand": "s-market",
+    "city": "Pyhäjoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502090731",
+    "name": "S-market Pyhäsalmi",
+    "brand": "s-market",
+    "city": "Pyhäsalmi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501175962",
+    "name": "S-market Pälkäne",
+    "brand": "s-market",
+    "city": "Pälkäne",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725782586",
+    "name": "S-market Raisiontori",
+    "brand": "s-market",
+    "city": "Raisio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502328453",
+    "name": "S-market Rajapatsas Imatra",
+    "brand": "s-market",
+    "city": "Imatra",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "517596078",
+    "name": "S-market Rantakylä",
+    "brand": "s-market",
+    "city": "Mikkeli",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501787576",
+    "name": "S-market Rantasalmi",
+    "brand": "s-market",
+    "city": "Rantasalmi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726661262",
+    "name": "S-market Rautalampi (uusi)",
+    "brand": "s-market",
+    "city": "Rautalampi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726342401",
+    "name": "S-market Redi",
+    "brand": "s-market",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685843062",
+    "name": "S-market Reijola",
+    "brand": "s-market",
+    "city": "Reijola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502086267",
+    "name": "S-market Reisjärvi",
+    "brand": "s-market",
+    "city": "Reisjärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "519894075",
+    "name": "S-market Ristiina",
+    "brand": "s-market",
+    "city": "Ristiina",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502096738",
+    "name": "S-market Ristijärvi",
+    "brand": "s-market",
+    "city": "Ristijärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613758168",
+    "name": "S-market Ristinummi Vaasa",
+    "brand": "s-market",
+    "city": "Vaasa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726334918",
+    "name": "S-market Ritaharju",
+    "brand": "s-market",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502327133",
+    "name": "S-market Ruokolahti",
+    "brand": "s-market",
+    "city": "Ruokolahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501269781",
+    "name": "S-market Ruovesi",
+    "brand": "s-market",
+    "city": "Ruovesi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "649122603",
+    "name": "S-market Rusko",
+    "brand": "s-market",
+    "city": "Rusko",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501935605",
+    "name": "S-market Rääkkylä",
+    "brand": "s-market",
+    "city": "Rääkkylä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "720563139",
+    "name": "S-market Saarenkylä",
+    "brand": "s-market",
+    "city": "Saarenkylä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501591838",
+    "name": "S-market Saarijärvi",
+    "brand": "s-market",
+    "city": "Saarijärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "631955218",
+    "name": "S-market Sammonlahti",
+    "brand": "s-market",
+    "city": "Lappeenranta",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "649118171",
+    "name": "S-market Sauvo",
+    "brand": "s-market",
+    "city": "Sauvo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "638099390",
+    "name": "S-market Savela",
+    "brand": "s-market",
+    "city": "Jyväskylä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "517591434",
+    "name": "S-market Savitaipale",
+    "brand": "s-market",
+    "city": "Savitaipale",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613757947",
+    "name": "S-market Savonlinna",
+    "brand": "s-market",
+    "city": "Savonlinna",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697940732",
+    "name": "S-market Sepänkylä Mustasaari",
+    "brand": "s-market",
+    "city": "Mustasaari",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501502165",
+    "name": "S-market Sievi",
+    "brand": "s-market",
+    "city": "Sievi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "513471813",
+    "name": "S-market Siilinjärvi",
+    "brand": "s-market",
+    "city": "Siilinjärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726341846",
+    "name": "S-market Simuna",
+    "brand": "s-market",
+    "city": "Seinäjoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "500608328",
+    "name": "S-market Siuntio",
+    "brand": "s-market",
+    "city": "Siuntio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590782637",
+    "name": "S-market Sodankylä",
+    "brand": "s-market",
+    "city": "Sodankylä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613765965",
+    "name": "S-market Soini",
+    "brand": "s-market",
+    "city": "Soini",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590783601",
+    "name": "S-market Sokos Lahti",
+    "brand": "s-market",
+    "city": "Lahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502853294",
+    "name": "S-market Somero",
+    "brand": "s-market",
+    "city": "Somero",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502095417",
+    "name": "S-market Sotkamo",
+    "brand": "s-market",
+    "city": "Sotkamo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "639200443",
+    "name": "S-market Sundom",
+    "brand": "s-market",
+    "city": "Sundom",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502098510",
+    "name": "S-market Suomussalmi",
+    "brand": "s-market",
+    "city": "Suomussalmi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501799480",
+    "name": "S-market Suonenjoki",
+    "brand": "s-market",
+    "city": "Suonenjoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "513108225",
+    "name": "S-market Superi Valkeakoski",
+    "brand": "s-market",
+    "city": "Valkeakoski",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "511781270",
+    "name": "S-market Sysmä",
+    "brand": "s-market",
+    "city": "Sysmä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708281381",
+    "name": "S-market Säkylä",
+    "brand": "s-market",
+    "city": "Säkylä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708275573",
+    "name": "S-market Sääksjärvi Lempäälä",
+    "brand": "s-market",
+    "city": "Lempäälä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "653462903",
+    "name": "S-market Söderkulla",
+    "brand": "s-market",
+    "city": "Söderkulla",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "503200057",
+    "name": "S-market Taavetti",
+    "brand": "s-market",
+    "city": "Taavetti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726407211",
+    "name": "S-market Talvitie Rovaniemi",
+    "brand": "s-market",
+    "city": "Rovaniemi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613760495",
+    "name": "S-market Tammela",
+    "brand": "s-market",
+    "city": "Tammela",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "552109746",
+    "name": "S-market Tammisaari",
+    "brand": "s-market",
+    "city": "Tammisaari",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "660828401",
+    "name": "S-market Tanelinranta",
+    "brand": "s-market",
+    "city": "Hyllykallio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613764992",
+    "name": "S-market Tervakoski",
+    "brand": "s-market",
+    "city": "Tervakoski",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726034244",
+    "name": "S-market Tesoma Tampere",
+    "brand": "s-market",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "511777674",
+    "name": "S-market Teuva",
+    "brand": "s-market",
+    "city": "Teuva",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501608079",
+    "name": "S-market Tikkakoski",
+    "brand": "s-market",
+    "city": "Tikkakoski",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "616395315",
+    "name": "S-market Tikkula",
+    "brand": "s-market",
+    "city": "Pori",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726419632",
+    "name": "S-market Tippavaara Hämeenkyrö",
+    "brand": "s-market",
+    "city": "Kyröskoski",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "503032591",
+    "name": "S-market Tohmajärvi",
+    "brand": "s-market",
+    "city": "Tohmajärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501498380",
+    "name": "S-market Toholampi",
+    "brand": "s-market",
+    "city": "Toholampi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "639126457",
+    "name": "S-market Toijala Akaa",
+    "brand": "s-market",
+    "city": "Akaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "700242456",
+    "name": "S-market Tornionmäki Kouvola",
+    "brand": "s-market",
+    "city": "Kouvola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "631940103",
+    "name": "S-market Torpparinmäki",
+    "brand": "s-market",
+    "city": "Helsinki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726235364",
+    "name": "S-market Tourula",
+    "brand": "s-market",
+    "city": "Jyväskylä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "512336025",
+    "name": "S-market Tuira Oulu",
+    "brand": "s-market",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603213190",
+    "name": "S-market Tupuri",
+    "brand": "s-market",
+    "city": "Salo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726425723",
+    "name": "S-market Turenki",
+    "brand": "s-market",
+    "city": "Turenki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603215344",
+    "name": "S-market Tuulensuunkatu Naantali",
+    "brand": "s-market",
+    "city": "Naantali",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603115502",
+    "name": "S-market Tuulos",
+    "brand": "s-market",
+    "city": "Tuulos",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501792147",
+    "name": "S-market Tuusniemi",
+    "brand": "s-market",
+    "city": "Tuusniemi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "649126786",
+    "name": "S-market Tynninharju",
+    "brand": "s-market",
+    "city": "Lohja",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501583652",
+    "name": "S-market Törnävä",
+    "brand": "s-market",
+    "city": "Seinäjoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542860010",
+    "name": "S-market Uimaharju",
+    "brand": "s-market",
+    "city": "Uimaharju",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502101322",
+    "name": "S-market Uitto Kemijärvi",
+    "brand": "s-market",
+    "city": "Kemijärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726240981",
+    "name": "S-market Ulvila",
+    "brand": "s-market",
+    "city": "Ulvila",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685835472",
+    "name": "S-market Urjala",
+    "brand": "s-market",
+    "city": "Urjala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697953719",
+    "name": "S-market Urpola Mikkeli",
+    "brand": "s-market",
+    "city": "Mikkeli",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726478790",
+    "name": "S-market Uurainen",
+    "brand": "s-market",
+    "city": "Uurainen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "625931449",
+    "name": "S-market Uusikaarlepyy",
+    "brand": "s-market",
+    "city": "Uusikaarlepyy",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708271234",
+    "name": "S-market Vaajala",
+    "brand": "s-market",
+    "city": "Vaajakoski",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "512034950",
+    "name": "S-market Vaala",
+    "brand": "s-market",
+    "city": "Vaala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726261697",
+    "name": "S-market Vaasanpuistikko",
+    "brand": "s-market",
+    "city": "Vaasa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "516007432",
+    "name": "S-market Vakka-Suomenkatu Uusikaupunki",
+    "brand": "s-market",
+    "city": "Uusikaupunki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502302813",
+    "name": "S-market Valkeala",
+    "brand": "s-market",
+    "city": "Valkeala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501830525",
+    "name": "S-market Valtimo",
+    "brand": "s-market",
+    "city": "Valtimo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726783952",
+    "name": "S-market Varisto",
+    "brand": "s-market",
+    "city": "Vantaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501913032",
+    "name": "S-market Varpaisjärvi",
+    "brand": "s-market",
+    "city": "Varpaisjärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "500942651",
+    "name": "S-market Vehmaa",
+    "brand": "s-market",
+    "city": "Vinkkilä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542862123",
+    "name": "S-market Veikkola",
+    "brand": "s-market",
+    "city": "Veikkola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726478787",
+    "name": "S-market Vesanto",
+    "brand": "s-market",
+    "city": "Vesanto",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725811001",
+    "name": "S-market Vieremä",
+    "brand": "s-market",
+    "city": "Vieremä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501264550",
+    "name": "S-market Viiala Akaa",
+    "brand": "s-market",
+    "city": "Akaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "511782161",
+    "name": "S-market Viinijärvi",
+    "brand": "s-market",
+    "city": "Viinijärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "511778565",
+    "name": "S-market Viitasaari",
+    "brand": "s-market",
+    "city": "Viitasaari",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708269410",
+    "name": "S-market Villähde Nastola",
+    "brand": "s-market",
+    "city": "Nastola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501524052",
+    "name": "S-market Vimpeli",
+    "brand": "s-market",
+    "city": "Vimpeli",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501561096",
+    "name": "S-market Virrat",
+    "brand": "s-market",
+    "city": "Virrat",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603116740",
+    "name": "S-market Vuokatti",
+    "brand": "s-market",
+    "city": "Vuokatti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "666544184",
+    "name": "S-market Vuoksenniska",
+    "brand": "s-market",
+    "city": "Imatra",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725615601",
+    "name": "S-market Vuorela",
+    "brand": "s-market",
+    "city": "Vuorela",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501619860",
+    "name": "S-market Vähäkyrö",
+    "brand": "s-market",
+    "city": "Vähäkyrö",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726329489",
+    "name": "S-market Vääksy",
+    "brand": "s-market",
+    "city": "Vääksy",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501553663",
+    "name": "S-market Vöyri",
+    "brand": "s-market",
+    "city": "Vöyri",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "552106213",
+    "name": "S-market Ykkösrasti Kuopio",
+    "brand": "s-market",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501538789",
+    "name": "S-market Ylihärmä",
+    "brand": "s-market",
+    "city": "Ylihärmä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501585608",
+    "name": "S-market Ylistaro",
+    "brand": "s-market",
+    "city": "Ylistaro",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542865738",
+    "name": "S-market Ylitornio",
+    "brand": "s-market",
+    "city": "Ylitornio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "660915562",
+    "name": "S-market Ylämylly",
+    "brand": "s-market",
+    "city": "Ylämylly",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "511777591",
+    "name": "S-market Ähtäri",
+    "brand": "s-market",
+    "city": "Ähtäri",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603211301",
+    "name": "S-market Äyhö",
+    "brand": "s-market",
+    "city": "Rauma",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "677285702",
+    "name": "S-market Äänekoski",
+    "brand": "s-market",
+    "city": "Äänekoski",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708273529",
+    "name": "S-market Åland Godby",
+    "brand": "s-market",
+    "city": "Godby",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697945376",
+    "name": "S-market Åland Jomala",
+    "brand": "s-market",
+    "city": "Mariehamn",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725873045",
+    "name": "Sale Alastaro",
+    "brand": "sale",
+    "city": "Alastaro",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "684154107",
+    "name": "Sale Amuri Tampere",
+    "brand": "sale",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603210170",
+    "name": "Sale Annala Tampere",
+    "brand": "sale",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501859904",
+    "name": "Sale Anttola",
+    "brand": "sale",
+    "city": "Anttola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "506837053",
+    "name": "Sale Asemantie Ylöjärvi",
+    "brand": "sale",
+    "city": "Ylöjärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "500549803",
+    "name": "Sale Askola",
+    "brand": "sale",
+    "city": "Askola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726342341",
+    "name": "Sale Aurakatu",
+    "brand": "sale",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "519781462",
+    "name": "Sale Enonkoski",
+    "brand": "sale",
+    "city": "Enonkoski",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725903139",
+    "name": "Sale Ersta",
+    "brand": "sale",
+    "city": "Villähde",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708276894",
+    "name": "Sale Etappi",
+    "brand": "sale",
+    "city": "Naantali",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708272125",
+    "name": "Sale Etelätulli Oulu",
+    "brand": "sale",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697946697",
+    "name": "Sale Forssa",
+    "brand": "sale",
+    "city": "Forssa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726179715",
+    "name": "Sale Gammelbacka",
+    "brand": "sale",
+    "city": "Porvoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "720577436",
+    "name": "Sale Grani",
+    "brand": "sale",
+    "city": "Kauniainen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501597876",
+    "name": "Sale Haapamäki",
+    "brand": "sale",
+    "city": "Haapamäki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725830875",
+    "name": "Sale Hakatori Kokkola",
+    "brand": "sale",
+    "city": "Kokkola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685850356",
+    "name": "Sale Hakkari Lempäälä",
+    "brand": "sale",
+    "city": "Lempäälä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590783445",
+    "name": "Sale Hallila Tampere",
+    "brand": "sale",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725884548",
+    "name": "Sale Hatanpää Tampere",
+    "brand": "sale",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708275227",
+    "name": "Sale Heinola kk",
+    "brand": "sale",
+    "city": "Heinola Kk",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "517139523",
+    "name": "Sale Hermanni Salo",
+    "brand": "sale",
+    "city": "Salo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697951341",
+    "name": "Sale Hervanta Tampere",
+    "brand": "sale",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726396281",
+    "name": "Sale Hervantajärvi Tampere",
+    "brand": "sale",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726361569",
+    "name": "Sale Hiidensalmi",
+    "brand": "sale",
+    "city": "Lohja",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "666709365",
+    "name": "Sale Hintta Oulu",
+    "brand": "sale",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726644918",
+    "name": "Sale Hippos Tampere",
+    "brand": "sale",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603210253",
+    "name": "Sale Hirssaari",
+    "brand": "sale",
+    "city": "Kotka",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725927362",
+    "name": "Sale Honkajoki",
+    "brand": "sale",
+    "city": "Honkajoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725634856",
+    "name": "Sale Huhtinen",
+    "brand": "sale",
+    "city": "Porvoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542863014",
+    "name": "Sale Hämeenkatu Turku",
+    "brand": "sale",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725903009",
+    "name": "Sale Härmälänranta Tampere",
+    "brand": "sale",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "503139479",
+    "name": "Sale Höyhtyä Oulu",
+    "brand": "sale",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725917623",
+    "name": "Sale Inari",
+    "brand": "sale",
+    "city": "Inari",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697945020",
+    "name": "Sale Isokylä Kokkola",
+    "brand": "sale",
+    "city": "Kokkola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725979920",
+    "name": "Sale Janka Tampere",
+    "brand": "sale",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "519778328",
+    "name": "Sale Jynkkä Kuopio",
+    "brand": "sale",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "584822779",
+    "name": "Sale Jyrkkälä",
+    "brand": "sale",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708268602",
+    "name": "Sale Jyränkö",
+    "brand": "sale",
+    "city": "Heinola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "528361405",
+    "name": "Sale Jäkärlä",
+    "brand": "sale",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "630129021",
+    "name": "Sale Jäppilä",
+    "brand": "sale",
+    "city": "Jäppilä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "666707070",
+    "name": "Sale Järvensivu Tampere",
+    "brand": "sale",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697947232",
+    "name": "Sale Kaisaniemi Ylivieska",
+    "brand": "sale",
+    "city": "Ylivieska",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "698479029",
+    "name": "Sale Kalliokatu Rauma",
+    "brand": "sale",
+    "city": "Rauma",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "508412533",
+    "name": "Sale Kanervala Joensuu",
+    "brand": "sale",
+    "city": "Joensuu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726512223",
+    "name": "Sale Kangaslampi",
+    "brand": "sale",
+    "city": "Kangaslampi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502515489",
+    "name": "Sale Kantvik",
+    "brand": "sale",
+    "city": "Kantvik",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502834740",
+    "name": "Sale Karavaani",
+    "brand": "sale",
+    "city": "Riihimäki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "509561601",
+    "name": "Sale Karijoki",
+    "brand": "sale",
+    "city": "Karijoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "616395745",
+    "name": "Sale Kaskinen",
+    "brand": "sale",
+    "city": "Kaskinen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "506264340",
+    "name": "Sale Kaurasmäki Ylöjärvi",
+    "brand": "sale",
+    "city": "Ylöjärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708281035",
+    "name": "Sale Kauttua",
+    "brand": "sale",
+    "city": "Kauttua",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "519776298",
+    "name": "Sale Kelloniemi Kuopio",
+    "brand": "sale",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501895114",
+    "name": "Sale Kiihtelysvaara",
+    "brand": "sale",
+    "city": "Kiihtelysvaara",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726034261",
+    "name": "Sale Kivijärvi",
+    "brand": "sale",
+    "city": "Kivijärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "510213127",
+    "name": "Sale Koivuhaka Kokkola",
+    "brand": "sale",
+    "city": "Kokkola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501855324",
+    "name": "Sale Koli",
+    "brand": "sale",
+    "city": "Koli",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726367976",
+    "name": "Sale Kompassi Turku",
+    "brand": "sale",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "638099473",
+    "name": "Sale Konnevesi",
+    "brand": "sale",
+    "city": "Konnevesi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "507998722",
+    "name": "Sale Kontiopuisto",
+    "brand": "sale",
+    "city": "Pieksämäki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "625921564",
+    "name": "Sale Korkalovaara Rovaniemi",
+    "brand": "sale",
+    "city": "Rovaniemi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "552111213",
+    "name": "Sale Korsholmanpuistikko Vaasa",
+    "brand": "sale",
+    "city": "Vaasa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501529796",
+    "name": "Sale Korsnäs",
+    "brand": "sale",
+    "city": "Korsnäs",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "512059437",
+    "name": "Sale Korvatunturi",
+    "brand": "sale",
+    "city": "Savukoski",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "500355870",
+    "name": "Sale Kuivasjärvi",
+    "brand": "sale",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501271175",
+    "name": "Sale Kuru Ylöjärvi",
+    "brand": "sale",
+    "city": "Kuru",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542859335",
+    "name": "Sale Kustavi",
+    "brand": "sale",
+    "city": "Kustavi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "500951132",
+    "name": "Sale Kyröntie Kyrö",
+    "brand": "sale",
+    "city": "Kyrö",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726015057",
+    "name": "Sale Käikälä",
+    "brand": "sale",
+    "city": "Hämeenlinna",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "649118098",
+    "name": "Sale Käsityöläiskatu Turku",
+    "brand": "sale",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502719131",
+    "name": "Sale Lahdenkatu Rauma",
+    "brand": "sale",
+    "city": "Rauma",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "500996319",
+    "name": "Sale Laitila",
+    "brand": "sale",
+    "city": "Laitila",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "518946652",
+    "name": "Sale Laivurinkatu Turku",
+    "brand": "sale",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "666708987",
+    "name": "Sale Lapinmaa Rovaniemi",
+    "brand": "sale",
+    "city": "Rovaniemi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "500924675",
+    "name": "Sale Lappi",
+    "brand": "sale",
+    "city": "Lappi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "613761626",
+    "name": "Sale Lapväärtti",
+    "brand": "sale",
+    "city": "Lapväärtti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "515890283",
+    "name": "Sale Lauste",
+    "brand": "sale",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685833931",
+    "name": "Sale Leenala Kokkola",
+    "brand": "sale",
+    "city": "Kokkola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726452049",
+    "name": "Sale Lehtimäki",
+    "brand": "sale",
+    "city": "Lehtimäki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "660918749",
+    "name": "Sale Lemu",
+    "brand": "sale",
+    "city": "Lemu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590779765",
+    "name": "Sale Liipola",
+    "brand": "sale",
+    "city": "Lahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "515506798",
+    "name": "Sale Lindal",
+    "brand": "sale",
+    "city": "Kirkkonummi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501912497",
+    "name": "Sale Linnanpelto Kuopio",
+    "brand": "sale",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501500110",
+    "name": "Sale Lohtaja",
+    "brand": "sale",
+    "city": "Lohtaja",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "590782983",
+    "name": "Sale Lundi",
+    "brand": "sale",
+    "city": "Porvoo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603215807",
+    "name": "Sale Maikkula Oulu",
+    "brand": "sale",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685849770",
+    "name": "Sale Martti Turku",
+    "brand": "sale",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501532238",
+    "name": "Sale Maxmo",
+    "brand": "sale",
+    "city": "Maksamaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726765988",
+    "name": "Sale Merimasku Naantali",
+    "brand": "sale",
+    "city": "Merimasku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685835555",
+    "name": "Sale Metsäkylä Ylöjärvi",
+    "brand": "sale",
+    "city": "Julkujärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685846750",
+    "name": "Sale Metsäpelto",
+    "brand": "sale",
+    "city": "Lahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "515885283",
+    "name": "Sale Monnankatu Rauma",
+    "brand": "sale",
+    "city": "Rauma",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "500550579",
+    "name": "Sale Monninkylä",
+    "brand": "sale",
+    "city": "Askola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726522638",
+    "name": "Sale Multia",
+    "brand": "sale",
+    "city": "Multia",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "516528676",
+    "name": "Sale Myllyoja Oulu",
+    "brand": "sale",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603159633",
+    "name": "Sale Mäntylä Oulu",
+    "brand": "sale",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "634972038",
+    "name": "Sale Naarajärvi",
+    "brand": "sale",
+    "city": "Naarajärvi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "638130815",
+    "name": "Sale Nattari Kangasala",
+    "brand": "sale",
+    "city": "Kangasala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603215484",
+    "name": "Sale Nauvo",
+    "brand": "sale",
+    "city": "Nauvo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "518633607",
+    "name": "Sale Neulamäki Kuopio",
+    "brand": "sale",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685844623",
+    "name": "Sale Niirala",
+    "brand": "sale",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726274303",
+    "name": "Sale Nuijamies",
+    "brand": "sale",
+    "city": "Mikkeli",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726274158",
+    "name": "Sale Nummela",
+    "brand": "sale",
+    "city": "Nummela",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697946770",
+    "name": "Sale Okeroinen",
+    "brand": "sale",
+    "city": "Lahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "589691443",
+    "name": "Sale Opistonkatu Kankaanpää",
+    "brand": "sale",
+    "city": "Kankaanpää",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "514575182",
+    "name": "Sale Osmonmäki Tampere",
+    "brand": "sale",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542869722",
+    "name": "Sale Paattinen",
+    "brand": "sale",
+    "city": "Paattinen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685841017",
+    "name": "Sale Palosaari Vaasa",
+    "brand": "sale",
+    "city": "Vaasa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "649123338",
+    "name": "Sale Paratiisinmäki",
+    "brand": "sale",
+    "city": "Pori",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "500979224",
+    "name": "Sale Paukkula Salo",
+    "brand": "sale",
+    "city": "Salo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "628648859",
+    "name": "Sale Perttilä",
+    "brand": "sale",
+    "city": "Lohja",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501865471",
+    "name": "Sale Pertunmaa",
+    "brand": "sale",
+    "city": "Pertunmaa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "648974376",
+    "name": "Sale Petrelius Turku",
+    "brand": "sale",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "518545900",
+    "name": "Sale Poitsila",
+    "brand": "sale",
+    "city": "Poitsila",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697955177",
+    "name": "Sale Poltinaho Hämeenlinna",
+    "brand": "sale",
+    "city": "Hämeenlinna",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "660921370",
+    "name": "Sale Pornainen",
+    "brand": "sale",
+    "city": "Pornainen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726771471",
+    "name": "Sale Puijonkuppee",
+    "brand": "sale",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708273016",
+    "name": "Sale Pukinkulma Vaasa",
+    "brand": "sale",
+    "city": "Vaasa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501858773",
+    "name": "Sale Puumala",
+    "brand": "sale",
+    "city": "Puumala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725905047",
+    "name": "Sale Pyhtää",
+    "brand": "sale",
+    "city": "Siltakylä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "639125335",
+    "name": "Sale Päiviönsaari",
+    "brand": "sale",
+    "city": "Varkaus",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "546237728",
+    "name": "Sale Päiväranta Kuopio",
+    "brand": "sale",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725723801",
+    "name": "Sale Pännäinen",
+    "brand": "sale",
+    "city": "Pännäinen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "634974406",
+    "name": "Sale Pöytyä",
+    "brand": "sale",
+    "city": "Riihikoski",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708267042",
+    "name": "Sale Rantavitikka Rovaniemi",
+    "brand": "sale",
+    "city": "Rovaniemi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502048929",
+    "name": "Sale Rantsila",
+    "brand": "sale",
+    "city": "Rantsila",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726015063",
+    "name": "Sale Rautavaara",
+    "brand": "sale",
+    "city": "Rautavaara",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "638145334",
+    "name": "Sale Rewell",
+    "brand": "sale",
+    "city": "Vaasa",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708275300",
+    "name": "Sale Riihimäki",
+    "brand": "sale",
+    "city": "Riihimäki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "616449690",
+    "name": "Sale Riistavesi",
+    "brand": "sale",
+    "city": "Riistavesi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "517608261",
+    "name": "Sale Ruka",
+    "brand": "sale",
+    "city": "Rukatunturi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "634973945",
+    "name": "Sale Runosmäki",
+    "brand": "sale",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725927954",
+    "name": "Sale Rymättylä",
+    "brand": "sale",
+    "city": "Rymättylä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "548807825",
+    "name": "Sale Saarijärvi Kuopio",
+    "brand": "sale",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697955763",
+    "name": "Sale Satama Kuopio",
+    "brand": "sale",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725865147",
+    "name": "Sale Savisilta",
+    "brand": "sale",
+    "city": "Mikkeli",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "509563730",
+    "name": "Sale Savonranta",
+    "brand": "sale",
+    "city": "Savonranta",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708355177",
+    "name": "Sale Sorva Nokia",
+    "brand": "sale",
+    "city": "Nokia",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "519729974",
+    "name": "Sale Suuppa Pirkkala",
+    "brand": "sale",
+    "city": "Pirkkala",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603211947",
+    "name": "Sale Syväraumankatu Rauma",
+    "brand": "sale",
+    "city": "Rauma",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "511695785",
+    "name": "Sale Särkiniemi Kuopio",
+    "brand": "sale",
+    "city": "Kuopio",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "639123868",
+    "name": "Sale Tahko",
+    "brand": "sale",
+    "city": "Tahkovuori",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685833261",
+    "name": "Sale Taivassalo",
+    "brand": "sale",
+    "city": "Taivassalo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "603215724",
+    "name": "Sale Tennby Parainen",
+    "brand": "sale",
+    "city": "Parainen",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "517585972",
+    "name": "Sale Tervajoki",
+    "brand": "sale",
+    "city": "Tervajoki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726512253",
+    "name": "Sale Tervo",
+    "brand": "sale",
+    "city": "Tervo",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502111552",
+    "name": "Sale Tervola",
+    "brand": "sale",
+    "city": "Tervola",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501513527",
+    "name": "Sale Toivakka",
+    "brand": "sale",
+    "city": "Toivakka",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708282611",
+    "name": "Sale Toppila Oulu",
+    "brand": "sale",
+    "city": "Oulu",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726188680",
+    "name": "Sale Tori",
+    "brand": "sale",
+    "city": "Pori",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "708273446",
+    "name": "Sale Tusku",
+    "brand": "sale",
+    "city": "Mikkeli",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501448286",
+    "name": "Sale Töysä",
+    "brand": "sale",
+    "city": "Töysä",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "637700436",
+    "name": "Sale Uusikaarlepyy",
+    "brand": "sale",
+    "city": "Uusikaarlepyy",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725907511",
+    "name": "Sale Uusikaupunki",
+    "brand": "sale",
+    "city": "Uusikaupunki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "666713805",
+    "name": "Sale Valtakatu Ylivieska",
+    "brand": "sale",
+    "city": "Ylivieska",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "552113425",
+    "name": "Sale Vapaudenkatu Pori",
+    "brand": "sale",
+    "city": "Pori",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726144819",
+    "name": "Sale Vehmersalmi",
+    "brand": "sale",
+    "city": "Vehmersalmi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "726544240",
+    "name": "Sale Verkahovi Turku",
+    "brand": "sale",
+    "city": "Turku",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "638118281",
+    "name": "Sale Vesilahti",
+    "brand": "sale",
+    "city": "Vesilahti",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "685833501",
+    "name": "Sale Vestersundsby Pietarsaari",
+    "brand": "sale",
+    "city": "Pietarsaari",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "542854799",
+    "name": "Sale Vierumäki",
+    "brand": "sale",
+    "city": "Vierumäki",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "552106346",
+    "name": "Sale Virkkala",
+    "brand": "sale",
+    "city": "Lohja",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "501926604",
+    "name": "Sale Virtasalmi",
+    "brand": "sale",
+    "city": "Virtasalmi",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "697954360",
+    "name": "Sale Vuores Tampere",
+    "brand": "sale",
+    "city": "Tampere",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "502124530",
+    "name": "Sale Yli-Ii",
+    "brand": "sale",
+    "city": "Yli-Ii",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  },
+  {
+    "id": "725885300",
+    "name": "Sale Yläne",
+    "brand": "sale",
+    "city": "Yläne",
+    "domains": [
+      "S_KAUPAT"
+    ]
+  }
+]
