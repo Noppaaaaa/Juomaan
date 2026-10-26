@@ -47,6 +47,7 @@ async def main():
         await page.goto('http://127.0.0.1:8766/',wait_until='domcontentloaded')
         await page.wait_for_function("document.querySelector('#info').textContent.includes('Koko Suomi:')")
         assert await page.locator('#kaupunkiValinta').input_value()==''
+        assert await page.locator('#myymalaDropdown, #myymalaToggle, #myymalaSlider, #myymalaNumero').count()==0
         assert await page.locator('#btnAlko').get_attribute('aria-pressed')=='true'
         assert await page.locator('#btnSRyhma').get_attribute('aria-pressed')=='false'
         assert f'{len(alko)} Alkon tuotetta.' in await page.locator('#info').inner_text()
