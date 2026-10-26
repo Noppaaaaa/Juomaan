@@ -1,0 +1,244 @@
+name: Päivitä juomavalikoimat
+
+on:
+  schedule:
+    - cron: '17 4 * * 0'
+      timezone: Europe/Helsinki
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: juomavalikoimien-paivitys
+  cancel-in-progress: false
+
+jobs:
+  alko:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/cache/restore@v4
+        with:
+          path: alko_tuotetiedot.json
+          key: alko-tuotetiedot-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: alko-tuotetiedot-
+      - run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - id: collect
+        name: Kerää Alkon aineisto
+        continue-on-error: true
+        timeout-minutes: 300
+        run: python aineiston_keräys_V5.py
+      - if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: alko_tuotetiedot.json
+          key: alko-tuotetiedot-${{ github.run_id }}-${{ github.run_attempt }}
+      - if: steps.collect.outcome == 'success'
+        name: Tallenna Alkon aineisto GitHubiin
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git fetch origin main
+          git rebase --autostash origin/main
+          git add -- alko_tuotteet.json alko_myymalat.json alko_keruu.json alko_tuotetiedot.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "data: update Alko catalogue"
+          git push origin HEAD:main
+      - if: steps.collect.outcome != 'success'
+        run: exit 1
+
+  s-ryhma:
+    needs: alko
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/cache/restore@v4
+        with:
+          path: |
+            s_ryhma_tuotetiedot.json
+            s_ryhma_tuotteet_*.json
+            .s-paivitys-alkoi.txt
+          key: s-tuotteet-${{ hashFiles('aineiston_keräys_S.py') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: s-tuotteet-${{ hashFiles('aineiston_keräys_S.py') }}-
+      - run: |
+          python -m pip install crawl4ai beautifulsoup4 lxml playwright
+          crawl4ai-setup
+          python -m playwright install --with-deps chromium
+      - id: collect
+        name: Kerää ja kokoa S-ryhmän aineisto
+        continue-on-error: true
+        timeout-minutes: 300
+        run: |
+          if [ ! -f .s-paivitys-alkoi.txt ]; then date -u +'%Y-%m-%dT%H:%M:%SZ' > .s-paivitys-alkoi.txt; fi
+          # Keep the existing timestamp-based store cache resumable between fresh checkouts.
+          touch -d "$(cat .s-paivitys-alkoi.txt)" aineiston_keräys_S.py
+          python aineiston_keräys_S_kaikki.py
+          python paivita_s_ryhma.py
+          python kokoa_valikoimat.py
+          date -u +'%Y-%m-%dT%H:%M:%SZ' > .s-paivitys-alkoi.txt
+      - if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            s_ryhma_tuotetiedot.json
+            s_ryhma_tuotteet_*.json
+            .s-paivitys-alkoi.txt
+          key: s-tuotteet-${{ hashFiles('aineiston_keräys_S.py') }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - if: steps.collect.outcome == 'success'
+        name: Tallenna S-ryhmän aineisto GitHubiin
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git fetch origin main
+          git rebase --autostash origin/main
+          git add -- s_ryhma_tuotteet.json valikoima_tiedot.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "data: update S-group catalogue"
+          git push origin HEAD:main
+      - if: steps.collect.outcome != 'success'
+        run: exit 1
+
+  kesko:
+    needs: s-ryhma
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    outputs:
+      keruu: ${{ steps.collect.outcome }}
+      julkaisu: ${{ steps.publish.outcome }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/cache/restore@v4
+        with:
+          path: k_aineisto
+          key: k-aineisto-${{ hashFiles('aineiston_keräys_K.py') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: k-aineisto-${{ hashFiles('aineiston_keräys_K.py') }}-
+      - name: Valmistele K-ryhmän keruujakso
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          cache = Path('k_aineisto')
+          cache.mkdir(exist_ok=True)
+          marker = cache / '.keruu-kesken'
+          if not marker.exists():
+              for file in cache.glob('*.json'):
+                  file.unlink()
+              marker.touch()
+          PY
+      - run: |
+          python -m pip install crawl4ai
+          crawl4ai-setup
+      - id: collect
+        name: Kerää Kesko-aineisto
+        continue-on-error: true
+        timeout-minutes: 300
+        run: python aineiston_keräys_K.py
+      - id: publish
+        if: always()
+        name: Päivitä K-ryhmän löydetyt tuotteet
+        run: |
+          python -c "import json; p=json.load(open('k_ryhma_tuotteet.json', encoding='utf8')); r=json.load(open('k_ryhma_keruu.json', encoding='utf8')); assert len(p) >= 100 and r['tuotteita'] == len(p) and r['myymaloita'] == len(json.load(open('k_ryhma_myymalat.json', encoding='utf8'))), 'K-ryhmän osatulosta ei voitu tarkistaa'"
+          python kokoa_valikoimat.py --k-only
+          python -c "import json,pathlib; r=json.load(open('k_ryhma_keruu.json',encoding='utf8')); p=pathlib.Path('k_aineisto/.keruu-kesken'); p.unlink(missing_ok=r['kerattyja_myymaloita'] < r['myymaloita'])"
+      - if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: k_aineisto
+          key: k-aineisto-${{ github.run_id }}-${{ github.run_attempt }}
+      - if: steps.publish.outcome == 'success'
+        name: Tallenna Kesko-aineisto GitHubiin
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git fetch origin main
+          git rebase --autostash origin/main
+          git add -- k_ryhma_tuotteet.json k_ryhma_keruu.json valikoima_tiedot.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "data: update Kesko catalogue"
+          git push origin HEAD:main
+      - if: steps.publish.outcome != 'success'
+        run: exit 1
+
+  raportti:
+    needs: [alko, s-ryhma, kesko]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+    steps:
+      - id: pages
+        if: needs.alko.result == 'success' || needs.s-ryhma.result == 'success' || needs.kesko.result == 'success'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
+      - name: Tallenna ajon tulokset GitHubiin
+        env:
+          ALKO: ${{ needs.alko.result }}
+          S_RYHMA: ${{ needs.s-ryhma.result }}
+          KESKO: ${{ needs.kesko.result }}
+          KESKO_KERUU: ${{ needs.kesko.outputs.keruu }}
+          KESKO_JULKAISU: ${{ needs.kesko.outputs.julkaisu }}
+          PAGES: ${{ steps.pages.outcome }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          python - <<'PY'
+          import datetime, json, os, pathlib
+          result = {
+              'ajo': os.environ['RUN_ID'],
+              'valmistui': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'alko': os.environ['ALKO'],
+              's-ryhma': os.environ['S_RYHMA'],
+              'kesko': os.environ['KESKO'],
+              'kesko-keruu': os.environ['KESKO_KERUU'],
+              'kesko-julkaisu': os.environ['KESKO_JULKAISU'],
+              'pages-julkaisu': os.environ['PAGES'],
+          }
+          pathlib.Path('paivitysraportti').mkdir()
+          pathlib.Path('paivitysraportti/tulos.json').write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf8')
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf8') as summary:
+              summary.write('# Valikoimien päivitys\n\n| Aineisto | Tulos |\n|---|---|\n')
+              for name in ('alko', 's-ryhma', 'kesko'):
+                  summary.write(f"| {name} | {result[name]} |\n")
+              summary.write(f"| K-keruun vaihe | {result['kesko-keruu']} |\n")
+              summary.write(f"| K-aineiston tallennus | {result['kesko-julkaisu']} |\n")
+              summary.write(f"| GitHub Pages | {result['pages-julkaisu']} |\n")
+              summary.write('\nRaportti on tämän GitHub Actions -ajon yhteenveto ja artefakti; sitä ei julkaista sivustolle.\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paivitysraportti-${{ github.run_id }}
+          path: paivitysraportti/tulos.json
+          retention-days: 90
+      - if: needs.alko.result != 'success' || needs.s-ryhma.result != 'success' || needs.kesko.result != 'success'
+        run: exit 1
+      - if: steps.pages.outcome == 'failure'
+        run: exit 1

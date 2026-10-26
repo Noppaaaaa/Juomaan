@@ -10,14 +10,18 @@ ROOT=Path(__file__).resolve().parent
 def data_checks():
     alko=json.loads((ROOT/'alko_tuotteet.json').read_text(encoding='utf8'))
     s=json.loads((ROOT/'s_ryhma_tuotteet.json').read_text(encoding='utf8'))
+    k=json.loads((ROOT/'k_ryhma_tuotteet.json').read_text(encoding='utf8'))
     metadata=json.loads((ROOT/'valikoima_tiedot.json').read_text(encoding='utf8'))
-    assert len(alko)>11000 and len(s)>1000
+    assert len(alko)>11000 and len(s)>1000 and len(k)>1000
     astores={x['id']:x for x in metadata['alko_myymalat']}
     sstores={x['id']:x for x in metadata['s_myymalat']}
-    for items,stores in [(alko,astores),(s,sstores)]:
+    kstores={x['id']:x for x in metadata['k_myymalat']}
+    report=json.loads((ROOT/'k_ryhma_keruu.json').read_text(encoding='utf8'))
+    assert report['kerattyja_myymaloita']==len(kstores)-len(report['puuttuvat_myymalat'])
+    for items,stores in [(alko,astores),(s,sstores),(k,kstores)]:
         assert len({t['id'] for t in items})==len(items)
         for t in items:
-            assert t['linkki'].startswith('https://') and t['kuva_url'].startswith('https://')
+            assert t['linkki'].startswith(('https://www.alko.fi/','https://www.s-kaupat.fi/','https://www.k-ruoka.fi/')) and t['kuva_url'].startswith('https://')
             assert 0<t['tilavuus_litraa']<=100 and t['hinta_eur']>0
             ids=[e[0] if isinstance(e,list) else e for e in t['myymalat']]
             assert len(set(ids))==len(ids)==t['myymälät_maara']
@@ -33,10 +37,10 @@ def data_checks():
         assert next(t for t in alko if t['id']=='700098')['pantti_eur']==.15
         keg=next(t for t in alko if t['id']=='959618')
         assert keg['tilavuus_litraa']==30 and keg['pantti_eur']>10
-    return alko,s,metadata
+    return alko,s,metadata,k
 
 async def main():
-    alko,s,metadata=data_checks()
+    alko,s,metadata,k=data_checks()
     async with async_playwright() as p:
         browser=await p.chromium.launch(headless=True)
         page=await browser.new_page(viewport={'width':1280,'height':800})
@@ -46,13 +50,16 @@ async def main():
         await page.route('**/api/aanet**',lambda route:route.abort())
         await page.goto('http://127.0.0.1:8766/',wait_until='domcontentloaded')
         await page.wait_for_function("document.querySelector('#info').textContent.includes('Koko Suomi:')")
-        assert await page.locator('.alaotsikko').inner_text()=='Halvan alkoholin perässä – Hintavertailu & suorat linkit Alkoon ja S-ryhmän kauppoihin'
+        assert await page.locator('.alaotsikko').inner_text()=='Halvan alkoholin perässä – Hintavertailu & suorat linkit Alkoon sekä S- ja K-ryhmän kauppoihin'
         assert await page.locator('#kaupunkiValinta').input_value()==''
         assert await page.locator('#myymalaDropdown, #myymalaToggle, #myymalaSlider, #myymalaNumero').count()==0
         assert await page.locator('#btnAlko').get_attribute('aria-pressed')=='true'
         assert await page.locator('#btnSRyhma').get_attribute('aria-pressed')=='true'
-        assert f'{len(alko)} Alkon ja {len(s)} S-ryhmän tuotetta.' in await page.locator('#info').inner_text()
+        assert await page.locator('#btnKRyhma').get_attribute('aria-pressed')=='true'
+        assert f'{len(alko)} Alkon, {len(s)} S-ryhmän ja {len(k)} K-ryhmän tuotetta.' in await page.locator('#info').inner_text()
         assert await page.locator('#alueOhje').is_visible()
+        assert not (await page.locator('#btnKRyhma').inner_text()).strip()
+        assert await page.locator('tr.tuote-rivi[data-lahde=kryhma]').count()>0
         assert not (await page.locator('#btnAlko').inner_text()).strip()
         assert not (await page.locator('#btnSRyhma').inner_text()).strip()
         assert await page.locator('#btnAlko').get_attribute('aria-label')
@@ -78,7 +85,7 @@ async def main():
         for width,height in [(320,640),(375,812),(560,700),(768,1024),(800,360),(1024,768),(1280,800),(1920,1080),(2560,1080)]:
             await page.set_viewport_size({'width':width,'height':height})
             await page.wait_for_timeout(180)
-            result=await page.evaluate('''()=>{const els=['btnAlko','btnSRyhma','kaupunkiValinta'].map(id=>document.getElementById(id).getBoundingClientRect());return {overflow:document.documentElement.scrollWidth>innerWidth+1,outside:els.some(r=>r.left<0||r.right>innerWidth+1),overlap:els.some((a,i)=>els.some((b,j)=>i!==j&&Math.min(a.right,b.right)>Math.max(a.left,b.left)+1&&Math.min(a.bottom,b.bottom)>Math.max(a.top,b.top)+1))}}''')
+            result=await page.evaluate('''()=>{const els=['btnAlko','btnSRyhma','btnKRyhma','kaupunkiValinta'].map(id=>document.getElementById(id).getBoundingClientRect());return {overflow:document.documentElement.scrollWidth>innerWidth+1,outside:els.some(r=>r.left<0||r.right>innerWidth+1),overlap:els.some((a,i)=>els.some((b,j)=>i!==j&&Math.min(a.right,b.right)>Math.max(a.left,b.left)+1&&Math.min(a.bottom,b.bottom)>Math.max(a.top,b.top)+1))}}''')
             assert not any(result.values()),(width,height,result)
             if width in (375,800,1280):await page.screenshot(path=str(ROOT/f'preview-{width}.png'))
         await page.set_viewport_size({'width':1280,'height':800})
@@ -89,6 +96,21 @@ async def main():
         acount=sum(any(astores[id]['city']=='Helsinki' for id in t['myymalat']) for t in alko)
         scount=sum(any(sstores[e[0]]['city']=='Helsinki' for e in t['myymalat']) for t in s)
         assert f'{acount} Alkon tuotetta.' in await page.locator('#info').inner_text()
+        kstores={x['id']:x for x in metadata['k_myymalat']}
+        kt=next(t for t in k if any(kstores[e[0]]['city']=='Helsinki' for e in t['myymalat']))
+        await page.evaluate("window.vaihdaLahde('alko');window.vaihdaLahde('sryhma')")
+        await page.locator('#hakuKentta').fill(kt['nimi']);await page.wait_for_timeout(500)
+        krow=page.locator(f'tr[data-lahde=kryhma][data-product-id="{kt["id"]}"]')
+        assert await krow.locator('img[alt="K-ryhmä"]').count()==1
+        koffers=[e for e in kt['myymalat'] if kstores[e[0]]['city']=='Helsinki']
+        assert int((await krow.locator('td').all_text_contents())[6])==len(koffers)
+        await krow.locator('a.tuote-linkki').click()
+        assert await page.locator('.myymala-hintarivi').count()==len(koffers)
+        khref=await page.locator('.myymala-hintarivi a').first.get_attribute('href')
+        assert 'kauppa=' in khref and any(kstores[e[0]]['slug'] in khref for e in koffers)
+        await page.keyboard.press('Escape')
+        await page.locator('#hakuKentta').fill('');await page.wait_for_timeout(400)
+        await page.evaluate("window.vaihdaLahde('alko');window.vaihdaLahde('kryhma')")
         await page.locator('#btnSRyhma').click();await page.locator('#btnAlko').click();await page.wait_for_timeout(400)
         assert f'{scount} S-ryhmän tuotetta.' in await page.locator('#info').inner_text()
         assert await page.locator('#alueOhje').is_visible()
@@ -140,7 +162,7 @@ async def main():
         assert abs(before-after)<3,('category scroll',before,after)
         await page.evaluate("document.querySelector('#dropdownContent input[value=Viinit]').click()")
         await page.wait_for_timeout(400)
-        await page.evaluate("window.vaihdaLahde('alko');window.vaihdaLahde('sryhma')")
+        await page.evaluate("window.vaihdaLahde('alko');window.vaihdaLahde('sryhma');window.vaihdaLahde('kryhma')")
         await page.wait_for_timeout(450)
         await page.locator('a.tuote-linkki').first.click()
         href=await page.locator('.myymala-hintarivi a').first.get_attribute('href')
@@ -163,9 +185,11 @@ async def main():
         sorting_result=await page.evaluate("""source=>{
             const compare=(sort,rows,votes={})=>new Function('getFilteredData','currentSort','efHinta','laskeAnnosHinta','aanet','tuoteAvain',source+';return getSortedData().map(t=>t.id)')(()=>rows,sort,t=>t.hinta,t=>t.annos,votes,t=>t.id);
             const rows=[{id:'s',lahde:'sryhma',hinta:2,annos:1},{id:'a',lahde:'alko',hinta:2,annos:1}];
-            return {ties:['hinta','annos','aanet'].map(sort=>compare(sort,[...rows])),cheaper:compare('hinta',[{...rows[0],hinta:1},rows[1]]),moreVotes:compare('aanet',[...rows],{s:1,a:0})};
+            const kRows=[{id:'k',lahde:'kryhma',hinta:2,annos:1},...rows];
+            return {kTies:['hinta','annos','aanet'].map(sort=>compare(sort,[...kRows])),ties:['hinta','annos','aanet'].map(sort=>compare(sort,[...rows])),cheaper:compare('hinta',[{...rows[0],hinta:1},rows[1]]),moreVotes:compare('aanet',[...rows],{s:1,a:0})};
         }""",sorting)
         assert all(ids==['a','s'] for ids in sorting_result['ties']),sorting_result
+        assert all(ids[0]=='a' for ids in sorting_result['kTies']),sorting_result
         assert sorting_result['cheaper']==['s','a'] and sorting_result['moreVotes']==['s','a']
         # Oman äänisivun luku testataan paikallisella vastauksella ilman tuotannon äänimuutoksia.
         vote_s=next(t for t in s if t['id']=='6430078531450')
@@ -174,27 +198,30 @@ async def main():
             abv='null' if t['alkoholi_prosentti'] is None else format(t['alkoholi_prosentti'],'.15g')
             return t['nimi'].strip()+'||'+abv+'||'+format(t['hinta_eur'] if price is None else price,'.15g')
         skey=vote_key(vote_s);akey=vote_key(vote_a,vote_a['hinta_eur']+1)
-        response=json.dumps({'aanet':{skey:1,akey:1},'omat':[skey,akey],'max':3})
+        vote_k=next(t for t in k if t['id']=='8008440549211');kkey=vote_key(vote_k)
+        response=json.dumps({'aanet':{skey:1,akey:1,kkey:1},'omat':[skey,akey,kkey],'max':3})
         await page.route('**/api/votes**',lambda route:route.fulfill(status=200,content_type='application/json',body=response))
         await page.evaluate("localStorage.setItem('aaniClientId','00000000-0000-4000-8000-000000000001')")
         await page.goto('http://127.0.0.1:8766/omat-aanet/',wait_until='domcontentloaded')
         await page.wait_for_selector('.aani-kortti')
-        assert await page.locator('.aani-kortti').count()==2
-        assert await page.locator('.aani-kortti .kauppa-logo').count()==2
+        assert await page.locator('.aani-kortti').count()==3
+        assert await page.locator('.aani-kortti .kauppa-logo').count()==3
         assert 'Mighty Hard Sour' in await page.locator('.aani-kortti').first.inner_text()
         assert '1664 Blanc' in await page.locator('.aani-kortti').nth(1).inner_text()
+        assert await page.locator('.aani-kortti').nth(2).locator('img[alt="K-ryhmä"]').count()==1
         await page.locator('.aani-kortti .nimi a').first.click()
         await page.wait_for_selector('#myymalaDialog[open]')
         assert 'Mighty Hard Sour' in await page.locator('#myymalaDialogOtsikko').inner_text()
         assert await page.locator('.myymala-hintarivi').count()==vote_s['myymälät_maara']
         assert await page.locator('#btnAlko').get_attribute('aria-pressed')=='true'
         assert await page.locator('#btnSRyhma').get_attribute('aria-pressed')=='true'
+        assert await page.locator('#btnKRyhma').get_attribute('aria-pressed')=='true'
         await page.evaluate("localStorage.removeItem('aaniClientId')")
         await page.goto('http://127.0.0.1:8766/omat-aanet/',wait_until='domcontentloaded')
         await page.wait_for_selector('.tyhja a')
         assert await page.locator('.tyhja a').get_attribute('href')=='../'
         assert not errors,errors
-        print(f'OK: {len(alko)} Alko, {len(s)} S; kaupunkirajaus, myymälämäärät, hinnat, valintalista, kategoriavieritys; 9 näyttökokoa.',flush=True)
+        print(f'OK: {len(alko)} Alko, {len(s)} S, {len(k)} K; kaupunkirajaus, myymälämäärät, hinnat, valintalista, kategoriavieritys; 9 näyttökokoa.',flush=True)
         await browser.close()
 
 if __name__=='__main__':

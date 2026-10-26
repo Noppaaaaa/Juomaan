@@ -132,7 +132,7 @@
 
         <header>
             <h1>Omat annetut äänet</h1>
-            <p class="alaotsikko">Mihin juomiin olet antanut äänesi parhaasta dokabiliteetistä (maku/alkoholi-suhde)</p>
+            <p class="alaotsikko">Alkon, S-ryhmän ja K-ryhmän juomat, joille olet antanut äänen parhaasta dokabiliteetistä (maku/alkoholi-suhde)</p>
         </header>
 
         <div id="info" class="info" role="status" aria-live="polite">Ladataan ääniäsi…</div>
@@ -172,8 +172,8 @@
                 const nimi=t?t.nimi:avain.split('||')[0];
                 const url=t&&t.linkki?`../?tuote=${encodeURIComponent(t.lahde+':'+t.id)}`:'';
                 const kuva=t&&t.kuva_url?`<img src="${escapeHtml(t.kuva_url)}" alt="" onerror="this.style.display='none'">`:'';
-                const meta=t?`${t.alkoholi_prosentti==null?'Pitoisuus ei tiedossa':Number(t.alkoholi_prosentti).toFixed(1)+' %'} · ${t.lahde==='sryhma'?'alk. ':''}${(t.hinta_eur+t.pantti_eur).toFixed(2)} €`:'';
-                const logo=t?`<img class="kauppa-logo" src="../logos/${t.lahde==='sryhma'?'s-ryhma':'alko'}.svg" alt="${t.lahde==='sryhma'?'S-ryhmä':'Alko'}">`:'';
+                const meta=t?`${t.alkoholi_prosentti==null?'Pitoisuus ei tiedossa':Number(t.alkoholi_prosentti).toFixed(1)+' %'} · ${t.lahde!=='alko'?'alk. ':''}${(t.hinta_eur+t.pantti_eur).toFixed(2)} €`:'';
+                const logo=t?`<img class="kauppa-logo" src="../logos/${{alko:'alko',sryhma:'s-ryhma',kryhma:'k-ryhma'}[t.lahde]}.svg" alt="${{alko:'Alko',sryhma:'S-ryhmä',kryhma:'K-ryhmä'}[t.lahde]}">`:'';
                 const nimiHtml=url?`<a href="${escapeHtml(url)}">${escapeHtml(nimi)}</a>`:escapeHtml(nimi);
                 const kortti=document.createElement('div');
                 kortti.className='aani-kortti';
@@ -202,7 +202,7 @@
             try{
                 const [vastaus,tuotteet]=await Promise.all([
                     fetch(`${AANI_URL}?clientId=${encodeURIComponent(clientId)}`).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}),
-                    Promise.all(['../alko_tuotteet.json','../s_ryhma_tuotteet.json'].map(url=>fetch(url).then(r=>r.ok?r.json():[]).catch(()=>[]))).then(items=>items.flat())
+                    Promise.all(['../alko_tuotteet.json','../s_ryhma_tuotteet.json','../k_ryhma_tuotteet.json'].map(url=>fetch(url).then(r=>r.ok?r.json():[]).catch(()=>[]))).then(items=>items.flat())
                 ]);
                 if(typeof vastaus.max==='number')AANI_MAX=vastaus.max;
                 if(Array.isArray(tuotteet)){for(const raw of tuotteet){
