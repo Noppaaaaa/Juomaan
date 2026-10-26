@@ -389,14 +389,50 @@
         if(tallennettuTeema==="light"||tallennettuTeema==="dark")asetaTeema(tallennettuTeema);else asetaTeema("light");
         teemaInputs.forEach(function(inp){inp.addEventListener("change",function(){if(this.checked)asetaTeema(this.value)})});(function(){var s=document.getElementById('jarjestysSwitcher');if(!s)return;var o=s.querySelectorAll('.jarjestys-optio'),a=s.querySelector('.jarjestys-active');function p(){var c=s.querySelector('.jarjestys-input:checked');if(!c)return;var l=c.closest('.jarjestys-optio');a.style.width=l.offsetWidth+'px';a.style.transform='translateX('+l.offsetLeft+'px)'}o.forEach(function(e){e.querySelector('.jarjestys-input').addEventListener('change',function(){if(this.checked){p();window.jarjesta(this.value)}})});setTimeout(p,0);var r;window.addEventListener('resize',function(){clearTimeout(r);r=setTimeout(p,80)});window.jarjestaPaivita=p})();let tuoteData=[],startIndex=0,currentSort='annos',isShifting=false,isUserScrolling=false,scrollDebounceTimer=null,activeCategories=[],lapsimoodiPaalla=false,activeSources=new Set(['alko','sryhma']),selectedCity=new URLSearchParams(location.search).get('kaupunki')||'',kaikkiTuotteet=[],alueTiedot=null,myymalaKartat={alko:new Map(),sryhma:new Map()};const WINDOW_SIZE=80,SHIFT_AMOUNT=20;function luokitteleKategoria(tuote){const tyyppi=(tuote.tyyppi||"").toLowerCase().trim(),nimi=(tuote.nimi||"").toLowerCase().trim(),alkoholi=Number(tuote.alkoholi_prosentti)||0;if(tuote.alkoholi_prosentti===0)return"Alkoholittomat";if(nimi==='grandiosa crispy blanc hanapakkaus')return"Viinit";const kuohuviiniPattern=/\b(kuohuviini|kuohuviinit|samppanja|samppanjat|sampanja|sampanjat|champagne|champagnet|cava|cavat|prosecco|proseccot|cr[eé]mant|spumante|spumantit|frizzante|frizzantit|moscato\s*d'asti|asti\s*spumante|lambrusco|lambruscot|sekt|sektit|pétillant|pét-nat|crémant|rosé\s*kuohu|kupliva|kuplivat|sparkling|sparklingit|bubbly|bubblies)\b/i;if(kuohuviiniPattern.test(tyyppi)||kuohuviiniPattern.test(nimi))return"Kuohuviinit";const viiniPattern=/\b(viini|viinit|punaviini|punaviinit|valkoviini|valkoviinit|roseeviini|roseeviinit|portviini|portviinit|port|portit|sherry|sherryt|madeira|madeirat|marsala|marsalat|vermut|vermutit|gl[oö]gi|gl[oö]git|gl[üu]hwein|gl[üu]hweinit|hedelmäviini|hedelmäviinit|marjaviini|marjaviinit|väkevä\s*viini|väkevät\s*viinit|rosé|rosét|rosato|rosatot|riesling|rieslingit|chardonnay|chardonnayt|sauvignon\s*blanc|pinot\s*noir|merlot|cabernet|syrah|tempranillo|malbec|sangiovese|nebbiolo|barolo|barbaresco|amarone|valpolicella|chianti|brunello|bordeaux|burgundi|rioja|chablis|sancerre|alsace|mosel|rheingau|nahe|tokaji|icewine|fiano|fianot)\b/i;if(viiniPattern.test(tyyppi)||viiniPattern.test(nimi))return"Viinit";const olutPattern=/\b(olut|oluet|ale|alet|lager|lagerit|stout|stoutit|porter|porterit|ipa|ipat|pils|pilsit|vehnä|vehnät|saison|saisonit|sahti|sahdit|dubbel|dubbelit|tripel|tripelit|quadrupel|quadrupelit|barley\s*wine|pale\s*ale|neipa|neipat|imperial\s*stout|blond|blondit|dipa|dipat)\b/i;if(olutPattern.test(tyyppi)||olutPattern.test(nimi))return"Oluet";const siideriPattern=/\b(siideri|siiderit|cider|ciderit|seltzer|seltzerit|hard\s*seltzer)\b/i;if(siideriPattern.test(tyyppi)||siideriPattern.test(nimi))return"Siiderit";const viskiPattern=/\b(viski|viskit|whisky|whiskyt|whiskey|whiskeyt|single\s*malt|single\s*cask|blended\s*malt|blended\s*scotch|single\s*grain|bourbon|bourbonit|scotch\s*whisky|irish\s*whiskey|rye\s*whiskey|tennessee\s*whiskey)\b/i;if(viskiPattern.test(tyyppi)||viskiPattern.test(nimi))return"Viskit";const vakevaPattern=/\b(vodka|vodkat|rommi|rommit|romm|gini|ginit|viski|viskit|whisky|whiskyt|whiskey|whiskeyt|brandy|brandyt|konjakki|konjakit|likööri|liköörit|viina|viinat|katkero|katkerot|absintti|absintit|tequila|tequilat|mezcal|mezcalit|sake|saket|long\s*drink|long\s*drinkit|väkevä|väkevät|maustettu\s*vodka|hedelmälikööri|hedelmäliköörit|maustelikööri|mausteliköörit|gin|rom|rum|aquavit|aquavitit|akvavit|akvavitit|akvaviitit|pastis|pastikset|ouzo|ouzoit|raki|rakit|soju|sojut|calvados|calvadokset|grappa|grappat|armagnac|armagnacit|cognac|cognacit|brandy|brandit|grogikatkerot|hedelmätisleet|tisleet|single\s*malt|single\s*cask|blended\s*malt|blended\s*scotch|single\s*grain|bourbon|bourbonit|scotch\s*whisky|irish\s*whiskey|distiller|vs|vsop|xo|extra\s*old|liquore|shot|shotit|leijona|koskenkorva|salmiakki|salmari)\b/i;if(vakevaPattern.test(tyyppi)||vakevaPattern.test(nimi))return"Väkevät";return"Muut"}
         const KATEGORIA_NIMET=["Kuohuviinit","Viinit","Oluet","Siiderit","Väkevät","Viskit","Alkoholittomat","Muut"];
-        /* ===== Tuotehaku: typotoleranssi (normalisointi + rajattu Levenshtein-etäisyys) ===== */
-        let hakuTermi='',hakuTokens=[],hakuNaytto='';
+        /* ===== Tuotehaku: sanastoon perustuva typotoleranssi ===== */
+        let hakuTermi='',hakuTokens=[],hakuNaytto='',hakuSanasto=null;
         function normalisoiHaku(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim()}
-        function levCap(a,b,max){const la=a.length,lb=b.length;if(!la)return lb;if(!lb)return la;if(Math.abs(la-lb)>max)return max+1;let prev=[],cur=[];for(let j=0;j<=lb;j++)prev[j]=j;for(let i=1;i<=la;i++){cur[0]=i;let best=i;const ai=a.charCodeAt(i-1);for(let j=1;j<=lb;j++){const cost=ai===b.charCodeAt(j-1)?0:1;let v=prev[j-1]+cost;const del=prev[j]+1;if(del<v)v=del;const ins=cur[j-1]+1;if(ins<v)v=ins;cur[j]=v;if(v<best)best=v}if(best>max)return max+1;const tmp=prev;prev=cur;cur=tmp}return prev[lb]}
+        // Bounded edit distance, including adjacent swapped letters.
+        function levCap(a,b,max){
+            if(Math.abs(a.length-b.length)>max)return max+1;
+            let prev=Array.from({length:b.length+1},(_,i)=>i),older;
+            for(let i=1;i<=a.length;i++){
+                const cur=[i];let best=i;
+                for(let j=1;j<=b.length;j++){
+                    cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1));
+                    if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1])cur[j]=Math.min(cur[j],older[j-2]+1);
+                    best=Math.min(best,cur[j]);
+                }
+                if(best>max)return max+1;
+                older=prev;prev=cur;
+            }
+            return prev[b.length];
+        }
         function hakuSanat(t){if(!t._hakuSanat){const s=normalisoiHaku((t.nimi||'')+' '+(t.tyyppi||''));t._haku=s;t._hakuSanat=s?s.split(' '):[]}return t._hakuSanat}
-        function tokenOsuu(tok,sanat,joined,salliTypot=true){if(joined.indexOf(tok)!==-1)return true;if(!salliTypot)return false;const L=tok.length;if(L<=2)return false;const maxD=L<=6?1:2;for(const w of sanat){if(Math.abs(w.length-L)<=maxD&&levCap(tok,w,maxD)<=maxD)return true;if(w.length>L){const pre=w.slice(0,L);if(levCap(tok,pre,maxD)<=maxD)return true}}return false}
-        function tuoteVastaaHakua(t,salliTypot=true){const sanat=hakuSanat(t),joined=t._haku;for(const tok of hakuTokens){if(!tokenOsuu(tok,sanat,joined,salliTypot))return false}return true}
-        function laskeHakuOsumat(){if(!hakuTokens.length){for(const t of tuoteData)t._osuma=true;return}for(const t of tuoteData)t._osuma=tuoteVastaaHakua(t,false);if(!tuoteData.some(t=>t._osuma))for(const t of tuoteData)t._osuma=tuoteVastaaHakua(t)}
+        function korjaaHakuToken(tok,sanasto){
+            // Recognized words and partial queries must never change meaning.
+            if(sanasto.some(w=>w.includes(tok)))return tok;
+            if(tok.length<3||/\d/.test(tok))return tok;
+            let best=tok.length<8?1:2,match=null,tie=false;
+            for(const w of sanasto){
+                if(w.length<3||/\d/.test(w))continue;
+                // Three-letter queries only allow an adjacent letter swap.
+                if(tok.length===3&&!(w.length===3&&[0,1].some(i=>tok.slice(0,i)+tok[i+1]+tok[i]+tok.slice(i+2)===w)))continue;
+                const distance=levCap(tok,w,best);
+                if(distance>best)continue;
+                if(distance<best){best=distance;tie=false}else if(match!==null){tie=true}
+                match=w;
+            }
+            // Equally close words are ambiguous; do not silently guess.
+            return match&&!tie?match:tok;
+        }
+        function tuoteVastaaHakua(t,tokens=hakuTokens){hakuSanat(t);return tokens.every(tok=>t._haku.includes(tok))}
+        function laskeHakuOsumat(){
+            if(!hakuTokens.length){for(const t of tuoteData)t._osuma=true;return}
+            if(!hakuSanasto)hakuSanasto=[...new Set(kaikkiTuotteet.flatMap(hakuSanat))];
+            const tokens=hakuTokens.map(tok=>korjaaHakuToken(tok,hakuSanasto));
+            for(const t of tuoteData)t._osuma=tuoteVastaaHakua(t,tokens);
+        }
         function getFilteredData(){let suodatettu=tuoteData.filter(t=>activeCategories.includes(luokitteleKategoria(t)));suodatettu=suodatettu.filter(t=>activeSources.has(t.lahde||'alko'));if(lapsimoodiPaalla)suodatettu=suodatettu.filter(t=>Number.isFinite(t.alkoholi_prosentti)&&t.alkoholi_prosentti<=22);if(hakuTokens.length)suodatettu=suodatettu.filter(t=>t._osuma);return suodatettu}
         function getSortedData(){
             const alkoEnsin=(a,b)=>(a.lahde==='alko'?0:1)-(b.lahde==='alko'?0:1);
@@ -470,7 +506,7 @@
         }
         function lataaTuotteet(alko,sryhma){
             const map=new Map();for(const t of [...alko.map(t=>normalisoiTuote(t,'alko')),...sryhma.map(t=>normalisoiTuote(t,'sryhma'))])if(t)map.set(t.lahde+'|'+t.id,t);
-            kaikkiTuotteet=[...map.values()];luoCheckboxit();paivitaAlue();renderWindow();paivitaMittarit();haeAanet();
+            kaikkiTuotteet=[...map.values()];hakuSanasto=null;luoCheckboxit();paivitaAlue();renderWindow();paivitaMittarit();haeAanet();
             const ref=new URLSearchParams(location.search).get('tuote'),target=kaikkiTuotteet.find(t=>t.lahde+':'+t.id===ref);if(target)naytaMyymalat(target);
         }
         window.vaihdaLahde=function(lahde){const btn=document.getElementById(lahde==='alko'?'btnAlko':'btnSRyhma');activeSources.has(lahde)?activeSources.delete(lahde):activeSources.add(lahde);btn.classList.toggle('aktiivinen',activeSources.has(lahde));btn.setAttribute('aria-pressed',String(activeSources.has(lahde)));paivitaInfo();startIndex=0;animateSortAndRender(true)};
