@@ -2,7 +2,9 @@
 import asyncio
 import json
 import math
+import os
 import re
+import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
@@ -107,6 +109,14 @@ async def main():
             async with snapshot_lock:
                 tuotteita, valmiita = kirjoita_valikoima(stores, folder)
                 print(f'K-aineisto: {tuotteita} tuotetta, {valmiita}/{len(stores)} myymälää', flush=True)
+                if os.getenv('GITHUB_ACTIONS') == 'true' and tuotteita >= 100:
+                    subprocess.run(['git', 'add', '--', 'k_ryhma_tuotteet.json', 'k_ryhma_keruu.json', 'valikoima_tiedot.json'], check=True)
+                    changed = subprocess.run(['git', 'diff', '--cached', '--quiet']).returncode
+                    if changed:
+                        subprocess.run(['git', 'commit', '-m', 'data: update Kesko catalogue'], check=True)
+                        subprocess.run(['git', 'fetch', 'origin', 'main'], check=True)
+                        subprocess.run(['git', 'rebase', 'origin/main'], check=True)
+                        subprocess.run(['git', 'push', 'origin', 'HEAD:main'], check=True)
         next_request=0
         pause_until=0
         async def fetch(sid, group, offset):

@@ -158,7 +158,10 @@ jobs:
         name: Kerää Kesko-aineisto
         continue-on-error: true
         timeout-minutes: 300
-        run: python aineiston_keräys_K.py
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          python aineiston_keräys_K.py
       - id: publish
         if: always()
         name: Päivitä K-ryhmän löydetyt tuotteet
