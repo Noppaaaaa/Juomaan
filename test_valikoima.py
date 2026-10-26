@@ -46,15 +46,20 @@ async def main():
         await page.route('**/api/aanet**',lambda route:route.abort())
         await page.goto('http://127.0.0.1:8766/',wait_until='domcontentloaded')
         await page.wait_for_function("document.querySelector('#info').textContent.includes('Koko Suomi:')")
+        assert await page.locator('.alaotsikko').inner_text()=='Halvan alkoholin perässä – Hintavertailu & suorat linkit Alkoon ja S-ryhmän kauppoihin'
         assert await page.locator('#kaupunkiValinta').input_value()==''
         assert await page.locator('#myymalaDropdown, #myymalaToggle, #myymalaSlider, #myymalaNumero').count()==0
         assert await page.locator('#btnAlko').get_attribute('aria-pressed')=='true'
-        assert await page.locator('#btnSRyhma').get_attribute('aria-pressed')=='false'
-        assert f'{len(alko)} Alkon tuotetta.' in await page.locator('#info').inner_text()
-        assert not await page.locator('#alueOhje').is_visible()
+        assert await page.locator('#btnSRyhma').get_attribute('aria-pressed')=='true'
+        assert f'{len(alko)} Alkon ja {len(s)} S-ryhmän tuotetta.' in await page.locator('#info').inner_text()
+        assert await page.locator('#alueOhje').is_visible()
         assert not (await page.locator('#btnAlko').inner_text()).strip()
         assert not (await page.locator('#btnSRyhma').inner_text()).strip()
         assert await page.locator('#btnAlko').get_attribute('aria-label')
+        assert await page.locator('tr.tuote-rivi[data-lahde=sryhma]').count()>0
+        await page.locator('#btnSRyhma').click()
+        await page.wait_for_timeout(400)
+        assert not await page.locator('#alueOhje').is_visible()
         assert await page.locator('tr.tuote-rivi[data-lahde=sryhma]').count()==0
         city=page.locator('#kaupunkiValinta')
         await city.fill('hel')
@@ -183,7 +188,7 @@ async def main():
         assert 'Mighty Hard Sour' in await page.locator('#myymalaDialogOtsikko').inner_text()
         assert await page.locator('.myymala-hintarivi').count()==vote_s['myymälät_maara']
         assert await page.locator('#btnAlko').get_attribute('aria-pressed')=='true'
-        assert await page.locator('#btnSRyhma').get_attribute('aria-pressed')=='false'
+        assert await page.locator('#btnSRyhma').get_attribute('aria-pressed')=='true'
         await page.evaluate("localStorage.removeItem('aaniClientId')")
         await page.goto('http://127.0.0.1:8766/omat-aanet/',wait_until='domcontentloaded')
         await page.wait_for_selector('.tyhja a')
