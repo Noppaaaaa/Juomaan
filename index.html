@@ -159,6 +159,7 @@
 
         .switcher-rivi .switcher{margin:0 0 0 auto}
         .lahdevalinta{display:grid;grid-template-columns:auto minmax(190px,1fr);align-items:end;gap:12px;max-width:1100px;margin:0 auto 16px;box-sizing:border-box}.lahdenapit{display:flex;gap:8px}.lahde-nappi{display:inline-flex;justify-content:center;align-items:center;gap:6px;min-height:44px;width:52px;padding:8px}.kauppa-logo{display:inline-block;width:28px;height:28px;object-fit:contain;vertical-align:middle;flex-shrink:0}.kauppa-logo.sryhma{width:17px;height:28px}.lahde-nappi:not(.aktiivinen){opacity:.62}.kaupunkivalinta{display:flex;flex-direction:column;gap:4px;min-width:0;max-width:380px}.kaupunkivalinta label{font-size:13px;color:var(--text-muted)}.kaupunkivalinta input{box-sizing:border-box;width:100%;min-width:0;min-height:44px;padding:8px 12px;border:1px solid var(--dropdown-border);border-radius:8px;background:var(--dropdown-bg);color:var(--text-main);font:inherit}.alue-ohje{font-size:12px;color:var(--text-muted);margin:0 0 16px;overflow-wrap:anywhere}.myymala-dialog{box-sizing:border-box;width:min(620px,calc(100% - 24px));max-height:85dvh;padding:22px;border:1px solid var(--dropdown-border);border-radius:14px;background:var(--bg-container);color:var(--text-main);overflow:auto}.myymala-dialog::backdrop{background:rgba(0,0,0,.55)}.dialog-otsikko{display:flex;align-items:start;gap:12px;justify-content:space-between}.dialog-otsikko h2{font-size:20px;margin:0;overflow-wrap:anywhere}.dialog-otsikko button{flex:none;padding:8px 12px;min-height:44px}.myymala-hintarivi{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--dropdown-border)}.myymala-hintarivi a{color:var(--link-color);overflow-wrap:anywhere}.myymala-hintarivi small{display:block;color:var(--text-muted)}.myymala-hintarivi strong{white-space:nowrap}.tuote-solu .nimi-linkki{min-width:0}@media(max-width:560px){.lahdevalinta{grid-template-columns:1fr}.lahdenapit{display:flex}.kaupunkivalinta{max-width:none}.myymala-dialog{padding:16px}}
+        .kaupunkivalinta{position:relative}#kaupunkiLista:not([hidden]){position:absolute;top:100%;left:0;right:0;z-index:50;max-height:300px;overflow:auto;background:var(--bg-container);border:1px solid var(--dropdown-border);border-radius:8px;box-shadow:0 6px 18px #0003}#kaupunkiLista button{display:block;width:100%;min-height:44px;padding:10px 12px;text-align:left;font:inherit;color:var(--text-main);background:transparent;border:0;cursor:pointer}#kaupunkiLista button:hover,#kaupunkiLista [aria-selected="true"]{background:var(--dropdown-bg);outline:2px solid var(--link-color);outline-offset:-2px}
         /* ===== Teema-switcher (glass, 2 opt) – lasipohja yllä yhteissäännössä ===== */
         .switcher__legend{position:absolute;width:1px;height:1px;margin:-1px;border:0;padding:0;white-space:nowrap;clip-path:inset(100%);clip:rect(0 0 0 0);overflow:hidden}
         .switcher__input{clip:rect(0 0 0 0);clip-path:inset(100%);height:1px;width:1px;overflow:hidden;position:absolute;white-space:nowrap}
@@ -334,8 +335,8 @@
             </div>
             <div class="kaupunkivalinta">
                 <label for="kaupunkiValinta">Kaupunki · Alko ja S-ryhmä</label>
-                <input type="search" id="kaupunkiValinta" list="kaupunkiLista" placeholder="Kaikki kaupungit" autocomplete="off" onchange="vaihdaKaupunki(this.value)" oninput="this.setCustomValidity('');if(!this.value)vaihdaKaupunki('')">
-                <datalist id="kaupunkiLista"></datalist>
+                <input type="search" id="kaupunkiValinta" role="combobox" aria-autocomplete="list" aria-controls="kaupunkiLista" aria-expanded="false" placeholder="Kaikki kaupungit" autocomplete="off">
+                <div id="kaupunkiLista" role="listbox" aria-label="Kaupunkiehdotukset" hidden></div>
             </div>
         </div>
 
@@ -487,7 +488,30 @@
             const ref=new URLSearchParams(location.search).get('tuote'),target=kaikkiTuotteet.find(t=>t.lahde+':'+t.id===ref);if(target)naytaMyymalat(target);
         }
         window.vaihdaLahde=function(lahde){const btn=document.getElementById(lahde==='alko'?'btnAlko':'btnSRyhma');activeSources.has(lahde)?activeSources.delete(lahde):activeSources.add(lahde);btn.classList.toggle('aktiivinen',activeSources.has(lahde));btn.setAttribute('aria-pressed',String(activeSources.has(lahde)));paivitaInfo();startIndex=0;animateSortAndRender(true)};
-        const cityInput=document.getElementById('kaupunkiValinta');
+        const cityInput=document.getElementById('kaupunkiValinta'),cityList=document.getElementById('kaupunkiLista');
+        let cityIndex=-1;
+        function suljeKaupunkiehdotukset(){cityList.hidden=true;cityInput.setAttribute('aria-expanded','false');cityInput.removeAttribute('aria-activedescendant');cityIndex=-1}
+        function ehdotaKaupunkeja(){
+            suljeKaupunkiehdotukset();
+            const query=cityInput.value.trim().toLocaleLowerCase('fi');
+            if(!alueTiedot||!query)return;
+            const matches=['Kaikki kaupungit',...alueTiedot.kaupungit].filter(c=>c.toLocaleLowerCase('fi').includes(query)).sort((a,b)=>Number(b.toLocaleLowerCase('fi').startsWith(query))-Number(a.toLocaleLowerCase('fi').startsWith(query))||a.localeCompare(b,'fi')).slice(0,8);
+            cityList.innerHTML=matches.map((c,i)=>`<button type="button" role="option" tabindex="-1" id="kaupunkiehdotus-${i}" aria-selected="false">${escapeHtml(c)}</button>`).join('');
+            cityList.hidden=!matches.length;cityInput.setAttribute('aria-expanded',String(!!matches.length));
+        }
+        cityInput.addEventListener('input',()=>{cityInput.setCustomValidity('');if(!cityInput.value)vaihdaKaupunki('');ehdotaKaupunkeja()});
+        cityInput.addEventListener('focus',ehdotaKaupunkeja);
+        cityInput.addEventListener('blur',()=>{suljeKaupunkiehdotukset();vaihdaKaupunki(cityInput.value)});
+        cityList.addEventListener('pointerdown',e=>e.preventDefault());
+        cityList.addEventListener('click',e=>{const option=e.target.closest('[role="option"]');if(option){vaihdaKaupunki(option.textContent);suljeKaupunkiehdotukset();cityInput.focus()}});
+        cityInput.addEventListener('keydown',e=>{
+            if(e.key==='Escape'){e.preventDefault();suljeKaupunkiehdotukset();return}
+            if(e.key==='Enter'){e.preventDefault();const option=!cityList.hidden&&cityList.children[cityIndex];vaihdaKaupunki(option?option.textContent:cityInput.value);suljeKaupunkiehdotukset();return}
+            if(e.key!=='ArrowDown'&&e.key!=='ArrowUp')return;
+            e.preventDefault();if(cityList.hidden)ehdotaKaupunkeja();const options=[...cityList.children];if(cityList.hidden||!options.length)return;
+            cityIndex=(cityIndex+(e.key==='ArrowDown'?1:cityIndex<0?0:-1)+options.length)%options.length;
+            options.forEach((o,i)=>o.setAttribute('aria-selected',String(i===cityIndex)));cityInput.setAttribute('aria-activedescendant',options[cityIndex].id);options[cityIndex].scrollIntoView({block:'nearest'});
+        });
         window.vaihdaKaupunki=function(value){
             if(!alueTiedot)return;
             const city=alueTiedot.kaupungit.find(c=>c.toLocaleLowerCase('fi')===value.trim().toLocaleLowerCase('fi'));
@@ -511,7 +535,6 @@
         body.addEventListener('click',e=>{const link=e.target.closest('a.tuote-linkki');if(!link||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;const row=link.closest('tr');const t=tuoteData.find(t=>t.id===row.dataset.productId&&t.lahde===row.dataset.lahde);if(t){e.preventDefault();naytaMyymalat(t)}});
         Promise.all([haeJson('alko_tuotteet.json'),haeJson('s_ryhma_tuotteet.json'),haeJson('valikoima_tiedot.json')]).then(([alko,sryhma,alueet])=>{
             alueTiedot=alueet;for(const lahde of ['alko','sryhma'])myymalaKartat[lahde]=new Map((alueet[lahde==='alko'?'alko_myymalat':'s_myymalat']||[]).map(s=>[s.id,s]));
-            document.getElementById('kaupunkiLista').innerHTML='<option value="Kaikki kaupungit"></option>'+alueet.kaupungit.map(c=>`<option value="${escapeHtml(c)}"></option>`).join('');
             selectedCity=alueet.kaupungit.find(c=>c.toLocaleLowerCase('fi')===selectedCity.toLocaleLowerCase('fi'))||'';cityInput.value=selectedCity;
 
             lataaTuotteet(alko,sryhma);

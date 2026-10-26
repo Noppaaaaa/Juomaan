@@ -55,6 +55,20 @@ async def main():
         assert not (await page.locator('#btnSRyhma').inner_text()).strip()
         assert await page.locator('#btnAlko').get_attribute('aria-label')
         assert await page.locator('tr.tuote-rivi[data-lahde=sryhma]').count()==0
+        city=page.locator('#kaupunkiValinta')
+        await city.fill('hel')
+        assert await page.get_by_role('option',name='Helsinki',exact=True).is_visible()
+        await city.press('ArrowDown');await city.press('Enter')
+        assert await city.input_value()=='Helsinki'
+        assert 'kaupunki=Helsinki' in page.url
+        assert not await page.locator('#kaupunkiLista').is_visible()
+        await city.fill('tam')
+        await page.get_by_role('option',name='Tampere',exact=True).click()
+        assert await city.input_value()=='Tampere'
+        await city.fill('espo');await city.press('Escape')
+        assert not await page.locator('#kaupunkiLista').is_visible()
+        await city.fill('')
+        assert 'kaupunki=' not in page.url
         for width,height in [(320,640),(375,812),(560,700),(768,1024),(800,360),(1024,768),(1280,800),(1920,1080),(2560,1080)]:
             await page.set_viewport_size({'width':width,'height':height})
             await page.wait_for_timeout(180)
