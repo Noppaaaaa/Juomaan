@@ -195,8 +195,33 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     permissions:
+      contents: write
       pages: write
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Päivitä aineiston päiväys onnistuneen keruun jälkeen
+        if: needs.alko.result == 'success' || needs.s-ryhma.result == 'success' || needs.kesko.result == 'success'
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          path = Path('valikoima_tiedot.json')
+          data = json.loads(path.read_text(encoding='utf8'))
+          data['aineisto_paivitetty'] = datetime.now(ZoneInfo('Europe/Helsinki')).date().isoformat()
+          path.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf8')
+          PY
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -- valikoima_tiedot.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "data: update catalogue refresh date"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
       - id: pages
         if: needs.alko.result == 'success' || needs.s-ryhma.result == 'success' || needs.kesko.result == 'success'
         continue-on-error: true
