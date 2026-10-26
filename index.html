@@ -484,13 +484,12 @@
             if(!alueTiedot)return;
             const parts=[];
             for(const [source,label] of [['alko','Alkon'],['sryhma','S-ryhmän'],['kryhma','K-ryhmän']])if(activeSources.has(source))parts.push(`${tuoteData.filter(t=>t.lahde===source).length} ${label}`);
-            const hasStoreSources=activeSources.has('sryhma')||activeSources.has('kryhma');
             const chains=parts.length===3?`${parts[0]}, ${parts[1]} ja ${parts[2]}`:parts.join(' ja ');
-            infoDiv.textContent=`${selectedCity||'Koko Suomi'}: ${parts.length?chains+' tuotetta.':'Valitse näytettävä ketju logonapista.'}${hasStoreSources?' Kauppahinnat alkaen, valitse tuotteesta myymälä.':''}`;
+            infoDiv.textContent=`${selectedCity||'Koko Suomi'}: ${parts.length?chains+' tuotetta.':'Valitse näytettävä ketju logonapista.'}`;
             const paivitysaika=document.createElement('strong');
             paivitysaika.className='aineisto-paivitys';
-            paivitysaika.textContent=`Aineisto päivitetty viimeksi ${(alueTiedot.aineisto_paivitetty||'2026-10-26').split('-').reverse().join('.')}`;
-            infoDiv.append(document.createTextNode(' '),paivitysaika);
+            paivitysaika.textContent=`Päivitetty viimeksi ${(alueTiedot.aineisto_paivitetty||'2026-10-26').split('-').reverse().join('.')}`;
+            infoDiv.append(document.createTextNode('  '),paivitysaika);
             const notes=[];
             for(const [source,key,label] of [['sryhma','s','S-ryhmä']]){
                 if(!activeSources.has(source))continue;
