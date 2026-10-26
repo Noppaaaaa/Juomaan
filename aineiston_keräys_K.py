@@ -44,7 +44,10 @@ def product(raw, sid, kind):
         raise ValueError(f'Virheellinen hinta tai tilavuus: {raw["id"]}')
     if not 0 < volume <= 100 or not 0 <= deposit < gross:
         return None
-    abv = re.search(r'(\d+(?:[.,]\d+)?)\s*%', name)
+    abv = re.search(r'\balk(?:oholi)?\.?\s*(\d+(?:[.,]\d+)?)\s*%', name, re.I)
+    if not abv:
+        percentages = list(re.finditer(r'(\d+(?:[.,]\d+)?)\s*%', name))
+        abv = percentages[-1] if percentages else None
     return {'id':raw['id'], 'lahde':'kryhma', 'nimi':name, 'tyyppi':kind,
             'alkoholi_prosentti':float(abv[1].replace(',', '.')) if abv else None,
             'tilavuus_litraa':volume, 'hinta_eur':round(gross-deposit, 2), 'pantti_eur':deposit,
