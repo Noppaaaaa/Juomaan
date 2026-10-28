@@ -5,13 +5,9 @@ permissions:
   contents: read
 jobs:
   yhteys:
-    runs-on: macos-15
-    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: python -m pip install playwright
-      - run: python -m playwright install chromium
-      - run: python testaa_gh_yhteys.py
+      - uses: oven-sh/setup-bun@v2
+      - run: bun run testaa_gh_api.js
