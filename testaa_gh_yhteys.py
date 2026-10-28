@@ -4,7 +4,7 @@ from playwright.async_api import async_playwright
 
 async def main():
     async with async_playwright() as playwright:
-        browser = await playwright.chromium.launch()
+        browser = await playwright.chromium.launch(headless=False)
         page = await browser.new_page()
         statuses = []
         page.on('response', lambda response: statuses.append(response.status)
