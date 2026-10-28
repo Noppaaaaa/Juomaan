@@ -16,15 +16,23 @@ async def main():
     sem = asyncio.Semaphore(2)
     done = 0
     errors = []
+    successes = 0
+    stop = asyncio.Event()
     async def run(store):
-        nonlocal done
+        nonlocal done, successes
         async with sem:
+            if stop.is_set():
+                return
             for attempt in range(2):
                 proc = await asyncio.create_subprocess_exec(
                     sys.executable, str(SCRIPT), '--store-id', store['id'],
                     '--store-name', f"{store['name']}, {store['city']}",
                     cwd=ROOT, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
                 stdout, stderr = await proc.communicate()
+                detail = (stderr or stdout).decode("utf-8", errors="replace").strip()[-2000:]
+                if "HTTP 429" in detail:
+                    stop.set()
+                    break
                 if proc.returncode == 0 or attempt:
                     break
                 await asyncio.sleep(5)
@@ -33,9 +41,12 @@ async def main():
             result = f"Tallennettu {len(json.loads(kohde.read_text(encoding='utf-8')))} tuotetta" if proc.returncode == 0 and kohde.exists() else f"VIRHE ({proc.returncode})"
             print(f"[{done}/{len(todo)}] {store['name']}: {result}", flush=True)
             if proc.returncode != 0:
-                detail = (stderr or stdout).decode("utf-8", errors="replace").strip()[-2000:]
                 errors.append(store["id"])
+                if len(errors) >= 3 and successes == 0:
+                    stop.set()
                 print(f"  Virheen syy: {detail or 'ei virhetietoa'}", flush=True)
+            else:
+                successes += 1
     await asyncio.gather(*(run(s) for s in todo))
     print('Myymäläkeruu valmis.', flush=True)
     if errors:

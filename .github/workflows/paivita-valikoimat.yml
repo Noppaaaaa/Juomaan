@@ -187,8 +187,11 @@ jobs:
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "data: update Kesko catalogue"
           git push origin HEAD:main
-      - if: steps.publish.outcome != 'success'
+      - if: steps.publish.outcome != 'success' || steps.collect.outcome != 'success'
         run: exit 1
+      - name: Tarkista K-ryhmän keruun kattavuus
+        run: |
+          python -c "import json; r=json.load(open('k_ryhma_keruu.json', encoding='utf8')); assert r['myymaloita'] > 0 and r['kerattyja_myymaloita'] == r['myymaloita'], 'K-ryhmän keruu on kesken'"
 
   raportti:
     needs: [alko, s-ryhma, kesko]
@@ -201,17 +204,26 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
-      - name: Päivitä aineiston päiväys onnistuneen keruun jälkeen
-        if: needs.alko.result == 'success' || needs.s-ryhma.result == 'success' || needs.kesko.result == 'success'
+      - name: Päivitä aineiston tila ja päiväys
+        env:
+          ALKO_STATUS: ${{ needs.alko.result }}
+          S_STATUS: ${{ needs.s-ryhma.result }}
+          K_STATUS: ${{ needs.kesko.result }}
         run: |
           python - <<'PY'
-          import json
+          import json, os
           from datetime import datetime
           from pathlib import Path
           from zoneinfo import ZoneInfo
           path = Path('valikoima_tiedot.json')
           data = json.loads(path.read_text(encoding='utf8'))
-          data['aineisto_paivitetty'] = datetime.now(ZoneInfo('Europe/Helsinki')).date().isoformat()
+          complete = all(os.environ[key] == 'success' for key in ('ALKO_STATUS', 'S_STATUS', 'K_STATUS'))
+          alko = json.loads(Path('alko_keruu.json').read_text(encoding='utf8'))
+          kesko = json.loads(Path('k_ryhma_keruu.json').read_text(encoding='utf8'))
+          complete = complete and alko.get('puuttuvat_tuotesivut') == 0 and kesko.get('myymaloita', 0) > 0 and kesko.get('kerattyja_myymaloita') == kesko.get('myymaloita')
+          data['aineisto_paivitys_tila'] = 'valmis' if complete else 'osittainen'
+          if complete:
+              data['aineisto_paivitetty'] = datetime.now(ZoneInfo('Europe/Helsinki')).date().isoformat()
           path.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf8')
           PY
           git config user.name github-actions[bot]
@@ -223,7 +235,7 @@ jobs:
           git rebase origin/main
           git push origin HEAD:main
       - id: pages
-        if: needs.alko.result == 'success' || needs.s-ryhma.result == 'success' || needs.kesko.result == 'success'
+        if: always()
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}

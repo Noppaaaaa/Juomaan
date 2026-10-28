@@ -123,6 +123,8 @@ async def main():
         async def hae_sivu(url):
             for yritys in range(3):
                 result = await crawler.arun(url=url, js=True, bypass_cache=True, timeout=30000)
+                if getattr(result, "status_code", None) == 429:
+                    raise RuntimeError("HTTP 429: S-kaupat rajoittaa pyyntöjä. Keruu pysäytetty.")
                 next_data = BeautifulSoup(result.html or "", "lxml").find("script", id="__NEXT_DATA__")
                 if result.success and next_data and next_data.string:
                     return result.html

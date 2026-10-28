@@ -106,6 +106,7 @@ def main():
     metadata={
         'koottu':datetime.now(timezone.utc).isoformat(),
         'aineisto_paivitetty':lue('valikoima_tiedot.json').get('aineisto_paivitetty','2026-10-26'),
+        'aineisto_paivitys_tila':lue('valikoima_tiedot.json').get('aineisto_paivitys_tila','osittainen'),
         'kaupungit':sorted({s['city'] for s in [*sstores.values(),*astores.values()] if s.get('city')}),
         's_myymalat':list(sstores.values()),'alko_myymalat':list(astores.values()),
         's_myymaloita':len(sstores),'s_kerattyja_myymaloita':len(collected),

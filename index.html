@@ -488,7 +488,7 @@
             infoDiv.textContent=`${selectedCity||'Koko Suomi'}: ${parts.length?chains+' tuotetta.':'Valitse näytettävä ketju logonapista.'}`;
             const paivitysaika=document.createElement('strong');
             paivitysaika.className='aineisto-paivitys';
-            paivitysaika.textContent=`Päivitetty viimeksi ${(alueTiedot.aineisto_paivitetty||'2026-10-26').split('-').reverse().join('.')}`;
+            paivitysaika.textContent=alueTiedot.aineisto_paivitys_tila==='valmis' && alueTiedot.aineisto_paivitetty ? `Päivitetty viimeksi ${alueTiedot.aineisto_paivitetty.split('-').reverse().join('.')}` : 'Päivitys osittainen – osa tiedoista voi olla vanhentuneita';
             infoDiv.append(document.createTextNode('  '),paivitysaika);
             const notes=[];
             for(const [source,key,label] of [['sryhma','s','S-ryhmä']]){
