@@ -56,6 +56,13 @@ def tallenna(name, data):
     temporary.replace(path)
 
 
+def luokittele_puuttuvat(ennen, jalkeen):
+    jaljella = {product['id'] for product in jalkeen}
+    puuttuvat = [product for product in ennen if product['id'] not in jaljella]
+    vanhentuneet = sum(not product['myymalat'] for product in puuttuvat)
+    return len(puuttuvat) - vanhentuneet, vanhentuneet
+
+
 async def main():
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
@@ -89,10 +96,12 @@ async def main():
             assert len(stores) > 300 and all(t['kuva_url'] for t in products)
             from paivita_alko_tuotetiedot import taydenna
             ennen_tuotesivujen_tarkistusta=len(products)
+            ennen_taydennysta=list(products)
             await taydenna(page,products)
+            puuttuvat_saatavilla, vanhentuneet = luokittele_puuttuvat(ennen_taydennysta, products)
             tallenna('alko_myymalat.json', stores)
             tallenna('alko_tuotteet.json', products)
-            tallenna('alko_keruu.json', {'keratty':datetime.now(timezone.utc).isoformat(), 'lahde':'https://www.alko.fi/fi/tuotteet', 'hakutuloksia':expected, 'juomia':len(products), 'myymaloita':len(stores), 'ohitetut_tarvikkeet':expected-ennen_tuotesivujen_tarkistusta,'puuttuvat_tuotesivut':ennen_tuotesivujen_tarkistusta-len(products)})
+            tallenna('alko_keruu.json', {'keratty':datetime.now(timezone.utc).isoformat(), 'lahde':'https://www.alko.fi/fi/tuotteet', 'hakutuloksia':expected, 'juomia':len(products), 'myymaloita':len(stores), 'ohitetut_tarvikkeet':expected-ennen_tuotesivujen_tarkistusta,'puuttuvat_tuotesivut':puuttuvat_saatavilla,'ohitetut_vanhentuneet_tuotteet':vanhentuneet})
             print(f'Tallennettu {len(products)} juomaa, {len(stores)} myymälää.', flush=True)
         finally:
             await browser.close()
