@@ -24,7 +24,7 @@
       })[0];
     }
     function descriptor(d){
-      if(!d||!d.s||!d.n)return null;
+      if(!d||!d.s||(!d.n&&!d.h))return null;
       const exact=d.i&&byId.get(d.s+'|'+String(d.i));
       if(exact)return exact;
       const candidates=[...new Map([...(byName.get(nimi(d.n))||[]),...(d.h?byImage.get(d.h)||[]:[])].map(t=>[t.lahde+'|'+t.id,t])).values()];
@@ -42,12 +42,8 @@
         if(matches.length){matches.sort((a,b)=>(order[a.lahde]??9)-(order[b.lahde]??9));return matches[0]}
       }
       const parts=String(key).split('||');if(parts.length!==3)return null;
-      const [name,abv,price]=parts, matches=byName.get(nimi(name))||[];
-      const sameAbv=matches.filter(t=>String(numero(t.alkoholi_prosentti))===abv);
-      const candidates=sameAbv.length?sameAbv:matches;
-      const exact=candidates.filter(t=>Number(t.hinta_eur)===Number(price) || (Array.isArray(t.myymalat)?t.myymalat:(t.myymalaHinnat||[])).some(x=>Array.isArray(x)&&Number(x[1])===Number(price)));
-      const preferred=exact.length?exact:candidates;
-      for(const source of ['sryhma','alko','kryhma']){const group=preferred.filter(t=>t.lahde===source);if(group.length)return choice(group,{n:name},Number(price))}
+      const [name,,price]=parts, matches=byName.get(nimi(name))||[];
+      for(const source of ['sryhma','alko','kryhma']){const group=matches.filter(t=>t.lahde===source);if(group.length)return choice(group,{n:name},Number(price))}
       return null;
     }
     return {ratkaise};
