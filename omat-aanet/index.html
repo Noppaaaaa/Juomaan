@@ -143,6 +143,7 @@
         </footer>
     </main>
 
+    <script src="/aanet.js"></script>
     <script>
     (function(){"use strict";
         /* ---- Teema (glass switcher) ---- */
@@ -156,10 +157,9 @@
         const AANI_URL=(AANI_API?AANI_API.replace(/\/$/,''):'')+'/api/votes';
         const infoDiv=document.getElementById('info'),lista=document.getElementById('lista');
         const clientId=localStorage.getItem('aaniClientId')||'';
-        let AANI_MAX=3,tuoteKartta=Object.create(null),tuoteNimet=Object.create(null);
+        let AANI_MAX=3,tunnisteIndeksi=null;
 
         function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m])}
-        function tuoteAvain(t){return (t.nimi||'').trim()+'||'+t.alkoholi_prosentti+'||'+t.hinta_eur}
 
         function naytaTyhja(){lista.innerHTML='';infoDiv.style.display='none';lista.innerHTML='<div class="tyhja">Et ole vielä antanut yhtään ääntä.<br>Siirry <a href="../">etusivulle</a> ja äänestä juomia 👍</div>'}
 
@@ -168,8 +168,9 @@
             infoDiv.innerHTML=`Olet antanut <strong>${omat.length}/${AANI_MAX}</strong> ääntä. Voit perua äänen alta.`;
             lista.innerHTML='';
             for(const avain of omat){
-                const t=tuoteKartta[avain]||tuoteNimet[avain.split('||').slice(0,-1).join('||')];
-                const nimi=t?t.nimi:avain.split('||')[0];
+                const t=tunnisteIndeksi?.ratkaise(avain);
+                let vanhaNimi=avain.split('||')[0];try{vanhaNimi=JSON.parse(avain).n||vanhaNimi}catch{}
+                const nimi=t?t.nimi:vanhaNimi;
                 const url=t&&t.linkki?`../?tuote=${encodeURIComponent(t.lahde+':'+t.id)}`:'';
                 const kuva=t&&t.kuva_url?`<img src="${escapeHtml(t.kuva_url)}" alt="" onerror="this.style.display='none'">`:'';
                 const meta=t?`${t.alkoholi_prosentti==null?'Pitoisuus ei tiedossa':Number(t.alkoholi_prosentti).toFixed(1)+' %'} · ${t.lahde!=='alko'?'alk. ':''}${(t.hinta_eur+t.pantti_eur).toFixed(2)} €`:'';
@@ -200,18 +201,14 @@
         async function lataa(){
             if(!clientId){naytaTyhja();return}
             try{
-                const [vastaus,tuotteet]=await Promise.all([
+                const [vastaus,tuotteet,historia]=await Promise.all([
                     fetch(`${AANI_URL}?clientId=${encodeURIComponent(clientId)}`).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}),
-                    Promise.all(['../alko_tuotteet.json','../s_ryhma_tuotteet.json','../k_ryhma_tuotteet.json'].map(url=>fetch(url).then(r=>r.ok?r.json():[]).catch(()=>[]))).then(items=>items.flat())
+                    Promise.all(['../alko_tuotteet.json','../s_ryhma_tuotteet.json','../k_ryhma_tuotteet.json'].map(url=>fetch(url).then(r=>r.ok?r.json():[]).catch(()=>[]))).then(items=>items.flat()),
+                    fetch('/aanet_historia.json').then(r=>r.ok?r.json():{}).catch(()=>({}))
                 ]);
                 if(typeof vastaus.max==='number')AANI_MAX=vastaus.max;
-                if(Array.isArray(tuotteet)){for(const raw of tuotteet){
-                    if(!raw?.nimi?.trim()||!raw.linkki)continue;
-                    const t={...raw,nimi:raw.nimi.trim(),alkoholi_prosentti:raw.alkoholi_prosentti==null?null:Number(raw.alkoholi_prosentti),hinta_eur:Number(raw.hinta_eur)||0,pantti_eur:Number(raw.pantti_eur)||0,lahde:raw.lahde||'alko'};
-                    const key=tuoteAvain(t),name=t.nimi+'||'+t.alkoholi_prosentti;
-                    if(!(key in tuoteKartta))tuoteKartta[key]=t;
-                    if(!(name in tuoteNimet))tuoteNimet[name]=t;
-                }}
+                const normalisoidut=(Array.isArray(tuotteet)?tuotteet:[]).filter(raw=>raw?.nimi?.trim()&&raw.linkki).map(raw=>({...raw,nimi:raw.nimi.trim(),alkoholi_prosentti:raw.alkoholi_prosentti==null?null:Number(raw.alkoholi_prosentti),hinta_eur:Number(raw.hinta_eur)||0,pantti_eur:Number(raw.pantti_eur)||0,lahde:raw.lahde||'alko'}));
+                tunnisteIndeksi=AaniTunniste.indeksi(normalisoidut,historia);
                 infoDiv.style.display='block';
                 renderoi(Array.isArray(vastaus.omat)?vastaus.omat:[]);
             }catch(e){
