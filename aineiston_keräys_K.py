@@ -7,7 +7,7 @@ import re
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode, BrowserConfig
 
 ROOT = Path(__file__).resolve().parent
 GROUPS = {'oluet': 'Oluet', 'siiderit': 'Siiderit', 'lonkerot': 'Väkevät',
@@ -89,7 +89,7 @@ async def main():
     tuotteita, valmiita = kirjoita_valikoima(stores, folder)
     print(f'K-aineisto: {tuotteita} tuotetta, {valmiita}/{len(stores)} myymälää', flush=True)
     pages, headers = [], []
-    async with AsyncWebCrawler() as crawler:
+    async with AsyncWebCrawler(config=BrowserConfig(headless=os.getenv('K_NAKYVA_SELAIN') != '1')) as crawler:
         async def capture(request):
             if '/kr-api/v2/product-search/' in request.url:
                 h = await request.all_headers()
