@@ -190,6 +190,8 @@
         .haku-tyhjenna:hover{background:color-mix(in srgb,var(--c-glass) 22%,transparent);color:var(--text-heading);transform:none;box-shadow:none}
         .haku-tyhjenna:focus-visible{outline:2px solid var(--btn-bg);outline-offset:2px}
         @media(max-width:768px){.haku-rivi{flex:1 1 200px}}
+        .paivitys-valilyonnit{white-space:pre}.paivitys-rivinvaihto{display:none}
+        @media(max-width:768px){.paivitys-valilyonnit{display:none}.paivitys-rivinvaihto{display:block}}
     </style>
 </head>
 <body>
@@ -504,7 +506,11 @@
             const paivitysaika=document.createElement('strong');
             paivitysaika.className='aineisto-paivitys';
             paivitysaika.textContent=paivaysTeksti(alueTiedot.aineisto_paivitetty);
-            if(paivitysaika.textContent)infoDiv.append(document.createElement('br'),paivitysaika);
+            if(paivitysaika.textContent){
+                const erotin=document.createElement('span');erotin.className='paivitys-valilyonnit';erotin.textContent='    ';
+                const rivinvaihto=document.createElement('br');rivinvaihto.className='paivitys-rivinvaihto';
+                infoDiv.append(erotin,rivinvaihto,paivitysaika);
+            }
             const notes=[];
             for(const [source,key,label] of [['sryhma','s','S-ryhmä']]){
                 if(!activeSources.has(source))continue;
