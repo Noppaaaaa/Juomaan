@@ -1,0 +1,69 @@
+name: Päivitä äänestys-worker ja siirrä äänet
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (ei siirrä ääniä, ei deployaa)'
+        type: boolean
+        default: false
+
+  # Käynnisty automaattisesti aineiston päivityksen jälkeen
+  workflow_run:
+    workflows: ["Päivitä juomavalikoimat"]
+    types: [completed]
+    repositories: ["Noppaaaaa/juomaan-paivitys-tyo"]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  deploy-and-migrate:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Asenna wrangler
+        run: |
+          npm install -g --allow-scripts=esbuild,workerd wrangler
+          wrangler --version
+
+      - name: Tarkista wrangler-sessio
+        run: |
+          if [ -z "$CF_API_TOKEN" ]; then
+            echo "VIRHE: CF_API_TOKEN ympäristömuuttujaa ei ole asetettu."
+            echo "Lisää se GitHub Actions secrets:hin: CF_API_TOKEN"
+            exit 1
+          fi
+          echo "CF_API_TOKEN asetettu."
+
+      - name: Deployaa worker
+        if: ${{ !inputs.dry_run }}
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          cd worker
+          wrangler deploy --dry-run 2>&1 || true
+          echo "Deployataan worker..."
+          wrangler deploy
+
+      - name: Asenna Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Siirrä äänet uusille product_key-arvoille
+        if: ${{ !inputs.dry_run }}
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          python3 siirra_aanet.py
+
+      - name: Dry-run raportti
+        if: ${{ inputs.dry_run }}
+        run: |
+          python3 siirra_aanet.py --dry-run

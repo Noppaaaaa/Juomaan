@@ -57,6 +57,7 @@ export default {
     }
 
     // POST: anna yksi ääni juomalle. Body: { clientId, key }.
+    // Tai siirrä äänet: Body: { migrate: { oldKey: newKey, ... } }.
     if (request.method === "POST") {
       let body;
       try {
@@ -64,6 +65,34 @@ export default {
       } catch {
         return json({ error: "bad_json" }, 400, origin);
       }
+
+      // Äänten siirto (migration)
+      if (body.migrate && typeof body.migrate === "object") {
+        const mapping = body.migrate;
+        const keys = Object.keys(mapping);
+        let moved = 0;
+        for (const oldKey of keys) {
+          const newKey = mapping[oldKey];
+          if (!newKey) continue;
+          // Siirrä kaikki vanhalle key-äänille uuteen key:hin
+          const rows = await env.DB.prepare(
+            "SELECT client_id FROM votes WHERE product_key = ?"
+          ).bind(oldKey).all();
+          for (const row of rows.results) {
+            await env.DB.prepare(
+              "INSERT OR REPLACE INTO votes (client_id, product_key, created_at) VALUES (?, ?, ?)"
+            ).bind(row.client_id, newKey, Date.now()).run();
+            moved++;
+          }
+          // Poista vanhat äänet
+          await env.DB.prepare(
+            "DELETE FROM votes WHERE product_key = ?"
+          ).bind(oldKey).run();
+        }
+        return json({ ok: true, moved, keys: keys.length }, 200, origin);
+      }
+
+      // Alkuperäinen äänestys-logiikka
       const clientId = (body.clientId || "").toString().slice(0, 64);
       const key = (body.key || "").toString().slice(0, 300);
       if (!clientId || !key) {
