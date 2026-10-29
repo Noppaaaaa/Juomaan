@@ -504,7 +504,7 @@
             const paivitysaika=document.createElement('strong');
             paivitysaika.className='aineisto-paivitys';
             paivitysaika.textContent=paivaysTeksti(alueTiedot.aineisto_paivitetty);
-            infoDiv.append(document.createTextNode('  '),paivitysaika);
+            if(paivitysaika.textContent)infoDiv.append(document.createElement('br'),paivitysaika);
             const notes=[];
             for(const [source,key,label] of [['sryhma','s','S-ryhmä']]){
                 if(!activeSources.has(source))continue;
