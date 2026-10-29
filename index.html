@@ -480,6 +480,21 @@
             const result={...t,id:String(t.id||url.pathname.split('/').filter(Boolean).pop()),nimi:t.nimi.trim(),hinta_eur:hinta,tilavuus_litraa:litrat,alkoholi_prosentti:t.alkoholi_prosentti==null?null:numero(t.alkoholi_prosentti),pantti_eur:numero(t.pantti_eur)||0,myymalat:Number(t['myymälät_maara'])||0,myymalaHinnat:t.myymalat||[],lahde};
             result.tyyppi=luokitteleKategoria(result);result._aaniAvain=tuoteAvain(result);return result;
         }
+        function paivaysTeksti(iso, nyt = new Date()){
+            if(!/^\d{4}-\d{2}-\d{2}$/.test(iso || ''))return '';
+            const [vuosi,kuukausi,paiva]=iso.split('-').map(Number);
+            const paivays=Date.UTC(vuosi,kuukausi-1,paiva);
+            if(new Date(paivays).toISOString().slice(0,10)!==iso)return '';
+            const osat=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Helsinki',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(nyt).map(x=>[x.type,x.value]));
+            const tanaan=Date.UTC(Number(osat.year),Number(osat.month)-1,Number(osat.day));
+            const paivia=Math.floor((tanaan-paivays)/86400000);
+            const ika=paivia>=0?` (${paivia} ${paivia===1?'päivä':'päivää'})`:'';
+            return `Päivitetty viimeksi ${iso.split('-').reverse().join('.')}${ika}`;
+        }
+        setInterval(()=>{
+            const elementti=infoDiv.querySelector('.aineisto-paivitys');
+            if(elementti && alueTiedot)elementti.textContent=paivaysTeksti(alueTiedot.aineisto_paivitetty);
+        },60000);
         function paivitaInfo(){
             if(!alueTiedot)return;
             const parts=[];
@@ -488,7 +503,7 @@
             infoDiv.textContent=`${selectedCity||'Koko Suomi'}: ${parts.length?chains+' tuotetta.':'Valitse näytettävä ketju logonapista.'}`;
             const paivitysaika=document.createElement('strong');
             paivitysaika.className='aineisto-paivitys';
-            paivitysaika.textContent=alueTiedot.aineisto_paivitetty ? `Päivitetty viimeksi ${alueTiedot.aineisto_paivitetty.split('-').reverse().join('.')}` : '';
+            paivitysaika.textContent=paivaysTeksti(alueTiedot.aineisto_paivitetty);
             infoDiv.append(document.createTextNode('  '),paivitysaika);
             const notes=[];
             for(const [source,key,label] of [['sryhma','s','S-ryhmä']]){
