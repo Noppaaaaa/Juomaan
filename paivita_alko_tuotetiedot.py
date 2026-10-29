@@ -1,14 +1,16 @@
 """Poimii pantit Alkon omista tuotesivuista; välimuisti mahdollistaa keruun jatkamisen."""
 import asyncio
 import json
+import os
 import re
 import math
 from datetime import datetime,timezone
 from pathlib import Path
 from playwright.async_api import async_playwright
+from esto import Rajoitus, tarkista_sivu
 
 ROOT=Path(__file__).resolve().parent
-CACHE=ROOT/'alko_tuotetiedot.json'
+CACHE=Path(os.environ.get('ALKO_CACHE_PATH', ROOT/'alko_tuotetiedot.json'))
 
 async def taydenna(page, products):
     cache=json.loads(CACHE.read_text(encoding='utf8')) if CACHE.exists() else {}
@@ -33,8 +35,9 @@ async def taydenna(page, products):
                 try:
                     result=await page.evaluate("""async id=>{
                         const response=await fetch('/fi/tuotteet/'+id,{headers:{RSC:'1'},signal:AbortSignal.timeout(30000)});
-                        return {status:response.status,text:await response.text()};
+                        return {status:response.status,retryAfter:response.headers.get("retry-after"),text:await response.text()};
                     }""",pid)
+                    tarkista_sivu(result['status'], result['text'], {'retry-after': result.get('retryAfter') or ''})
                     if result['status']==404 or re.search(r'"digest":"NEXT_HTTP_ERROR_FALLBACK;404"',result['text']):
                         cache[pid]={'puuttuu':True,'tilavuus_litraa':product['tilavuus_litraa'],'keratty':datetime.now(timezone.utc).isoformat()}
                         break
@@ -72,6 +75,9 @@ async def taydenna(page, products):
                     assert math.isfinite(deposit) and 0<=deposit<total_price and deposit<=data['total'], f'Virheellinen pantti: {pid}, pantti {deposit}, kokonaishinta {total_price}'
                     cache[pid]={'pantti_eur':deposit,'tilavuus_litraa':product['tilavuus_litraa'],'keratty':datetime.now(timezone.utc).isoformat()}
                     break
+                except Rajoitus:
+                    save()
+                    raise
                 except Exception as exc:
                     if attempt==3:
                         errors.append((pid,(str(exc) or type(exc).__name__).splitlines()[0][:100]))
@@ -87,7 +93,7 @@ async def taydenna(page, products):
                 save()
                 print(f'Alkon pantit: {done}/{total}; välimuistissa {len(cache)}, virheitä {len(errors)}',flush=True)
             await asyncio.sleep(.1)
-    await asyncio.gather(*(worker() for _ in range(2)))
+    await asyncio.gather(*(worker() for _ in range(1)))
     save()
     if errors:
         raise RuntimeError(f'Panttitiedot kesken; välimuisti tallessa: {errors[:10]}')

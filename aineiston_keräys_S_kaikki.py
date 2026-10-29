@@ -33,7 +33,7 @@ async def main():
                     cwd=ROOT, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
                 stdout, stderr = await proc.communicate()
                 detail = (stderr or stdout).decode("utf-8", errors="replace").strip()[-2000:]
-                if "HTTP 429" in detail:
+                if "HTTP 429" in detail or "HTTP 403" in detail or "kaupan suojaustarkistus" in detail:
                     stop.set()
                     break
                 if proc.returncode == 0 or attempt:

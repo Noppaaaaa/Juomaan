@@ -7,6 +7,7 @@ import re
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
+from esto import rajoita, tarkista_sivu
 from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode, BrowserConfig
 
 ROOT = Path(__file__).resolve().parent
@@ -103,6 +104,7 @@ async def main():
         result = await crawler.arun(url='https://www.k-ruoka.fi/kauppa/tuotteet/juomat/oluet',
             config=CrawlerRunConfig(cache_mode=CacheMode.BYPASS, session_id='k-keruu', delay_before_return_html=12))
         await asyncio.gather(*tasks)
+        tarkista_sivu(getattr(result, "status_code", None), getattr(result, "html", ""), getattr(result, "response_headers", None))
         if not result.success or not headers:
             raise RuntimeError('K-Ruoan julkinen tuotehaku ei latautunut. Nykyistä valikoimaa ei muutettu.')
         page, request_headers = pages[-1], headers[-1]
@@ -133,20 +135,20 @@ async def main():
                     const u=new URL('/kr-api/v2/product-search/',location.origin);
                     for(const [k,v] of Object.entries({offset:args.offset,language:'fi',categoryPath:'juomat/'+args.group,storeId:args.sid,limit:100,discountFilter:false,isTrOffer:false}))u.searchParams.set(k,v);
                     const r=await fetch(u,{method:'POST',headers:args.headers,signal:AbortSignal.timeout(45000)});
-                    return {status:r.status,retryAfter:r.headers.get('retry-after'),data:r.ok?await r.json():null};
+                    const text=await r.text(); let data=null;
+                    if(r.ok){try {data=JSON.parse(text)} catch (_) {}}
+                    return {status:r.status,retryAfter:r.headers.get('retry-after'),body:data===null?text.slice(0,20000):'',data};
                 }''', dict(sid=sid, group=group, offset=offset, headers=request_headers))
                 if response['status'] == 200:
+                    tarkista_sivu(response['status'], response.get('body', ''), {})
                     data = response['data']
+                    if not isinstance(data, dict):
+                        raise RuntimeError('K-ryhmän tuotehaku ei palauttanut JSON-aineistoa.')
                     assert data['storeId'] == sid and isinstance(data['totalHits'], int)
                     return data
-                if response['status']==429:
+                if response['status'] in (403, 429):
                     await snapshot()
-                    value=response.get('retryAfter') or '120'
-                    try:delay=max(120,float(value))
-                    except ValueError:delay=300
-                    pause_until=max(pause_until,loop.time()+delay)
-                    print(f'K-tuotehaku HTTP 429: odotetaan {delay:.0f} s ennen jatkoa',flush=True)
-                    continue
+                    rajoita(response['status'], response.get('retryAfter'))
                 if response['status'] not in [500, 502, 503, 504]:
                     await snapshot()
                     raise RuntimeError(f'K-tuotehaku HTTP {response["status"]}: {sid}/{group}. Keruu pysäytetty.')
@@ -193,7 +195,7 @@ async def main():
                 if completed % 10 == 0 or completed == len(stores):
                     print(f'K-myymälät {completed}/{len(stores)}', flush=True)
                     await snapshot()
-        await asyncio.gather(*(worker() for _ in range(3)))
+        await asyncio.gather(*(worker() for _ in range(1)))
         if failures:
             retry=failures[:];failures.clear()
             for failure in retry:queue.put_nowait(next(store for store in stores if store['id']==failure['id']))

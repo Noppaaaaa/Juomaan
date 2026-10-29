@@ -5,6 +5,7 @@ import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 from playwright.async_api import async_playwright
+from esto import Rajoitus, tarkista_sivu
 
 ROOT = Path(__file__).resolve().parent
 
@@ -16,11 +17,14 @@ async def hae(page, path, payload=None):
                 const options={signal:AbortSignal.timeout(30000)};
                 if(payload!==null){options.method='POST';options.headers={'Content-Type':'application/json'};options.body=JSON.stringify(payload)}
                 const response=await fetch(path,options);
-                return {status:response.status,text:await response.text()};
+                return {status:response.status,retryAfter:response.headers.get("retry-after"),text:await response.text()};
             }""", {"path":path,"payload":payload})
+            tarkista_sivu(result['status'], result['text'], {'retry-after': result.get('retryAfter') or ''})
             error=f"HTTP {result['status']}"
             if result['status']==200:
                 return json.loads(result['text'])
+        except Rajoitus:
+            raise
         except Exception as exc:
             error=type(exc).__name__
         await asyncio.sleep(2+attempt)
