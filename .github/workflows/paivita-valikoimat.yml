@@ -1,9 +1,6 @@
 name: Päivitä juomavalikoimat
 
 on:
-  schedule:
-    - cron: '17 4 * * 0,3'
-      timezone: Europe/Helsinki
   workflow_dispatch:
 
 permissions:
