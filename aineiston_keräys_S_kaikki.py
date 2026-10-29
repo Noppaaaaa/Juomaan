@@ -1,5 +1,6 @@
 import asyncio
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -13,7 +14,9 @@ async def main():
     todo = [s for s in stores if not (ROOT / f"s_ryhma_tuotteet_{s['id']}.json").exists()
             or (ROOT / f"s_ryhma_tuotteet_{s['id']}.json").stat().st_mtime < SCRIPT.stat().st_mtime]
     print(f"Kaupat yhteensä: {len(stores)}, valmiina: {len(stores)-len(todo)}, kerätään: {len(todo)}", flush=True)
-    sem = asyncio.Semaphore(2)
+    rinnakkaisuus = max(1, min(4, int(os.environ.get("S_CONCURRENCY", "2"))))
+    print(f"Rinnakkaisia myymälöitä: {rinnakkaisuus}", flush=True)
+    sem = asyncio.Semaphore(rinnakkaisuus)
     done = 0
     errors = []
     successes = 0
