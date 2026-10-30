@@ -189,12 +189,14 @@ async def main():
                                 offset += len(rows)
                                 if rows_read < totals[group]:
                                     await asyncio.sleep(.15)
-                            if len(seen) + other_rows >= totals[group]:
+                            # totalHits counts result rows, which can repeat a product ID.
+                            # Keep rows for completeness checks; merge products by ID.
+                            if rows_read >= totals[group]:
                                 break
                             print(
                                 f'K-sivutus vajaa: {sid}/{group}: '
-                                f'{len(seen)} tuotetta + {other_rows} muuta riviä '
-                                f'({rows_read}/{totals[group]} sivutettu) '
+                                f'{rows_read}/{totals[group]} riviä sivutettu, '
+                                f'{len(seen)} uniikkia tuotetta, {other_rows} muuta riviä '
                                 f'(yritys {pagination_attempt + 1}/3)',
                                 flush=True,
                             )
