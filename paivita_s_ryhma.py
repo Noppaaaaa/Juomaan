@@ -3,6 +3,7 @@ import asyncio
 import json
 from pathlib import Path
 from playwright.async_api import async_playwright
+from esto import Rajoitus, tarkista_sivu
 
 ROOT = Path(__file__).resolve().parent
 CACHE = ROOT / 's_ryhma_tuotetiedot.json'
@@ -35,6 +36,7 @@ async def main():
                 for attempt in range(3):
                     try:
                         response = await page.goto(f'{link}?storeId={store}',wait_until='domcontentloaded',timeout=45000)
+                        tarkista_sivu(response.status, await page.title(), response.headers)
                         if response.status != 200:
                             raise RuntimeError(f'HTTP {response.status}')
                         raw = json.loads(await page.locator('#__NEXT_DATA__').text_content(timeout=5000))
@@ -44,6 +46,9 @@ async def main():
                         image=(((product.get('productDetails') or {}).get('productImages') or {}).get('mainImage') or {}).get('urlTemplate','')
                         cache[ean]['kuva_url']=image.replace('{MODIFIERS}','w280h280@_q75').replace('{EXTENSION}','webp') or 'https://www.s-kaupat.fi/icons/missing-product-image.svg'
                         break
+                    except Rajoitus:
+                        save()
+                        raise
                     except Exception as exc:
                         if attempt == 2:
                             errors.append((ean,str(exc)[:90]))
@@ -55,7 +60,7 @@ async def main():
                     print(f'S-tuotetiedot: {len(cache)}/{len(products)}; virheitä {len(errors)}',flush=True)
                 await asyncio.sleep(.2)
             await page.close()
-        await asyncio.gather(*(worker() for _ in range(3)))
+        await asyncio.gather(*(worker() for _ in range(1)))
         await browser.close()
     save()
     print(f'Valmis: {len(cache)}/{len(products)}, virheet {errors}',flush=True)

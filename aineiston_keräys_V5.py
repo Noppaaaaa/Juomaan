@@ -5,6 +5,7 @@ import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 from playwright.async_api import async_playwright
+from esto import Rajoitus, tarkista_sivu
 
 ROOT = Path(__file__).resolve().parent
 
@@ -16,11 +17,14 @@ async def hae(page, path, payload=None):
                 const options={signal:AbortSignal.timeout(30000)};
                 if(payload!==null){options.method='POST';options.headers={'Content-Type':'application/json'};options.body=JSON.stringify(payload)}
                 const response=await fetch(path,options);
-                return {status:response.status,text:await response.text()};
+                return {status:response.status,retryAfter:response.headers.get("retry-after"),text:await response.text()};
             }""", {"path":path,"payload":payload})
+            tarkista_sivu(result['status'], result['text'], {'retry-after': result.get('retryAfter') or ''})
             error=f"HTTP {result['status']}"
             if result['status']==200:
                 return json.loads(result['text'])
+        except Rajoitus:
+            raise
         except Exception as exc:
             error=type(exc).__name__
         await asyncio.sleep(2+attempt)
@@ -56,6 +60,13 @@ def tallenna(name, data):
     temporary.replace(path)
 
 
+def luokittele_puuttuvat(ennen, jalkeen):
+    jaljella = {product['id'] for product in jalkeen}
+    puuttuvat = [product for product in ennen if product['id'] not in jaljella]
+    vanhentuneet = sum(not product['myymalat'] for product in puuttuvat)
+    return len(puuttuvat) - vanhentuneet, vanhentuneet
+
+
 async def main():
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
@@ -89,10 +100,12 @@ async def main():
             assert len(stores) > 300 and all(t['kuva_url'] for t in products)
             from paivita_alko_tuotetiedot import taydenna
             ennen_tuotesivujen_tarkistusta=len(products)
+            ennen_taydennysta=list(products)
             await taydenna(page,products)
+            puuttuvat_saatavilla, vanhentuneet = luokittele_puuttuvat(ennen_taydennysta, products)
             tallenna('alko_myymalat.json', stores)
             tallenna('alko_tuotteet.json', products)
-            tallenna('alko_keruu.json', {'keratty':datetime.now(timezone.utc).isoformat(), 'lahde':'https://www.alko.fi/fi/tuotteet', 'hakutuloksia':expected, 'juomia':len(products), 'myymaloita':len(stores), 'ohitetut_tarvikkeet':expected-ennen_tuotesivujen_tarkistusta,'puuttuvat_tuotesivut':ennen_tuotesivujen_tarkistusta-len(products)})
+            tallenna('alko_keruu.json', {'keratty':datetime.now(timezone.utc).isoformat(), 'lahde':'https://www.alko.fi/fi/tuotteet', 'hakutuloksia':expected, 'juomia':len(products), 'myymaloita':len(stores), 'ohitetut_tarvikkeet':expected-ennen_tuotesivujen_tarkistusta,'puuttuvat_tuotesivut':puuttuvat_saatavilla,'ohitetut_vanhentuneet_tuotteet':vanhentuneet})
             print(f'Tallennettu {len(products)} juomaa, {len(stores)} myymälää.', flush=True)
         finally:
             await browser.close()

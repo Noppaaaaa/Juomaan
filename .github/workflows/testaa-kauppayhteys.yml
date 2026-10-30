@@ -1,0 +1,17 @@
+name: Testaa GitHubin kauppayhteys
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  yhteys:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04-arm, windows-latest, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun run testaa_gh_api.js
