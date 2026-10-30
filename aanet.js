@@ -24,6 +24,7 @@
       })[0];
     }
     function descriptor(d){
+      d={...d,h:d.h||kuva(d.u)};
       if(!d||!d.s||(!d.n&&!d.h))return null;
       const exact=d.i&&byId.get(d.s+'|'+String(d.i));
       if(exact)return exact;
