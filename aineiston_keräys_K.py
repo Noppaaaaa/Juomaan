@@ -169,25 +169,32 @@ async def main():
                     sid, products, totals = store['id'], {}, {}
                     for group, kind in GROUPS.items():
                         for pagination_attempt in range(3):
-                            offset, seen = 0, set()
-                            while True:
+                            offset, seen, other_rows, rows_read = 0, set(), 0, 0
+                            while rows_read < totals.get(group, 0) or offset == 0:
                                 data = await fetch(sid, group, offset)
                                 totals[group] = data['totalHits']
-                                for row in data['result']:
+                                rows = data.get('result')
+                                if not isinstance(rows, list):
+                                    raise RuntimeError(f'K-tuotehaku palautti virheellisen sivun: {sid}/{group}')
+                                if not rows:
+                                    break
+                                for row in rows:
                                     if row.get('type') != 'product':
+                                        other_rows += 1
                                         continue
                                     raw = row['product']; seen.add(raw['id'])
                                     parsed = product(raw, sid, kind)
                                     if parsed: products[parsed['id']] = parsed
-                                offset += 100
-                                if offset >= data['totalHits']:
-                                    break
-                                await asyncio.sleep(.15)
-                            if len(seen) >= totals[group]:
+                                rows_read += len(rows)
+                                offset += len(rows)
+                                if rows_read < totals[group]:
+                                    await asyncio.sleep(.15)
+                            if len(seen) + other_rows >= totals[group]:
                                 break
                             print(
                                 f'K-sivutus vajaa: {sid}/{group}: '
-                                f'{len(seen)}/{totals[group]} '
+                                f'{len(seen)} tuotetta + {other_rows} muuta riviä '
+                                f'({rows_read}/{totals[group]} sivutettu) '
                                 f'(yritys {pagination_attempt + 1}/3)',
                                 flush=True,
                             )
