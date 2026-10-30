@@ -168,22 +168,35 @@ async def main():
                 try:
                     sid, products, totals = store['id'], {}, {}
                     for group, kind in GROUPS.items():
-                        offset, seen = 0, set()
-                        while True:
-                            data = await fetch(sid, group, offset)
-                            totals[group] = data['totalHits']
-                            for row in data['result']:
-                                if row.get('type') != 'product':
-                                    continue
-                                raw = row['product']; seen.add(raw['id'])
-                                parsed = product(raw, sid, kind)
-                                if parsed: products[parsed['id']] = parsed
-                            offset += 100
-                            if offset >= data['totalHits']:
+                        for pagination_attempt in range(3):
+                            offset, seen = 0, set()
+                            while True:
+                                data = await fetch(sid, group, offset)
+                                totals[group] = data['totalHits']
+                                for row in data['result']:
+                                    if row.get('type') != 'product':
+                                        continue
+                                    raw = row['product']; seen.add(raw['id'])
+                                    parsed = product(raw, sid, kind)
+                                    if parsed: products[parsed['id']] = parsed
+                                offset += 100
+                                if offset >= data['totalHits']:
+                                    break
+                                await asyncio.sleep(.15)
+                            if len(seen) >= totals[group]:
                                 break
-                            await asyncio.sleep(.15)
-                        if len(seen) < totals[group]:
-                            raise RuntimeError(f'K-sivutus vajaa: {sid}/{group}: {len(seen)}/{totals[group]}')
+                            print(
+                                f'K-sivutus vajaa: {sid}/{group}: '
+                                f'{len(seen)}/{totals[group]} '
+                                f'(yritys {pagination_attempt + 1}/3)',
+                                flush=True,
+                            )
+                            await asyncio.sleep(2 * (pagination_attempt + 1))
+                        else:
+                            raise RuntimeError(
+                                f'K-sivutus vajaa uusintayritysten jälkeen: '
+                                f'{sid}/{group}: {len(seen)}/{totals[group]}'
+                            )
                     save(folder/(sid+'.json'), dict(id=sid, products=list(products.values()), totals=totals))
                 except RuntimeError as error:
                     if not any('HTTP '+str(status) in str(error) for status in [500,502,503,504]):
