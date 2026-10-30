@@ -71,7 +71,7 @@ def fetch_vote_keys():
 
 
 def descriptor(product, source):
-    product_id = product.get('id')
+    product_id = product.get('id') or product.get('i')
     if not product_id:
         path = urlsplit(product.get('linkki') or '').path
         match = re.search(r'/(?:tuotteet|cdn)/(\d+)(?:/|$)', path)
@@ -104,7 +104,11 @@ def main():
     previous = {key: [descriptor(record, record.get('s', '')) for record in existing.get(key, [])]
                 for key in active_keys}
     for filename, source in zip(CATALOGUES, ('alko', 'sryhma', 'kryhma')):
-        needed = {key for key in active if not any(record.get('s') == source for record in previous[key])}
+        needed = {
+            key for key in active
+            if not any(record.get('s') == source and record.get('i')
+                       for record in previous[key])
+        }
         for commit in catalogue_revisions(filename):
             if not needed:
                 break
