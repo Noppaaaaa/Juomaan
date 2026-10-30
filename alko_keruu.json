@@ -1,9 +1,10 @@
 {
-  "keratty": "2026-10-28T20:18:01.550757+00:00",
+  "keratty": "2026-10-30T14:38:12.647242+00:00",
   "lahde": "https://www.alko.fi/fi/tuotteet",
-  "hakutuloksia": 11500,
-  "juomia": 11420,
+  "hakutuloksia": 11498,
+  "juomia": 11418,
   "myymaloita": 359,
   "ohitetut_tarvikkeet": 75,
-  "puuttuvat_tuotesivut": 5
+  "puuttuvat_tuotesivut": 0,
+  "ohitetut_vanhentuneet_tuotteet": 5
 }
