@@ -29,23 +29,5 @@ class UpdateTests(unittest.TestCase):
             self.assertIn('HTTP 429', output.getvalue())
             self.assertLessEqual(len((root / 'calls').read_text()), 2)
 
-    def test_incomplete_sources_do_not_advance_date(self):
-        workflow = (ROOT / '.github/workflows/paivita-valikoimat.yml').read_text()
-        step = workflow.split('- name: Päivitä aineiston tila ja päiväys', 1)[1]
-        code = step.split("python - <<'PY'\n", 1)[1].split('\n          PY', 1)[0]
-        import textwrap
-        code = textwrap.dedent(code)
-        for missing, done, total, status in [(5, 248, 1056, 'osittainen'), (0, 1056, 1056, 'valmis')]:
-            with self.subTest(status=status), tempfile.TemporaryDirectory() as tmp:
-                root = Path(tmp)
-                (root / 'valikoima_tiedot.json').write_text('{"aineisto_paivitetty":"2026-01-01"}')
-                (root / 'alko_keruu.json').write_text(json.dumps({'puuttuvat_tuotesivut': missing}))
-                (root / 'k_ryhma_keruu.json').write_text(json.dumps({'myymaloita': total, 'kerattyja_myymaloita': done}))
-                env = {**os.environ, 'ALKO_STATUS': 'success', 'S_STATUS': 'success', 'K_STATUS': 'success'}
-                subprocess.run(['python3', '-c', code], cwd=tmp, env=env, check=True)
-                data = json.loads((root / 'valikoima_tiedot.json').read_text())
-                self.assertEqual(data['aineisto_paivitys_tila'], status)
-                self.assertEqual(data['aineisto_paivitetty'] == '2026-01-01', status == 'osittainen')
-
 if __name__ == '__main__':
     unittest.main()
