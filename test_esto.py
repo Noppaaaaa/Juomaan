@@ -32,6 +32,10 @@ class EstonKasittely(unittest.TestCase):
         with self.assertRaisesRegex(esto.Rajoitus, 'HTTP 200: kaupan suojaustarkistus'):
             esto.tarkista_sivu(200, '<title>Just a moment...</title>', {})
 
+    def test_azure_waf_suojaussivu_200(self):
+        with self.assertRaisesRegex(esto.Rajoitus, 'HTTP 200: kaupan suojaustarkistus'):
+            esto.tarkista_sivu(200, '<meta name="description" content="Azure WAF JS Challenge"><title>Azure WAF</title>', {})
+
     def test_header_suojaustarkistus(self):
         with self.assertRaises(esto.Rajoitus):
             esto.tarkista_sivu(200, '', {'Cf-Mitigated': 'challenge'})

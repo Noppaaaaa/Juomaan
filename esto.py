@@ -47,6 +47,6 @@ def tarkista_sivu(status, body='', headers=None):
     headers = {str(k).lower(): str(v) for k, v in (headers or {}).items()}
     rajoita(status, headers.get('retry-after'))
     text = (body or '')[:20000].lower()
-    challenge = headers.get('cf-mitigated', '').lower() == 'challenge' or 'vercel security checkpoint' in text or '<title>just a moment' in text or text.strip() == 'just a moment...'
+    challenge = headers.get('cf-mitigated', '').lower() == 'challenge' or 'azure waf js challenge' in text or 'vercel security checkpoint' in text or '<title>just a moment' in text or text.strip() == 'just a moment...'
     if challenge:
         rajoita(403, headers.get('retry-after'), f'HTTP {status}: kaupan suojaustarkistus')
