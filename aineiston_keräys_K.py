@@ -69,6 +69,28 @@ def kirjoita_valikoima(stores, folder):
             target['myymalat'].append([store['id'], p['hinta_eur'], p['pantti_eur']])
             if p['hinta_eur']+p['pantti_eur'] < target['hinta_eur']+target['pantti_eur']:
                 target.update(hinta_eur=p['hinta_eur'], pantti_eur=p['pantti_eur'])
+    # K-Ruoka voi julkaista saman tuotteen usealla EAN-tunnuksella.
+    # Yhdistä vain täsmälleen sama nimi, tyyppi, vahvuus ja tilavuus.
+    products_by_identity = {}
+    for product in merged.values():
+        identity = (
+            ' '.join(product['nimi'].casefold().split()),
+            product['tyyppi'], product['alkoholi_prosentti'], product['tilavuus_litraa'],
+        )
+        target = products_by_identity.get(identity)
+        if target is None:
+            products_by_identity[identity] = product
+            continue
+        stores_by_id = {store[0]: store for store in target['myymalat']}
+        for store in product['myymalat']:
+            previous = stores_by_id.get(store[0])
+            if previous is None or store[1] + store[2] < previous[1] + previous[2]:
+                stores_by_id[store[0]] = store
+        target['myymalat'] = list(stores_by_id.values())
+        if product['hinta_eur'] + product['pantti_eur'] < target['hinta_eur'] + target['pantti_eur']:
+            target['hinta_eur'] = product['hinta_eur']
+            target['pantti_eur'] = product['pantti_eur']
+    merged = {product['id']: product for product in products_by_identity.values()}
     for p in merged.values():
         p['myymälät_maara'] = len(p['myymalat'])
     if len(merged) < 100:
