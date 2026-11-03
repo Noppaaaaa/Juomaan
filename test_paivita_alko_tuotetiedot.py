@@ -4,8 +4,9 @@ from paivita_alko_tuotetiedot import etsi_tuotetiedot, on_tuote_404, tuotesivu_p
 
 class AlkoTuotetiedot(unittest.TestCase):
     def test_rsc_http_200_not_found(self):
-        self.assertTrue(on_tuote_404('1:{"notFound":[["404: This page could not be found."]]}'))
-        self.assertFalse(on_tuote_404('1:{"productId":904254,"valueInCents":599}'))
+        text='1:{"notFound":[["404: This page could not be found."]]}'
+        self.assertTrue(on_tuote_404(200,text,None))
+        self.assertTrue(on_tuote_404(404,'',None))
 
     def test_numeraalinen_tuotetunnus_taytyy_merkkijonotunnukseen(self):
         text='1:{"productId":904254,"valueInCents":1299,"deposit":"$undefined"}'
@@ -17,7 +18,9 @@ class AlkoTuotetiedot(unittest.TestCase):
 
     def test_validi_tuotetieto_loytyy_vaikka_rsc_sisaltaa_yleisen_404_mallin(self):
         text='1:{"productId":904254,"valueInCents":1359,"deposit":0.1}\\n2:{"notFound":[["404: This page could not be found."]]}'
-        self.assertIsNotNone(etsi_tuotetiedot(text,'904254'))
+        data=etsi_tuotetiedot(text,'904254')
+        self.assertIsNotNone(data)
+        self.assertFalse(on_tuote_404(200,text,data))
 
 
 if __name__=='__main__':

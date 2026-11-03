@@ -40,10 +40,11 @@ def etsi_tuotetiedot(text, pid):
         if data is not None:return data
     return None
 
-def on_tuote_404(text):
-    # Tarkista tämä vasta panttidatan haun jälkeen: Next.js sisällyttää
-    # notFound-komponentin myös toimivan sivun yleiseen asetteluun.
-    return '"notFound":[' in text or '"children":"404: This page could not be found."' in text
+def on_tuote_404(status, text, data):
+    if status==404 or re.search(r'"digest":"NEXT_HTTP_ERROR_FALLBACK;404"',text):
+        return True
+    # Next.js sisällyttää notFound-mallin myös toimivaan RSC-vastaukseen.
+    return data is None and ('"notFound":[' in text or '"children":"404: This page could not be found."' in text)
 
 def tuotesivu_polku(pid, kuva_url):
     slug=Path(urlsplit(kuva_url).path).stem
@@ -78,16 +79,13 @@ async def taydenna(page, products):
                         return {status:response.status,retryAfter:response.headers.get("retry-after"),text:await response.text()};
                     }""",path)
                     tarkista_sivu(result['status'], result['text'], {'retry-after': result.get('retryAfter') or ''})
-                    if result['status']==404 or re.search(r'"digest":"NEXT_HTTP_ERROR_FALLBACK;404"',result['text']):
+                    if result['status'] not in (200,404):
+                        raise RuntimeError(f"HTTP {result['status']}")
+                    data=etsi_tuotetiedot(result['text'],pid) if result['status']==200 else None
+                    if on_tuote_404(result['status'],result['text'],data):
                         cache[pid]={'puuttuu':True,'tilavuus_litraa':product['tilavuus_litraa'],'keratty':datetime.now(timezone.utc).isoformat()}
                         break
-                    if result['status']!=200:
-                        raise RuntimeError(f"HTTP {result['status']}")
-                    data=etsi_tuotetiedot(result['text'],pid)
                     if data is None:
-                        if on_tuote_404(result['text']):
-                            cache[pid]={'puuttuu':True,'tilavuus_litraa':product['tilavuus_litraa'],'keratty':datetime.now(timezone.utc).isoformat()}
-                            break
                         raise RuntimeError('Tuotteen panttitieto puuttuu')
                     deposit=float(data['deposit'])
                     total_price=product['hinta_eur']+product['pantti_eur']
