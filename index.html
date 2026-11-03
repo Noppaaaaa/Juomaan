@@ -514,15 +514,15 @@
             result.tyyppi=luokitteleKategoria(result);result._aaniAvain=tuoteAvain(result);return result;
         }
         function paivaysTeksti(iso, nyt = new Date()){
-            if(!/^\d{4}-\d{2}-\d{2}$/.test(iso || ''))return '';
-            const [vuosi,kuukausi,paiva]=iso.split('-').map(Number);
-            const paivays=Date.UTC(vuosi,kuukausi-1,paiva);
-            if(new Date(paivays).toISOString().slice(0,10)!==iso)return '';
-            const osat=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Helsinki',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',hourCycle:'h23'}).formatToParts(nyt).map(x=>[x.type,x.value]));
-            const tanaan=Date.UTC(Number(osat.year),Number(osat.month)-1,Number(osat.day));
-            const erotus=tanaan-paivays,paivia=Math.floor(erotus/86400000),tunnit=paivia*24+Number(osat.hour);
-            const ika=erotus<0?'':tunnit<24?` (${tunnit} tuntia)`:` (${paivia} ${paivia===1?'päivä':'päivää'})`;
-            return `Päivitetty viimeksi ${iso.split('-').reverse().join('.')}${ika}`;
+            if(!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2})$/.test(iso || ''))return '';
+            const paivays=new Date(iso);if(!Number.isFinite(paivays.getTime()))return '';
+            const dateParts=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Helsinki',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(paivays).map(x=>[x.type,x.value]));
+            const aika=new Intl.DateTimeFormat('fi-FI',{timeZone:'Europe/Helsinki',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(paivays);
+            const paiva=`${dateParts.day}.${dateParts.month}.${dateParts.year}`;
+            const today=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Helsinki',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(nyt).map(x=>[x.type,x.value]));
+            const paivia=Math.floor((Date.UTC(Number(today.year),Number(today.month)-1,Number(today.day))-Date.UTC(Number(dateParts.year),Number(dateParts.month)-1,Number(dateParts.day)))/86400000);
+            const ika=paivia>=0?` (${paivia} ${paivia===1?'päivä':'päivää'})`:'';
+            return `Päivitetty viimeksi ${paiva} klo ${aika}${ika}`;
         }
         setInterval(()=>{
             const elementti=infoDiv.querySelector('.aineisto-paivitys');
