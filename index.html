@@ -514,8 +514,8 @@
             result.tyyppi=luokitteleKategoria(result);result._aaniAvain=tuoteAvain(result);return result;
         }
         function paivaysTeksti(iso, nyt = new Date()){
-            if(!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2})$/.test(iso || ''))return '';
-            const paivays=new Date(iso);if(!Number.isFinite(paivays.getTime()))return '';
+            if(!/^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2}))?$/.test(iso || ''))return '';
+            const paivays=new Date(iso.length===10?`${iso}T00:00:00Z`:iso);if(!Number.isFinite(paivays.getTime()))return '';
             const dateParts=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Helsinki',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(paivays).map(x=>[x.type,x.value]));
             const paiva=`${dateParts.day}.${dateParts.month}.${dateParts.year}`;
             const today=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Helsinki',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(nyt).map(x=>[x.type,x.value]));
