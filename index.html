@@ -447,7 +447,7 @@
             // Äärimmäinen kärkitulos ohitetaan vain koko, hakemattoman valikoiman annoshintajärjestyksessä.
             if(currentSort==='annos'&&!hakuTokens.length&&KATEGORIA_NIMET.every(k=>activeCategories.includes(k))&&sorted.length>1){
                 const paras=laskeAnnosHinta(sorted[0]),toiseksiParas=laskeAnnosHinta(sorted[1]);
-                if(Number.isFinite(paras)&&Number.isFinite(toiseksiParas)&&paras>0&&toiseksiParas/paras>1.5)sorted.shift();
+                if(Number.isFinite(paras)&&Number.isFinite(toiseksiParas)&&paras>0&&toiseksiParas/paras>1.45)sorted.shift();
             }
             return sorted;
         }
