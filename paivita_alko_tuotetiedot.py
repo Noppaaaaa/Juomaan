@@ -12,6 +12,33 @@ from esto import Rajoitus, tarkista_sivu
 ROOT=Path(__file__).resolve().parent
 CACHE=Path(os.environ.get('ALKO_CACHE_PATH', ROOT/'alko_tuotetiedot.json'))
 
+def etsi_tuotetiedot(text, pid):
+    def find(value):
+        if isinstance(value,dict):
+            if str(value.get('productId'))==str(pid) and isinstance(value.get('valueInCents'),(int,float)):
+                deposit=value.get('deposit')
+                if deposit is None or deposit=='$undefined':deposit=0
+                if isinstance(deposit,(int,float)):
+                    return {'deposit':deposit,'total':value['valueInCents']/100}
+            for item in value.values():
+                found=find(item)
+                if found is not None:return found
+        elif isinstance(value,list):
+            for item in value:
+                found=find(item)
+                if found is not None:return found
+        return None
+    decoder=json.JSONDecoder()
+    # Flight-tekstikenttä voi päättyä suoraan seuraavan JSON-tietueen alkuun.
+    for match in re.finditer(r'[0-9a-f]+:(?=[{\[])',text):
+        try:
+            value,_=decoder.raw_decode(text,match.end())
+        except json.JSONDecodeError:
+            continue
+        data=find(value)
+        if data is not None:return data
+    return None
+
 async def taydenna(page, products):
     cache=json.loads(CACHE.read_text(encoding='utf8')) if CACHE.exists() else {}
     queue=asyncio.Queue()
@@ -43,31 +70,7 @@ async def taydenna(page, products):
                         break
                     if result['status']!=200:
                         raise RuntimeError(f"HTTP {result['status']}")
-                    def find(value):
-                        if isinstance(value,dict):
-                            if value.get('productId')==pid and isinstance(value.get('valueInCents'),(int,float)):
-                                deposit=value.get('deposit')
-                                if deposit is None or deposit=='$undefined':deposit=0
-                                if isinstance(deposit,(int,float)):
-                                    return {'deposit':deposit,'total':value['valueInCents']/100}
-                            for item in value.values():
-                                found=find(item)
-                                if found is not None:return found
-                        elif isinstance(value,list):
-                            for item in value:
-                                found=find(item)
-                                if found is not None:return found
-                        return None
-                    data=None
-                    decoder=json.JSONDecoder()
-                    # Flight-tekstikenttä voi päättyä suoraan seuraavan JSON-tietueen alkuun.
-                    for match in re.finditer(r'[0-9a-f]+:(?=[{\[])',result['text']):
-                        try:
-                            value,_=decoder.raw_decode(result['text'],match.end())
-                        except json.JSONDecodeError:
-                            continue
-                        data=find(value)
-                        if data is not None:break
+                    data=etsi_tuotetiedot(result['text'],pid)
                     if data is None:
                         raise RuntimeError('Tuotteen panttitieto puuttuu')
                     deposit=float(data['deposit'])
