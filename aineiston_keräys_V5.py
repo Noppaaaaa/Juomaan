@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from playwright.async_api import async_playwright
 from esto import Rajoitus, tarkista_sivu
+from paivita_alko_tuotetiedot import tuotesivu_polku
 
 ROOT = Path(__file__).resolve().parent
 
@@ -44,7 +45,8 @@ def muunna(product, store_ids):
     return {
         'id':pid, 'nimi':product['name'], 'hinta_eur':price,
         'tilavuus_litraa':float(volume), 'alkoholi_prosentti':abv,
-        'tyyppi':groups, 'linkki':f'https://www.alko.fi/fi/tuotteet/{pid}',
+        'tyyppi':groups,
+        'linkki':f"https://www.alko.fi{tuotesivu_polku(pid, product.get('imageUrlSmall') or product.get('imageUrl') or '')}",
         'kuva_url':product.get('imageUrlSmall') or product.get('imageUrl') or '',
         'myymalat':stores, 'myymälät_maara':len(stores), 'pantti_eur':0,
         'lahde':'alko'

@@ -6,6 +6,7 @@ import re
 import math
 from datetime import datetime,timezone
 from pathlib import Path
+from urllib.parse import urlsplit
 from playwright.async_api import async_playwright
 from esto import Rajoitus, tarkista_sivu
 
@@ -40,9 +41,15 @@ def etsi_tuotetiedot(text, pid):
     return None
 
 def on_tuote_404(text):
-    # Alkon Next.js RSC palauttaa tuntemattomasta tuotteesta usein HTTP 200
-    # ja renderöi notFound-sivun; digest ei silloin sisällä 404-koodia.
+    # Tarkista tämä vasta panttidatan haun jälkeen: Next.js sisällyttää
+    # notFound-komponentin myös toimivan sivun yleiseen asetteluun.
     return '"notFound":[' in text or '"children":"404: This page could not be found."' in text
+
+def tuotesivu_polku(pid, kuva_url):
+    slug=Path(urlsplit(kuva_url).path).stem
+    if not slug or slug==str(pid):
+        raise ValueError(f'Alkon tuotteen URL-tunniste puuttuu: {pid}')
+    return f'/fi/tuotteet/{pid}/{slug}'
 
 async def taydenna(page, products):
     cache=json.loads(CACHE.read_text(encoding='utf8')) if CACHE.exists() else {}
@@ -65,18 +72,22 @@ async def taydenna(page, products):
             pid=product['id']
             for attempt in range(4):
                 try:
-                    result=await page.evaluate("""async id=>{
-                        const response=await fetch('/fi/tuotteet/'+id,{headers:{RSC:'1'},signal:AbortSignal.timeout(30000)});
+                    path=tuotesivu_polku(pid,product['kuva_url'])
+                    result=await page.evaluate("""async path=>{
+                        const response=await fetch(path,{headers:{RSC:'1'},signal:AbortSignal.timeout(30000)});
                         return {status:response.status,retryAfter:response.headers.get("retry-after"),text:await response.text()};
-                    }""",pid)
+                    }""",path)
                     tarkista_sivu(result['status'], result['text'], {'retry-after': result.get('retryAfter') or ''})
-                    if result['status']==404 or on_tuote_404(result['text']) or re.search(r'"digest":"NEXT_HTTP_ERROR_FALLBACK;404"',result['text']):
+                    if result['status']==404 or re.search(r'"digest":"NEXT_HTTP_ERROR_FALLBACK;404"',result['text']):
                         cache[pid]={'puuttuu':True,'tilavuus_litraa':product['tilavuus_litraa'],'keratty':datetime.now(timezone.utc).isoformat()}
                         break
                     if result['status']!=200:
                         raise RuntimeError(f"HTTP {result['status']}")
                     data=etsi_tuotetiedot(result['text'],pid)
                     if data is None:
+                        if on_tuote_404(result['text']):
+                            cache[pid]={'puuttuu':True,'tilavuus_litraa':product['tilavuus_litraa'],'keratty':datetime.now(timezone.utc).isoformat()}
+                            break
                         raise RuntimeError('Tuotteen panttitieto puuttuu')
                     deposit=float(data['deposit'])
                     total_price=product['hinta_eur']+product['pantti_eur']
