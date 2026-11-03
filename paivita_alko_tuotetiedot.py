@@ -39,6 +39,11 @@ def etsi_tuotetiedot(text, pid):
         if data is not None:return data
     return None
 
+def on_tuote_404(text):
+    # Alkon Next.js RSC palauttaa tuntemattomasta tuotteesta usein HTTP 200
+    # ja renderöi notFound-sivun; digest ei silloin sisällä 404-koodia.
+    return '"notFound":[' in text or '"children":"404: This page could not be found."' in text
+
 async def taydenna(page, products):
     cache=json.loads(CACHE.read_text(encoding='utf8')) if CACHE.exists() else {}
     queue=asyncio.Queue()
@@ -65,7 +70,7 @@ async def taydenna(page, products):
                         return {status:response.status,retryAfter:response.headers.get("retry-after"),text:await response.text()};
                     }""",pid)
                     tarkista_sivu(result['status'], result['text'], {'retry-after': result.get('retryAfter') or ''})
-                    if result['status']==404 or re.search(r'"digest":"NEXT_HTTP_ERROR_FALLBACK;404"',result['text']):
+                    if result['status']==404 or on_tuote_404(result['text']) or re.search(r'"digest":"NEXT_HTTP_ERROR_FALLBACK;404"',result['text']):
                         cache[pid]={'puuttuu':True,'tilavuus_litraa':product['tilavuus_litraa'],'keratty':datetime.now(timezone.utc).isoformat()}
                         break
                     if result['status']!=200:
