@@ -15,6 +15,11 @@
     "city": "Alavus"
   },
   {
+    "id": "2282",
+    "name": "Alavus Tuuri",
+    "city": "Alavus"
+  },
+  {
     "id": "2428",
     "name": "Asikkala Vääksy",
     "city": "Asikkala"
@@ -77,6 +82,11 @@
   {
     "id": "2150",
     "name": "Espoo Olari Prisma",
+    "city": "Espoo"
+  },
+  {
+    "id": "2195",
+    "name": "Espoo Otaniemi",
     "city": "Espoo"
   },
   {
@@ -180,8 +190,18 @@
     "city": "Helsinki"
   },
   {
+    "id": "2111",
+    "name": "Helsinki Itä-Pasila",
+    "city": "Helsinki"
+  },
+  {
     "id": "2137",
     "name": "Helsinki Itäkeskus Easton",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2133",
+    "name": "Helsinki Itäkeskus Itis Stockmann",
     "city": "Helsinki"
   },
   {
@@ -197,6 +217,11 @@
   {
     "id": "2196",
     "name": "Helsinki Kalasatama Redi",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2138",
+    "name": "Helsinki Kalasatama Tukkutori",
     "city": "Helsinki"
   },
   {
@@ -240,6 +265,11 @@
     "city": "Helsinki"
   },
   {
+    "id": "2124",
+    "name": "Helsinki keskusta Sokos",
+    "city": "Helsinki"
+  },
+  {
     "id": "2128",
     "name": "Helsinki keskusta Stockmann",
     "city": "Helsinki"
@@ -280,8 +310,18 @@
     "city": "Helsinki"
   },
   {
+    "id": "2139",
+    "name": "Helsinki Mannerheimintie",
+    "city": "Helsinki"
+  },
+  {
     "id": "2140",
     "name": "Helsinki Mellunmäki",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2118",
+    "name": "Helsinki Munkkivuori",
     "city": "Helsinki"
   },
   {
@@ -337,6 +377,11 @@
   {
     "id": "2136",
     "name": "Helsinki Vuosaari Columbus",
+    "city": "Helsinki"
+  },
+  {
+    "id": "2113",
+    "name": "Helsinki Wanha Kauppahalli",
     "city": "Helsinki"
   },
   {
@@ -525,6 +570,11 @@
     "city": "Jyväskylä"
   },
   {
+    "id": "2492",
+    "name": "Jyväskylä Tourula Minimani",
+    "city": "Jyväskylä"
+  },
+  {
     "id": "2495",
     "name": "Jyväskylä Vaajakoski",
     "city": "Jyväskylä"
@@ -655,6 +705,11 @@
     "city": "Kemiönsaari"
   },
   {
+    "id": "2236",
+    "name": "Kemiönsaari Taalintehdas Dalsbruk",
+    "city": "Kemiönsaari"
+  },
+  {
     "id": "2835",
     "name": "Kempele",
     "city": "Kempele"
@@ -765,6 +820,11 @@
     "city": "Kouvola"
   },
   {
+    "id": "2761",
+    "name": "Kouvola Valkeala",
+    "city": "Kouvola"
+  },
+  {
     "id": "2280",
     "name": "Kristiinankaupunki",
     "city": "Kristiinankaupunki"
@@ -797,6 +857,11 @@
   {
     "id": "2305",
     "name": "Kuopio Kolmisoppi Citymarket",
+    "city": "Kuopio"
+  },
+  {
+    "id": "2739",
+    "name": "Kuopio Matkus Shopping Center",
     "city": "Kuopio"
   },
   {
@@ -1157,6 +1222,11 @@
   {
     "id": "2830",
     "name": "Oulu Linnanmaa",
+    "city": "Oulu"
+  },
+  {
+    "id": "2832",
+    "name": "Oulu Raksila",
     "city": "Oulu"
   },
   {
@@ -1545,6 +1615,11 @@
     "city": "Tampere"
   },
   {
+    "id": "2461",
+    "name": "Tampere Puutarhakatu",
+    "city": "Tampere"
+  },
+  {
     "id": "2457",
     "name": "Tampere Ratina",
     "city": "Tampere"
@@ -1592,6 +1667,11 @@
   {
     "id": "2202",
     "name": "Turku Itäharju",
+    "city": "Turku"
+  },
+  {
+    "id": "2201",
+    "name": "Turku keskusta Kauppahalli",
     "city": "Turku"
   },
   {
@@ -1670,6 +1750,11 @@
     "city": "Vaala"
   },
   {
+    "id": "2773",
+    "name": "Vaalimaa",
+    "city": "Virolahti"
+  },
+  {
     "id": "2292",
     "name": "Vaasa Asevelikylä Prisma",
     "city": "Vaasa"
@@ -1732,6 +1817,11 @@
   {
     "id": "2164",
     "name": "Vantaa Pakkala Jumbo",
+    "city": "Vantaa"
+  },
+  {
+    "id": "2169",
+    "name": "Vantaa Pakkala Jumbo Stockmann",
     "city": "Vantaa"
   },
   {
