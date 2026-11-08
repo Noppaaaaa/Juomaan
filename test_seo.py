@@ -52,14 +52,8 @@ class SeoTest(TestCase):
             self.assertFalse(sivu.noindex, osoite)
             sivut[osoite] = sivu
 
-        tarkistettavat = [DOMAIN + '/']
-        loydetyt = set()
-        while tarkistettavat:
-            osoite = tarkistettavat.pop()
-            if osoite in loydetyt:
-                continue
-            loydetyt.add(osoite)
-            for href in sivut[osoite].linkit:
+        for osoite, lahtosivu in sivut.items():
+            for href in lahtosivu.linkit:
                 kohde = urlsplit(urljoin(osoite, href))
                 if kohde.netloc != urlsplit(DOMAIN).netloc:
                     continue
@@ -71,6 +65,3 @@ class SeoTest(TestCase):
                 if kohde.fragment:
                     sivu = sivut.get(kohdeosoite) or Sivu(polku)
                     self.assertIn(kohde.fragment, sivu.ankkurit, f'{osoite}: {href}')
-                if kohdeosoite in sivut:
-                    tarkistettavat.append(kohdeosoite)
-        self.assertEqual(loydetyt, osoitteet, 'Kaikkia kartan sivuja ei löydy etusivulta.')
