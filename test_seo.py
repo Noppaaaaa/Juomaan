@@ -1,4 +1,5 @@
-from datetime import date
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from html.parser import HTMLParser
 from pathlib import Path
 from unittest import TestCase
@@ -45,7 +46,7 @@ class SeoTest(TestCase):
             uri = urlsplit(osoite)
             self.assertEqual(osoite, DOMAIN + uri.path)
             self.assertTrue(uri.path.endswith('/'), osoite)
-            self.assertLessEqual(date.fromisoformat(rivi.findtext('{*}lastmod')), date.today())
+            self.assertLessEqual(datetime.fromisoformat(rivi.findtext('{*}lastmod')).date(), datetime.now(ZoneInfo('Europe/Helsinki')).date())
             sivu = Sivu(ROOT / uri.path.lstrip('/') / 'index.html')
             self.assertEqual(sivu.canonical, [osoite])
             self.assertFalse(sivu.noindex, osoite)

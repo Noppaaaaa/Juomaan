@@ -159,9 +159,11 @@ def viinit(tuotteet):
     return [tuote for tuote in tuotteet if (tuote['tyyppi'] or '').split(',', 1)[0].strip() in luokat]
 
 
-def paivita_sivustokartta(muuttuneet, paiva):
+def paivita_sivustokartta(muuttuneet, paivitysaika):
     if not muuttuneet:
         return
+    if not paivitysaika.tzinfo:
+        paivitysaika = paivitysaika.replace(tzinfo=ZoneInfo('Europe/Helsinki'))
     polku = ROOT / 'sitemap.xml'
     ns = 'http://www.sitemaps.org/schemas/sitemap/0.9'
     ET.register_namespace('', ns)
@@ -173,8 +175,11 @@ def paivita_sivustokartta(muuttuneet, paiva):
         lastmod = sivu.find(f'{{{ns}}}lastmod')
         if lastmod is None:
             lastmod = ET.SubElement(sivu, f'{{{ns}}}lastmod')
-        if not lastmod.text or paiva > lastmod.text:
-            lastmod.text = paiva
+        edellinen = datetime.fromisoformat(lastmod.text) if lastmod.text else None
+        if edellinen and not edellinen.tzinfo:
+            edellinen = edellinen.replace(tzinfo=ZoneInfo('Europe/Helsinki'))
+        if not edellinen or paivitysaika > edellinen:
+            lastmod.text = paivitysaika.isoformat(timespec='seconds')
     ET.indent(kartta, space='  ')
     kirjoita(polku, '<?xml version="1.0" encoding="UTF-8"?>\n' + ET.tostring(kartta, encoding='unicode') + '\n')
 
@@ -260,7 +265,7 @@ def paivita():
         if not polku.exists() or polku.read_text(encoding='utf-8') != teksti:
             muuttuneet.add(domain)
         kirjoita(polku, teksti)
-    paivita_sivustokartta(muuttuneet, olut_paivays.date().isoformat())
+    paivita_sivustokartta(muuttuneet, olut_paivays)
 
 
 if __name__ == '__main__':
