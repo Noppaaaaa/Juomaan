@@ -68,6 +68,8 @@ lueJson('/alko_tuotteet.json').then(aineisto => {
             };
         }).sort((a, b) => aakkoset.compare(a.nimi, b.nimi));
     haku.disabled = jarjestys.disabled = false;
+    const otos = document.getElementById('otoksen-paivays');
+    if (otos) otos.hidden = true;
     suodata();
     return lueJson('/alko_keruu.json').then(raportti => {
         const keratty = new Date(raportti.keratty);
