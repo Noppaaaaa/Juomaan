@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Halvin viina Alkossa – vertaa viinoja ja vodkia | Juomaan</title>
+    <meta name="description" content="Vertaa Alkon viinojen ja vodkien pakkaushintoja, vahvuuksia ja hintoja alkoholiannosta kohti. Järjestä halvimman mukaan ja tarkista tuote Alkosta.">
+    <link rel="canonical" href="https://juomaan.fi/halvin-viina/">
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192">
+    <link rel="stylesheet" href="/alkon-hinnasto/hinnasto.css">
+</head>
+<body>
+    <nav aria-label="Päävalikko"><a href="/alkon-hinnasto/">Alkon hinnasto</a> · <a href="/alkoholiannos/">Alkoholiannoslaskuri</a></nav>
+    <main>
+        <h1>Alkon halvimmat viinat ja vodkat</h1>
+        <p>Katso Alkon Vodkat ja viinat -ryhmän hinnat. Lista on aluksi järjestetty alkoholiannoksen hinnan mukaan. Valitse pakkaushinta, jos etsit edullisinta yksittäistä pulloa.</p>
+        <label for="haku">Hae viinoja ja vodkia</label>
+        <input id="haku" type="search" maxlength="100" autocomplete="off" disabled>
+        <label for="jarjestys">Järjestä tuotteet</label>
+        <select id="jarjestys" disabled>
+            <option value="annoshinta">Halvin alkoholiannos</option>
+            <option value="nimi">Nimi A–Ö</option>
+            <option value="hinta">Halvin pakkaushinta</option>
+        </select>
+        <p id="tila" role="status"></p>
+        <table id="hinnasto" data-viinat aria-label="Alkon viinojen ja vodkien hinnat" hidden>
+            <thead><tr><th scope="col">Tuote</th><th scope="col">Koko</th><th scope="col">Alk.</th><th scope="col">Hinta</th><th scope="col">€ / annos</th></tr></thead>
+            <tbody id="rivit"></tbody>
+        </table>
+        <button id="lisaa" type="button" hidden>Näytä 30 lisää</button>
+        <noscript><p>Juomaanin hinnastohaku käyttää JavaScriptiä. Voit etsiä tuotteita myös suoraan <a href="https://www.alko.fi/fi/tuotteet">Alkon verkkosivulla</a>.</p></noscript>
+        <h2>Pullon hinta ja annoshinta</h2>
+        <p>Pakkaushinta sisältää pantin. Annoshinta jakaa sen juoman sisältämien annosten määrällä. Juomaanissa 50 cl:n pullo 40-prosenttista vodkaa vastaa noin 13,33 annosta, kun yksi annos on 1,5 cl puhdasta alkoholia. Eri kokoiset ja vahvuiset pullot voivat vaihtaa paikkaa, kun lajittelutapa vaihtuu.</p>
+        <h2>Mistä hinnat tulevat?</h2>
+        <p>Juomaan kokoaa hinnat Alkon julkaisemista tuotetiedoista. Listan hinta sisältää mahdollisen pantin. <span id="paivitys"></span> Tarkista ajantasainen hinta ja myymäläsaatavuus Alkon tuotesivulta.</p>
+        <p><a href="/">Vertaa myös S- ja K-ryhmän hintoja</a> tai <a href="/alkoholiannos/">laske hinta alkoholiannosta kohti</a>.</p>
+    </main>
+    <script src="/alkon-hinnasto/hinnasto.js"></script>
+</body>
+</html>

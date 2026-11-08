@@ -1,0 +1,12 @@
+:root { color-scheme: light dark; }
+body { font: 1rem/1.6 system-ui, sans-serif; max-width: 48rem; margin: 2rem auto; padding: 0 1rem; }
+label { display: block; margin-block-start: .75rem; }
+input, select, button { font: inherit; padding: .4rem; max-width: 100%; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: .4rem; text-align: left; border-block-end: 1px solid GrayText; }
+th:last-child, td:last-child { text-align: right; white-space: nowrap; }
+button { margin-block: 1rem; }
+@media (max-width: 400px) {
+    [data-viinat] th, [data-viinat] td { padding: .2rem; }
+    [data-viinat] td:first-child { overflow-wrap: anywhere; }
+}
