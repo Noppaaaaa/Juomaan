@@ -2,6 +2,7 @@
 
 import json
 import re
+import xml.etree.ElementTree as ET
 from base64 import b64encode
 from datetime import datetime
 from html import escape
@@ -136,6 +137,35 @@ def olutotos(oluet):
     return rivit
 
 
+def lue_json(polku, oletus=None):
+    return json.loads(polku.read_text(encoding='utf-8')) if polku.exists() else oletus
+
+
+def viinit(tuotteet):
+    luokat = {'punaviinit', 'valkoviinit', 'roseeviinit', 'kuohuviinit'}
+    return [tuote for tuote in tuotteet if (tuote['tyyppi'] or '').split(',', 1)[0].strip() in luokat]
+
+
+def paivita_sivustokartta(muuttuneet, paiva):
+    if not muuttuneet:
+        return
+    polku = ROOT / 'sitemap.xml'
+    ns = 'http://www.sitemaps.org/schemas/sitemap/0.9'
+    ET.register_namespace('', ns)
+    kartta = ET.fromstring(polku.read_text(encoding='utf-8'))
+    for sivu in kartta.findall(f'{{{ns}}}url'):
+        osoite = sivu.findtext(f'{{{ns}}}loc')
+        if osoite not in muuttuneet:
+            continue
+        lastmod = sivu.find(f'{{{ns}}}lastmod')
+        if lastmod is None:
+            lastmod = ET.SubElement(sivu, f'{{{ns}}}lastmod')
+        if not lastmod.text or paiva > lastmod.text:
+            lastmod.text = paiva
+    ET.indent(kartta, space='  ')
+    kirjoita(polku, '<?xml version="1.0" encoding="UTF-8"?>\n' + ET.tostring(kartta, encoding='unicode') + '\n')
+
+
 def paivita():
     tuotteet = json.loads((ROOT / 'alko_tuotteet.json').read_text(encoding='utf-8'))
     raportti = json.loads((ROOT / 'alko_keruu.json').read_text(encoding='utf-8'))
@@ -171,9 +201,6 @@ def paivita():
 
     viina_sivu, viina_html = otos_html('halvin-viina', '10 edullisinta annoshintaa', rivit, keratty)
     viini_sivu, viini_html = otos_html('alkon-viinit', '10 halvinta punaviinipakkausta', punaviinirivit(hinnasto), keratty)
-    for kansio, aineisto in [('alkon-hinnasto', hinnasto), ('halvin-viina', viinat)]:
-        payload = {'keratty': raportti['keratty'], 'tuotteet': aineisto}
-        kirjoita(ROOT / kansio / 'hinnat.json', json.dumps(payload, ensure_ascii=False, separators=(',', ':')) + '\n')
     marketit = [
         json.loads((ROOT / f'{lahde}_tuotteet.json').read_text(encoding='utf-8'))
         for lahde in ('s_ryhma', 'k_ryhma')
@@ -185,14 +212,37 @@ def paivita():
         olut_paivays = olut_paivays.astimezone(ZoneInfo('Europe/Helsinki'))
     olut_sivu, olut_html = otos_html('oluen-hinnat', '10 halvinta olutpakkausta (yli 0,5 %)',
                                     olutotos(olutdata['tuotteet']), olut_paivays, 'julkaistuista')
-    kirjoita(ROOT / 'oluen-hinnat' / 'hinnat.json', json.dumps(olutdata, ensure_ascii=False, separators=(',', ':')) + '\n')
+    muuttuneet = set()
+    domain = 'https://juomaan.fi/'
+    hintasivut = {
+        'alkon-hinnasto': {'keratty': raportti['keratty'], 'tuotteet': hinnasto},
+        'halvin-viina': {'keratty': raportti['keratty'], 'tuotteet': viinat},
+        'oluen-hinnat': olutdata,
+    }
+    for kansio, payload in hintasivut.items():
+        polku = ROOT / kansio / 'hinnat.json'
+        vanhat = lue_json(polku, {}).get('tuotteet', [])
+        if vanhat != payload['tuotteet']:
+            muuttuneet.add(domain + kansio + '/')
+            if kansio == 'alkon-hinnasto' and viinit(vanhat) != viinit(hinnasto):
+                muuttuneet.add(domain + 'alkon-viinit/')
+        kirjoita(polku, json.dumps(payload, ensure_ascii=False, separators=(',', ':')) + '\n')
+
     kirjoita(olut_sivu, olut_html)
     kirjoita(viina_sivu, viina_html)
     kirjoita(viini_sivu, viini_html)
-    kirjoita(ROOT / 'alko_vertailu.json', json.dumps(pakkaa_alko(tuotteet), ensure_ascii=False, separators=(',', ':')) + '\n')
-    for lahde, marketin_tuotteet in zip(('s_ryhma', 'k_ryhma'), marketit):
-        pakattu = pakkaa_marketit(marketin_tuotteet)
-        kirjoita(ROOT / f'{lahde}_vertailu.json', json.dumps(pakattu, ensure_ascii=False, separators=(',', ':')) + '\n')
+    etusivun_aineistot = {
+        'alko': pakkaa_alko(tuotteet),
+        's_ryhma': pakkaa_marketit(marketit[0]),
+        'k_ryhma': pakkaa_marketit(marketit[1]),
+    }
+    for lahde, aineisto in etusivun_aineistot.items():
+        polku = ROOT / f'{lahde}_vertailu.json'
+        teksti = json.dumps(aineisto, ensure_ascii=False, separators=(',', ':')) + '\n'
+        if not polku.exists() or polku.read_text(encoding='utf-8') != teksti:
+            muuttuneet.add(domain)
+        kirjoita(polku, teksti)
+    paivita_sivustokartta(muuttuneet, olut_paivays.date().isoformat())
 
 
 if __name__ == '__main__':
