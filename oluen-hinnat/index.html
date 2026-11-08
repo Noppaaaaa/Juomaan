@@ -24,6 +24,12 @@
             <option value="sryhma">S-ryhmä</option>
             <option value="kryhma">K-ryhmä</option>
         </select>
+        <label for="vahvuus">Alkoholipitoisuus</label>
+        <select id="vahvuus" disabled>
+            <option value="yli" selected>Yli 0,5 %</option>
+            <option value="enintaan">Enintään 0,5 %</option>
+            <option value="">Kaikki vahvuudet</option>
+        </select>
         <label for="jarjestys">Järjestä tuotteet</label>
         <select id="jarjestys" disabled>
             <option value="hinta">Halvin pakkaushinta</option>
@@ -31,9 +37,21 @@
             <option value="nimi">Nimi A–Ö</option>
         </select>
         <p id="tila" role="status"></p>
-        <table id="hinnasto" aria-label="Oluiden pakkaus- ja litrahinnat" hidden>
+        <table id="hinnasto" aria-label="Oluiden pakkaus- ja litrahinnat">
+            <caption id="otoksen-paivays">10 halvinta olutpakkausta (yli 0,5 %) 7.11.2026 julkaistuista hinnoista.</caption>
             <thead><tr><th scope="col">Tuote ja ketju</th><th scope="col">Koko</th><th scope="col">Hinta</th><th scope="col">€ / l</th></tr></thead>
-            <tbody id="rivit"></tbody>
+            <tbody id="rivit">
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/coop-lager-olut-4-2-til-tolkki-0-33-l/6438574042463">Coop Lager olut 4,2  til-% tölkki 0,33 L</a><br><small>S-ryhmä · 4,2 %</small></td><td>0,33 l</td><td>0,99 €</td><td>3,00 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/k-menu-lager-olut-42-033l-tlk-6410405305350">K-Menu lager olut 4,2% 0,33l</a><br><small>K-ryhmä · 4,2 %</small></td><td>0,33 l</td><td>0,99 €</td><td>3,00 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/sininen-olut-35-033l-tlk-6413606007269">Sininen olut 3,5% 0,33l</a><br><small>K-ryhmä · 3,5 %</small></td><td>0,33 l</td><td>0,99 €</td><td>3,00 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/keisari-lager-45-033l-tlk-6417348173398">Keisari Lager olut 4,5% 0,33l</a><br><small>K-ryhmä · 4,5 %</small></td><td>0,33 l</td><td>1,00 €</td><td>3,03 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/olvi-frisco-hoppy-lager-50-05l-tlk-6419800012498">OLVI Frisco Hoppy Lager olut 5,0% 0,5l</a><br><small>K-ryhmä · 5 %</small></td><td>0,5 l</td><td>1,00 €</td><td>2,00 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/olvi-hi-hop-mild-neipa-25-05l-tlk-6419800030324">OLVI Hi Hop Mild NEIPA 2,5% 0,5l</a><br><small>K-ryhmä · 2,5 %</small></td><td>0,5 l</td><td>1,00 €</td><td>2,00 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/pirkka-olut-033l-45-tlk-6410405091260">Pirkka olut 4,5% 0,33l</a><br><small>K-ryhmä · 4,5 %</small></td><td>0,33 l</td><td>1,03 €</td><td>3,12 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/kotimaista-vaalea-lager-4-5-0-33-l-tlk/6438574666683">Kotimaista Vaalea Lager 4,5 % 0,33 l tlk</a><br><small>S-ryhmä · 4,5 %</small></td><td>0,33 l</td><td>1,16 €</td><td>3,52 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/olvi-summer-lager-43-033l-tlk-6419800022596">OLVI Summer Lager olut 4,3% 0,33</a><br><small>K-ryhmä · 4,3 %</small></td><td>0,33 l</td><td>1,16 €</td><td>3,52 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/pirkka-olut-27-033l-tlk-6410405112316">Pirkka olut 2,7% 0,33l</a><br><small>K-ryhmä · 2,7 %</small></td><td>0,33 l</td><td>1,17 €</td><td>3,55 €</td></tr>
+            </tbody>
         </table>
         <button id="lisaa" type="button" hidden>Näytä 30 lisää</button>
         <noscript><p>Hintahaku käyttää JavaScriptiä. Voit avata kauppojen valikoimat suoraan <a href="https://www.alko.fi/fi/tuotteet">Alkossa</a>, <a href="https://www.s-kaupat.fi/">S-kaupoissa</a> ja <a href="https://www.k-ruoka.fi/kauppa">K-Ruoassa</a>.</p></noscript>
@@ -41,6 +59,6 @@
         <p>Pakkaushinta sopii yksittäisten tölkkien, pullojen ja monipakkausten kassahintojen vertailuun. Litrahinta huomioi koko pakkauksen tilavuuden. Esimerkiksi 0,33 litraa hintaan 1,20 € maksaa 3,64 €/l, kun 0,5 litraa hintaan 1,50 € maksaa 3,00 €/l.</p>
         <p><span id="paivitys"></span> Voit myös <a href="/?haku=oluet">avata oluthaun ja valita kaupungin</a> koko hintavertailussa.</p>
     </main>
-    <script src="/alkon-hinnasto/hinnasto.js?v=4"></script>
+    <script src="/alkon-hinnasto/hinnasto.js?v=5"></script>
 </body>
 </html>

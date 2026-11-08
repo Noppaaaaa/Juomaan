@@ -8,6 +8,7 @@ from html import escape
 from itertools import groupby
 from math import isfinite
 from pathlib import Path
+from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent
@@ -44,12 +45,12 @@ def pakkaa_marketit(tuotteet):
     return {'myymalat': myymalat, 'tuotteet': tuotteet}
 
 
-def otos_html(kansio, kuvaus, rivit, keratty):
+def otos_html(kansio, kuvaus, rivit, keratty, lahde='kerätyistä'):
     sivu = ROOT / kansio / 'index.html'
     html = sivu.read_text(encoding='utf-8')
     html, caption_count = re.subn(
         r'(<caption id="otoksen-paivays">)[^<]*(</caption>)',
-        rf'\g<1>{kuvaus} {keratty.day}.{keratty.month}.{keratty.year} kerätyistä hinnoista.\g<2>',
+        rf'\g<1>{kuvaus} {keratty.day}.{keratty.month}.{keratty.year} {lahde} hinnoista.\g<2>',
         html,
     )
     html, row_count = re.subn(
@@ -95,7 +96,7 @@ def oluthinnat(alko, sryhma, kryhma):
     for lahde, tuotteet in [('alko', alko), ('sryhma', sryhma), ('kryhma', kryhma)]:
         for tuote in tuotteet:
             tyyppi = (tuote['tyyppi'] or '').split(',', 1)[0].strip().casefold()
-            if tyyppi != 'oluet' or tuote['alkoholi_prosentti'] == 0:
+            if tyyppi not in ('oluet', 'alkoholittomat oluet'):
                 continue
             tiedot = {kentta: tuote.get(kentta) for kentta in HINTAKENTAT}
             if lahde != 'alko':
@@ -104,6 +105,35 @@ def oluthinnat(alko, sryhma, kryhma):
                 _, tiedot['hinta_eur'], tiedot['pantti_eur'] = min(tuote['myymalat'], key=lambda rivi: rivi[1] + rivi[2])
             oluet.append({**tiedot, 'lahde': lahde})
     return oluet
+
+
+def olutotos(oluet):
+    kaupat = {'alko': ('Alko', 'alko.fi'), 'sryhma': ('S-ryhmä', 's-kaupat.fi'), 'kryhma': ('K-ryhmä', 'k-ruoka.fi')}
+    ehdokkaat = []
+    for tuote in oluet:
+        kauppa, domain = kaupat[tuote['lahde']]
+        linkki = tuote['linkki'] or ''
+        osoite = urlsplit(linkki)
+        nimi = (tuote['nimi'] or '').strip()
+        litrat = tuote['tilavuus_litraa']
+        vahvuus = tuote['alkoholi_prosentti']
+        perushinta = tuote['hinta_eur']
+        if not (nimi and osoite.scheme == 'https' and osoite.hostname in (domain, 'www.' + domain)
+                and all(isinstance(arvo, (int, float)) and isfinite(arvo) and arvo > 0
+                        for arvo in (litrat, vahvuus, perushinta)) and vahvuus > 0.5):
+            continue
+        hinta = round(perushinta + (tuote['pantti_eur'] or 0), 2)
+        ehdokkaat.append((hinta, nimi, linkki, litrat, kauppa, vahvuus))
+    if len(ehdokkaat) < 10:
+        raise ValueError('Oluiden vertailuaineisto on puutteellinen.')
+    rivit = []
+    for hinta, nimi, linkki, litrat, kauppa, vahvuus in sorted(ehdokkaat)[:10]:
+        koko = f'{litrat:g}'.replace('.', ',')
+        pitoisuus = f'{vahvuus:g}'.replace('.', ',')
+        hinnat = f'<td>{hinta:.2f} €</td><td>{hinta / litrat:.2f} €</td>'.replace('.', ',')
+        rivit.append(f'                <tr><td><a href="{escape(linkki)}">{escape(nimi)}</a>'
+                     f'<br><small>{kauppa} · {pitoisuus} %</small></td><td>{koko} l</td>{hinnat}</tr>')
+    return rivit
 
 
 def paivita():
@@ -150,7 +180,13 @@ def paivita():
     ]
     valikoima = json.loads((ROOT / 'valikoima_tiedot.json').read_text(encoding='utf-8'))
     olutdata = {'keratty': valikoima['aineisto_paivitetty'], 'tuotteet': oluthinnat(tuotteet, *marketit)}
+    olut_paivays = datetime.fromisoformat(olutdata['keratty'])
+    if olut_paivays.tzinfo:
+        olut_paivays = olut_paivays.astimezone(ZoneInfo('Europe/Helsinki'))
+    olut_sivu, olut_html = otos_html('oluen-hinnat', '10 halvinta olutpakkausta (yli 0,5 %)',
+                                    olutotos(olutdata['tuotteet']), olut_paivays, 'julkaistuista')
     kirjoita(ROOT / 'oluen-hinnat' / 'hinnat.json', json.dumps(olutdata, ensure_ascii=False, separators=(',', ':')) + '\n')
+    kirjoita(olut_sivu, olut_html)
     kirjoita(viina_sivu, viina_html)
     kirjoita(viini_sivu, viini_html)
     kirjoita(ROOT / 'alko_vertailu.json', json.dumps(pakkaa_alko(tuotteet), ensure_ascii=False, separators=(',', ':')) + '\n')

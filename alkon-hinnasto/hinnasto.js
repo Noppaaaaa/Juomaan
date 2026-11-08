@@ -1,6 +1,7 @@
 const vainViinat = document.getElementById('hinnasto').hasAttribute('data-viinat');
 const haku = document.getElementById('haku');
 const viinityyppi = document.getElementById('viinityyppi');
+const vahvuus = document.getElementById('vahvuus');
 const kauppaketju = document.getElementById('kauppaketju');
 const kaupat = { alko: ['Alko', 'alko.fi'], sryhma: ['S-ryhmä', 's-kaupat.fi'], kryhma: ['K-ryhmä', 'k-ruoka.fi'] };
 const jarjestys = document.getElementById('jarjestys');
@@ -25,7 +26,8 @@ function naytaLisaa() {
         nimi.append(linkki);
         if (kauppaketju) {
             const kauppa = document.createElement('small');
-            kauppa.textContent = kaupat[tuote.lahde][0];
+            kauppa.textContent = kaupat[tuote.lahde][0] + (Number.isFinite(tuote.vahvuus)
+                ? ' · ' + koko.format(tuote.vahvuus) + ' %' : '');
             nimi.append(document.createElement('br'), kauppa);
         }
         rivi.insertCell().textContent = koko.format(tuote.tilavuus_litraa) + ' l';
@@ -41,10 +43,17 @@ function naytaLisaa() {
     lisaa.hidden = naytetty >= osumat.length;
 }
 
+function vastaaVahvuutta(tuote) {
+    if (!vahvuus?.value) return true;
+    if (!Number.isFinite(tuote.vahvuus)) return false;
+    return vahvuus.value === 'yli' ? tuote.vahvuus > 0.5 : tuote.vahvuus <= 0.5;
+}
+
 function suodata() {
     const sanat = normalisoi(haku.value.trim()).split(/\s+/);
     osumat = tuotteet.filter(tuote => (!viinityyppi?.value || tuote.viinityyppi === viinityyppi.value)
         && (!kauppaketju?.value || tuote.lahde === kauppaketju.value)
+        && vastaaVahvuutta(tuote)
         && sanat.every(sana => tuote.hakuteksti.includes(sana)));
     if (jarjestys.value === 'litrahinta') osumat.sort((a, b) => a.litrahinta - b.litrahinta);
     if (jarjestys.value === 'annoshinta') osumat.sort((a, b) => a.annoshinta - b.annoshinta);
@@ -98,6 +107,7 @@ lueJson(hinnastoPolku).then(({ tuotteet: aineisto, keratty }) => {
     haku.disabled = jarjestys.disabled = false;
     if (viinityyppi) viinityyppi.disabled = false;
     if (kauppaketju) kauppaketju.disabled = false;
+    if (vahvuus) vahvuus.disabled = false;
     const otos = document.getElementById('otoksen-paivays');
     if (otos) otos.hidden = true;
     suodata();
@@ -114,3 +124,4 @@ jarjestys.addEventListener('change', suodata);
 viinityyppi?.addEventListener('change', suodata);
 kauppaketju?.addEventListener('change', suodata);
 lisaa.addEventListener('click', naytaLisaa);
+vahvuus?.addEventListener('change', suodata);
