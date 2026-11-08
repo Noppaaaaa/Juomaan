@@ -270,6 +270,7 @@
         </details>
 
         <div id="info" class="info" role="status" aria-live="polite">Ladataan Alkon, S-ryhmän ja K-ryhmän tuotteita...</div>
+        <p id="lahdeVirhe" role="status" hidden></p>
 
         <nav class="nappi-alue" aria-label="Järjestys- ja suodatusvalinnat">
             <div class="nappi-vasen-ryhma">
@@ -376,7 +377,7 @@
         <noscript>
             <div style="padding:20px;background:#fff8e1;border:2px solid #ff9800;border-radius:8px;margin-top:20px">
                 <h2>Alkon, S- ja K-ryhmän alkoholijuomien hintavertailu</h2>
-                <p>Tämä sivu tarvitsee JavaScriptin tuotteiden vertailuun. Valikoimat kerätään Alkolta, S-ryhmältä ja K-ryhmältä.</p>
+                <p>Koko vertailu käyttää JavaScriptiä. Päivätyt hintataulukot näkyvät myös ilman sitä <a href="/alkon-hinnasto/">Alkon hinnastossa</a> ja <a href="/oluen-hinnat/">oluen hintavertailussa</a>.</p>
             </div>
         </noscript>
     </main>
@@ -703,12 +704,46 @@
             return tuotteet;
         }
 
-        Promise.all([haeAlko(),haeMarketit('/s_ryhma_vertailu.json'),haeMarketit('/k_ryhma_vertailu.json').catch(()=>[]),haeJson('/valikoima_tiedot.json')]).then(([alko,sryhma,kryhma,alueet])=>{
-            alueTiedot=alueet;for(const lahde of Object.keys(LAHTEET))myymalaKartat[lahde]=new Map((alueet[LAHTEET[lahde].stores]||[]).map(s=>[s.id,s]));
-            selectedCity=alueet.kaupungit.find(c=>c.toLocaleLowerCase('fi')===selectedCity.toLocaleLowerCase('fi'))||'';cityInput.value=selectedCity;
-
-            lataaTuotteet(alko,sryhma,kryhma);
-        }).catch(err=>{console.error(err);infoDiv.textContent='Tuotetietojen lataaminen epäonnistui. Päivitä sivu ja yritä uudelleen.';body.innerHTML=''});
+        const lahdeNimet = ['alko', 'sryhma', 'kryhma'];
+        const kauppatiedot = Promise.allSettled([
+            haeAlko(),
+            haeMarketit('/s_ryhma_vertailu.json'),
+            haeMarketit('/k_ryhma_vertailu.json')
+        ]);
+        Promise.all([kauppatiedot, haeJson('/valikoima_tiedot.json')]).then(([tulokset, alueet]) => {
+            const puuttuvat = [];
+            const valikoimat = tulokset.map((tulos, indeksi) => {
+                if (tulos.status === 'fulfilled' && Array.isArray(tulos.value) && tulos.value.length) {
+                    return tulos.value;
+                }
+                const tunniste = lahdeNimet[indeksi];
+                const lahde = LAHTEET[tunniste];
+                const nappi = document.getElementById(lahde.button);
+                activeSources.delete(tunniste);
+                nappi.disabled = true;
+                nappi.classList.remove('aktiivinen');
+                nappi.setAttribute('aria-pressed', 'false');
+                puuttuvat.push(lahde.nimi);
+                return [];
+            });
+            if (puuttuvat.length === lahdeNimet.length) throw new Error('Yhtäkään tuoteaineistoa ei saatu ladattua.');
+            if (puuttuvat.length) {
+                const ilmoitus = document.getElementById('lahdeVirhe');
+                ilmoitus.textContent = 'Hintatiedot puuttuvat tilapäisesti: ' + puuttuvat.join(', ') + '. Muiden ketjujen tulokset ovat käytettävissä.';
+                ilmoitus.hidden = false;
+            }
+            alueTiedot = alueet;
+            for (const lahde of lahdeNimet) {
+                myymalaKartat[lahde] = new Map((alueet[LAHTEET[lahde].stores] || []).map(s => [s.id, s]));
+            }
+            selectedCity = alueet.kaupungit.find(c => c.toLocaleLowerCase('fi') === selectedCity.toLocaleLowerCase('fi')) || '';
+            cityInput.value = selectedCity;
+            lataaTuotteet(...valikoimat);
+        }).catch(err => {
+            console.error(err);
+            infoDiv.textContent = 'Tuotetietojen lataaminen epäonnistui. Päivitä sivu tai avaa jokin yllä olevista hintavertailuista.';
+            body.innerHTML = '';
+        });
         })();
 
         </script>
