@@ -10,7 +10,7 @@
     <script>
         if (location.pathname === '/index.html') location.replace('/' + location.search + location.hash);
     </script>
-    <link rel="preload" href="/alko_tuotteet.json" as="fetch" crossorigin>
+    <link rel="preload" href="/alko_vertailu.json" as="fetch" crossorigin>
     <link rel="preload" href="/s_ryhma_vertailu.json" as="fetch" crossorigin>
     <link rel="preload" href="/k_ryhma_vertailu.json" as="fetch" crossorigin>
     <link rel="preload" href="/valikoima_tiedot.json" as="fetch" crossorigin>
@@ -648,6 +648,23 @@
             dialog.showModal();
         }
         body.addEventListener('click',e=>{const link=e.target.closest('a.tuote-linkki');if(!link||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;const row=link.closest('tr');const t=tuoteData.find(t=>t.id===row.dataset.productId&&t.lahde===row.dataset.lahde);if(t){e.preventDefault();naytaMyymalat(t)}});
+        async function haeAlko() {
+            const { myymalat, tuotteet } = await haeJson('/alko_vertailu.json');
+            for (const tuote of tuotteet) {
+                if (Array.isArray(tuote.myymalat)) continue;
+                const maski = atob(tuote.myymalat);
+                const tunnisteet = [];
+                for (let i = 0; i < maski.length; i++) {
+                    const tavu = maski.charCodeAt(i);
+                    for (let b = 0; b < 8; b++) {
+                        if (tavu & (1 << b)) tunnisteet.push(myymalat[i * 8 + b]);
+                    }
+                }
+                tuote.myymalat = tunnisteet;
+            }
+            return tuotteet;
+        }
+
         async function haeMarketit(polku) {
             const { myymalat, tuotteet } = await haeJson(polku);
             for (const tuote of tuotteet) {
@@ -662,7 +679,7 @@
             return tuotteet;
         }
 
-        Promise.all([haeJson('/alko_tuotteet.json'),haeMarketit('/s_ryhma_vertailu.json'),haeMarketit('/k_ryhma_vertailu.json').catch(()=>[]),haeJson('/valikoima_tiedot.json')]).then(([alko,sryhma,kryhma,alueet])=>{
+        Promise.all([haeAlko(),haeMarketit('/s_ryhma_vertailu.json'),haeMarketit('/k_ryhma_vertailu.json').catch(()=>[]),haeJson('/valikoima_tiedot.json')]).then(([alko,sryhma,kryhma,alueet])=>{
             alueTiedot=alueet;for(const lahde of Object.keys(LAHTEET))myymalaKartat[lahde]=new Map((alueet[LAHTEET[lahde].stores]||[]).map(s=>[s.id,s]));
             selectedCity=alueet.kaupungit.find(c=>c.toLocaleLowerCase('fi')===selectedCity.toLocaleLowerCase('fi'))||'';cityInput.value=selectedCity;
 

@@ -2,6 +2,7 @@
 
 import json
 import re
+from base64 import b64encode
 from datetime import datetime
 from html import escape
 from itertools import groupby
@@ -17,6 +18,17 @@ def kirjoita(polku, sisalto):
     tmp = polku.with_suffix('.tmp')
     tmp.write_text(sisalto, encoding='utf-8')
     tmp.replace(polku)
+
+
+def pakkaa_alko(tuotteet):
+    myymalat = sorted({tunniste for tuote in tuotteet for tunniste in tuote['myymalat']})
+    bitit = {tunniste: 1 << i for i, tunniste in enumerate(myymalat)}
+    for tuote in tuotteet:
+        tunnisteet = tuote['myymalat']
+        if tunnisteet == sorted(set(tunnisteet)):
+            maski = sum(bitit[tunniste] for tunniste in tunnisteet)
+            tuote['myymalat'] = b64encode(maski.to_bytes((maski.bit_length() + 7) // 8, 'little')).decode('ascii')
+    return {'myymalat': myymalat, 'tuotteet': tuotteet}
 
 
 def pakkaa_marketit(lahde):
@@ -85,6 +97,7 @@ def paivita():
         payload = {'keratty': raportti['keratty'], 'tuotteet': aineisto}
         kirjoita(ROOT / kansio / 'hinnat.json', json.dumps(payload, ensure_ascii=False, separators=(',', ':')) + '\n')
     kirjoita(sivu, html)
+    kirjoita(ROOT / 'alko_vertailu.json', json.dumps(pakkaa_alko(tuotteet), ensure_ascii=False, separators=(',', ':')) + '\n')
     for lahde in ('s_ryhma', 'k_ryhma'):
         pakattu = pakkaa_marketit(lahde)
         kirjoita(ROOT / f'{lahde}_vertailu.json', json.dumps(pakattu, ensure_ascii=False, separators=(',', ':')) + '\n')
