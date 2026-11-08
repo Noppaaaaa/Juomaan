@@ -1,4 +1,4 @@
-"""Generate the dated first rows of the spirits comparison from Alko's catalogue."""
+"""Publish compact Alko price data and the dated spirits comparison preview."""
 
 import json
 import re
@@ -9,16 +9,24 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent
+HINTAKENTAT = ('nimi', 'tyyppi', 'linkki', 'tilavuus_litraa', 'alkoholi_prosentti', 'hinta_eur', 'pantti_eur')
+
+
+def kirjoita(polku, sisalto):
+    tmp = polku.with_suffix('.tmp')
+    tmp.write_text(sisalto, encoding='utf-8')
+    tmp.replace(polku)
 
 
 def paivita():
     tuotteet = json.loads((ROOT / 'alko_tuotteet.json').read_text(encoding='utf-8'))
     raportti = json.loads((ROOT / 'alko_keruu.json').read_text(encoding='utf-8'))
     keratty = datetime.fromisoformat(raportti['keratty']).astimezone(ZoneInfo('Europe/Helsinki'))
+    hinnasto = [{kentta: tuote.get(kentta) for kentta in HINTAKENTAT} for tuote in tuotteet]
+    viinat = [tuote for tuote in hinnasto if 'vodkat ja viinat' in
+              [osa.strip() for osa in (tuote['tyyppi'] or '').split(',')]]
     ehdokkaat = []
-    for tuote in tuotteet:
-        if 'vodkat ja viinat' not in (osa.strip() for osa in tuote['tyyppi'].split(',')):
-            continue
+    for tuote in viinat:
         linkki = tuote['linkki']
         nimi = tuote['nimi'].strip()
         litrat = tuote['tilavuus_litraa']
@@ -58,9 +66,10 @@ def paivita():
     )
     if (caption_count, row_count) != (1, 1):
         raise ValueError('Viinavertailun otokselle tarvitaan yksi otsikko ja yksi taulukko.')
-    tmp = sivu.with_suffix('.tmp')
-    tmp.write_text(html, encoding='utf-8')
-    tmp.replace(sivu)
+    for kansio, aineisto in [('alkon-hinnasto', hinnasto), ('halvin-viina', viinat)]:
+        payload = {'keratty': raportti['keratty'], 'tuotteet': aineisto}
+        kirjoita(ROOT / kansio / 'hinnat.json', json.dumps(payload, ensure_ascii=False, separators=(',', ':')) + '\n')
+    kirjoita(sivu, html)
 
 
 if __name__ == '__main__':

@@ -48,7 +48,8 @@ async function lueJson(polku) {
 }
 
 tila.textContent = 'Ladataan Alkon hintoja…';
-lueJson('/alko_tuotteet.json').then(aineisto => {
+const hinnastoPolku = vainViinat ? '/halvin-viina/hinnat.json' : '/alkon-hinnasto/hinnat.json';
+lueJson(hinnastoPolku).then(({ tuotteet: aineisto, keratty }) => {
     tuotteet = aineisto.filter(tuote => tuote.nimi?.trim()
         && Number.isFinite(tuote.hinta_eur) && tuote.hinta_eur > 0
         && Number.isFinite(tuote.tilavuus_litraa) && tuote.tilavuus_litraa > 0
@@ -71,13 +72,11 @@ lueJson('/alko_tuotteet.json').then(aineisto => {
     const otos = document.getElementById('otoksen-paivays');
     if (otos) otos.hidden = true;
     suodata();
-    return lueJson('/alko_keruu.json').then(raportti => {
-        const keratty = new Date(raportti.keratty);
-        if (Number.isFinite(keratty.getTime())) {
-            const paiva = new Intl.DateTimeFormat('fi-FI', { timeZone: 'Europe/Helsinki' }).format(keratty);
-            document.getElementById('paivitys').textContent = `Aineisto kerätty ${paiva}.`;
-        }
-    }).catch(() => {});
+    const paivays = new Date(keratty);
+    if (Number.isFinite(paivays.getTime())) {
+        const paiva = new Intl.DateTimeFormat('fi-FI', { timeZone: 'Europe/Helsinki' }).format(paivays);
+        document.getElementById('paivitys').textContent = `Aineisto kerätty ${paiva}.`;
+    }
 }).catch(() => {
     tila.textContent = 'Hintoja ei voitu ladata. Päivitä sivu ja yritä uudelleen.';
 });
