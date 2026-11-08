@@ -223,7 +223,7 @@
             <div class="haku-rivi">
                 <span class="haku-ikoni" aria-hidden="true">🔍</span>
                 <label for="hakuKentta" class="sr-only">Hae tuotteita nimen tai tyypin perusteella</label>
-                <input type="search" id="hakuKentta" class="haku-kentta" placeholder="Hae tuotetta tai tyyppiä…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="search" enterkeyhint="search" aria-label="Hae tuotteita">
+                <input type="search" id="hakuKentta" class="haku-kentta" maxlength="100" placeholder="Hae tuotetta tai tyyppiä…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" inputmode="search" enterkeyhint="search" aria-label="Hae tuotteita">
                 <button type="button" id="hakuTyhjenna" class="haku-tyhjenna" aria-label="Tyhjennä haku" hidden>✕</button>
             </div>
             <fieldset class="switcher" data-switcher>
@@ -524,7 +524,25 @@
             hakuTokens = hakuTermi ? hakuTermi.split(' ') : [];
             hakuTyhjenna.hidden = !hakuNaytto;
         }
-        function suoritaHaku(raw){asetaHakutermi(raw);laskeHakuOsumat();startIndex=0;clearTimeout(scrollDebounceTimer);isShifting=isUserScrolling=false;animateSortAndRender()}
+        function suoritaHaku(raw) {
+            asetaHakutermi(raw);
+            const url = new URL(location.href);
+            if (hakuNaytto) url.searchParams.set('haku', hakuNaytto);
+            else url.searchParams.delete('haku');
+            if (url.href !== location.href) {
+                try {
+                    history.replaceState(history.state, '', url);
+                } catch (error) {
+                    // Some browsers throttle rapid address updates during typing.
+                    if (error.name !== 'SecurityError') throw error;
+                }
+            }
+            laskeHakuOsumat();
+            startIndex = 0;
+            clearTimeout(scrollDebounceTimer);
+            isShifting = isUserScrolling = false;
+            animateSortAndRender();
+        }
         const linkinHaku = new URLSearchParams(location.search).get('haku')?.slice(0, 100);
         if (linkinHaku) {
             hakuKentta.value = linkinHaku;
