@@ -20,10 +20,23 @@
         th:first-child { overflow-wrap: anywhere; }
         td:not(:first-child) { white-space: nowrap; }
         output { display: block; font-weight: 700; overflow-wrap: anywhere; }
+        .murupolku { display: flex; flex-wrap: wrap; gap: .25rem .5rem; padding: 0; list-style: none; }
+        .murupolku li + li::before { content: '›'; margin-inline-end: .5rem; }
     </style>
 </head>
 <body>
-    <nav aria-label="Päävalikko"><a href="/">Juomien hintavertailu</a> · <a href="/tietoa/">Tietoa Juomaanista</a></nav>
+    <nav aria-label="Sijainti sivustolla">
+        <ol class="murupolku" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/"><span itemprop="name">Etusivu</span></a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name" aria-current="page">Alkoholiannoslaskuri</span>
+                <meta itemprop="position" content="2">
+            </li>
+        </ol>
+    </nav>
     <main>
         <h1>Alkoholiannoslaskuri</h1>
         <p>Laske pullon, tölkin tai lasillisen alkoholiannokset ja hinta annosta kohti. Juomaanin hintavertailussa yksi annos on 1,5 cl puhdasta alkoholia.</p>
@@ -71,6 +84,7 @@
         <p>Pakkaushinta kertoo kassalla maksettavan hinnan. Annoshinta suhteuttaa hinnan alkoholimäärään, joten eri kokoja ja vahvuuksia voi verrata. Käytä kaikille tuotteille hintaa samalla tavalla joko pantin kanssa tai ilman.</p>
         <h2>Vertaa kauppojen juomia</h2>
         <p><a href="/">Vertaile Alkon, S- ja K-ryhmän annoshintoja</a>, selaa <a href="/alkon-hinnasto/">Alkon hinnastoa</a> tai avaa suoraan <a href="/?haku=viina">viinojen hintahaku</a>, <a href="/?haku=vodka">vodkien hintahaku</a> tai <a href="/oluen-hinnat/">oluiden hintavertailu</a>.</p>
+        <p><a href="/tietoa/#hintojen-lahteet">Hintavertailun lähteet ja laskentatapa</a></p>
     </main>
     <script>
         const laskuri = document.getElementById('laskuri');

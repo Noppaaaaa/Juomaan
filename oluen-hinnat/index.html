@@ -11,7 +11,18 @@
     <link rel="stylesheet" href="/alkon-hinnasto/hinnasto.css">
 </head>
 <body>
-    <nav aria-label="Päävalikko"><a href="/">Juomien hintavertailu</a> · <a href="/tietoa/#hintojen-lahteet">Hintojen lähteet</a></nav>
+    <nav aria-label="Sijainti sivustolla">
+        <ol class="murupolku" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/"><span itemprop="name">Etusivu</span></a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name" aria-current="page">Oluen hintavertailu</span>
+                <meta itemprop="position" content="2">
+            </li>
+        </ol>
+    </nav>
     <main>
         <h1>Oluen hintavertailu</h1>
         <p>Katso Alkon, S-kauppojen ja K-Ruoan oluiden pakkaus- ja litrahinnat pantteineen. Marketin hinta on edullisin mukaan saaduista kyseisen ketjun myymälähinnoista Suomessa. Myymälän nimi kertoo, mistä markettihinta löytyi. Linkki avaa saman myymälän tuotesivun. Tarkista sieltä ajantasainen hinta ja saatavuus.</p>
@@ -58,6 +69,7 @@
         <h2>Miten löydän halvimman oluen?</h2>
         <p>Pakkaushinta sopii yksittäisten tölkkien, pullojen ja monipakkausten kassahintojen vertailuun. Litrahinta huomioi koko pakkauksen tilavuuden. Esimerkiksi 0,33 litraa hintaan 1,20 € maksaa 3,64 €/l, kun 0,5 litraa hintaan 1,50 € maksaa 3,00 €/l.</p>
         <p><span id="paivitys"></span> Voit myös <a href="/?haku=oluet">avata oluthaun ja valita kaupungin</a> koko hintavertailussa.</p>
+        <p><a href="/tietoa/#hintojen-lahteet">Mistä kauppojen hintatiedot tulevat?</a></p>
     </main>
     <script src="/alkon-hinnasto/hinnasto.js?v=6"></script>
 </body>

@@ -10,3 +10,5 @@ button { margin-block: 1rem; }
     [data-viinat] th, [data-viinat] td { padding: .2rem; }
     [data-viinat] td:first-child { overflow-wrap: anywhere; }
 }
+.murupolku { display: flex; flex-wrap: wrap; gap: .25rem .5rem; padding: 0; list-style: none; }
+.murupolku li + li::before { content: '›'; margin-inline-end: .5rem; }
