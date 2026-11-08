@@ -14,19 +14,31 @@
     <nav aria-label="Päävalikko"><a href="/">Juomien hintavertailu</a> · <a href="/alkoholiannos/">Alkoholiannoslaskuri</a></nav>
     <main>
         <h1>Alkon hinnasto</h1>
-        <p>Katso Alkon juomien pakkaushinnat pantteineen. Hae tuotteen nimellä tai juomatyypillä, kuten punaviini, vodka tai olut. Nimeä painamalla pääset Alkon tuotesivulle.</p>
-        <p><a href="/halvin-viina/">Vertaa viinojen ja vodkien annoshintoja</a> · <a href="/alkon-viinit/">Vertaa viinien litrahintoja</a></p>
+        <p>Katso Alkon juomien pakkaushinnat pantteineen. Hinnasto sisältää myös alkoholittomat juomat. Hae tuotteen nimellä tai juomatyypillä, kuten punaviini, vodka tai olut. Nimeä painamalla pääset Alkon tuotesivulle.</p>
+        <p><a href="/halvin-viina/">Viinojen annoshinnat</a> · <a href="/alkon-viinit/">Viinien litrahinnat</a> · <a href="/oluen-hinnat/">Oluiden hinnat</a></p>
         <label for="haku">Hae Alkon tuotteita</label>
         <input id="haku" type="search" maxlength="100" autocomplete="off" disabled>
         <label for="jarjestys">Järjestä tuotteet</label>
         <select id="jarjestys" disabled>
-            <option value="nimi">Nimi A–Ö</option>
             <option value="hinta">Halvin pakkaushinta</option>
+            <option value="nimi">Nimi A–Ö</option>
         </select>
         <p id="tila" role="status"></p>
-        <table id="hinnasto" aria-label="Alkon tuotteet ja pakkaushinnat" hidden>
+        <table id="hinnasto" aria-label="Alkon tuotteet ja pakkaushinnat">
+            <caption id="otoksen-paivays">10 halvinta pakkausta 7.11.2026 kerätyistä hinnoista.</caption>
             <thead><tr><th scope="col">Tuote</th><th scope="col">Koko</th><th scope="col">Hinta</th></tr></thead>
-            <tbody id="rivit"></tbody>
+            <tbody id="rivit">
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/600074/birra-corelli-00-tolkki">Birra Corelli 0,0 tölkki</a></td><td>0,33 l</td><td>0,99 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/600061/lasso-zero-0-tolkki">Lasso Zero 0% tölkki</a></td><td>0,33 l</td><td>0,99 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/600079/a-le-coq-premium-00-tolkki">A Le Coq Premium 0,0% tölkki</a></td><td>0,33 l</td><td>1,19 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/600029/coca-cola-tolkki">Coca-Cola tölkki</a></td><td>0,33 l</td><td>1,19 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/793114/crisp-vaalea-lager-tolkki">Crisp Vaalea Lager tölkki</a></td><td>0,33 l</td><td>1,19 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/600097/pepsi-max-tolkki">Pepsi Max tölkki</a></td><td>0,33 l</td><td>1,19 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/600099/vichy-original-double-salted-tolkki">Vichy Original Double Salted tölkki</a></td><td>0,33 l</td><td>1,19 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/737524/alko-valivesi-muovipullo">Alko Välivesi muovipullo</a></td><td>0,33 l</td><td>1,29 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/700058/crisp-hoppy-lager-tolkki">Crisp Hoppy Lager tölkki</a></td><td>0,33 l</td><td>1,29 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/732944/a-le-coq-gold-tolkki">A. Le Coq Gold tölkki</a></td><td>0,33 l</td><td>1,33 €</td></tr>
+            </tbody>
         </table>
         <button id="lisaa" type="button" hidden>Näytä 30 lisää</button>
         <noscript><p>Juomaanin hinnastohaku käyttää JavaScriptiä. Voit etsiä tuotteita myös suoraan <a href="https://www.alko.fi/fi/tuotteet">Alkon verkkosivulla</a>.</p></noscript>

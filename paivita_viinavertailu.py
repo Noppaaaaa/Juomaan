@@ -65,11 +65,9 @@ def otos_html(kansio, kuvaus, rivit, keratty, lahde='kerätyistä'):
     return sivu, html
 
 
-def punaviinirivit(hinnasto):
+def pakkausrivit(tuotteet, litrahinta=False):
     ehdokkaat = []
-    for tuote in hinnasto:
-        if (tuote['tyyppi'] or '').split(',', 1)[0].strip() != 'punaviinit':
-            continue
+    for tuote in tuotteet:
         nimi = (tuote['nimi'] or '').strip()
         linkki = tuote['linkki'] or ''
         litrat = tuote['tilavuus_litraa']
@@ -81,12 +79,15 @@ def punaviinirivit(hinnasto):
         hinta = round(perushinta + (tuote['pantti_eur'] or 0), 2)
         ehdokkaat.append((hinta, nimi, linkki, litrat))
     if len(ehdokkaat) < 10:
-        raise ValueError('Alkon punaviinien aineisto on puutteellinen.')
+        raise ValueError('Alkon pakkaushintojen aineisto on puutteellinen.')
 
     rivit = []
     for hinta, nimi, linkki, litrat in sorted(ehdokkaat)[:10]:
         koko = f'{litrat:g}'.replace('.', ',')
-        hinnat = f'<td>{hinta:.2f} €</td><td>{hinta / litrat:.2f} €</td>'.replace('.', ',')
+        hinnat = f'<td>{hinta:.2f} €</td>'
+        if litrahinta:
+            hinnat += f'<td>{hinta / litrat:.2f} €</td>'
+        hinnat = hinnat.replace('.', ',')
         rivit.append(f'                <tr><td><a href="{escape(linkki)}">{escape(nimi)}</a></td>'
                      f'<td>{koko} l</td>{hinnat}</tr>')
     return rivit
@@ -200,7 +201,11 @@ def paivita():
         )
 
     viina_sivu, viina_html = otos_html('halvin-viina', '10 edullisinta annoshintaa', rivit, keratty)
-    viini_sivu, viini_html = otos_html('alkon-viinit', '10 halvinta punaviinipakkausta', punaviinirivit(hinnasto), keratty)
+    punaviinit = [tuote for tuote in hinnasto if (tuote['tyyppi'] or '').split(',', 1)[0].strip() == 'punaviinit']
+    viini_sivu, viini_html = otos_html('alkon-viinit', '10 halvinta punaviinipakkausta',
+                                      pakkausrivit(punaviinit, litrahinta=True), keratty)
+    hinnasto_sivu, hinnasto_html = otos_html('alkon-hinnasto', '10 halvinta pakkausta',
+                                            pakkausrivit(hinnasto), keratty)
     marketit = [
         json.loads((ROOT / f'{lahde}_tuotteet.json').read_text(encoding='utf-8'))
         for lahde in ('s_ryhma', 'k_ryhma')
@@ -231,6 +236,7 @@ def paivita():
     kirjoita(olut_sivu, olut_html)
     kirjoita(viina_sivu, viina_html)
     kirjoita(viini_sivu, viini_html)
+    kirjoita(hinnasto_sivu, hinnasto_html)
     etusivun_aineistot = {
         'alko': pakkaa_alko(tuotteet),
         's_ryhma': pakkaa_marketit(marketit[0]),
