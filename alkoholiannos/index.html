@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alkoholiannoslaskuri – annokset ja annoshinta | Juomaan</title>
+    <meta name="description" content="Laske, montako alkoholiannosta pullossa tai tölkissä on ja mitä yksi annos maksaa. Syötä juoman koko, alkoholipitoisuus ja hinta.">
+    <link rel="canonical" href="https://juomaan.fi/alkoholiannos/">
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192">
+    <style>
+        :root { color-scheme: light dark; }
+        body { font: 1rem/1.6 system-ui, sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; }
+        form { display: grid; gap: .75rem; border: 1px solid; border-radius: .75rem; padding: 1rem; }
+        label { display: grid; gap: .25rem; }
+        input { box-sizing: border-box; width: 100%; }
+        input, button { font: inherit; padding: .4rem; }
+        output { display: block; font-weight: 700; overflow-wrap: anywhere; }
+    </style>
+</head>
+<body>
+    <nav aria-label="Päävalikko"><a href="/">Juomien hintavertailu</a> · <a href="/tietoa/">Tietoa Juomaanista</a></nav>
+    <main>
+        <h1>Alkoholiannoslaskuri</h1>
+        <p>Laske pullon, tölkin tai lasillisen alkoholiannokset ja hinta annosta kohti. Juomaanin hintavertailussa yksi annos on 1,5 cl puhdasta alkoholia.</p>
+        <form id="laskuri">
+            <label>Juoman tilavuus (cl)
+                <input id="tilavuus" type="number" inputmode="decimal" min="0.01" step="any" value="33" required>
+            </label>
+            <label>Alkoholipitoisuus (%)
+                <input id="pitoisuus" type="number" inputmode="decimal" min="0" max="100" step="any" value="4.5" required>
+            </label>
+            <label>Juoman hinta (€)
+                <input id="hinta" type="number" inputmode="decimal" min="0" step="any" value="1.50">
+            </label>
+            <output id="tulos" for="tilavuus pitoisuus hinta" aria-live="polite">0,99 annosta. 1,52 € / annos.</output>
+        </form>
+        <noscript><p>Laskuri käyttää JavaScriptiä. Voit laskea annokset myös alla olevalla kaavalla.</p></noscript>
+        <h2>Miten alkoholiannokset ja annoshinta lasketaan?</h2>
+        <ol>
+            <li>Kerro juoman koko senttilitroina alkoholipitoisuudella ja jaa sadalla.</li>
+            <li>Jaa puhtaan alkoholin määrä 1,5:llä. Saat annosten määrän.</li>
+            <li>Jaa juoman hinta annosten määrällä. Saat hinnan per annos. Jos juomassa on 0 % alkoholia, annoshintaa ei lasketa.</li>
+        </ol>
+        <p>Esimerkiksi 33 cl:n tölkki 4,5-prosenttista olutta sisältää 1,485 cl puhdasta alkoholia eli 0,99 annosta. Jos tölkki maksaa 1,50 €, annoshinta on noin 1,52 €. 50 cl:n pullo 40-prosenttista väkevää juomaa sisältää 20 cl puhdasta alkoholia eli noin 13,33 annosta.</p>
+        <p>Pakkaushinta kertoo kassalla maksettavan hinnan. Annoshinta suhteuttaa hinnan alkoholimäärään, joten eri kokoja ja vahvuuksia voi verrata. Käytä kaikille tuotteille hintaa samalla tavalla joko pantin kanssa tai ilman.</p>
+        <h2>Vertaa kauppojen juomia</h2>
+        <p><a href="/">Vertaile Alkon, S- ja K-ryhmän annoshintoja</a> tai avaa suoraan <a href="/?haku=viina">viinojen hintahaku</a>, <a href="/?haku=vodka">vodkien hintahaku</a> tai <a href="/?haku=oluet">oluiden hintahaku</a>.</p>
+    </main>
+    <script>
+        const laskuri = document.getElementById('laskuri');
+        const tilavuus = document.getElementById('tilavuus');
+        const pitoisuus = document.getElementById('pitoisuus');
+        const hinta = document.getElementById('hinta');
+        const tulos = document.getElementById('tulos');
+        const annosMuoto = new Intl.NumberFormat('fi-FI', { maximumFractionDigits: 2 });
+        const hintaMuoto = new Intl.NumberFormat('fi-FI', { style: 'currency', currency: 'EUR' });
+
+        laskuri.addEventListener('submit', event => event.preventDefault());
+        laskuri.addEventListener('input', () => {
+            if (!laskuri.checkValidity()) {
+                tulos.value = 'Tarkista syöttämäsi arvot.';
+                return;
+            }
+            const annoksia = tilavuus.valueAsNumber * (pitoisuus.valueAsNumber / 100) / 1.5;
+            const annoshinta = hinta.valueAsNumber / annoksia;
+            tulos.value = annosMuoto.format(annoksia) + ' annosta.'
+                + (Number.isFinite(annoshinta) ? ' ' + hintaMuoto.format(annoshinta) + ' / annos.' : '');
+        });
+    </script>
+</body>
+</html>
