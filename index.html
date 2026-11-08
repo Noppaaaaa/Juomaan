@@ -11,8 +11,8 @@
         if (location.pathname === '/index.html') location.replace('/' + location.search + location.hash);
     </script>
     <link rel="preload" href="/alko_tuotteet.json" as="fetch" crossorigin>
-    <link rel="preload" href="/s_ryhma_tuotteet.json" as="fetch" crossorigin>
-    <link rel="preload" href="/k_ryhma_tuotteet.json" as="fetch" crossorigin>
+    <link rel="preload" href="/s_ryhma_vertailu.json" as="fetch" crossorigin>
+    <link rel="preload" href="/k_ryhma_vertailu.json" as="fetch" crossorigin>
     <link rel="preload" href="/valikoima_tiedot.json" as="fetch" crossorigin>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5523715868020650" crossorigin="anonymous"></script>
     <title>Halvin alkoholi – Alkon ja markettien hintavertailu | Juomaan</title>
@@ -648,7 +648,21 @@
             dialog.showModal();
         }
         body.addEventListener('click',e=>{const link=e.target.closest('a.tuote-linkki');if(!link||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;const row=link.closest('tr');const t=tuoteData.find(t=>t.id===row.dataset.productId&&t.lahde===row.dataset.lahde);if(t){e.preventDefault();naytaMyymalat(t)}});
-        Promise.all([haeJson('/alko_tuotteet.json'),haeJson('/s_ryhma_tuotteet.json'),haeJson('/k_ryhma_tuotteet.json').catch(()=>[]),haeJson('/valikoima_tiedot.json')]).then(([alko,sryhma,kryhma,alueet])=>{
+        async function haeMarketit(polku) {
+            const { myymalat, tuotteet } = await haeJson(polku);
+            for (const tuote of tuotteet) {
+                const tarjoukset = [];
+                for (const ryhma of tuote.myymalat) {
+                    for (let i = 2; i < ryhma.length; i++) {
+                        tarjoukset.push([myymalat[ryhma[i]], ryhma[0], ryhma[1]]);
+                    }
+                }
+                tuote.myymalat = tarjoukset;
+            }
+            return tuotteet;
+        }
+
+        Promise.all([haeJson('/alko_tuotteet.json'),haeMarketit('/s_ryhma_vertailu.json'),haeMarketit('/k_ryhma_vertailu.json').catch(()=>[]),haeJson('/valikoima_tiedot.json')]).then(([alko,sryhma,kryhma,alueet])=>{
             alueTiedot=alueet;for(const lahde of Object.keys(LAHTEET))myymalaKartat[lahde]=new Map((alueet[LAHTEET[lahde].stores]||[]).map(s=>[s.id,s]));
             selectedCity=alueet.kaupungit.find(c=>c.toLocaleLowerCase('fi')===selectedCity.toLocaleLowerCase('fi'))||'';cityInput.value=selectedCity;
 

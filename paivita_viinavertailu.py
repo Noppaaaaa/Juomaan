@@ -1,9 +1,10 @@
-"""Publish compact Alko price data and the dated spirits comparison preview."""
+"""Publish derived price data for the comparison pages."""
 
 import json
 import re
 from datetime import datetime
 from html import escape
+from itertools import groupby
 from math import isfinite
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -16,6 +17,20 @@ def kirjoita(polku, sisalto):
     tmp = polku.with_suffix('.tmp')
     tmp.write_text(sisalto, encoding='utf-8')
     tmp.replace(polku)
+
+
+def pakkaa_marketit(lahde):
+    tuotteet = json.loads((ROOT / f'{lahde}_tuotteet.json').read_text(encoding='utf-8'))
+    myymalat = sorted({rivi[0] for tuote in tuotteet for rivi in tuote['myymalat']})
+    tunnisteet = {tunniste: i for i, tunniste in enumerate(myymalat)}
+
+    # Keep the original order, including ties between offers.
+    for tuote in tuotteet:
+        tuote['myymalat'] = [
+            [hinta, pantti, *[tunnisteet[tunniste] for tunniste, _, _ in ryhma]]
+            for (hinta, pantti), ryhma in groupby(tuote['myymalat'], key=lambda rivi: rivi[1:])
+        ]
+    return {'myymalat': myymalat, 'tuotteet': tuotteet}
 
 
 def paivita():
@@ -70,6 +85,9 @@ def paivita():
         payload = {'keratty': raportti['keratty'], 'tuotteet': aineisto}
         kirjoita(ROOT / kansio / 'hinnat.json', json.dumps(payload, ensure_ascii=False, separators=(',', ':')) + '\n')
     kirjoita(sivu, html)
+    for lahde in ('s_ryhma', 'k_ryhma'):
+        pakattu = pakkaa_marketit(lahde)
+        kirjoita(ROOT / f'{lahde}_vertailu.json', json.dumps(pakattu, ensure_ascii=False, separators=(',', ':')) + '\n')
 
 
 if __name__ == '__main__':
