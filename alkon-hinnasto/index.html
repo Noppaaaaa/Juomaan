@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alkon hinnasto – hae juomien hintoja | Juomaan</title>
+    <meta name="description" content="Hae Alkon juomien hintoja nimellä tai juomatyypillä. Katso pakkauskoko ja pantillinen hinta, järjestä halvimmasta alkaen ja avaa tuote Alkossa.">
+    <link rel="canonical" href="https://juomaan.fi/alkon-hinnasto/">
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192">
+    <style>
+        :root { color-scheme: light dark; }
+        body { font: 1rem/1.6 system-ui, sans-serif; max-width: 48rem; margin: 2rem auto; padding: 0 1rem; }
+        label { display: block; margin-block-start: .75rem; }
+        input, select, button { font: inherit; padding: .4rem; max-width: 100%; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: .4rem; text-align: left; border-block-end: 1px solid GrayText; }
+        th:last-child, td:last-child { text-align: right; white-space: nowrap; }
+        button { margin-block: 1rem; }
+    </style>
+</head>
+<body>
+    <nav aria-label="Päävalikko"><a href="/">Juomien hintavertailu</a> · <a href="/alkoholiannos/">Alkoholiannoslaskuri</a></nav>
+    <main>
+        <h1>Alkon hinnasto</h1>
+        <p>Katso Alkon juomien pakkaushinnat pantteineen. Hae tuotteen nimellä tai juomatyypillä, kuten punaviini, vodka tai olut. Nimeä painamalla pääset Alkon tuotesivulle.</p>
+        <label for="haku">Hae Alkon tuotteita</label>
+        <input id="haku" type="search" maxlength="100" autocomplete="off" disabled>
+        <label for="jarjestys">Järjestä tuotteet</label>
+        <select id="jarjestys" disabled>
+            <option value="nimi">Nimi A–Ö</option>
+            <option value="hinta">Halvin pakkaushinta</option>
+        </select>
+        <p id="tila" role="status"></p>
+        <table id="hinnasto" aria-label="Alkon tuotteet ja pakkaushinnat" hidden>
+            <thead><tr><th scope="col">Tuote</th><th scope="col">Koko</th><th scope="col">Hinta</th></tr></thead>
+            <tbody id="rivit"></tbody>
+        </table>
+        <button id="lisaa" type="button" hidden>Näytä 30 lisää</button>
+        <noscript><p>Juomaanin hinnastohaku käyttää JavaScriptiä. Voit etsiä tuotteita myös suoraan <a href="https://www.alko.fi/fi/tuotteet">Alkon verkkosivulla</a>.</p></noscript>
+        <h2>Mistä hinnat tulevat?</h2>
+        <p>Juomaan kokoaa hinnat Alkon julkaisemista tuotetiedoista. Listan hinta sisältää mahdollisen pantin. <span id="paivitys"></span> Tarkista ajantasainen hinta ja myymäläsaatavuus Alkon tuotesivulta.</p>
+        <p><a href="/">Vertaa myös S- ja K-ryhmän hintoja</a> tai <a href="/alkoholiannos/">laske hinta alkoholiannosta kohti</a>.</p>
+    </main>
+    <script>
+        const haku = document.getElementById('haku');
+        const jarjestys = document.getElementById('jarjestys');
+        const tila = document.getElementById('tila');
+        const taulukko = document.getElementById('hinnasto');
+        const rivit = document.getElementById('rivit');
+        const lisaa = document.getElementById('lisaa');
+        const raha = new Intl.NumberFormat('fi-FI', { style: 'currency', currency: 'EUR' });
+        const koko = new Intl.NumberFormat('fi-FI', { maximumFractionDigits: 3 });
+        const aakkoset = new Intl.Collator('fi');
+        const normalisoi = arvo => arvo.toLocaleLowerCase('fi').normalize('NFD').replace(/\p{M}/gu, '');
+        const sivukoko = 30;
+        let tuotteet = [], osumat = [], naytetty = 0;
+
+        function naytaLisaa() {
+            for (const tuote of osumat.slice(naytetty, naytetty + sivukoko)) {
+                const rivi = rivit.insertRow();
+                const linkki = document.createElement('a');
+                linkki.href = tuote.linkki;
+                linkki.textContent = tuote.nimi;
+                rivi.insertCell().append(linkki);
+                rivi.insertCell().textContent = koko.format(tuote.tilavuus_litraa) + ' l';
+                rivi.insertCell().textContent = raha.format(tuote.hinta);
+                naytetty++;
+            }
+            taulukko.hidden = !naytetty;
+            tila.textContent = osumat.length ? `Näytetään ${naytetty} / ${osumat.length} tuotetta.` : 'Hakua vastaavia tuotteita ei löytynyt.';
+            if (lisaa === document.activeElement && naytetty >= osumat.length) rivit.lastElementChild?.querySelector('a').focus();
+            lisaa.hidden = naytetty >= osumat.length;
+        }
+
+        function suodata() {
+            const sanat = normalisoi(haku.value.trim()).split(/\s+/);
+            osumat = tuotteet.filter(tuote => sanat.every(sana => tuote.hakuteksti.includes(sana)));
+            if (jarjestys.value === 'hinta') osumat.sort((a, b) => a.hinta - b.hinta);
+            rivit.replaceChildren();
+            naytetty = 0;
+            naytaLisaa();
+        }
+
+        async function lueJson(polku) {
+            const vastaus = await fetch(polku);
+            if (!vastaus.ok) throw new Error('HTTP ' + vastaus.status);
+            return vastaus.json();
+        }
+
+        tila.textContent = 'Ladataan Alkon hintoja…';
+        lueJson('/alko_tuotteet.json').then(aineisto => {
+            tuotteet = aineisto.filter(tuote => tuote.nimi?.trim()
+                && Number.isFinite(tuote.hinta_eur) && tuote.hinta_eur > 0
+                && Number.isFinite(tuote.tilavuus_litraa) && tuote.tilavuus_litraa > 0
+                && /^https:\/\/(?:www\.)?alko\.fi\//i.test(tuote.linkki))
+                .map(tuote => ({
+                    nimi: tuote.nimi.trim(),
+                    linkki: tuote.linkki,
+                    tilavuus_litraa: tuote.tilavuus_litraa,
+                    hinta: Math.round((tuote.hinta_eur + (Number(tuote.pantti_eur) || 0)) * 100) / 100,
+                    hakuteksti: normalisoi(tuote.nimi + ' ' + (tuote.tyyppi || ''))
+                })).sort((a, b) => aakkoset.compare(a.nimi, b.nimi));
+            haku.disabled = jarjestys.disabled = false;
+            suodata();
+            return lueJson('/alko_keruu.json').then(raportti => {
+                const keratty = new Date(raportti.keratty);
+                if (Number.isFinite(keratty.getTime())) {
+                    const paiva = new Intl.DateTimeFormat('fi-FI', { timeZone: 'Europe/Helsinki' }).format(keratty);
+                    document.getElementById('paivitys').textContent = `Aineisto kerätty ${paiva}.`;
+                }
+            }).catch(() => {});
+        }).catch(() => {
+            tila.textContent = 'Hintoja ei voitu ladata. Päivitä sivu ja yritä uudelleen.';
+        });
+        haku.addEventListener('input', suodata);
+        jarjestys.addEventListener('change', suodata);
+        lisaa.addEventListener('click', naytaLisaa);
+    </script>
+</body>
+</html>
