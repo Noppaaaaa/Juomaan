@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alkon halvimmat viinit – vertaa hintoja ja litrahintoja | Juomaan</title>
+    <meta name="description" content="Vertaa Alkon puna-, valko-, rosee- ja kuohuviinien pakkaushintoja ja litrahintoja. Suodata viinityypin mukaan ja tarkista tuote Alkosta.">
+    <link rel="canonical" href="https://juomaan.fi/alkon-viinit/">
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192">
+    <link rel="preload" href="/alkon-hinnasto/hinnat.json" as="fetch" crossorigin>
+    <link rel="stylesheet" href="/alkon-hinnasto/hinnasto.css">
+</head>
+<body>
+    <nav aria-label="Päävalikko"><a href="/alkon-hinnasto/">Alkon hinnasto</a> · <a href="/alkoholiannos/">Alkoholiannoslaskuri</a></nav>
+    <main>
+        <h1>Alkon halvimmat viinit</h1>
+        <p>Vertaa Alkon puna-, valko-, rosee- ja kuohuviinejä. Pakkaushinta kertoo, mitä yksittäinen pullo tai hanapakkaus maksaa pantteineen. Litrahinta auttaa vertaamaan eri kokoja.</p>
+        <label for="haku">Hae viinin nimellä</label>
+        <input id="haku" type="search" maxlength="100" autocomplete="off" disabled>
+        <label for="viinityyppi">Viinityyppi</label>
+        <select id="viinityyppi" disabled>
+            <option value="">Kaikki viinityypit</option>
+            <option value="punaviinit">Punaviinit</option>
+            <option value="valkoviinit">Valkoviinit</option>
+            <option value="roseeviinit">Roseeviinit</option>
+            <option value="kuohuviinit">Kuohuviinit ja samppanjat</option>
+        </select>
+        <label for="jarjestys">Järjestä tuotteet</label>
+        <select id="jarjestys" disabled>
+            <option value="hinta">Halvin pakkaushinta</option>
+            <option value="litrahinta">Halvin litrahinta</option>
+            <option value="nimi">Nimi A–Ö</option>
+        </select>
+        <p id="tila" role="status"></p>
+        <table id="hinnasto" aria-label="Alkon viinien pakkaus- ja litrahinnat" hidden>
+            <thead><tr><th scope="col">Tuote</th><th scope="col">Koko</th><th scope="col">Hinta</th><th scope="col">€ / l</th></tr></thead>
+            <tbody id="rivit"></tbody>
+        </table>
+        <button id="lisaa" type="button" hidden>Näytä 30 lisää</button>
+        <noscript><p>Juomaanin hinnastohaku käyttää JavaScriptiä. Voit etsiä tuotteita myös suoraan <a href="https://www.alko.fi/fi/tuotteet">Alkon verkkosivulla</a>.</p></noscript>
+        <h2>Miten löydän halvimman punaviinin?</h2>
+        <p>Valitse viinityypiksi Punaviinit ja järjestä pakkaushinnan mukaan, jos etsit edullisinta yksittäistä pakkausta. Esimerkiksi 0,75 litran pakkaus 9 eurolla maksaa 12 €/l. Kolmen litran hanapakkaus 30 eurolla maksaa 10 €/l.</p>
+        <p>Samalla tavalla voit vertailla valko-, rosee- ja kuohuviinien hintoja. Vertailu kattaa Alkon neljä pääryhmää. Koko valikoiman, kuten alkoholittomat viinit, löydät <a href="/alkon-hinnasto/">Alkon hinnastohausta</a>.</p>
+        <h2>Mistä hinnat tulevat?</h2>
+        <p>Juomaan kokoaa hinnat Alkon julkaisemista tuotetiedoista. Listan hinta sisältää mahdollisen pantin. <span id="paivitys"></span> Tarkista ajantasainen hinta ja myymäläsaatavuus Alkon tuotesivulta.</p>
+        <p><a href="/">Vertaa myös S- ja K-ryhmän hintoja</a> tai <a href="/alkoholiannos/">laske hinta alkoholiannosta kohti</a>.</p>
+    </main>
+    <script src="/alkon-hinnasto/hinnasto.js?v=3"></script>
+</body>
+</html>

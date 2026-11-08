@@ -1,5 +1,6 @@
 const vainViinat = document.getElementById('hinnasto').hasAttribute('data-viinat');
 const haku = document.getElementById('haku');
+const viinityyppi = document.getElementById('viinityyppi');
 const jarjestys = document.getElementById('jarjestys');
 const tila = document.getElementById('tila');
 const taulukko = document.getElementById('hinnasto');
@@ -23,6 +24,7 @@ function naytaLisaa() {
         if (vainViinat) rivi.insertCell().textContent = koko.format(tuote.vahvuus) + ' %';
         rivi.insertCell().textContent = raha.format(tuote.hinta);
         if (vainViinat) rivi.insertCell().textContent = raha.format(tuote.annoshinta);
+        if (viinityyppi) rivi.insertCell().textContent = raha.format(tuote.litrahinta);
         naytetty++;
     }
     taulukko.hidden = !naytetty;
@@ -33,7 +35,9 @@ function naytaLisaa() {
 
 function suodata() {
     const sanat = normalisoi(haku.value.trim()).split(/\s+/);
-    osumat = tuotteet.filter(tuote => sanat.every(sana => tuote.hakuteksti.includes(sana)));
+    osumat = tuotteet.filter(tuote => (!viinityyppi?.value || tuote.viinityyppi === viinityyppi.value)
+        && sanat.every(sana => tuote.hakuteksti.includes(sana)));
+    if (jarjestys.value === 'litrahinta') osumat.sort((a, b) => a.litrahinta - b.litrahinta);
     if (jarjestys.value === 'annoshinta') osumat.sort((a, b) => a.annoshinta - b.annoshinta);
     if (jarjestys.value === 'hinta') osumat.sort((a, b) => a.hinta - b.hinta);
     rivit.replaceChildren();
@@ -50,9 +54,11 @@ async function lueJson(polku) {
 tila.textContent = 'Ladataan Alkon hintoja…';
 const hinnastoPolku = vainViinat ? '/halvin-viina/hinnat.json' : '/alkon-hinnasto/hinnat.json';
 lueJson(hinnastoPolku).then(({ tuotteet: aineisto, keratty }) => {
+    const viiniluokat = new Set(viinityyppi ? [...viinityyppi.options].map(o => o.value).filter(Boolean) : []);
     tuotteet = aineisto.filter(tuote => tuote.nimi?.trim()
         && Number.isFinite(tuote.hinta_eur) && tuote.hinta_eur > 0
         && Number.isFinite(tuote.tilavuus_litraa) && tuote.tilavuus_litraa > 0
+        && (!viinityyppi || viiniluokat.has(tuote.tyyppi?.split(',', 1)[0].trim()))
         && (!vainViinat || (tuote.tyyppi?.split(',').some(osa => osa.trim() === 'vodkat ja viinat')
             && Number.isFinite(tuote.alkoholi_prosentti) && tuote.alkoholi_prosentti > 0))
         && /^https:\/\/(?:www\.)?alko\.fi\//i.test(tuote.linkki))
@@ -64,11 +70,14 @@ lueJson(hinnastoPolku).then(({ tuotteet: aineisto, keratty }) => {
                 tilavuus_litraa: tuote.tilavuus_litraa,
                 vahvuus: tuote.alkoholi_prosentti,
                 hinta,
+                viinityyppi: tuote.tyyppi?.split(',', 1)[0].trim(),
+                litrahinta: hinta / tuote.tilavuus_litraa,
                 annoshinta: hinta / (tuote.tilavuus_litraa * tuote.alkoholi_prosentti / 1.5),
                 hakuteksti: normalisoi(tuote.nimi + ' ' + (tuote.tyyppi || ''))
             };
         }).sort((a, b) => aakkoset.compare(a.nimi, b.nimi));
     haku.disabled = jarjestys.disabled = false;
+    if (viinityyppi) viinityyppi.disabled = false;
     const otos = document.getElementById('otoksen-paivays');
     if (otos) otos.hidden = true;
     suodata();
@@ -82,4 +91,5 @@ lueJson(hinnastoPolku).then(({ tuotteet: aineisto, keratty }) => {
 });
 haku.addEventListener('input', suodata);
 jarjestys.addEventListener('change', suodata);
+viinityyppi?.addEventListener('change', suodata);
 lisaa.addEventListener('click', naytaLisaa);
