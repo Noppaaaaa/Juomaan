@@ -20,7 +20,7 @@
         <label for="viinityyppi">Viinityyppi</label>
         <select id="viinityyppi" disabled>
             <option value="">Kaikki viinityypit</option>
-            <option value="punaviinit">Punaviinit</option>
+            <option value="punaviinit" selected>Punaviinit</option>
             <option value="valkoviinit">Valkoviinit</option>
             <option value="roseeviinit">Roseeviinit</option>
             <option value="kuohuviinit">Kuohuviinit ja samppanjat</option>
@@ -32,12 +32,24 @@
             <option value="nimi">Nimi A–Ö</option>
         </select>
         <p id="tila" role="status"></p>
-        <table id="hinnasto" aria-label="Alkon viinien pakkaus- ja litrahinnat" hidden>
+        <table id="hinnasto" aria-label="Alkon viinien pakkaus- ja litrahinnat">
+            <caption id="otoksen-paivays">10 halvinta punaviinipakkausta 7.11.2026 kerätyistä hinnoista.</caption>
             <thead><tr><th scope="col">Tuote</th><th scope="col">Koko</th><th scope="col">Hinta</th><th scope="col">€ / l</th></tr></thead>
-            <tbody id="rivit"></tbody>
+            <tbody id="rivit">
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/901293/tavernello-rosso-2023-kartonkitolkki">Tavernello Rosso 2023 kartonkitölkki</a></td><td>0,25 l</td><td>3,14 €</td><td>12,56 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/420672/jp-chenet-cabernet-syrah-2023-viinipussi">JP. Chenet Cabernet Syrah 2023 viinipussi</a></td><td>0,187 l</td><td>3,39 €</td><td>18,13 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/900531/sancrispino-sangiovese-organic-kartonkitolkki">Sancrispino Sangiovese Organic kartonkitölkki</a></td><td>0,25 l</td><td>3,59 €</td><td>14,36 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/901022/19-crimes-red-wine-tolkki">19 Crimes Red Wine tölkki</a></td><td>0,187 l</td><td>3,70 €</td><td>19,79 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/455513/frontera-cabernet-sauvignon-2024">Frontera Cabernet Sauvignon 2024</a></td><td>0,25 l</td><td>3,79 €</td><td>15,16 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/952573/akesson-terra-delloro-rosso-kartonkitolkki">Åkesson Terra dell&#x27;oro Rosso kartonkitölkki</a></td><td>0,25 l</td><td>3,98 €</td><td>15,92 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/950888/2u-duas-uvas">2u Duas Uvas</a></td><td>0,25 l</td><td>3,99 €</td><td>15,96 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/931862/barefoot-merlot">Barefoot Merlot</a></td><td>0,187 l</td><td>3,99 €</td><td>21,34 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/937591/le-grand-noir-cabernet-syrah-2024-muovipullo">Le Grand Noir Cabernet Syrah 2024 muovipullo</a></td><td>0,187 l</td><td>3,99 €</td><td>21,34 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/902076/tarani-malbec-2022">Tarani Malbec 2022</a></td><td>0,187 l</td><td>3,99 €</td><td>21,34 €</td></tr>
+            </tbody>
         </table>
         <button id="lisaa" type="button" hidden>Näytä 30 lisää</button>
-        <noscript><p>Juomaanin hinnastohaku käyttää JavaScriptiä. Voit etsiä tuotteita myös suoraan <a href="https://www.alko.fi/fi/tuotteet">Alkon verkkosivulla</a>.</p></noscript>
+        <noscript><p>Viinityypin vaihto, haku ja lajittelu käyttävät JavaScriptiä. Voit etsiä tuotteita myös suoraan <a href="https://www.alko.fi/fi/tuotteet">Alkon verkkosivulla</a>.</p></noscript>
         <h2>Miten löydän halvimman punaviinin?</h2>
         <p>Valitse viinityypiksi Punaviinit ja järjestä pakkaushinnan mukaan, jos etsit edullisinta yksittäistä pakkausta. Esimerkiksi 0,75 litran pakkaus 9 eurolla maksaa 12 €/l. Kolmen litran hanapakkaus 30 eurolla maksaa 10 €/l.</p>
         <p>Samalla tavalla voit vertailla valko-, rosee- ja kuohuviinien hintoja. Vertailu kattaa Alkon neljä pääryhmää. Koko valikoiman, kuten alkoholittomat viinit, löydät <a href="/alkon-hinnasto/">Alkon hinnastohausta</a>.</p>

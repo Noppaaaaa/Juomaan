@@ -45,6 +45,52 @@ def pakkaa_marketit(lahde):
     return {'myymalat': myymalat, 'tuotteet': tuotteet}
 
 
+def otos_html(kansio, kuvaus, rivit, keratty):
+    sivu = ROOT / kansio / 'index.html'
+    html = sivu.read_text(encoding='utf-8')
+    html, caption_count = re.subn(
+        r'(<caption id="otoksen-paivays">)[^<]*(</caption>)',
+        rf'\g<1>{kuvaus} {keratty.day}.{keratty.month}.{keratty.year} kerätyistä hinnoista.\g<2>',
+        html,
+    )
+    html, row_count = re.subn(
+        r'(<tbody id="rivit">).*?(</tbody>)',
+        lambda m: m[1] + '\n' + '\n'.join(rivit) + '\n            ' + m[2],
+        html,
+        flags=re.S,
+    )
+    if (caption_count, row_count) != (1, 1):
+        raise ValueError(f'{kansio}: otokselle tarvitaan yksi otsikko ja yksi taulukko.')
+    return sivu, html
+
+
+def punaviinirivit(hinnasto):
+    ehdokkaat = []
+    for tuote in hinnasto:
+        if (tuote['tyyppi'] or '').split(',', 1)[0].strip() != 'punaviinit':
+            continue
+        nimi = (tuote['nimi'] or '').strip()
+        linkki = tuote['linkki'] or ''
+        litrat = tuote['tilavuus_litraa']
+        perushinta = tuote['hinta_eur']
+        if not (nimi and re.match(r'https://(?:www\.)?alko\.fi/', linkki, re.I)
+                and all(isinstance(arvo, (int, float)) and isfinite(arvo) and arvo > 0
+                        for arvo in (litrat, perushinta))):
+            continue
+        hinta = round(perushinta + (tuote['pantti_eur'] or 0), 2)
+        ehdokkaat.append((hinta, nimi, linkki, litrat))
+    if len(ehdokkaat) < 10:
+        raise ValueError('Alkon punaviinien aineisto on puutteellinen.')
+
+    rivit = []
+    for hinta, nimi, linkki, litrat in sorted(ehdokkaat)[:10]:
+        koko = f'{litrat:g}'.replace('.', ',')
+        hinnat = f'<td>{hinta:.2f} €</td><td>{hinta / litrat:.2f} €</td>'.replace('.', ',')
+        rivit.append(f'                <tr><td><a href="{escape(linkki)}">{escape(nimi)}</a></td>'
+                     f'<td>{koko} l</td>{hinnat}</tr>')
+    return rivit
+
+
 def paivita():
     tuotteet = json.loads((ROOT / 'alko_tuotteet.json').read_text(encoding='utf-8'))
     raportti = json.loads((ROOT / 'alko_keruu.json').read_text(encoding='utf-8'))
@@ -78,25 +124,13 @@ def paivita():
             + f'<td>{hinta:.2f} €</td><td>{annoshinta:.2f} €</td></tr>'.replace('.', ',')
         )
 
-    sivu = ROOT / 'halvin-viina' / 'index.html'
-    html = sivu.read_text(encoding='utf-8')
-    html, caption_count = re.subn(
-        r'(<caption id="otoksen-paivays">)[^<]*(</caption>)',
-        rf'\g<1>10 edullisinta annoshintaa {keratty.day}.{keratty.month}.{keratty.year} kerätyistä hinnoista.\g<2>',
-        html,
-    )
-    html, row_count = re.subn(
-        r'(<tbody id="rivit">).*?(</tbody>)',
-        lambda m: m[1] + '\n' + '\n'.join(rivit) + '\n            ' + m[2],
-        html,
-        flags=re.S,
-    )
-    if (caption_count, row_count) != (1, 1):
-        raise ValueError('Viinavertailun otokselle tarvitaan yksi otsikko ja yksi taulukko.')
+    viina_sivu, viina_html = otos_html('halvin-viina', '10 edullisinta annoshintaa', rivit, keratty)
+    viini_sivu, viini_html = otos_html('alkon-viinit', '10 halvinta punaviinipakkausta', punaviinirivit(hinnasto), keratty)
     for kansio, aineisto in [('alkon-hinnasto', hinnasto), ('halvin-viina', viinat)]:
         payload = {'keratty': raportti['keratty'], 'tuotteet': aineisto}
         kirjoita(ROOT / kansio / 'hinnat.json', json.dumps(payload, ensure_ascii=False, separators=(',', ':')) + '\n')
-    kirjoita(sivu, html)
+    kirjoita(viina_sivu, viina_html)
+    kirjoita(viini_sivu, viini_html)
     kirjoita(ROOT / 'alko_vertailu.json', json.dumps(pakkaa_alko(tuotteet), ensure_ascii=False, separators=(',', ':')) + '\n')
     for lahde in ('s_ryhma', 'k_ryhma'):
         pakattu = pakkaa_marketit(lahde)
