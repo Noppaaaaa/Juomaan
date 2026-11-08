@@ -1,5 +1,6 @@
 const vainViinat = document.getElementById('hinnasto').hasAttribute('data-viinat');
 const haku = document.getElementById('haku');
+haku.value = new URLSearchParams(location.search).get('haku')?.slice(0, haku.maxLength) || '';
 const viinityyppi = document.getElementById('viinityyppi');
 const vahvuus = document.getElementById('vahvuus');
 const kauppaketju = document.getElementById('kauppaketju');
