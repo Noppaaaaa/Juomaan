@@ -2,6 +2,7 @@
 
 import json
 import re
+import subprocess
 import xml.etree.ElementTree as ET
 from base64 import b64encode
 from datetime import datetime
@@ -236,6 +237,15 @@ def paivita():
                                     olutotos(olutdata['tuotteet']), olut_paivays, 'julkaistuista')
     muuttuneet = set()
     domain = 'https://juomaan.fi/'
+    edellinen_valikoima = json.loads(subprocess.check_output(
+        ['git', 'show', 'HEAD:valikoima_tiedot.json'], cwd=ROOT
+    ))
+    etusivun_aluekentat = (
+        'kaupungit', 'alko_myymalat', 's_myymalat', 'k_myymalat',
+        'alko_puuttuvat_myymalat', 's_puuttuvat_myymalat', 'k_puuttuvat_myymalat',
+    )
+    if any(valikoima.get(kentta) != edellinen_valikoima.get(kentta) for kentta in etusivun_aluekentat):
+        muuttuneet.add(domain)
     hintasivut = {
         'alkon-hinnasto': {'keratty': raportti['keratty'], 'tuotteet': hinnasto},
         'halvin-viina': {'keratty': raportti['keratty'], 'tuotteet': viinat},
