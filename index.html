@@ -447,7 +447,13 @@
             const tokens=hakuTokens.map(tok=>korjaaHakuToken(tok,hakuSanasto));
             for(const t of tuoteData)t._osuma=tuoteVastaaHakua(t,tokens);
         }
-        function getFilteredData(){let suodatettu=tuoteData.filter(t=>activeCategories.includes(luokitteleKategoria(t)));suodatettu=suodatettu.filter(t=>activeSources.has(t.lahde||'alko'));if(lapsimoodiPaalla)suodatettu=suodatettu.filter(t=>Number.isFinite(t.alkoholi_prosentti)&&t.alkoholi_prosentti<=22);if(hakuTokens.length)suodatettu=suodatettu.filter(t=>t._osuma);return suodatettu}
+        function getFilteredData() {
+            return tuoteData.filter(t =>
+                activeCategories.includes(t.tyyppi)
+                && activeSources.has(t.lahde)
+                && (!lapsimoodiPaalla || (Number.isFinite(t.alkoholi_prosentti) && t.alkoholi_prosentti <= 22))
+                && (!hakuTokens.length || t._osuma));
+        }
         let lajitteluValimuisti;
         function getSortedData(){
             const rajaukset = [currentSort, panttiMukana, lapsimoodiPaalla, activeCategories.join(','), [...activeSources].join(',')].join('|');
@@ -610,18 +616,32 @@
                 }
                 return[{...t,myymalat:entries.length}];
             });
-            const mittariArvot=tuoteData.map(laskeGrammatPerEuro).filter(g=>Number.isFinite(g)&&g>0);
-            mittariMin=mittariArvot.length?Math.min(...mittariArvot):0;
-            mittariMax=mittariArvot.length?Math.max(...mittariArvot):0;
+            let min = Infinity;
+            let max = 0;
+            for (const tuote of tuoteData) {
+                const arvo = laskeGrammatPerEuro(tuote);
+                if (Number.isFinite(arvo) && arvo > 0) {
+                    min = Math.min(min, arvo);
+                    max = Math.max(max, arvo);
+                }
+            }
+            mittariMin = max ? min : 0;
+            mittariMax = max;
             laskeHakuOsumat();
             paivitaInfo();
             startIndex=0;
         }
         function lataaTuotteet(alko,sryhma,kryhma){
-            const map=new Map();for(const t of [...alko.map(t=>normalisoiTuote(t,'alko')),...sryhma.map(t=>normalisoiTuote(t,'sryhma')),...kryhma.map(t=>normalisoiTuote(t,'kryhma'))])if(t)map.set(t.lahde+'|'+t.id,t);
+            const map = new Map();
+            for (const [lahde, tuotteet] of [['alko', alko], ['sryhma', sryhma], ['kryhma', kryhma]]) {
+                for (const raaka of tuotteet) {
+                    const tuote = normalisoiTuote(raaka, lahde);
+                    if (tuote) map.set(lahde + '|' + tuote.id, tuote);
+                }
+            }
             const yhdistetyt=new Map();for(const t of map.values()){
                 const avain=t.lahde==='kryhma'?JSON.stringify([t.lahde,t.nimi.toLocaleLowerCase('fi').replace(/\s+/g,' ').trim(),t.tyyppi,t.alkoholi_prosentti,t.tilavuus_litraa]):t.lahde+'|'+t.id;
-                const vanha=yhdistetyt.get(avain);if(!vanha){yhdistetyt.set(avain,{...t,myymalaHinnat:[...t.myymalaHinnat]});continue}
+                const vanha=yhdistetyt.get(avain);if(!vanha){yhdistetyt.set(avain,t);continue}
                 const hinnat=new Map(vanha.myymalaHinnat.map(x=>[Array.isArray(x)?x[0]:x,x]));for(const x of t.myymalaHinnat){const id=Array.isArray(x)?x[0]:x,prev=hinnat.get(id);if(!prev||(Array.isArray(x)?x[1]+(x[2]||0):Infinity)<(Array.isArray(prev)?prev[1]+(prev[2]||0):Infinity))hinnat.set(id,x)}vanha.myymalaHinnat=[...hinnat.values()];vanha.myymalat=hinnat.size;if(efHinta(t)<efHinta(vanha)){vanha.hinta_eur=t.hinta_eur;vanha.pantti_eur=t.pantti_eur}
             }
             kaikkiTuotteet=[...yhdistetyt.values()];hakuSanasto=null;luoCheckboxit();paivitaAlue();renderWindow();paivitaMittarit();haeAanet();
