@@ -31,8 +31,7 @@ def pakkaa_alko(tuotteet):
     return {'myymalat': myymalat, 'tuotteet': tuotteet}
 
 
-def pakkaa_marketit(lahde):
-    tuotteet = json.loads((ROOT / f'{lahde}_tuotteet.json').read_text(encoding='utf-8'))
+def pakkaa_marketit(tuotteet):
     myymalat = sorted({rivi[0] for tuote in tuotteet for rivi in tuote['myymalat']})
     tunnisteet = {tunniste: i for i, tunniste in enumerate(myymalat)}
 
@@ -91,6 +90,22 @@ def punaviinirivit(hinnasto):
     return rivit
 
 
+def oluthinnat(alko, sryhma, kryhma):
+    oluet = []
+    for lahde, tuotteet in [('alko', alko), ('sryhma', sryhma), ('kryhma', kryhma)]:
+        for tuote in tuotteet:
+            tyyppi = (tuote['tyyppi'] or '').split(',', 1)[0].strip().casefold()
+            if tyyppi != 'oluet' or tuote['alkoholi_prosentti'] == 0:
+                continue
+            tiedot = {kentta: tuote.get(kentta) for kentta in HINTAKENTAT}
+            if lahde != 'alko':
+                if not tuote['myymalat']:
+                    continue
+                _, tiedot['hinta_eur'], tiedot['pantti_eur'] = min(tuote['myymalat'], key=lambda rivi: rivi[1] + rivi[2])
+            oluet.append({**tiedot, 'lahde': lahde})
+    return oluet
+
+
 def paivita():
     tuotteet = json.loads((ROOT / 'alko_tuotteet.json').read_text(encoding='utf-8'))
     raportti = json.loads((ROOT / 'alko_keruu.json').read_text(encoding='utf-8'))
@@ -129,11 +144,18 @@ def paivita():
     for kansio, aineisto in [('alkon-hinnasto', hinnasto), ('halvin-viina', viinat)]:
         payload = {'keratty': raportti['keratty'], 'tuotteet': aineisto}
         kirjoita(ROOT / kansio / 'hinnat.json', json.dumps(payload, ensure_ascii=False, separators=(',', ':')) + '\n')
+    marketit = [
+        json.loads((ROOT / f'{lahde}_tuotteet.json').read_text(encoding='utf-8'))
+        for lahde in ('s_ryhma', 'k_ryhma')
+    ]
+    valikoima = json.loads((ROOT / 'valikoima_tiedot.json').read_text(encoding='utf-8'))
+    olutdata = {'keratty': valikoima['aineisto_paivitetty'], 'tuotteet': oluthinnat(tuotteet, *marketit)}
+    kirjoita(ROOT / 'oluen-hinnat' / 'hinnat.json', json.dumps(olutdata, ensure_ascii=False, separators=(',', ':')) + '\n')
     kirjoita(viina_sivu, viina_html)
     kirjoita(viini_sivu, viini_html)
     kirjoita(ROOT / 'alko_vertailu.json', json.dumps(pakkaa_alko(tuotteet), ensure_ascii=False, separators=(',', ':')) + '\n')
-    for lahde in ('s_ryhma', 'k_ryhma'):
-        pakattu = pakkaa_marketit(lahde)
+    for lahde, marketin_tuotteet in zip(('s_ryhma', 'k_ryhma'), marketit):
+        pakattu = pakkaa_marketit(marketin_tuotteet)
         kirjoita(ROOT / f'{lahde}_vertailu.json', json.dumps(pakattu, ensure_ascii=False, separators=(',', ':')) + '\n')
 
 
