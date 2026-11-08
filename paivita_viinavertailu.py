@@ -9,7 +9,7 @@ from html import escape
 from itertools import groupby
 from math import isfinite
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qsl, urlencode, urlsplit
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent
@@ -93,7 +93,11 @@ def pakkausrivit(tuotteet, litrahinta=False):
     return rivit
 
 
-def oluthinnat(alko, sryhma, kryhma):
+def oluthinnat(alko, sryhma, kryhma, valikoima):
+    myymalat = {
+        'sryhma': {str(t['id']): t for t in valikoima['s_myymalat']},
+        'kryhma': {str(t['id']): t for t in valikoima['k_myymalat']},
+    }
     oluet = []
     for lahde, tuotteet in [('alko', alko), ('sryhma', sryhma), ('kryhma', kryhma)]:
         for tuote in tuotteet:
@@ -104,7 +108,15 @@ def oluthinnat(alko, sryhma, kryhma):
             if lahde != 'alko':
                 if not tuote['myymalat']:
                     continue
-                _, tiedot['hinta_eur'], tiedot['pantti_eur'] = min(tuote['myymalat'], key=lambda rivi: rivi[1] + rivi[2])
+                tunniste, tiedot['hinta_eur'], tiedot['pantti_eur'] = min(
+                    tuote['myymalat'], key=lambda rivi: rivi[1] + rivi[2])
+                myymala = myymalat[lahde][str(tunniste)]
+                nimi, arvo = ('storeId', myymala['id']) if lahde == 'sryhma' else ('kauppa', myymala['slug'])
+                osoite = urlsplit(tiedot['linkki'])
+                parametrit = dict(parse_qsl(osoite.query, keep_blank_values=True))
+                parametrit[nimi] = arvo
+                tiedot['linkki'] = osoite._replace(query=urlencode(parametrit)).geturl()
+                tiedot['myymala'] = myymala['name']
             oluet.append({**tiedot, 'lahde': lahde})
     return oluet
 
@@ -125,7 +137,7 @@ def olutotos(oluet):
                         for arvo in (litrat, vahvuus, perushinta)) and vahvuus > 0.5):
             continue
         hinta = round(perushinta + (tuote['pantti_eur'] or 0), 2)
-        ehdokkaat.append((hinta, nimi, linkki, litrat, kauppa, vahvuus))
+        ehdokkaat.append((hinta, nimi, linkki, litrat, tuote.get('myymala') or kauppa, vahvuus))
     if len(ehdokkaat) < 10:
         raise ValueError('Oluiden vertailuaineisto on puutteellinen.')
     rivit = []
@@ -134,7 +146,7 @@ def olutotos(oluet):
         pitoisuus = f'{vahvuus:g}'.replace('.', ',')
         hinnat = f'<td>{hinta:.2f} €</td><td>{hinta / litrat:.2f} €</td>'.replace('.', ',')
         rivit.append(f'                <tr><td><a href="{escape(linkki)}">{escape(nimi)}</a>'
-                     f'<br><small>{kauppa} · {pitoisuus} %</small></td><td>{koko} l</td>{hinnat}</tr>')
+                     f'<br><small>{escape(kauppa)} · {pitoisuus} %</small></td><td>{koko} l</td>{hinnat}</tr>')
     return rivit
 
 
@@ -211,7 +223,7 @@ def paivita():
         for lahde in ('s_ryhma', 'k_ryhma')
     ]
     valikoima = json.loads((ROOT / 'valikoima_tiedot.json').read_text(encoding='utf-8'))
-    olutdata = {'keratty': valikoima['aineisto_paivitetty'], 'tuotteet': oluthinnat(tuotteet, *marketit)}
+    olutdata = {'keratty': valikoima['aineisto_paivitetty'], 'tuotteet': oluthinnat(tuotteet, *marketit, valikoima)}
     olut_paivays = datetime.fromisoformat(olutdata['keratty'])
     if olut_paivays.tzinfo:
         olut_paivays = olut_paivays.astimezone(ZoneInfo('Europe/Helsinki'))

@@ -26,7 +26,7 @@ function naytaLisaa() {
         nimi.append(linkki);
         if (kauppaketju) {
             const kauppa = document.createElement('small');
-            kauppa.textContent = kaupat[tuote.lahde][0] + (Number.isFinite(tuote.vahvuus)
+            kauppa.textContent = (tuote.myymala || kaupat[tuote.lahde][0]) + (Number.isFinite(tuote.vahvuus)
                 ? ' · ' + koko.format(tuote.vahvuus) + ' %' : '');
             nimi.append(document.createElement('br'), kauppa);
         }
@@ -98,6 +98,7 @@ lueJson(hinnastoPolku).then(({ tuotteet: aineisto, keratty }) => {
                 vahvuus: tuote.alkoholi_prosentti,
                 hinta,
                 lahde: tuote.lahde,
+                myymala: tuote.myymala,
                 viinityyppi: tuote.tyyppi?.split(',', 1)[0].trim(),
                 litrahinta: hinta / tuote.tilavuus_litraa,
                 annoshinta: hinta / (tuote.tilavuus_litraa * tuote.alkoholi_prosentti / 1.5),
