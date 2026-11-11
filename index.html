@@ -62,7 +62,6 @@
         .v-spacer td{line-height:0;font-size:0}
         /* Oikean reunan kategoriavalinta */
         .suodatin-ryhma{margin-left:auto;display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:230px}@media(max-width:768px){.suodatin-ryhma{margin-left:0}}
-        .hintaraja{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--text-muted)}.hintaraja input{width:100%;margin:0;accent-color:var(--btn-bg)}
         .suodatin-ryhma .kategoria-dropdown{margin-left:0;width:100%}
         .suodatin-ryhma .dropdown-toggle{width:100%;text-align:left;display:flex;justify-content:space-between;gap:8px}
         /* ---------- Mobiilin/tabletin korttinäkymä: kaikki tuotetiedot ilman vaakavieritystä ---------- */
@@ -148,7 +147,17 @@
         @media(prefers-reduced-motion:reduce){tr.mitali-kulta td:last-child,tr.mitali-hopea td:last-child,tr.mitali-pronssi td:last-child,tr.mitali-kulta td:last-child::after,tr.mitali-hopea td:last-child::after,tr.mitali-pronssi td:last-child::after{animation:none!important}.nav-active,.yp-nappi,.liquid-kytkin,.lk-mask,.lk-liquid,.lk-track,.lk-wrapper,.lk-cover,.lk-shadow,.jarjestys-active,.jarjestys-teksti{transition:none!important}}
 
         /* ===== Glass-switcherit: yhteinen lasipohja (järjestys 3 opt + teema 2 opt) ===== */
-        .jarjestys-switcher,.switcher{all:unset;display:flex;align-items:center;gap:4px;box-sizing:border-box;padding:3px 4px;border:none;border-radius:99em;background-color:color-mix(in srgb,var(--c-glass) 12%,transparent);-webkit-backdrop-filter:blur(8px) url(#switcher) saturate(var(--saturation));backdrop-filter:blur(8px) url(#switcher) saturate(var(--saturation));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*10%),transparent),inset 1.8px 3px 0px -2px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*90%),transparent),inset -2px -2px 0px -2px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*80%),transparent),inset -3px -8px 1px -6px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*60%),transparent),inset -0.3px -1px 4px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*12%),transparent),inset -1.5px 2.5px 0px -2px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*20%),transparent),inset 0px 3px 4px -2px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*20%),transparent),inset 2px -6.5px 1px -4px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*10%),transparent),0px 1px 5px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*10%),transparent),0px 6px 16px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*8%),transparent);transition:background-color 400ms cubic-bezier(1,0,0.4,1),box-shadow 400ms cubic-bezier(1,0,0.4,1);position:relative}
+        .jarjestys-switcher,.switcher,.hintaraja-lasipinta{all:unset;display:flex;align-items:center;gap:4px;box-sizing:border-box;padding:3px 4px;border:none;border-radius:99em;background-color:color-mix(in srgb,var(--c-glass) 12%,transparent);-webkit-backdrop-filter:blur(8px) url(#switcher) saturate(var(--saturation));backdrop-filter:blur(8px) url(#switcher) saturate(var(--saturation));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*10%),transparent),inset 1.8px 3px 0px -2px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*90%),transparent),inset -2px -2px 0px -2px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*80%),transparent),inset -3px -8px 1px -6px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*60%),transparent),inset -0.3px -1px 4px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*12%),transparent),inset -1.5px 2.5px 0px -2px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*20%),transparent),inset 0px 3px 4px -2px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*20%),transparent),inset 2px -6.5px 1px -4px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*10%),transparent),0px 1px 5px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*10%),transparent),0px 6px 16px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*8%),transparent);transition:background-color 400ms cubic-bezier(1,0,0.4,1),box-shadow 400ms cubic-bezier(1,0,0.4,1);position:relative}
+        .hintaraja-lasipinta{display:grid;gap:6px;padding:8px 12px;border-radius:18px;color:var(--text-main)}
+        .hintaraja-otsikko{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;font-weight:600}
+        .hintaraja-syotto{display:flex;align-items:center;gap:4px;padding:3px 7px;border-radius:99px;background:var(--dropdown-glass);border:1px solid var(--nav-btn-outline)}
+        .hintaraja-syotto input{box-sizing:border-box;width:6.5ch;min-width:0;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:right;font-variant-numeric:tabular-nums}
+        .hintaraja-syotto:has(input[aria-invalid="true"]){border-color:#d64e54}
+        .hintaraja-syotto:focus-within,.hintaraja-liuku:focus-visible{outline:2px solid var(--link-color);outline-offset:2px}
+        .hintaraja-syotto input:focus{outline:none}
+        .hintaraja-liuku{--taytto:100%;appearance:none;width:100%;height:24px;margin:0;border:0;border-radius:99px;background:linear-gradient(to right,var(--link-color) 0 var(--taytto),var(--nav-btn-outline) var(--taytto)) center/100% 5px no-repeat;cursor:pointer}
+        .hintaraja-liuku::-webkit-slider-thumb{appearance:none;width:24px;height:24px;border:1px solid var(--nav-btn-outline);border-radius:50%;background:linear-gradient(var(--dropdown-glass),var(--bg-container));box-shadow:inset 0 1px 2px var(--c-light),0 2px 5px #0003}
+        .hintaraja-liuku::-moz-range-thumb{width:22px;height:22px;border:1px solid var(--nav-btn-outline);border-radius:50%;background:linear-gradient(var(--dropdown-glass),var(--bg-container));box-shadow:inset 0 1px 2px var(--c-light),0 2px 5px #0003}
         .jarjestys-switcher{flex-shrink:0;padding:4px}
         .switcher{width:112px;height:32px;margin:0 auto}
         /* ===== Järjestys-switcher (glass, 3 opt) ===== */
@@ -316,9 +325,16 @@
                 <span id="aaniJaljella" class="aani-jaljella" aria-live="polite" hidden></span>
             </div>
             <div class="suodatin-ryhma">
-                <label class="hintaraja" for="hintaraja">Enimmäishinta: <span id="hintarajaArvo">Kaikki hinnat</span>
-                    <input type="range" id="hintaraja" min="0" max="100" step="0.5" value="100" aria-valuetext="Kaikki hinnat">
-                </label>
+                <div class="hintaraja-lasipinta">
+                    <div class="hintaraja-otsikko">
+                        <label for="hintaraja">Enimmäishinta</label>
+                        <span class="hintaraja-syotto">
+                            <input type="text" id="hintarajaArvo" inputmode="decimal" aria-label="Tarkka enimmäishinta euroina" placeholder="Ei rajaa" maxlength="14">
+                            <span aria-hidden="true">€</span>
+                        </span>
+                    </div>
+                    <input class="hintaraja-liuku" type="range" id="hintaraja" min="0" max="100" step="0.5" value="100" aria-valuetext="Kaikki hinnat">
+                </div>
                 <div class="kategoria-dropdown" id="kategoriaDropdown">
                     <button class="dropdown-toggle" id="dropdownToggle" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownContent">Kategoriat ▾</button>
                     <div class="dropdown-content" id="dropdownContent"></div>
@@ -458,19 +474,48 @@
                 && activeSources.has(t.lahde)
                 && (!lapsimoodiPaalla || (Number.isFinite(t.alkoholi_prosentti) && t.alkoholi_prosentti <= 22))
                 && (!hakuTokens.length || t._osuma)
-                && (hintaraja.valueAsNumber === 100 || efHinta(t) <= hintaraja.valueAsNumber));
+                && (enimmaishinta === null || Math.round(efHinta(t) * 100) <= Math.round(enimmaishinta * 100)));
         }
-        const hintaraja=document.getElementById('hintaraja'),hintarajaArvo=document.getElementById('hintarajaArvo');
-        hintaraja.addEventListener('input',()=>{
-            const teksti=hintaraja.valueAsNumber===100?'Kaikki hinnat':hintaraja.valueAsNumber.toFixed(2).replace('.',',')+' €';
-            hintarajaArvo.textContent=teksti;
-            hintaraja.setAttribute('aria-valuetext',teksti);
-            clearTimeout(scrollDebounceTimer);isShifting=isUserScrolling=false;startIndex=0;
-            renderWindow();paivitaMittarit();
+        const hintaraja = document.getElementById('hintaraja');
+        const hintarajaArvo = document.getElementById('hintarajaArvo');
+        const liukusaadinYlaraja = Number(hintaraja.max);
+        let enimmaishinta = null;
+        const muotoileHintaraja = hinta => hinta === null ? '' : hinta.toFixed(2).replace('.', ',');
+        function asetaHintaraja(hinta) {
+            hintaraja.style.setProperty('--taytto', (Math.min(hinta ?? liukusaadinYlaraja, liukusaadinYlaraja) / liukusaadinYlaraja * 100) + '%');
+            hintaraja.setAttribute('aria-valuetext', hinta === null ? 'Kaikki hinnat' : muotoileHintaraja(hinta) + ' €');
+            hintarajaArvo.removeAttribute('aria-invalid');
+            if (enimmaishinta === hinta) return;
+            enimmaishinta = hinta;
+            clearTimeout(scrollDebounceTimer);
+            isShifting = isUserScrolling = false;
+            startIndex = 0;
+            renderWindow();
+            paivitaMittarit();
+        }
+        hintaraja.addEventListener('input', () => {
+            const hinta = hintaraja.valueAsNumber === liukusaadinYlaraja ? null : hintaraja.valueAsNumber;
+            hintarajaArvo.value = muotoileHintaraja(hinta);
+            asetaHintaraja(hinta);
+        });
+        hintarajaArvo.addEventListener('input', () => {
+            const arvo = hintarajaArvo.value.trim();
+            if (arvo && !/^\d+(?:[,.]\d{0,2})?$/.test(arvo)) {
+                hintarajaArvo.setAttribute('aria-invalid', 'true');
+                return;
+            }
+            const hinta = arvo ? Number(arvo.replace(',', '.')) : null;
+            hintaraja.value = Math.min(hinta ?? liukusaadinYlaraja, liukusaadinYlaraja);
+            asetaHintaraja(hinta);
+        });
+        hintarajaArvo.addEventListener('blur', () => {
+            if (!hintarajaArvo.hasAttribute('aria-invalid')) {
+                hintarajaArvo.value = muotoileHintaraja(enimmaishinta);
+            }
         });
         let lajitteluValimuisti;
         function getSortedData(){
-            const rajaukset = [currentSort, panttiMukana, lapsimoodiPaalla, hintaraja.value, activeCategories.join(','), [...activeSources].join(',')].join('|');
+            const rajaukset = [currentSort, panttiMukana, lapsimoodiPaalla, enimmaishinta, activeCategories.join(','), [...activeSources].join(',')].join('|');
             const lajittelunAanet = currentSort === 'aanet' ? aanet : null;
             if (lajitteluValimuisti?.data === tuoteData && lajitteluValimuisti.haku === hakuTokens
                 && lajitteluValimuisti.rajaukset === rajaukset && lajitteluValimuisti.aanet === lajittelunAanet) {
@@ -483,7 +528,7 @@
                 return alkoEnsin(a,b)||(currentSort==='aanet'?laskeAnnosHinta(a)-laskeAnnosHinta(b):0);
             });
             // Äärimmäinen kärkitulos ohitetaan vain koko, hakemattoman valikoiman annoshintajärjestyksessä.
-            if(currentSort==='annos'&&!hakuTokens.length&&hintaraja.valueAsNumber===100&&KATEGORIA_NIMET.every(k=>activeCategories.includes(k))&&sorted.length>1){
+            if(currentSort==='annos'&&!hakuTokens.length&&enimmaishinta===null&&KATEGORIA_NIMET.every(k=>activeCategories.includes(k))&&sorted.length>1){
                 const paras=laskeAnnosHinta(sorted[0]),toiseksiParas=laskeAnnosHinta(sorted[1]);
                 if(Number.isFinite(paras)&&Number.isFinite(toiseksiParas)&&paras>0&&toiseksiParas/paras>1.4)sorted.shift();
             }
@@ -544,7 +589,7 @@
         };
         function luoRiviHtml(t,gi){const ah=laskeAnnosHinta(t);let riviLuokka='',mitaliEmoji='';if(gi===0){riviLuokka='mitali-kulta';mitaliEmoji='🥇'}else if(gi===1){riviLuokka='mitali-hopea';mitaliEmoji='🥈'}else if(gi===2){riviLuokka='mitali-pronssi';mitaliEmoji='🥉'}const nimi=t.nimi,url=escapeHtml(t.linkki),nimiHtml=luoNimiSpan(nimi,url),logoHtml=`<img class="kauppa-logo ${t.lahde}" src="logos/${LAHTEET[t.lahde].logo}.svg" alt="${LAHTEET[t.lahde].nimi}" title="${LAHTEET[t.lahde].nimi}">`,kuvaUrl=escapeHtml(t.kuva_url||""),kuvaHtml=kuvaUrl?`<img src="${kuvaUrl}" alt="" role="presentation" width="100" height="90" class="tuote-kuva" loading="lazy" decoding="async" crossorigin="anonymous" data-original-src="${kuvaUrl}" onerror="this.style.display='none'">`:'',avain=tuoteAvain(t),avainEsc=escapeHtml(avain);const sijaintiHtml=(gi<3&&mitaliEmoji)?`<span class="mitali-emoji" aria-label="Sija ${gi+1}">${mitaliEmoji}</span>`:`<span class="tuote-numero">${gi+1}.</span>`;const aaniMaara=aanet[avain]||0;const aanestysHtml=`<div class="aanestys"><span class="aani-maara" title="Käyttäjien ääniä parhaasta maku/alkoholi-suhteesta"><span class="aani-ikoni">🏆</span><span class="aani-luku">${aaniMaara}</span> ääntä</span><button type="button" class="aanesta-btn" disabled aria-label="Äänestä tätä juomaa: ${escapeHtml(nimi)}">👍 Äänestä</button></div>`;return `<tr class="tuote-rivi ${riviLuokka}" data-index="${gi}" data-product-id="${escapeHtml(t.id)}" data-lahde="${t.lahde}" data-key="${avainEsc}"><td><div class="tuote-solu">${sijaintiHtml}${logoHtml}${kuvaHtml}<span class="nimi-linkki">${nimiHtml}${aanestysHtml}</span></div></td><td>${escapeHtml(t.tyyppi)}</td><td>${efHinta(t).toFixed(2)}</td><td>${ah===Infinity?(Number.isFinite(t.alkoholi_prosentti)?'∞':'–'):ah.toFixed(2)+' €'}</td><td>${Number.isFinite(t.alkoholi_prosentti)?t.alkoholi_prosentti.toFixed(1)+'%':'–'}</td><td>${t.tilavuus_litraa.toLocaleString('fi-FI',{maximumFractionDigits:3})}</td><td>${t.myymalat}</td></tr>`}
         function animateSortAndRender(preserveScroll=false){const previousScrollY=window.scrollY;if(!preserveScroll)window.scrollTo(0,0);const oldRows=document.querySelectorAll('#taulukkoBody tr');const oldGauges=document.querySelectorAll('.mittari-overlay');if(oldRows.length){oldRows.forEach(row=>{row.style.transition='opacity 0.15s ease-in-out';row.style.opacity='0'})}if(oldGauges.length){oldGauges.forEach(g=>{g.style.transition='opacity 0.15s ease-in-out';g.style.opacity='0'})}const fadeOutPromise=new Promise(resolve=>{let remaining=(oldRows.length?1:0)+(oldGauges.length?1:0);if(remaining===0)return resolve();function onTransitionEnd(e){if(e.propertyName==='opacity'){remaining--;if(remaining===0)resolve()}}oldRows.forEach(row=>row.addEventListener('transitionend',onTransitionEnd,{once:true}));oldGauges.forEach(g=>g.addEventListener('transitionend',onTransitionEnd,{once:true}));setTimeout(()=>{if(remaining>0)resolve()},300)});fadeOutPromise.then(()=>{document.querySelectorAll('.mittari-overlay').forEach(el=>el.remove());renderWindow();if(preserveScroll)window.scrollTo(0,previousScrollY);paivitaMittarit(true);const newRows=document.querySelectorAll('#taulukkoBody tr');newRows.forEach(row=>{row.style.transition='none';row.style.opacity='0'});requestAnimationFrame(function(){requestAnimationFrame(function(){newRows.forEach(row=>{row.style.transition='opacity 0.15s ease-in-out';row.style.opacity='1';row.addEventListener('transitionend',function handler(e){if(e.propertyName==='opacity'){row.removeEventListener('transitionend',handler);row.style.transition=''}})});})});})}let _rowH=0;function getRowH(){if(_rowH)return _rowH;const rows=document.querySelectorAll('#taulukkoBody tr.tuote-rivi');if(rows.length>=6){let sum=0,n=0;for(let i=3;i<Math.min(rows.length,13);i++){const h=rows[i].getBoundingClientRect().height;if(h>0){sum+=h;n++}}if(n){_rowH=Math.round(sum/n);return _rowH}}return window.innerWidth<768?300:130}function resetRowH(){_rowH=0}function updateWindowFromScroll(){const total=getSortedData().length;if(total<=WINDOW_SIZE){if(startIndex!==0){startIndex=0;renderWindow();paivitaMittarit()}return}const rh=getRowH();let want=Math.round(window.scrollY/rh)-25;want=Math.max(0,Math.min(want,total-WINDOW_SIZE));if(Math.abs(want-startIndex)>=8){startIndex=want;renderWindow();paivitaMittarit()}}
-        function renderWindow(){const sorted=getSortedData(),total=sorted.length,end=Math.min(startIndex+WINDOW_SIZE,total),items=sorted.slice(startIndex,end);if(total===0){nykyisetTuotteet=[];document.querySelectorAll('.mittari-overlay').forEach(el=>el.remove());body.innerHTML='<tr><td colspan="7" style="text-align:center;padding:34px 16px;color:var(--text-muted);font-size:15px">Ei hakutuloksia'+(hakuNaytto?' haulle ”'+escapeHtml(hakuNaytto)+'”':'')+(hintaraja.valueAsNumber < Number(hintaraja.max) ? '. Kokeile suurempaa enimmäishintaa.' : '. Kokeile lyhyempää tai eri hakusanaa.')+'</td></tr>';dropdownToggle.innerHTML='Kategoriat (0) ▾';return}nykyisetTuotteet=items;const rh=getRowH(),topPad=Math.round(startIndex*rh),botPad=Math.round(Math.max(0,total-end)*rh);let html='<tr class="v-spacer" aria-hidden="true"><td colspan="7" style="height:'+topPad+'px"></td></tr>';for(let i=0;i<items.length;i++){html+=luoRiviHtml(items[i],startIndex+i)}html+='<tr class="v-spacer" aria-hidden="true"><td colspan="7" style="height:'+botPad+'px"></td></tr>';body.innerHTML=html;dropdownToggle.innerHTML='Kategoriat ('+total+') ▾';processAllImages();paivitaAanetNakyma()}
+        function renderWindow(){const sorted=getSortedData(),total=sorted.length,end=Math.min(startIndex+WINDOW_SIZE,total),items=sorted.slice(startIndex,end);if(total===0){nykyisetTuotteet=[];document.querySelectorAll('.mittari-overlay').forEach(el=>el.remove());body.innerHTML='<tr><td colspan="7" style="text-align:center;padding:34px 16px;color:var(--text-muted);font-size:15px">Ei hakutuloksia'+(hakuNaytto?' haulle ”'+escapeHtml(hakuNaytto)+'”':'')+(enimmaishinta !== null ? '. Kokeile suurempaa enimmäishintaa.' : '. Kokeile lyhyempää tai eri hakusanaa.')+'</td></tr>';dropdownToggle.innerHTML='Kategoriat (0) ▾';return}nykyisetTuotteet=items;const rh=getRowH(),topPad=Math.round(startIndex*rh),botPad=Math.round(Math.max(0,total-end)*rh);let html='<tr class="v-spacer" aria-hidden="true"><td colspan="7" style="height:'+topPad+'px"></td></tr>';for(let i=0;i<items.length;i++){html+=luoRiviHtml(items[i],startIndex+i)}html+='<tr class="v-spacer" aria-hidden="true"><td colspan="7" style="height:'+botPad+'px"></td></tr>';body.innerHTML=html;dropdownToggle.innerHTML='Kategoriat ('+total+') ▾';processAllImages();paivitaAanetNakyma()}
         function shiftWindow(dir){updateWindowFromScroll();return true}
         function checkStuck(){if(isShifting||isUserScrolling)return;const table=document.getElementById('tuoteTaulukko');if(!table)return;const sorted=getSortedData(),rect=table.getBoundingClientRect(),margin=window.innerWidth<768?1200:2000;if(rect.top>=-margin&&startIndex>0)shiftWindow('backward');else if(rect.bottom<=window.innerHeight+margin&&startIndex+WINDOW_SIZE<sorted.length)shiftWindow('forward')}
         let ticking=false;window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{updateWindowFromScroll();paivitaMittarit();ticking=false});ticking=true}},{passive:true});container.addEventListener('scroll',()=>{paivitaMittarit()});let resizeDebounce;window.addEventListener('resize',()=>{clearTimeout(resizeDebounce);resizeDebounce=setTimeout(()=>{resetRowH();renderWindow();updateWindowFromScroll();paivitaMittarit()},100)});let topObserver,bottomObserver;function setupObservers(){topObserver?.disconnect();bottomObserver?.disconnect();const opts={rootMargin:window.innerWidth<768?'1200px 0px':'2000px 0px'};topObserver=new IntersectionObserver(entries=>{if(entries[0].isIntersecting&&!isShifting&&startIndex>0)shiftWindow('backward')},opts);bottomObserver=new IntersectionObserver(entries=>{if(entries[0].isIntersecting&&!isShifting)shiftWindow('forward')},opts);topObserver.observe(topSentinel);bottomObserver.observe(bottomSentinel)}setupObservers();window.addEventListener('resize',setupObservers);dropdownToggle.addEventListener('click',e=>{e.stopPropagation();const v=dropdownContent.classList.toggle('visible');dropdownToggle.setAttribute('aria-expanded',v)});document.addEventListener('click',e=>{if(!dropdownContent.contains(e.target)&&e.target!==dropdownToggle){dropdownContent.classList.remove('visible');dropdownToggle.setAttribute('aria-expanded','false')}});body.addEventListener('click',e=>{const btn=e.target.closest('.aanesta-btn');if(!btn)return;e.preventDefault();const tr=btn.closest('tr.tuote-rivi');if(!tr||!tr.dataset.key)return;const avain=tr.dataset.key;if(omatAanet.has(avain))window.peruAani(avain);else window.aanesta(avain)});function luoCheckboxit(){activeCategories=[...KATEGORIA_NIMET];dropdownContent.innerHTML='';for(const kat of KATEGORIA_NIMET){const label=document.createElement('label');label.className='kategoria-checkbox';const cb=document.createElement('input');cb.type='checkbox';cb.value=kat;cb.checked=true;cb.addEventListener('change',e=>{if(e.target.checked){if(!activeCategories.includes(kat))activeCategories.push(kat)}else activeCategories=activeCategories.filter(c=>c!==kat);startIndex=0;clearTimeout(scrollDebounceTimer);isShifting=isUserScrolling=false;animateSortAndRender(true)});label.appendChild(cb);label.appendChild(document.createTextNode(kat));dropdownContent.appendChild(label)}}
