@@ -10,6 +10,8 @@ const tila = document.getElementById('tila');
 const taulukko = document.getElementById('hinnasto');
 const markettisivu = Boolean(kauppaketju || taulukko.dataset.hinnat);
 const markettiannokset = taulukko.hasAttribute('data-annokset');
+const kiinteaViinityyppi = taulukko.dataset.viinityyppi;
+const hintaraja = Number(taulukko.dataset.hintaraja ?? Infinity);
 const rivit = document.getElementById('rivit');
 const lisaa = document.getElementById('lisaa');
 const raha = new Intl.NumberFormat('fi-FI', { style: 'currency', currency: 'EUR' });
@@ -38,7 +40,7 @@ function naytaLisaa() {
         if (vainViinat) rivi.insertCell().textContent = koko.format(tuote.vahvuus) + ' %';
         rivi.insertCell().textContent = raha.format(tuote.hinta);
         if (vainViinat || markettiannokset) rivi.insertCell().textContent = raha.format(tuote.annoshinta);
-        if (viinityyppi || (markettisivu && !markettiannokset)) rivi.insertCell().textContent = raha.format(tuote.litrahinta);
+        if (viinityyppi || kiinteaViinityyppi || (markettisivu && !markettiannokset)) rivi.insertCell().textContent = raha.format(tuote.litrahinta);
         naytetty++;
     }
     taulukko.hidden = !naytetty;
@@ -57,6 +59,7 @@ function suodata() {
     const sanat = normalisoi(haku.value.trim()).split(/\s+/);
     osumat = tuotteet.filter(tuote => (!viinityyppi?.value || tuote.viinityyppi === viinityyppi.value)
         && (!kauppaketju?.value || tuote.lahde === kauppaketju.value)
+        && tuote.hinta < hintaraja
         && vastaaVahvuutta(tuote)
         && sanat.every(sana => {
             const vastine = olutHakusanat.get(sana);
@@ -92,6 +95,7 @@ lueJson(hinnastoPolku).then(({ tuotteet: aineisto, keratty }) => {
     tuotteet = aineisto.filter(tuote => tuote.nimi?.trim()
         && Number.isFinite(tuote.hinta_eur) && tuote.hinta_eur > 0
         && Number.isFinite(tuote.tilavuus_litraa) && tuote.tilavuus_litraa > 0
+        && (!kiinteaViinityyppi || tuote.tyyppi?.split(',', 1)[0].trim() === kiinteaViinityyppi)
         && (!viinityyppi || viiniluokat.has(tuote.tyyppi?.split(',', 1)[0].trim()))
         && (!vainViinat || (tuote.tyyppi?.split(',').some(osa => osa.trim() === 'vodkat ja viinat')
             && Number.isFinite(tuote.alkoholi_prosentti) && tuote.alkoholi_prosentti > 0))

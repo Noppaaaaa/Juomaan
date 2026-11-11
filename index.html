@@ -62,6 +62,7 @@
         .v-spacer td{line-height:0;font-size:0}
         /* Oikean reunan kategoriavalinta */
         .suodatin-ryhma{margin-left:auto;display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:230px}@media(max-width:768px){.suodatin-ryhma{margin-left:0}}
+        .hintaraja{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--text-muted)}.hintaraja input{width:100%;margin:0;accent-color:var(--btn-bg)}
         .suodatin-ryhma .kategoria-dropdown{margin-left:0;width:100%}
         .suodatin-ryhma .dropdown-toggle{width:100%;text-align:left;display:flex;justify-content:space-between;gap:8px}
         /* ---------- Mobiilin/tabletin korttinäkymä: kaikki tuotetiedot ilman vaakavieritystä ---------- */
@@ -315,6 +316,9 @@
                 <span id="aaniJaljella" class="aani-jaljella" aria-live="polite" hidden></span>
             </div>
             <div class="suodatin-ryhma">
+                <label class="hintaraja" for="hintaraja">Enimmäishinta: <span id="hintarajaArvo">Kaikki hinnat</span>
+                    <input type="range" id="hintaraja" min="0" max="100" step="0.5" value="100" aria-valuetext="Kaikki hinnat">
+                </label>
                 <div class="kategoria-dropdown" id="kategoriaDropdown">
                     <button class="dropdown-toggle" id="dropdownToggle" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownContent">Kategoriat ▾</button>
                     <div class="dropdown-content" id="dropdownContent"></div>
@@ -453,11 +457,20 @@
                 activeCategories.includes(t.tyyppi)
                 && activeSources.has(t.lahde)
                 && (!lapsimoodiPaalla || (Number.isFinite(t.alkoholi_prosentti) && t.alkoholi_prosentti <= 22))
-                && (!hakuTokens.length || t._osuma));
+                && (!hakuTokens.length || t._osuma)
+                && (hintaraja.valueAsNumber === 100 || efHinta(t) <= hintaraja.valueAsNumber));
         }
+        const hintaraja=document.getElementById('hintaraja'),hintarajaArvo=document.getElementById('hintarajaArvo');
+        hintaraja.addEventListener('input',()=>{
+            const teksti=hintaraja.valueAsNumber===100?'Kaikki hinnat':hintaraja.valueAsNumber.toFixed(2).replace('.',',')+' €';
+            hintarajaArvo.textContent=teksti;
+            hintaraja.setAttribute('aria-valuetext',teksti);
+            clearTimeout(scrollDebounceTimer);isShifting=isUserScrolling=false;startIndex=0;
+            renderWindow();paivitaMittarit();
+        });
         let lajitteluValimuisti;
         function getSortedData(){
-            const rajaukset = [currentSort, panttiMukana, lapsimoodiPaalla, activeCategories.join(','), [...activeSources].join(',')].join('|');
+            const rajaukset = [currentSort, panttiMukana, lapsimoodiPaalla, hintaraja.value, activeCategories.join(','), [...activeSources].join(',')].join('|');
             const lajittelunAanet = currentSort === 'aanet' ? aanet : null;
             if (lajitteluValimuisti?.data === tuoteData && lajitteluValimuisti.haku === hakuTokens
                 && lajitteluValimuisti.rajaukset === rajaukset && lajitteluValimuisti.aanet === lajittelunAanet) {
@@ -470,7 +483,7 @@
                 return alkoEnsin(a,b)||(currentSort==='aanet'?laskeAnnosHinta(a)-laskeAnnosHinta(b):0);
             });
             // Äärimmäinen kärkitulos ohitetaan vain koko, hakemattoman valikoiman annoshintajärjestyksessä.
-            if(currentSort==='annos'&&!hakuTokens.length&&KATEGORIA_NIMET.every(k=>activeCategories.includes(k))&&sorted.length>1){
+            if(currentSort==='annos'&&!hakuTokens.length&&hintaraja.valueAsNumber===100&&KATEGORIA_NIMET.every(k=>activeCategories.includes(k))&&sorted.length>1){
                 const paras=laskeAnnosHinta(sorted[0]),toiseksiParas=laskeAnnosHinta(sorted[1]);
                 if(Number.isFinite(paras)&&Number.isFinite(toiseksiParas)&&paras>0&&toiseksiParas/paras>1.4)sorted.shift();
             }

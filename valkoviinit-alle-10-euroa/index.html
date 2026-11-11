@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Valkoviinit alle 10 € Alkossa | Juomaan</title>
+    <meta name="description" content="Katso Alkon valkoviinit alle 10 eurolla. Vertaa pakkaus- ja litrahintoja pantteineen ja tarkista saatavuus Alkosta.">
+    <link rel="canonical" href="https://juomaan.fi/valkoviinit-alle-10-euroa/">
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192">
+    <link rel="preload" href="/alkon-hinnasto/hinnat.json" as="fetch" crossorigin>
+    <link rel="stylesheet" href="/alkon-hinnasto/hinnasto.css">
+</head>
+<body>
+    <nav aria-label="Sijainti sivustolla">
+        <ol class="murupolku" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/"><span itemprop="name">Etusivu</span></a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/alkon-hinnasto/"><span itemprop="name">Alkon hinnasto</span></a>
+                <meta itemprop="position" content="2">
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name" aria-current="page">Valkoviinit alle 10 €</span>
+                <meta itemprop="position" content="3">
+            </li>
+        </ol>
+    </nav>
+    <main>
+        <h1>Valkoviinit alle 10 € Alkossa</h1>
+        <p>Katso Alkon valkoviinit alle 10 eurolla. Hinta sisältää mahdollisen pantin. Lajittele pakkaushinnan tai litrahinnan mukaan.</p>
+        <label for="haku">Hae viinin nimellä</label>
+        <input id="haku" type="search" maxlength="100" autocomplete="off" disabled>
+        <label for="jarjestys">Järjestä tuotteet</label>
+        <select id="jarjestys" disabled>
+            <option value="hinta">Halvin pakkaushinta</option>
+            <option value="litrahinta">Halvin litrahinta</option>
+            <option value="nimi">Nimi A–Ö</option>
+        </select>
+        <p id="tila" role="status"></p>
+        <table id="hinnasto" data-viinityyppi="valkoviinit" data-hintaraja="10" aria-label="Alkon viinien pakkaus- ja litrahinnat">
+            <caption id="otoksen-paivays">10 edullisinta pakkausta alle 10 € 10.11.2026 kerätyistä hinnoista.</caption>
+            <thead><tr><th scope="col">Tuote</th><th scope="col">Koko</th><th scope="col">Hinta</th><th scope="col">€ / l</th></tr></thead>
+            <tbody id="rivit">
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/901263/tavernello-bianco-2024-kartonkitolkki">Tavernello Bianco 2024 kartonkitölkki</a></td><td>0,25 l</td><td>3,14 €</td><td>12,56 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/901734/jp-chenet-colombard-chardonnay-2024-viinipussi">JP. Chenet Colombard Chardonnay  2024 viinipussi</a></td><td>0,187 l</td><td>3,39 €</td><td>18,13 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/900532/sancrispino-trebbiano-organic-kartonkitolkki">Sancrispino Trebbiano Organic kartonkitölkki</a></td><td>0,25 l</td><td>3,59 €</td><td>14,36 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/959925/19-crimes-chardonnay-tolkki">19 Crimes Chardonnay tölkki</a></td><td>0,187 l</td><td>3,70 €</td><td>19,79 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/935633/akesson-terra-delloro-bianco-kartonkitolkki">Åkesson Terra dell&#x27;oro Bianco kartonkitölkki</a></td><td>0,25 l</td><td>3,98 €</td><td>15,92 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/932922/barefoot-pinot-grigio">Barefoot Pinot Grigio</a></td><td>0,187 l</td><td>3,99 €</td><td>21,34 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/580643/casillero-del-diablo-chardonnay-2023">Casillero del Diablo Chardonnay 2023</a></td><td>0,25 l</td><td>3,99 €</td><td>15,96 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/902075/tarani-sauvignon-blanc-2024">Tarani Sauvignon Blanc 2024</a></td><td>0,187 l</td><td>3,99 €</td><td>21,34 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/917104/torres-via-sol-2024">Torres Viña Sol 2024</a></td><td>0,1875 l</td><td>3,99 €</td><td>21,28 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/512413/gato-negro-sauvignon-blanc-2022-muovipullo">Gato Negro Sauvignon Blanc 2022 muovipullo</a></td><td>0,25 l</td><td>4,13 €</td><td>16,52 €</td></tr>
+            </tbody>
+        </table>
+        <button id="lisaa" type="button" hidden>Näytä 30 lisää</button>
+        <noscript><p>Haku ja lajittelu käyttävät JavaScriptiä. Voit etsiä tuotteita myös suoraan <a href="https://www.alko.fi/fi/tuotteet">Alkon verkkosivulla</a>.</p></noscript>
+        <h2>Mitä alle 10 € tarkoittaa?</h2>
+        <p>Listalla on pakkauksia, joiden pantillinen hinta alittaa 10 euroa. Pakkauskoko näkyy jokaisella rivillä. Litrahinta auttaa vertaamaan erikokoisia pulloja ja pakkauksia.</p>
+        <h2>Mistä hinnat tulevat?</h2>
+        <p>Juomaan kokoaa hinnat Alkon julkaisemista tuotetiedoista. Listan hinta sisältää mahdollisen pantin. <span id="paivitys"></span> Tarkista ajantasainen hinta ja myymäläsaatavuus Alkon tuotesivulta.</p>
+        <p><a href="/alkon-viinit/">Kaikki Alkon viinit</a> · <a href="/kuohuviinit-alle-15-euroa/">Kuohuviinit alle 15 €</a> · <a href="/punaviinit-alle-10-euroa/">Punaviinit alle 10 €</a></p>
+    </main>
+    <script src="/alkon-hinnasto/hinnasto.js?v=11"></script>
+</body>
+</html>
