@@ -73,7 +73,7 @@ def otos_html(kansio, kuvaus, rivit, keratty, lahde='kerätyistä'):
     return sivu, html
 
 
-def pakkausrivit(tuotteet, litrahinta=False, alle=None):
+def pakkausrivit(tuotteet, litrahinta=False, alle=None, annoshinta=False):
     ehdokkaat = []
     for tuote in tuotteet:
         nimi = (tuote['nimi'] or '').strip()
@@ -85,16 +85,22 @@ def pakkausrivit(tuotteet, litrahinta=False, alle=None):
                         for arvo in (litrat, perushinta))):
             continue
         hinta = round(perushinta + (tuote['pantti_eur'] or 0), 2)
+        vahvuus = tuote['alkoholi_prosentti'] if annoshinta else None
+        if annoshinta and not (isinstance(vahvuus, (int, float)) and isfinite(vahvuus) and vahvuus > 0):
+            continue
         if alle is None or hinta < alle:
-            ehdokkaat.append((hinta, nimi, linkki, litrat))
+            vertailuhinta = hinta * 1.5 / (litrat * vahvuus) if annoshinta else hinta
+            ehdokkaat.append((vertailuhinta, nimi, linkki, litrat, hinta))
     if alle is None and len(ehdokkaat) < 10:
         raise ValueError('Alkon pakkaushintojen aineisto on puutteellinen.')
 
     rivit = []
-    for hinta, nimi, linkki, litrat in sorted(ehdokkaat)[:10]:
+    for vertailuhinta, nimi, linkki, litrat, hinta in sorted(ehdokkaat)[:10]:
         koko = f'{litrat:g}'.replace('.', ',')
         hinnat = f'<td>{hinta:.2f} €</td>'
-        if litrahinta:
+        if annoshinta:
+            hinnat += f'<td>{vertailuhinta:.2f} €</td>'
+        elif litrahinta:
             hinnat += f'<td>{hinta / litrat:.2f} €</td>'
         hinnat = hinnat.replace('.', ',')
         rivit.append(f'                <tr><td><a href="{escape(linkki)}">{escape(nimi)}</a></td>'
@@ -276,12 +282,15 @@ def paivita():
                                       pakkausrivit(punaviinit, litrahinta=True), keratty)
     hinnasto_sivu, hinnasto_html = otos_html('alkon-hinnasto', '10 halvinta pakkausta',
                                             pakkausrivit(hinnasto), keratty)
-    budjettiotokset = []
+    lisaviiniotokset = [
+        otos_html('halvin-punaviini', '10 edullisinta punaviiniannosta',
+                  pakkausrivit(punaviinit, annoshinta=True), keratty)
+    ]
     for kansio, viinityyppi, raja in BUDJETTIVIINIT:
         ehdokkaat = [t for t in hinnasto if viiniluokka(t) == viinityyppi]
         rivit = pakkausrivit(ehdokkaat, litrahinta=True, alle=raja)
         kuvaus = f'{len(rivit)} edullisinta pakkausta alle {raja} €' if rivit else f'Ei pakkauksia alle {raja} €'
-        budjettiotokset.append(otos_html(kansio, kuvaus, rivit, keratty))
+        lisaviiniotokset.append(otos_html(kansio, kuvaus, rivit, keratty))
     marketit = [
         json.loads((ROOT / f'{lahde}_tuotteet.json').read_text(encoding='utf-8'))
         for lahde in ('s_ryhma', 'k_ryhma')
@@ -334,12 +343,14 @@ def paivita():
             if kansio == 'alkon-hinnasto':
                 if viinit(vanhat) != viinit(hinnasto):
                     muuttuneet.add(domain + 'alkon-viinit/')
+                if [t for t in vanhat if viiniluokka(t) == 'punaviinit'] != punaviinit:
+                    muuttuneet.add(domain + 'halvin-punaviini/')
                 for sivu, viinityyppi, raja in BUDJETTIVIINIT:
                     if budjettiviinit(vanhat, viinityyppi, raja) != budjettiviinit(hinnasto, viinityyppi, raja):
                         muuttuneet.add(domain + sivu + '/')
         kirjoita(polku, json.dumps(payload, ensure_ascii=False, separators=(',', ':')) + '\n')
 
-    for sivu, html in [*otokset, *budjettiotokset]:
+    for sivu, html in [*otokset, *lisaviiniotokset]:
         kirjoita(sivu, html)
     kirjoita(viina_sivu, viina_html)
     kirjoita(viini_sivu, viini_html)

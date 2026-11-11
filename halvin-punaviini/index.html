@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alkon halvin punaviini annoshinnan mukaan | Juomaan</title>
+    <meta name="description" content="Löydä Alkon halvin punaviini alkoholiannoksen hinnalla. Vertaa pullon hintaa ja hintaa suhteessa puhtaan alkoholin määrään.">
+    <link rel="canonical" href="https://juomaan.fi/halvin-punaviini/">
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192">
+    <link rel="preload" href="/alkon-hinnasto/hinnat.json" as="fetch" crossorigin>
+    <link rel="stylesheet" href="/alkon-hinnasto/hinnasto.css">
+</head>
+<body>
+    <nav aria-label="Sijainti sivustolla">
+        <ol class="murupolku" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/"><span itemprop="name">Etusivu</span></a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/alkon-hinnasto/"><span itemprop="name">Alkon hinnasto</span></a>
+                <meta itemprop="position" content="2">
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name" aria-current="page">Halvin punaviini</span>
+                <meta itemprop="position" content="3">
+            </li>
+        </ol>
+    </nav>
+    <main>
+        <h1>Alkon halvin punaviini annoshinnan mukaan</h1>
+        <p>Vertaa Alkon punaviinejä alkoholiannoksen hinnan mukaan. Ensimmäisenä ovat punaviinit, joissa puhdas alkoholi maksaa vähiten. Voit järjestää listan myös pakkauksen hinnan mukaan.</p>
+        <label for="haku">Hae viinin nimellä</label>
+        <input id="haku" type="search" maxlength="100" autocomplete="off" disabled>
+        <label for="jarjestys">Järjestä tuotteet</label>
+        <select id="jarjestys" disabled>
+            <option value="annoshinta">Halvin alkoholiannos</option>
+            <option value="hinta">Halvin pakkaushinta</option>
+            <option value="nimi">Nimi A–Ö</option>
+        </select>
+        <p id="tila" role="status"></p>
+        <table id="hinnasto" data-viinityyppi="punaviinit" data-annokset aria-label="Alkon punaviinien pakkaus- ja annoshinnat">
+            <caption id="otoksen-paivays">10 edullisinta punaviiniannosta 10.11.2026 kerätyistä hinnoista.</caption>
+            <thead><tr><th scope="col">Tuote</th><th scope="col">Koko</th><th scope="col">Hinta</th><th scope="col">€ / annos</th></tr></thead>
+            <tbody id="rivit">
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/419578/kallary-rosso-primitivo-passitivo-2022-kartonkitolkki">Kallary Rosso Primitivo Passitivo 2022 kartonkitölkki</a></td><td>1 l</td><td>9,99 €</td><td>1,07 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/471028/org-de-rac-syrah-2024-kartonkitolkki">Org De Rac Syrah 2024 kartonkitölkki</a></td><td>1 l</td><td>9,99 €</td><td>1,07 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/493468/smooth-escape-shiraz-cabernet-2023-kartonkitolkki">Smooth Escape Shiraz Cabernet 2023 kartonkitölkki</a></td><td>1 l</td><td>9,99 €</td><td>1,11 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/954004/kuronen-organic-red-2020-muovipullo">Kuronen Organic Red 2020 muovipullo</a></td><td>1 l</td><td>10,15 €</td><td>1,13 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/902821/appassinero-appassimento-hanapakkaus">Appassinero Appassimento hanapakkaus</a></td><td>3 l</td><td>32,99 €</td><td>1,14 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/901235/vegas-del-rivilla-tinto-kartonkitolkki">Vegas del Rivilla Tinto kartonkitölkki</a></td><td>1 l</td><td>9,49 €</td><td>1,14 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/903251/darling-river-garnacha-2024-kartonkitolkki">Darling River Garnacha 2024 kartonkitölkki</a></td><td>1 l</td><td>9,99 €</td><td>1,15 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/447858/smooth-escape-riverland-shiraz-cabernet-sauvignon-2022-muovipullo">Smooth Escape Riverland Shiraz Cabernet Sauvignon 2022 muovipullo</a></td><td>1 l</td><td>9,99 €</td><td>1,15 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/427907/vappu-organic-red-2021">Vappu Organic Red 2021</a></td><td>0,75 l</td><td>8,16 €</td><td>1,17 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/443258/chavin-bordeaux-rouge-2023-kartonkitolkki">Chavin Bordeaux Rouge 2023 kartonkitölkki</a></td><td>1 l</td><td>10,98 €</td><td>1,18 €</td></tr>
+            </tbody>
+        </table>
+        <button id="lisaa" type="button" hidden>Näytä 30 lisää</button>
+        <noscript><p>Haku ja lajittelu käyttävät JavaScriptiä. Voit etsiä tuotteita myös suoraan <a href="https://www.alko.fi/fi/tuotteet">Alkon verkkosivulla</a>.</p></noscript>
+        <h2>Miten punaviinin annoshinta lasketaan?</h2>
+        <p>Pantillinen pakkaushinta jaetaan pakkauksen sisältämien alkoholiannosten määrällä. Vertailussa yksi annos vastaa 1,5 cl puhdasta alkoholia. Hinta huomioi sekä pakkauskoon että alkoholipitoisuuden.</p>
+        <h2>Mistä hinnat tulevat?</h2>
+        <p>Juomaan kokoaa hinnat Alkon julkaisemista tuotetiedoista. Listan hinta sisältää mahdollisen pantin. <span id="paivitys"></span> Tarkista ajantasainen hinta ja myymäläsaatavuus Alkon tuotesivulta.</p>
+        <p><a href="/alkon-viinit/">Kaikki Alkon viinit</a> · <a href="/punaviinit-alle-10-euroa/">Punaviinit alle 10 €</a> · <a href="/kuohuviinit-alle-15-euroa/">Kuohuviinit alle 15 €</a> · <a href="/valkoviinit-alle-10-euroa/">Valkoviinit alle 10 €</a></p>
+    </main>
+    <script src="/alkon-hinnasto/hinnasto.js?v=12"></script>
+</body>
+</html>

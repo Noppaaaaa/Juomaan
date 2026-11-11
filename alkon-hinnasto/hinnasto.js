@@ -9,7 +9,7 @@ const jarjestys = document.getElementById('jarjestys');
 const tila = document.getElementById('tila');
 const taulukko = document.getElementById('hinnasto');
 const markettisivu = Boolean(kauppaketju || taulukko.dataset.hinnat);
-const markettiannokset = taulukko.hasAttribute('data-annokset');
+const naytaAnnoshinta = taulukko.hasAttribute('data-annokset');
 const kiinteaViinityyppi = taulukko.dataset.viinityyppi;
 const hintaraja = Number(taulukko.dataset.hintaraja ?? Infinity);
 const rivit = document.getElementById('rivit');
@@ -39,8 +39,8 @@ function naytaLisaa() {
         rivi.insertCell().textContent = koko.format(tuote.tilavuus_litraa) + ' l';
         if (vainViinat) rivi.insertCell().textContent = koko.format(tuote.vahvuus) + ' %';
         rivi.insertCell().textContent = raha.format(tuote.hinta);
-        if (vainViinat || markettiannokset) rivi.insertCell().textContent = raha.format(tuote.annoshinta);
-        if (viinityyppi || kiinteaViinityyppi || (markettisivu && !markettiannokset)) rivi.insertCell().textContent = raha.format(tuote.litrahinta);
+        if (vainViinat || naytaAnnoshinta) rivi.insertCell().textContent = raha.format(tuote.annoshinta);
+        if (!naytaAnnoshinta && (viinityyppi || kiinteaViinityyppi || markettisivu)) rivi.insertCell().textContent = raha.format(tuote.litrahinta);
         naytetty++;
     }
     taulukko.hidden = !naytetty;
@@ -95,6 +95,7 @@ lueJson(hinnastoPolku).then(({ tuotteet: aineisto, keratty }) => {
     tuotteet = aineisto.filter(tuote => tuote.nimi?.trim()
         && Number.isFinite(tuote.hinta_eur) && tuote.hinta_eur > 0
         && Number.isFinite(tuote.tilavuus_litraa) && tuote.tilavuus_litraa > 0
+        && (!naytaAnnoshinta || (Number.isFinite(tuote.alkoholi_prosentti) && tuote.alkoholi_prosentti > 0))
         && (!kiinteaViinityyppi || tuote.tyyppi?.split(',', 1)[0].trim() === kiinteaViinityyppi)
         && (!viinityyppi || viiniluokat.has(tuote.tyyppi?.split(',', 1)[0].trim()))
         && (!vainViinat || (tuote.tyyppi?.split(',').some(osa => osa.trim() === 'vodkat ja viinat')
