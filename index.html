@@ -147,8 +147,8 @@
         @media(prefers-reduced-motion:reduce){tr.mitali-kulta td:last-child,tr.mitali-hopea td:last-child,tr.mitali-pronssi td:last-child,tr.mitali-kulta td:last-child::after,tr.mitali-hopea td:last-child::after,tr.mitali-pronssi td:last-child::after{animation:none!important}.nav-active,.yp-nappi,.liquid-kytkin,.lk-mask,.lk-liquid,.lk-track,.lk-wrapper,.lk-cover,.lk-shadow,.jarjestys-active,.jarjestys-teksti{transition:none!important}}
 
         /* ===== Glass-switcherit: yhteinen lasipohja (järjestys 3 opt + teema 2 opt) ===== */
-        .jarjestys-switcher,.switcher,.hintaraja-lasipinta{all:unset;display:flex;align-items:center;gap:4px;box-sizing:border-box;padding:3px 4px;border:none;border-radius:99em;background-color:color-mix(in srgb,var(--c-glass) 12%,transparent);-webkit-backdrop-filter:blur(8px) url(#switcher) saturate(var(--saturation));backdrop-filter:blur(8px) url(#switcher) saturate(var(--saturation));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*10%),transparent),inset 1.8px 3px 0px -2px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*90%),transparent),inset -2px -2px 0px -2px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*80%),transparent),inset -3px -8px 1px -6px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*60%),transparent),inset -0.3px -1px 4px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*12%),transparent),inset -1.5px 2.5px 0px -2px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*20%),transparent),inset 0px 3px 4px -2px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*20%),transparent),inset 2px -6.5px 1px -4px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*10%),transparent),0px 1px 5px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*10%),transparent),0px 6px 16px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*8%),transparent);transition:background-color 400ms cubic-bezier(1,0,0.4,1),box-shadow 400ms cubic-bezier(1,0,0.4,1);position:relative}
-        .hintaraja-lasipinta{display:grid;gap:6px;padding:8px 12px;border-radius:18px;color:var(--text-main)}
+        .jarjestys-switcher,.switcher{all:unset;display:flex;align-items:center;gap:4px;box-sizing:border-box;padding:3px 4px;border:none;border-radius:99em;background-color:color-mix(in srgb,var(--c-glass) 12%,transparent);-webkit-backdrop-filter:blur(8px) url(#switcher) saturate(var(--saturation));backdrop-filter:blur(8px) url(#switcher) saturate(var(--saturation));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*10%),transparent),inset 1.8px 3px 0px -2px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*90%),transparent),inset -2px -2px 0px -2px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*80%),transparent),inset -3px -8px 1px -6px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*60%),transparent),inset -0.3px -1px 4px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*12%),transparent),inset -1.5px 2.5px 0px -2px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*20%),transparent),inset 0px 3px 4px -2px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*20%),transparent),inset 2px -6.5px 1px -4px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*10%),transparent),0px 1px 5px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*10%),transparent),0px 6px 16px 0px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*8%),transparent);transition:background-color 400ms cubic-bezier(1,0,0.4,1),box-shadow 400ms cubic-bezier(1,0,0.4,1);position:relative}
+        .hintaraja-ryhma{display:grid;gap:6px;color:var(--text-main)}
         .hintaraja-otsikko{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;font-weight:600}
         .hintaraja-syotto{display:flex;align-items:center;gap:4px;padding:3px 7px;border-radius:99px;background:var(--dropdown-glass);border:1px solid var(--nav-btn-outline)}
         .hintaraja-syotto input{box-sizing:border-box;width:6.5ch;min-width:0;padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:right;font-variant-numeric:tabular-nums}
@@ -325,7 +325,7 @@
                 <span id="aaniJaljella" class="aani-jaljella" aria-live="polite" hidden></span>
             </div>
             <div class="suodatin-ryhma">
-                <div class="hintaraja-lasipinta">
+                <div class="hintaraja-ryhma">
                     <div class="hintaraja-otsikko">
                         <label for="hintaraja">Enimmäishinta</label>
                         <span class="hintaraja-syotto">
@@ -333,7 +333,7 @@
                             <span aria-hidden="true">€</span>
                         </span>
                     </div>
-                    <input class="hintaraja-liuku" type="range" id="hintaraja" min="0" max="100" step="0.5" value="100" aria-valuetext="Kaikki hinnat">
+                    <input class="hintaraja-liuku" type="range" id="hintaraja" min="0" max="100" step="1" value="100" aria-valuetext="Kaikki hinnat">
                 </div>
                 <div class="kategoria-dropdown" id="kategoriaDropdown">
                     <button class="dropdown-toggle" id="dropdownToggle" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownContent">Kategoriat ▾</button>
@@ -479,12 +479,14 @@
         const hintaraja = document.getElementById('hintaraja');
         const hintarajaArvo = document.getElementById('hintarajaArvo');
         const liukusaadinYlaraja = Number(hintaraja.max);
-        let enimmaishinta = null;
+        let enimmaishinta = null, hintarajaAjastin;
         const muotoileHintaraja = hinta => hinta === null ? '' : hinta.toFixed(2).replace('.', ',');
         function asetaHintaraja(hinta) {
             hintaraja.style.setProperty('--taytto', (Math.min(hinta ?? liukusaadinYlaraja, liukusaadinYlaraja) / liukusaadinYlaraja * 100) + '%');
             hintaraja.setAttribute('aria-valuetext', hinta === null ? 'Kaikki hinnat' : muotoileHintaraja(hinta) + ' €');
             hintarajaArvo.removeAttribute('aria-invalid');
+        }
+        function suodataHintaraja(hinta) {
             if (enimmaishinta === hinta) return;
             enimmaishinta = hinta;
             clearTimeout(scrollDebounceTimer);
@@ -497,8 +499,11 @@
             const hinta = hintaraja.valueAsNumber === liukusaadinYlaraja ? null : hintaraja.valueAsNumber;
             hintarajaArvo.value = muotoileHintaraja(hinta);
             asetaHintaraja(hinta);
+            clearTimeout(hintarajaAjastin);
+            hintarajaAjastin = setTimeout(() => suodataHintaraja(hinta), 200);
         });
         hintarajaArvo.addEventListener('input', () => {
+            clearTimeout(hintarajaAjastin);
             const arvo = hintarajaArvo.value.trim();
             if (arvo && !/^\d+(?:[,.]\d{0,2})?$/.test(arvo)) {
                 hintarajaArvo.setAttribute('aria-invalid', 'true');
@@ -507,6 +512,7 @@
             const hinta = arvo ? Number(arvo.replace(',', '.')) : null;
             hintaraja.value = Math.min(hinta ?? liukusaadinYlaraja, liukusaadinYlaraja);
             asetaHintaraja(hinta);
+            suodataHintaraja(hinta);
         });
         hintarajaArvo.addEventListener('blur', () => {
             if (!hintarajaArvo.hasAttribute('aria-invalid')) {
