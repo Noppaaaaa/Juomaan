@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Halvimmat hard seltzerit – Alko, S- ja K-ryhmä | Juomaan</title>
+    <meta name="description" content="Vertaa seltzereiden pakkaushintoja ja litrahintoja Alkossa, S-kaupoissa ja K-Ruoassa. Katso halvimmat vaihtoehdot pantteineen.">
+    <link rel="canonical" href="https://juomaan.fi/halvimmat-seltzerit/">
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192">
+    <link rel="preload" href="/halvimmat-seltzerit/hinnat.json" as="fetch" crossorigin>
+    <link rel="stylesheet" href="/alkon-hinnasto/hinnasto.css">
+</head>
+<body>
+    <nav aria-label="Sijainti sivustolla">
+        <ol class="murupolku" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/"><span itemprop="name">Etusivu</span></a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name" aria-current="page">Halvimmat hard seltzerit</span>
+                <meta itemprop="position" content="2">
+            </li>
+        </ol>
+    </nav>
+    <main>
+        <h1>Halvimmat hard seltzerit</h1>
+        <p>Katso Alkon, S-kauppojen ja K-Ruoan seltzereiden pakkaus- ja litrahinnat pantteineen. Marketin hinta on edullisin mukaan saaduista kyseisen ketjun myymälähinnoista Suomessa. Myymälän nimi kertoo, mistä markettihinta löytyi. Linkki avaa saman myymälän tuotesivun. Tarkista sieltä ajantasainen hinta ja saatavuus.</p>
+        <label for="haku">Hae seltzerin nimellä</label>
+        <input id="haku" type="search" maxlength="100" autocomplete="off" disabled>
+        <label for="kauppaketju">Kauppaketju</label>
+        <select id="kauppaketju" disabled>
+            <option value="">Kaikki ketjut</option>
+            <option value="alko">Alko</option>
+            <option value="sryhma">S-ryhmä</option>
+            <option value="kryhma">K-ryhmä</option>
+        </select>
+        <label for="vahvuus">Alkoholipitoisuus</label>
+        <select id="vahvuus" disabled>
+            <option value="yli" selected>Yli 0,5 %</option>
+            <option value="enintaan">Enintään 0,5 %</option>
+            <option value="">Kaikki vahvuudet</option>
+        </select>
+        <label for="jarjestys">Järjestä tuotteet</label>
+        <select id="jarjestys" disabled>
+            <option value="hinta">Halvin pakkaushinta</option>
+            <option value="litrahinta">Halvin litrahinta</option>
+            <option value="nimi">Nimi A–Ö</option>
+        </select>
+        <p id="tila" role="status"></p>
+        <table id="hinnasto" data-hinnat="/halvimmat-seltzerit/hinnat.json" aria-label="Seltzereiden pakkaus- ja litrahinnat">
+            <caption id="otoksen-paivays">10 halvinta seltzerpakkausta (yli 0,5 %) 10.11.2026 julkaistuista hinnoista.</caption>
+            <thead><tr><th scope="col">Tuote ja kauppa</th><th scope="col">Koko</th><th scope="col">Hinta</th><th scope="col">€ / l</th></tr></thead>
+            <tbody id="rivit">
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/koff-hard-seltzer-manda-45-033l-tlk-6415600599573?kauppa=k-market-karhunlahde">Koff Hard Seltzer Mandarin-Blood Orange 4,5% 0,33l</a><br><small>K‑Market Karhunlähde · 4,5 %</small></td><td>0,33 l</td><td>1,49 €</td><td>4,52 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/koff-hard-seltzer-lemlim-45-033l-tlk-6415600595629?kauppa=k-market-lastula">Koff Hard Seltzer Lemon &amp; Lime 4,5% 0,33l</a><br><small>K‑Market Lastula · 4,5 %</small></td><td>0,33 l</td><td>1,69 €</td><td>5,12 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/koskenkorva-hs-ras-lime-45-033l-tlk-6412703016044?kauppa=k-citymarket-helsinki-ruoholahti">Koskenkorva Hard Seltzer Raspberry-Lime 4,5% 0,33l</a><br><small>K‑Citymarket Helsinki Ruoholahti · 4,5 %</small></td><td>0,33 l</td><td>1,89 €</td><td>5,73 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/coop-lemon-lime-4-5-330ml-hard-seltzer/6438460769344?storeId=613762350">Coop Lemon-Lime 4,5% 330ml hard seltzer</a><br><small>Prisma Kirkkonummi · 4,5 %</small></td><td>0,33 l</td><td>1,95 €</td><td>5,91 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/coop-passion-fruit-mango-4-5-330ml-hard-seltzer/6438460769313?storeId=613762350">Coop Passion fruit-Mango 4,5% 330ml hard seltzer</a><br><small>Prisma Kirkkonummi · 4,5 %</small></td><td>0,33 l</td><td>1,95 €</td><td>5,91 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/coop-raspberry-lemon-4-5-330ml-hard-seltzer/6438574152377?storeId=613762350">Coop Raspberry-Lemon 4,5% 330ml hard seltzer</a><br><small>Prisma Kirkkonummi · 4,5 %</small></td><td>0,33 l</td><td>1,95 €</td><td>5,91 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/coop-strawberry-lime-4-5-330ml-hard-seltzer/6438460769283?storeId=613762350">Coop Strawberry-Lime 4,5% 330ml hard seltzer</a><br><small>Prisma Kirkkonummi · 4,5 %</small></td><td>0,33 l</td><td>1,95 €</td><td>5,91 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/koff-hard-seltzer-lemon-lime-maustettu-alkoholijuoma-4-5-tolkki-0-33-l/6415600595629?storeId=613762350">Koff Hard Seltzer Lemon-Lime maustettu alkoholijuoma 4,5 % tölkki 0,33 L</a><br><small>Prisma Kirkkonummi · 4,5 %</small></td><td>0,33 l</td><td>1,95 €</td><td>5,91 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/koff-hard-seltzer-mandarin-blood-orange-maustettu-alkoholijuoma-4-5-tolkki-0-33-l/6415600599573?storeId=613762350">Koff Hard Seltzer Mandarin-Blood Orange maustettu alkoholijuoma 4,5 % tölkki 0,33 L</a><br><small>Prisma Kirkkonummi · 4,5 %</small></td><td>0,33 l</td><td>1,95 €</td><td>5,91 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/koff-hard-seltzer-mango-passionfruit-maustettu-alkoholijuoma-4-5-tolkki-0-33-l/6415600595650?storeId=613762350">Koff Hard Seltzer Mango-Passionfruit maustettu alkoholijuoma 4,5 % tölkki 0,33 L</a><br><small>Prisma Kirkkonummi · 4,5 %</small></td><td>0,33 l</td><td>1,95 €</td><td>5,91 €</td></tr>
+            </tbody>
+        </table>
+        <button id="lisaa" type="button" hidden>Näytä 30 lisää</button>
+        <noscript><p>Hintahaku käyttää JavaScriptiä. Voit avata kauppojen valikoimat suoraan <a href="https://www.alko.fi/fi/tuotteet">Alkossa</a>, <a href="https://www.s-kaupat.fi/">S-kaupoissa</a> ja <a href="https://www.k-ruoka.fi/kauppa">K-Ruoassa</a>.</p></noscript>
+        <h2>Miten löydän halvimman seltzerin?</h2>
+        <p>Pakkaushinta sopii yksittäisten tölkkien, pullojen ja monipakkausten kassahintojen vertailuun. Litrahinta huomioi koko pakkauksen tilavuuden. Esimerkiksi 0,33 litraa hintaan 1,20 € maksaa 3,64 €/l, kun 0,5 litraa hintaan 1,50 € maksaa 3,00 €/l.</p>
+        <p><span id="paivitys"></span> Hard seltzeristä käytetään haussa myös kirjoitusasua zeltzer. Vertailu näyttää oletuksena alkoholillisia hard seltzereitä pakkaushinnan mukaan.</p>
+        <p><a href="/halvimmat-lonkerot/">Halvimmat lonkerot</a> · <a href="/halvimmat-siiderit/">Halvimmat siiderit</a> · <a href="/oluen-hinnat/">Oluen hintavertailu</a></p>
+    </main>
+    <script src="/alkon-hinnasto/hinnasto.js?v=9"></script>
+</body>
+</html>

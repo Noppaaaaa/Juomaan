@@ -83,7 +83,7 @@ function turvallinenTuotelinkki(tuote) {
 }
 
 tila.textContent = 'Ladataan hintoja…';
-const hinnastoPolku = kauppaketju ? '/oluen-hinnat/hinnat.json'
+const hinnastoPolku = kauppaketju ? (taulukko.dataset.hinnat || '/oluen-hinnat/hinnat.json')
     : vainViinat ? '/halvin-viina/hinnat.json' : '/alkon-hinnasto/hinnat.json';
 lueJson(hinnastoPolku).then(({ tuotteet: aineisto, keratty }) => {
     const viiniluokat = new Set(viinityyppi ? [...viinityyppi.options].map(o => o.value).filter(Boolean) : []);

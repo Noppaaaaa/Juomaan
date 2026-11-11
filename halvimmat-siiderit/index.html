@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Halvimmat siiderit – Alko, S- ja K-ryhmä | Juomaan</title>
+    <meta name="description" content="Vertaa siidereiden pakkaushintoja ja litrahintoja Alkossa, S-kaupoissa ja K-Ruoassa. Katso halvimmat vaihtoehdot pantteineen.">
+    <link rel="canonical" href="https://juomaan.fi/halvimmat-siiderit/">
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192">
+    <link rel="preload" href="/halvimmat-siiderit/hinnat.json" as="fetch" crossorigin>
+    <link rel="stylesheet" href="/alkon-hinnasto/hinnasto.css">
+</head>
+<body>
+    <nav aria-label="Sijainti sivustolla">
+        <ol class="murupolku" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/"><span itemprop="name">Etusivu</span></a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name" aria-current="page">Halvimmat siiderit</span>
+                <meta itemprop="position" content="2">
+            </li>
+        </ol>
+    </nav>
+    <main>
+        <h1>Halvimmat siiderit</h1>
+        <p>Katso Alkon, S-kauppojen ja K-Ruoan siidereiden pakkaus- ja litrahinnat pantteineen. Marketin hinta on edullisin mukaan saaduista kyseisen ketjun myymälähinnoista Suomessa. Myymälän nimi kertoo, mistä markettihinta löytyi. Linkki avaa saman myymälän tuotesivun. Tarkista sieltä ajantasainen hinta ja saatavuus.</p>
+        <label for="haku">Hae siiderin nimellä</label>
+        <input id="haku" type="search" maxlength="100" autocomplete="off" disabled>
+        <label for="kauppaketju">Kauppaketju</label>
+        <select id="kauppaketju" disabled>
+            <option value="">Kaikki ketjut</option>
+            <option value="alko">Alko</option>
+            <option value="sryhma">S-ryhmä</option>
+            <option value="kryhma">K-ryhmä</option>
+        </select>
+        <label for="vahvuus">Alkoholipitoisuus</label>
+        <select id="vahvuus" disabled>
+            <option value="yli" selected>Yli 0,5 %</option>
+            <option value="enintaan">Enintään 0,5 %</option>
+            <option value="">Kaikki vahvuudet</option>
+        </select>
+        <label for="jarjestys">Järjestä tuotteet</label>
+        <select id="jarjestys" disabled>
+            <option value="hinta">Halvin pakkaushinta</option>
+            <option value="litrahinta">Halvin litrahinta</option>
+            <option value="nimi">Nimi A–Ö</option>
+        </select>
+        <p id="tila" role="status"></p>
+        <table id="hinnasto" data-hinnat="/halvimmat-siiderit/hinnat.json" aria-label="Siidereiden pakkaus- ja litrahinnat">
+            <caption id="otoksen-paivays">10 halvinta siideripakkausta (yli 0,5 %) 10.11.2026 julkaistuista hinnoista.</caption>
+            <thead><tr><th scope="col">Tuote ja kauppa</th><th scope="col">Koko</th><th scope="col">Hinta</th><th scope="col">€ / l</th></tr></thead>
+            <tbody id="rivit">
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/premium-cider-kopparberg-with-strawberry-and-lime-4-0-mansikan-ja-limen-makuinen-omenasiideri-tolkki-33cl/7393714367303?storeId=500608328">Premium Cider Kopparberg with Strawberry &amp; Lime 4,0%, Mansikan ja limen makuinen omenasiideri tölkki 33cl</a><br><small>S-market Siuntio · 4 %</small></td><td>0,33 l</td><td>1,37 €</td><td>4,15 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/fizz-extra-dry-cider-47-033l-tlk-6419800072294?kauppa=k-market-herkkukirsikka">Fizz Extra Dry Cider 4,7% 0,33l</a><br><small>K‑Market Herkkukirsikka · 4,7 %</small></td><td>0,33 l</td><td>1,88 €</td><td>5,70 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/pirkka-dry-apple-47-033l-tlk-6410405135117?kauppa=k-market-pielisherkku">Pirkka Dry Apple siideri 4,7% 0,33l</a><br><small>K‑Market Pielisherkku · 4,7 %</small></td><td>0,33 l</td><td>1,97 €</td><td>5,97 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/fizz-spritz-sparkl-orange-cide-7033tlk-6419800072829?kauppa=k-supermarket-kauppapaikka">FIZZ Spritz Sparkling Orange Cider 7,0 % 0,33l</a><br><small>K‑Supermarket Kauppapaikka · 7 %</small></td><td>0,33 l</td><td>1,99 €</td><td>6,03 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/galipette-cidre-brut-45-033l-klp-3271470330394?kauppa=k-market-naapuri">Galipette Cidre Brut 4,5% 0,33l</a><br><small>K‑Market Naapuri · 4,5 %</small></td><td>0,33 l</td><td>1,99 €</td><td>6,03 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/galipette-cidre-extr-brut-55-033l-klp-3271470331056?kauppa=k-market-naapuri">Galipette Cidre Extra Brut 5,5% 0,33l</a><br><small>K‑Market Naapuri · 5,5 %</small></td><td>0,33 l</td><td>1,99 €</td><td>6,03 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/happy-joe-sour-cider-pear-5-033l-tlk-6413600365150?kauppa=k-market-kyosti">Happy Joe Sour Cider Pear 5% 0,33l</a><br><small>K‑Market Kyösti · 5 %</small></td><td>0,33 l</td><td>1,99 €</td><td>6,03 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/kopparberg-crisp-apple--4-05l-tlk-7333533000319?kauppa=k-supermarket-hyrra">Kopparberg Crisp Apple Premium siideri 4,0 % 0,5l</a><br><small>K‑Supermarket Hyrrä · 4 %</small></td><td>0,5 l</td><td>1,99 €</td><td>3,98 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/kopparberg-naked-apple-cid-45033l-tlk-7393714366085?kauppa=k-market-herkkupuoti">Kopparberg Naked Apple dry cider 4,5% 0,33l</a><br><small>K‑Market Herkkupuoti · 4,5 %</small></td><td>0,33 l</td><td>1,99 €</td><td>6,03 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/pirkka-ananassiideri-light-47-04l-kmp-6410405133021?kauppa=k-market-tuuliviiri">Pirkka ananassiideri light 4,7% 0,4l</a><br><small>K‑Market Tuuliviiri · 4,7 %</small></td><td>0,4 l</td><td>1,99 €</td><td>4,97 €</td></tr>
+            </tbody>
+        </table>
+        <button id="lisaa" type="button" hidden>Näytä 30 lisää</button>
+        <noscript><p>Hintahaku käyttää JavaScriptiä. Voit avata kauppojen valikoimat suoraan <a href="https://www.alko.fi/fi/tuotteet">Alkossa</a>, <a href="https://www.s-kaupat.fi/">S-kaupoissa</a> ja <a href="https://www.k-ruoka.fi/kauppa">K-Ruoassa</a>.</p></noscript>
+        <h2>Miten löydän halvimman siiderin?</h2>
+        <p>Pakkaushinta sopii yksittäisten tölkkien, pullojen ja monipakkausten kassahintojen vertailuun. Litrahinta huomioi koko pakkauksen tilavuuden. Esimerkiksi 0,33 litraa hintaan 1,20 € maksaa 3,64 €/l, kun 0,5 litraa hintaan 1,50 € maksaa 3,00 €/l.</p>
+        <p><span id="paivitys"></span> Vertailu näyttää oletuksena alkoholillisia siidereitä pakkaushinnan mukaan.</p>
+        <p><a href="/halvimmat-lonkerot/">Halvimmat lonkerot</a> · <a href="/halvimmat-seltzerit/">Halvimmat hard seltzerit</a> · <a href="/oluen-hinnat/">Oluen hintavertailu</a></p>
+    </main>
+    <script src="/alkon-hinnasto/hinnasto.js?v=9"></script>
+</body>
+</html>

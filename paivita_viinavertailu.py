@@ -94,16 +94,30 @@ def pakkausrivit(tuotteet, litrahinta=False):
     return rivit
 
 
-def oluthinnat(alko, sryhma, kryhma, valikoima):
+def juomaryhma(tuote):
+    tyyppi = (tuote['tyyppi'] or '').split(',', 1)[0].strip().casefold()
+    nimi = (tuote['nimi'] or '').casefold()
+    if tyyppi in ('oluet', 'alkoholittomat oluet'):
+        return 'oluen-hinnat'
+    if 'seltzer' in nimi or 'zeltzer' in nimi:
+        return 'halvimmat-seltzerit'
+    if tyyppi in ('siiderit', 'alkoholittomat siiderit'):
+        return 'halvimmat-siiderit'
+    if tyyppi in ('long drink', 'maustettu long drink') or re.search(r'lonkero|long[ -]drink', nimi):
+        return 'halvimmat-lonkerot'
+    return None
+
+
+def markettihinnat(alko, sryhma, kryhma, valikoima):
     myymalat = {
         'sryhma': {str(t['id']): t for t in valikoima['s_myymalat']},
         'kryhma': {str(t['id']): t for t in valikoima['k_myymalat']},
     }
-    oluet = []
+    ryhmat = {}
     for lahde, tuotteet in [('alko', alko), ('sryhma', sryhma), ('kryhma', kryhma)]:
         for tuote in tuotteet:
-            tyyppi = (tuote['tyyppi'] or '').split(',', 1)[0].strip().casefold()
-            if tyyppi not in ('oluet', 'alkoholittomat oluet'):
+            ryhma = juomaryhma(tuote)
+            if ryhma is None:
                 continue
             tiedot = {kentta: tuote.get(kentta) for kentta in HINTAKENTAT}
             if lahde != 'alko':
@@ -118,14 +132,14 @@ def oluthinnat(alko, sryhma, kryhma, valikoima):
                 parametrit[nimi] = arvo
                 tiedot['linkki'] = osoite._replace(query=urlencode(parametrit)).geturl()
                 tiedot['myymala'] = myymala['name']
-            oluet.append({**tiedot, 'lahde': lahde})
-    return oluet
+            ryhmat.setdefault(ryhma, []).append({**tiedot, 'lahde': lahde})
+    return ryhmat
 
 
-def olutotos(oluet):
+def markettiotos(tuotteet):
     kaupat = {'alko': ('Alko', 'alko.fi'), 'sryhma': ('S-ryhmä', 's-kaupat.fi'), 'kryhma': ('K-ryhmä', 'k-ruoka.fi')}
     ehdokkaat = []
-    for tuote in oluet:
+    for tuote in tuotteet:
         kauppa, domain = kaupat[tuote['lahde']]
         linkki = tuote['linkki'] or ''
         osoite = urlsplit(linkki)
@@ -139,8 +153,6 @@ def olutotos(oluet):
             continue
         hinta = round(perushinta + (tuote['pantti_eur'] or 0), 2)
         ehdokkaat.append((hinta, nimi, linkki, litrat, tuote.get('myymala') or kauppa, vahvuus))
-    if len(ehdokkaat) < 10:
-        raise ValueError('Oluiden vertailuaineisto on puutteellinen.')
     rivit = []
     for hinta, nimi, linkki, litrat, kauppa, vahvuus in sorted(ehdokkaat)[:10]:
         koko = f'{litrat:g}'.replace('.', ',')
@@ -229,12 +241,26 @@ def paivita():
         for lahde in ('s_ryhma', 'k_ryhma')
     ]
     valikoima = json.loads((ROOT / 'valikoima_tiedot.json').read_text(encoding='utf-8'))
-    olutdata = {'keratty': valikoima['aineisto_paivitetty'], 'tuotteet': oluthinnat(tuotteet, *marketit, valikoima)}
-    olut_paivays = datetime.fromisoformat(olutdata['keratty'])
-    if olut_paivays.tzinfo:
-        olut_paivays = olut_paivays.astimezone(ZoneInfo('Europe/Helsinki'))
-    olut_sivu, olut_html = otos_html('oluen-hinnat', '10 halvinta olutpakkausta (yli 0,5 %)',
-                                    olutotos(olutdata['tuotteet']), olut_paivays, 'julkaistuista')
+    paivitetty = valikoima['aineisto_paivitetty']
+    markettipaiva = datetime.fromisoformat(paivitetty)
+    if markettipaiva.tzinfo:
+        markettipaiva = markettipaiva.astimezone(ZoneInfo('Europe/Helsinki'))
+    ryhmat = markettihinnat(tuotteet, *marketit, valikoima)
+    markkinasivut = {}
+    otokset = []
+    for kansio, juoma in (
+        ('oluen-hinnat', 'olutpakkausta'),
+        ('halvimmat-lonkerot', 'lonkeropakkausta'),
+        ('halvimmat-seltzerit', 'seltzerpakkausta'),
+        ('halvimmat-siiderit', 'siideripakkausta'),
+    ):
+        aineisto = ryhmat.get(kansio, [])
+        rivit = markettiotos(aineisto)
+        if kansio == 'oluen-hinnat' and len(rivit) < 10:
+            raise ValueError('Oluiden vertailuaineisto on puutteellinen.')
+        kuvaus = f'{len(rivit)} halvinta {juoma} (yli 0,5 %)' if rivit else 'Ei hintatietoja (yli 0,5 %)'
+        otokset.append(otos_html(kansio, kuvaus, rivit, markettipaiva, 'julkaistuista'))
+        markkinasivut[kansio] = {'keratty': paivitetty, 'tuotteet': aineisto}
     muuttuneet = set()
     domain = 'https://juomaan.fi/'
     edellinen_valikoima = json.loads(subprocess.check_output(
@@ -249,7 +275,7 @@ def paivita():
     hintasivut = {
         'alkon-hinnasto': {'keratty': raportti['keratty'], 'tuotteet': hinnasto},
         'halvin-viina': {'keratty': raportti['keratty'], 'tuotteet': viinat},
-        'oluen-hinnat': olutdata,
+        **markkinasivut,
     }
     for kansio, payload in hintasivut.items():
         polku = ROOT / kansio / 'hinnat.json'
@@ -260,7 +286,8 @@ def paivita():
                 muuttuneet.add(domain + 'alkon-viinit/')
         kirjoita(polku, json.dumps(payload, ensure_ascii=False, separators=(',', ':')) + '\n')
 
-    kirjoita(olut_sivu, olut_html)
+    for sivu, html in otokset:
+        kirjoita(sivu, html)
     kirjoita(viina_sivu, viina_html)
     kirjoita(viini_sivu, viini_html)
     kirjoita(hinnasto_sivu, hinnasto_html)
@@ -275,7 +302,7 @@ def paivita():
         if not polku.exists() or polku.read_text(encoding='utf-8') != teksti:
             muuttuneet.add(domain)
         kirjoita(polku, teksti)
-    paivita_sivustokartta(muuttuneet, olut_paivays)
+    paivita_sivustokartta(muuttuneet, markettipaiva)
 
 
 if __name__ == '__main__':

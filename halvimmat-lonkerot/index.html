@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Halvimmat lonkerot – Alko, S- ja K-ryhmä | Juomaan</title>
+    <meta name="description" content="Vertaa lonkeroiden pakkaushintoja ja litrahintoja Alkossa, S-kaupoissa ja K-Ruoassa. Katso halvimmat vaihtoehdot pantteineen.">
+    <link rel="canonical" href="https://juomaan.fi/halvimmat-lonkerot/">
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192">
+    <link rel="preload" href="/halvimmat-lonkerot/hinnat.json" as="fetch" crossorigin>
+    <link rel="stylesheet" href="/alkon-hinnasto/hinnasto.css">
+</head>
+<body>
+    <nav aria-label="Sijainti sivustolla">
+        <ol class="murupolku" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/"><span itemprop="name">Etusivu</span></a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name" aria-current="page">Halvimmat lonkerot</span>
+                <meta itemprop="position" content="2">
+            </li>
+        </ol>
+    </nav>
+    <main>
+        <h1>Halvimmat lonkerot</h1>
+        <p>Katso Alkon, S-kauppojen ja K-Ruoan lonkeroiden pakkaus- ja litrahinnat pantteineen. Marketin hinta on edullisin mukaan saaduista kyseisen ketjun myymälähinnoista Suomessa. Myymälän nimi kertoo, mistä markettihinta löytyi. Linkki avaa saman myymälän tuotesivun. Tarkista sieltä ajantasainen hinta ja saatavuus.</p>
+        <label for="haku">Hae lonkeron nimellä</label>
+        <input id="haku" type="search" maxlength="100" autocomplete="off" disabled>
+        <label for="kauppaketju">Kauppaketju</label>
+        <select id="kauppaketju" disabled>
+            <option value="">Kaikki ketjut</option>
+            <option value="alko">Alko</option>
+            <option value="sryhma">S-ryhmä</option>
+            <option value="kryhma">K-ryhmä</option>
+        </select>
+        <label for="vahvuus">Alkoholipitoisuus</label>
+        <select id="vahvuus" disabled>
+            <option value="yli" selected>Yli 0,5 %</option>
+            <option value="enintaan">Enintään 0,5 %</option>
+            <option value="">Kaikki vahvuudet</option>
+        </select>
+        <label for="jarjestys">Järjestä tuotteet</label>
+        <select id="jarjestys" disabled>
+            <option value="hinta">Halvin pakkaushinta</option>
+            <option value="litrahinta">Halvin litrahinta</option>
+            <option value="nimi">Nimi A–Ö</option>
+        </select>
+        <p id="tila" role="status"></p>
+        <table id="hinnasto" data-hinnat="/halvimmat-lonkerot/hinnat.json" aria-label="Lonkeroiden pakkaus- ja litrahinnat">
+            <caption id="otoksen-paivays">10 halvinta lonkeropakkausta (yli 0,5 %) 10.11.2026 julkaistuista hinnoista.</caption>
+            <thead><tr><th scope="col">Tuote ja kauppa</th><th scope="col">Koko</th><th scope="col">Hinta</th><th scope="col">€ / l</th></tr></thead>
+            <tbody id="rivit">
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/pirkka-gin-long-drink-53-033l-tlk-6410405232663?kauppa=k-market-lentavanniemi">Pirkka GIN Long Drink 5,3% 0,33l</a><br><small>K‑Market Lentävänniemi · 5,3 %</small></td><td>0,33 l</td><td>0,99 €</td><td>3,00 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/pirkka-gin-light-ld-53-033l-tlk-6410405232670?kauppa=k-market-lentavanniemi">Pirkka GIN Long Drink Light 5,3% 0,33l</a><br><small>K‑Market Lentävänniemi · 5,3 %</small></td><td>0,33 l</td><td>0,99 €</td><td>3,00 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/pirkka-greippilonkero-55-033l-tlk-6410405210708?kauppa=k-market-lentavanniemi">Pirkka Greippilonkero 5,5% 0,33l</a><br><small>K‑Market Lentävänniemi · 5,5 %</small></td><td>0,33 l</td><td>0,99 €</td><td>3,00 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/pirkka-karpalolonkero-55-033l-tlk-6410405210692?kauppa=k-market-lentavanniemi">Pirkka Karpalolonkero 5,5% 0,33l</a><br><small>K‑Market Lentävänniemi · 5,5 %</small></td><td>0,33 l</td><td>0,99 €</td><td>3,00 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/otto-greippi-lonkero-55-05l-tlk-6413600370758?kauppa=k-supermarket-sepankyla">Otto Greippi Lonkero 5,5% 0,5l</a><br><small>K‑Supermarket Sepänkylä · 5,5 %</small></td><td>0,5 l</td><td>1,00 €</td><td>2,00 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/a-le-coq-gin-ld-mand-blood-55033l-tlk-6419800083092?kauppa=k-supermarket-alavus">A. Le Coq GIN Mandarin-Blood orange Long Drink 5,5 % 0,33l</a><br><small>K‑Supermarket Alavus · 5,5 %</small></td><td>0,33 l</td><td>1,30 €</td><td>3,94 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/original-long-drink-grape-26-043l-6413600058496?kauppa=k-citymarket-joensuu-keskusta">Hartwall Original Long Drink Grapefruit 2,6% 0,43l</a><br><small>K‑Citymarket Joensuu Keskusta · 2,6 %</small></td><td>0,43 l</td><td>1,35 €</td><td>3,14 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/olvi-gin-ld-grapefruit-55-033l-6419800083313?kauppa=k-market-veto">OLVI Long drink Grapefruit 5,5% 0,33l</a><br><small>K‑Market Veto · 5,5 %</small></td><td>0,33 l</td><td>1,49 €</td><td>4,52 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/a-le-coq-gin-ld-pineappl-55-033l-tlk-6419800083115?kauppa=k-market-somero">A. Le Coq GIN Pineapple Long Drink 5,5 % 0,33l</a><br><small>K‑Market Somero · 5,5 %</small></td><td>0,33 l</td><td>1,66 €</td><td>5,03 €</td></tr>
+                <tr><td><a href="https://www.k-ruoka.fi/kauppa/tuote/original-ld-peach-ice-tea-55-033l-6413600363774?kauppa=k-market-jyska">Hartwall Original Long Drink Peah Ice Tea 5,5% 0,33l</a><br><small>K‑Market Jyskä · 5,5 %</small></td><td>0,33 l</td><td>1,66 €</td><td>5,03 €</td></tr>
+            </tbody>
+        </table>
+        <button id="lisaa" type="button" hidden>Näytä 30 lisää</button>
+        <noscript><p>Hintahaku käyttää JavaScriptiä. Voit avata kauppojen valikoimat suoraan <a href="https://www.alko.fi/fi/tuotteet">Alkossa</a>, <a href="https://www.s-kaupat.fi/">S-kaupoissa</a> ja <a href="https://www.k-ruoka.fi/kauppa">K-Ruoassa</a>.</p></noscript>
+        <h2>Miten löydän halvimman lonkeron?</h2>
+        <p>Pakkaushinta sopii yksittäisten tölkkien, pullojen ja monipakkausten kassahintojen vertailuun. Litrahinta huomioi koko pakkauksen tilavuuden. Esimerkiksi 0,33 litraa hintaan 1,20 € maksaa 3,64 €/l, kun 0,5 litraa hintaan 1,50 € maksaa 3,00 €/l.</p>
+        <p><span id="paivitys"></span> Vertailu näyttää oletuksena alkoholillisia lonkeroita pakkaushinnan mukaan.</p>
+        <p><a href="/halvimmat-seltzerit/">Halvimmat hard seltzerit</a> · <a href="/halvimmat-siiderit/">Halvimmat siiderit</a> · <a href="/oluen-hinnat/">Oluen hintavertailu</a></p>
+    </main>
+    <script src="/alkon-hinnasto/hinnasto.js?v=9"></script>
+</body>
+</html>
