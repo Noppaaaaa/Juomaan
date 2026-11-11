@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prisman halvin alkoholi – Alko, S- ja K-ryhmä | Juomaan</title>
+    <meta name="description" content="Vertaa alkoholin annoshintoja Prisma-myymälöissä. Katso pantillinen pakkaushinta ja avaa tuote hinnan tarjonneessa myymälässä.">
+    <link rel="canonical" href="https://juomaan.fi/prisman-halvin-alkoholi/">
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192">
+    <link rel="preload" href="/prisman-halvin-alkoholi/hinnat.json" as="fetch" crossorigin>
+    <link rel="stylesheet" href="/alkon-hinnasto/hinnasto.css">
+</head>
+<body>
+    <nav aria-label="Sijainti sivustolla">
+        <ol class="murupolku" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/"><span itemprop="name">Etusivu</span></a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name" aria-current="page">Prisman halvin alkoholi</span>
+                <meta itemprop="position" content="2">
+            </li>
+        </ol>
+    </nav>
+    <main>
+        <h1>Prisman halvin alkoholi</h1>
+        <p>Vertaa alkoholiannoksen ja pakkauksen hintoja Prisma-myymälöissä. Kullekin tuotteelle näytetään edullisin kerätty myymälähinta pantteineen. Tarkista linkistä hinta ja saatavuus samassa myymälässä.</p>
+        <label for="haku">Hae tuotteen nimellä</label>
+        <input id="haku" type="search" maxlength="100" autocomplete="off" disabled>
+        <label for="jarjestys">Järjestä tuotteet</label>
+        <select id="jarjestys" disabled>
+            <option value="annoshinta">Halvin alkoholiannos</option>
+            <option value="hinta">Halvin pakkaushinta</option>
+            <option value="nimi">Nimi A–Ö</option>
+        </select>
+        <p id="tila" role="status"></p>
+        <table id="hinnasto" data-hinnat="/prisman-halvin-alkoholi/hinnat.json" data-annokset aria-label="Alkoholin pakkaus- ja annoshinnat">
+            <caption id="otoksen-paivays">10 halvinta alkoholiannoshintaa (yli 0,5 %) 10.11.2026 julkaistuista hinnoista.</caption>
+            <thead><tr><th scope="col">Tuote ja kauppa</th><th scope="col">Koko</th><th scope="col">Hinta</th><th scope="col">€ / annos</th></tr></thead>
+            <tbody id="rivit">
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/24-pack-coop-lager-olut-4-2-tolkki-0-33-l/6438574042470?storeId=603211814">24-pack Coop Lager olut 4,2 % tölkki 0,33 L</a><br><small>Prisma Rauma · 4,2 %</small></td><td>7,92 l</td><td>23,76 €</td><td>1,07 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/coop-lager-olut-4-2-til-tolkki-0-33-l/6438574042463?storeId=516415981">Coop Lager olut 4,2  til-% tölkki 0,33 L</a><br><small>Prisma Iisalmi · 4,2 %</small></td><td>0,33 l</td><td>0,99 €</td><td>1,07 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/kotimaista-vaalea-lager-4-5-0-33-l-tlk/6438574666683?storeId=726170469">Kotimaista Vaalea Lager 4,5 % 0,33 l tlk</a><br><small>Prisma Syke · 4,5 %</small></td><td>0,33 l</td><td>1,16 €</td><td>1,17 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/12-x-laitilan-kukko-lager-4-7-til-0-33l-olut/6418654202024?storeId=634975387">12 x Laitilan Kukko Lager 4,7 til-% 0,33L olut</a><br><small>Prisma Mylly · 4,7 %</small></td><td>3,96 l</td><td>14,90 €</td><td>1,20 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/24-x-heineken-olut-5-0-33-l/6413601316786?storeId=697949170">24 x Heineken olut 5% 0,33 l</a><br><small>Prisma Loimaa · 5 %</small></td><td>7,92 l</td><td>32,40 €</td><td>1,23 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/24-pack-koff-lager-olut-4-5-tolkki-0-33-l/6415600593137?storeId=542862479">24-pack KOFF Lager olut 4,5 % tölkki 0,33 L</a><br><small>Prisma Olari · 4,5 %</small></td><td>7,92 l</td><td>29,28 €</td><td>1,23 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/koff-lager-olut-4-5-tolkki-0-33-l/6415600578417?storeId=677095416">Koff Lager olut 4,5 % tölkki 0,33 L</a><br><small>Prisma Ideapark Lempäälä · 4,5 %</small></td><td>0,33 l</td><td>1,22 €</td><td>1,23 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/a-le-coq-premium-4-5-olut-0-33-l-tlk/6419800021261?storeId=697949170">A. Le Coq Premium 4,5 % olut 0,33 l tlk</a><br><small>Prisma Loimaa · 4,5 %</small></td><td>0,33 l</td><td>1,24 €</td><td>1,25 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/24-x-a-le-coq-premium-4-5-olut-0-33-l-tlk-salkku/6419802022136?storeId=516415981">24 x A. Le Coq Premium 4,5% olut 0,33 l tlk salkku</a><br><small>Prisma Iisalmi · 4,5 %</small></td><td>7,92 l</td><td>29,76 €</td><td>1,25 €</td></tr>
+                <tr><td><a href="https://www.s-kaupat.fi/tuote/24xsandels-4-7-olut-0-33-l-tlk-salkku/6419802020491?storeId=516415981">24xSandels 4,7 % olut 0,33 l tlk salkku</a><br><small>Prisma Iisalmi · 4,7 %</small></td><td>7,92 l</td><td>31,68 €</td><td>1,28 €</td></tr>
+            </tbody>
+        </table>
+        <button id="lisaa" type="button" hidden>Näytä 30 lisää</button>
+        <noscript><p>Hintahaku käyttää JavaScriptiä. Voit avata kauppojen valikoimat suoraan <a href="https://www.alko.fi/fi/tuotteet">Alkossa</a>, <a href="https://www.s-kaupat.fi/">S-kaupoissa</a> ja <a href="https://www.k-ruoka.fi/kauppa">K-Ruoassa</a>.</p></noscript>
+        <h2>Miten annoshinta lasketaan?</h2>
+        <p>Pantillinen pakkaushinta jaetaan pakkauksen sisältämien alkoholiannosten määrällä. Vertailussa yksi annos on 1,5 cl puhdasta alkoholia. Mukana ovat yli 0,5-prosenttiset juomat.</p>
+        <p><span id="paivitys"></span></p>
+        <p><a href="/s-ryhman-halvin-alkoholi/">S-ryhmän halvin alkoholi</a> · <a href="/k-ryhman-halvin-alkoholi/">K-ryhmän halvin alkoholi</a></p>
+    </main>
+    <script src="/alkon-hinnasto/hinnasto.js?v=10"></script>
+</body>
+</html>

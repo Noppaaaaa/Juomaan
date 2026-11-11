@@ -474,6 +474,17 @@
                 const paras=laskeAnnosHinta(sorted[0]),toiseksiParas=laskeAnnosHinta(sorted[1]);
                 if(Number.isFinite(paras)&&Number.isFinite(toiseksiParas)&&paras>0&&toiseksiParas/paras>1.4)sorted.shift();
             }
+            let min = Infinity;
+            let max = 0;
+            for (const tuote of sorted) {
+                const arvo = laskeGrammatPerEuro(tuote);
+                if (Number.isFinite(arvo) && arvo > 0) {
+                    min = Math.min(min, arvo);
+                    max = Math.max(max, arvo);
+                }
+            }
+            mittariMin = max ? min : 0;
+            mittariMax = max;
             lajitteluValimuisti = { data: tuoteData, haku: hakuTokens, rajaukset, aanet: lajittelunAanet, tulokset: sorted };
             return sorted;
         }
@@ -617,17 +628,6 @@
                 }
                 return[{...t,myymalat:entries.length}];
             });
-            let min = Infinity;
-            let max = 0;
-            for (const tuote of tuoteData) {
-                const arvo = laskeGrammatPerEuro(tuote);
-                if (Number.isFinite(arvo) && arvo > 0) {
-                    min = Math.min(min, arvo);
-                    max = Math.max(max, arvo);
-                }
-            }
-            mittariMin = max ? min : 0;
-            mittariMax = max;
             laskeHakuOsumat();
             paivitaInfo();
             startIndex=0;

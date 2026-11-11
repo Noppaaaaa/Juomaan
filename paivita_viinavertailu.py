@@ -113,30 +113,48 @@ def markettihinnat(alko, sryhma, kryhma, valikoima):
         'sryhma': {str(t['id']): t for t in valikoima['s_myymalat']},
         'kryhma': {str(t['id']): t for t in valikoima['k_myymalat']},
     }
+    prismat = {avain for avain, myymala in myymalat['sryhma'].items()
+               if re.match(r'prisma\b', myymala['name'], re.IGNORECASE)}
+    ketjut = {'sryhma': 's-ryhman-halvin-alkoholi', 'kryhma': 'k-ryhman-halvin-alkoholi'}
     ryhmat = {}
     for lahde, tuotteet in [('alko', alko), ('sryhma', sryhma), ('kryhma', kryhma)]:
         for tuote in tuotteet:
             ryhma = juomaryhma(tuote)
-            if ryhma is None:
-                continue
             tiedot = {kentta: tuote.get(kentta) for kentta in HINTAKENTAT}
-            if lahde != 'alko':
-                if not tuote['myymalat']:
-                    continue
-                tunniste, tiedot['hinta_eur'], tiedot['pantti_eur'] = min(
-                    tuote['myymalat'], key=lambda rivi: rivi[1] + rivi[2])
-                myymala = myymalat[lahde][str(tunniste)]
-                nimi, arvo = ('storeId', myymala['id']) if lahde == 'sryhma' else ('kauppa', myymala['slug'])
-                osoite = urlsplit(tiedot['linkki'])
-                parametrit = dict(parse_qsl(osoite.query, keep_blank_values=True))
-                parametrit[nimi] = arvo
-                tiedot['linkki'] = osoite._replace(query=urlencode(parametrit)).geturl()
-                tiedot['myymala'] = myymala['name']
-            ryhmat.setdefault(ryhma, []).append({**tiedot, 'lahde': lahde})
+            if lahde == 'alko':
+                if ryhma:
+                    ryhmat.setdefault(ryhma, []).append({**tiedot, 'lahde': lahde})
+                continue
+            if not tuote['myymalat']:
+                continue
+            avaimet = myymalat[lahde]
+            halvin = halvin_markettituote(tiedot, tuote['myymalat'], avaimet, lahde)
+            if ryhma:
+                ryhmat.setdefault(ryhma, []).append(halvin)
+            if (tiedot['alkoholi_prosentti'] or 0) <= 0.5:
+                continue
+            ryhmat.setdefault(ketjut[lahde], []).append(halvin)
+            if lahde == 'sryhma':
+                hintarivit = [rivi for rivi in tuote['myymalat'] if str(rivi[0]) in prismat]
+                if hintarivit:
+                    ryhmat.setdefault('prisman-halvin-alkoholi', []).append(
+                        halvin_markettituote(tiedot, hintarivit, avaimet, lahde))
     return ryhmat
 
 
-def markettiotos(tuotteet):
+def halvin_markettituote(tiedot, hintarivit, myymalat, lahde):
+    tunniste, hinta, pantti = min(hintarivit, key=lambda rivi: rivi[1] + rivi[2])
+    myymala = myymalat[str(tunniste)]
+    nimi, arvo = ('storeId', myymala['id']) if lahde == 'sryhma' else ('kauppa', myymala['slug'])
+    osoite = urlsplit(tiedot['linkki'])
+    parametrit = dict(parse_qsl(osoite.query, keep_blank_values=True))
+    parametrit[nimi] = arvo
+    return {**tiedot, 'hinta_eur': hinta, 'pantti_eur': pantti,
+            'linkki': osoite._replace(query=urlencode(parametrit)).geturl(), 'myymala': myymala['name'],
+            'lahde': lahde}
+
+
+def markettiotos(tuotteet, annoshinta):
     kaupat = {'alko': ('Alko', 'alko.fi'), 'sryhma': ('S-ryhmä', 's-kaupat.fi'), 'kryhma': ('K-ryhmä', 'k-ruoka.fi')}
     ehdokkaat = []
     for tuote in tuotteet:
@@ -154,10 +172,15 @@ def markettiotos(tuotteet):
         hinta = round(perushinta + (tuote['pantti_eur'] or 0), 2)
         ehdokkaat.append((hinta, nimi, linkki, litrat, tuote.get('myymala') or kauppa, vahvuus))
     rivit = []
-    for hinta, nimi, linkki, litrat, kauppa, vahvuus in sorted(ehdokkaat)[:10]:
+    if annoshinta:
+        ehdokkaat.sort(key=lambda rivi: (rivi[0] / (rivi[3] * rivi[5] / 1.5), rivi[1].casefold()))
+    else:
+        ehdokkaat.sort()
+    for hinta, nimi, linkki, litrat, kauppa, vahvuus in ehdokkaat[:10]:
         koko = f'{litrat:g}'.replace('.', ',')
         pitoisuus = f'{vahvuus:g}'.replace('.', ',')
-        hinnat = f'<td>{hinta:.2f} €</td><td>{hinta / litrat:.2f} €</td>'.replace('.', ',')
+        vertailuhinta = hinta / (litrat * vahvuus / 1.5) if annoshinta else hinta / litrat
+        hinnat = f'<td>{hinta:.2f} €</td><td>{vertailuhinta:.2f} €</td>'.replace('.', ',')
         rivit.append(f'                <tr><td><a href="{escape(linkki)}">{escape(nimi)}</a>'
                      f'<br><small>{escape(kauppa)} · {pitoisuus} %</small></td><td>{koko} l</td>{hinnat}</tr>')
     return rivit
@@ -253,9 +276,12 @@ def paivita():
         ('halvimmat-lonkerot', 'lonkeropakkausta'),
         ('halvimmat-seltzerit', 'seltzerpakkausta'),
         ('halvimmat-siiderit', 'siideripakkausta'),
+        ('s-ryhman-halvin-alkoholi', 'alkoholiannoshintaa'),
+        ('prisman-halvin-alkoholi', 'alkoholiannoshintaa'),
+        ('k-ryhman-halvin-alkoholi', 'alkoholiannoshintaa'),
     ):
         aineisto = ryhmat.get(kansio, [])
-        rivit = markettiotos(aineisto)
+        rivit = markettiotos(aineisto, annoshinta=kansio.endswith('-halvin-alkoholi'))
         if kansio == 'oluen-hinnat' and len(rivit) < 10:
             raise ValueError('Oluiden vertailuaineisto on puutteellinen.')
         kuvaus = f'{len(rivit)} halvinta {juoma} (yli 0,5 %)' if rivit else 'Ei hintatietoja (yli 0,5 %)'

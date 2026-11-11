@@ -8,6 +8,8 @@ const kaupat = { alko: ['Alko', 'alko.fi'], sryhma: ['S-ryhmä', 's-kaupat.fi'],
 const jarjestys = document.getElementById('jarjestys');
 const tila = document.getElementById('tila');
 const taulukko = document.getElementById('hinnasto');
+const markettisivu = Boolean(kauppaketju || taulukko.dataset.hinnat);
+const markettiannokset = taulukko.hasAttribute('data-annokset');
 const rivit = document.getElementById('rivit');
 const lisaa = document.getElementById('lisaa');
 const raha = new Intl.NumberFormat('fi-FI', { style: 'currency', currency: 'EUR' });
@@ -26,7 +28,7 @@ function naytaLisaa() {
         linkki.textContent = tuote.nimi;
         const nimi = rivi.insertCell();
         nimi.append(linkki);
-        if (kauppaketju) {
+        if (markettisivu) {
             const kauppa = document.createElement('small');
             kauppa.textContent = (tuote.myymala || kaupat[tuote.lahde][0]) + (Number.isFinite(tuote.vahvuus)
                 ? ' · ' + koko.format(tuote.vahvuus) + ' %' : '');
@@ -35,8 +37,8 @@ function naytaLisaa() {
         rivi.insertCell().textContent = koko.format(tuote.tilavuus_litraa) + ' l';
         if (vainViinat) rivi.insertCell().textContent = koko.format(tuote.vahvuus) + ' %';
         rivi.insertCell().textContent = raha.format(tuote.hinta);
-        if (vainViinat) rivi.insertCell().textContent = raha.format(tuote.annoshinta);
-        if (viinityyppi || kauppaketju) rivi.insertCell().textContent = raha.format(tuote.litrahinta);
+        if (vainViinat || markettiannokset) rivi.insertCell().textContent = raha.format(tuote.annoshinta);
+        if (viinityyppi || (markettisivu && !markettiannokset)) rivi.insertCell().textContent = raha.format(tuote.litrahinta);
         naytetty++;
     }
     taulukko.hidden = !naytetty;
@@ -75,7 +77,7 @@ async function lueJson(polku) {
 }
 
 function turvallinenTuotelinkki(tuote) {
-    const domain = kaupat[kauppaketju ? tuote.lahde : 'alko']?.[1];
+    const domain = kaupat[markettisivu ? tuote.lahde : 'alko']?.[1];
     let osoite;
     try { osoite = new URL(tuote.linkki); } catch { return false; }
     return domain && osoite?.protocol === 'https:'
@@ -83,7 +85,7 @@ function turvallinenTuotelinkki(tuote) {
 }
 
 tila.textContent = 'Ladataan hintoja…';
-const hinnastoPolku = kauppaketju ? (taulukko.dataset.hinnat || '/oluen-hinnat/hinnat.json')
+const hinnastoPolku = markettisivu ? (taulukko.dataset.hinnat || '/oluen-hinnat/hinnat.json')
     : vainViinat ? '/halvin-viina/hinnat.json' : '/alkon-hinnasto/hinnat.json';
 lueJson(hinnastoPolku).then(({ tuotteet: aineisto, keratty }) => {
     const viiniluokat = new Set(viinityyppi ? [...viinityyppi.options].map(o => o.value).filter(Boolean) : []);
@@ -120,7 +122,7 @@ lueJson(hinnastoPolku).then(({ tuotteet: aineisto, keratty }) => {
     const paivays = new Date(keratty);
     if (Number.isFinite(paivays.getTime())) {
         const paiva = new Intl.DateTimeFormat('fi-FI', { timeZone: 'Europe/Helsinki' }).format(paivays);
-        document.getElementById('paivitys').textContent = `${kauppaketju ? 'Aineisto päivitetty' : 'Aineisto kerätty'} ${paiva}.`;
+        document.getElementById('paivitys').textContent = `${markettisivu ? 'Aineisto päivitetty' : 'Aineisto kerätty'} ${paiva}.`;
     }
 }).catch(() => {
     tila.textContent = 'Hintoja ei voitu ladata. Päivitä sivu ja yritä uudelleen.';
