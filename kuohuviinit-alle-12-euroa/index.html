@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kuohuviinit alle 12 € Alkossa | Juomaan</title>
+    <meta name="description" content="Katso edullisimmat Alkon kuplivat alle 12 eurolla. Vertaa pakkaus- ja litrahintoja pantteineen ja tarkista saatavuus Alkosta.">
+    <link rel="canonical" href="https://juomaan.fi/kuohuviinit-alle-12-euroa/">
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192">
+    <link rel="preload" href="/alkon-hinnasto/hinnat.json" as="fetch" crossorigin>
+    <link rel="stylesheet" href="/alkon-hinnasto/hinnasto.css">
+</head>
+<body>
+    <nav aria-label="Sijainti sivustolla">
+        <ol class="murupolku" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/"><span itemprop="name">Etusivu</span></a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/alkon-hinnasto/"><span itemprop="name">Alkon hinnasto</span></a>
+                <meta itemprop="position" content="2">
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name" aria-current="page">Kuohuviinit alle 12 €</span>
+                <meta itemprop="position" content="3">
+            </li>
+        </ol>
+    </nav>
+    <main>
+        <h1>Kuohuviinit alle 12 € Alkossa</h1>
+        <p>Katso edullisimmat Alkon kuplivat alle 12 eurolla. Hinta sisältää mahdollisen pantin. Lajittele pakkaushinnan tai litrahinnan mukaan.</p>
+        <label for="haku">Hae viinin nimellä</label>
+        <input id="haku" type="search" maxlength="100" autocomplete="off" disabled>
+        <label for="jarjestys">Järjestä tuotteet</label>
+        <select id="jarjestys" disabled>
+            <option value="hinta">Halvin pakkaushinta</option>
+            <option value="litrahinta">Halvin litrahinta</option>
+            <option value="nimi">Nimi A–Ö</option>
+        </select>
+        <p id="tila" role="status"></p>
+        <table id="hinnasto" data-viinityyppi="kuohuviinit" data-hintaraja="12" aria-label="Alkon viinien pakkaus- ja litrahinnat">
+            <caption id="otoksen-paivays">10 edullisinta pakkausta alle 12 € 10.11.2026 kerätyistä hinnoista.</caption>
+            <thead><tr><th scope="col">Tuote</th><th scope="col">Koko</th><th scope="col">Hinta</th><th scope="col">€ / l</th></tr></thead>
+            <tbody id="rivit">
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/500336/cruset-blanc-de-blancs-sec">Cruset Blanc de Blancs Sec</a></td><td>0,2 l</td><td>3,89 €</td><td>19,45 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/924831/veuve-du-vernay-ice-demi-sec">Veuve du Vernay Ice Demi-Sec</a></td><td>0,2 l</td><td>4,04 €</td><td>20,20 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/900143/veuve-du-vernay-ice-rose-demi-sec">Veuve du Vernay Ice Rosé Demi-Sec</a></td><td>0,2 l</td><td>4,04 €</td><td>20,20 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/932394/ballet-carte-noire-organic-brut">Ballet Carte Noire Organic Brut</a></td><td>0,2 l</td><td>4,29 €</td><td>21,45 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/913303/henkell-piccolo-rose-dry">Henkell Piccolo Rosé Dry</a></td><td>0,2 l</td><td>4,29 €</td><td>21,45 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/008944/henkell-trocken">Henkell Trocken</a></td><td>0,2 l</td><td>4,29 €</td><td>21,45 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/944623/jp-chenet-ice-edition-demi-sec">JP. Chenet Ice Edition Demi Sec</a></td><td>0,2 l</td><td>4,51 €</td><td>22,55 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/906746/mont-ferrant-americano-organic-cava-brut-nature">Mont-Ferrant Americano Organic Cava Brut Nature</a></td><td>0,2 l</td><td>4,58 €</td><td>22,90 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/589113/codornu-benjamn-clasico-cava-seco-organic">Codorníu Benjamín Clasico Cava Seco Organic</a></td><td>0,2 l</td><td>4,68 €</td><td>23,40 €</td></tr>
+                <tr><td><a href="https://www.alko.fi/fi/tuotteet/927142/jp-chenet-ice-edition-rose-demi-sec">JP. Chenet Ice Edition Rosé Demi-Sec</a></td><td>0,2 l</td><td>4,68 €</td><td>23,40 €</td></tr>
+            </tbody>
+        </table>
+        <button id="lisaa" type="button" hidden>Näytä 30 lisää</button>
+        <noscript><p>Haku ja lajittelu käyttävät JavaScriptiä. Voit etsiä tuotteita myös suoraan <a href="https://www.alko.fi/fi/tuotteet">Alkon verkkosivulla</a>.</p></noscript>
+        <h2>Mitä alle 12 € tarkoittaa?</h2>
+        <p>Listalla on pakkauksia, joiden pantillinen hinta alittaa 12 euroa. Pakkauskoko näkyy jokaisella rivillä. Litrahinta auttaa vertaamaan erikokoisia pulloja ja pakkauksia.</p>
+        <h2>Mistä hinnat tulevat?</h2>
+        <p>Juomaan kokoaa hinnat Alkon julkaisemista tuotetiedoista. Listan hinta sisältää mahdollisen pantin. <span id="paivitys"></span> Tarkista ajantasainen hinta ja myymäläsaatavuus Alkon tuotesivulta.</p>
+        <p><a href="/alkon-viinit/">Kaikki Alkon viinit</a> · <a href="/kuohuviinit-alle-15-euroa/">Kuohuviinit alle 15 €</a> · <a href="/kuohuviinit-alle-20-euroa/">Kuohuviinit alle 20 €</a> · <a href="/punaviinit-alle-10-euroa/">Punaviinit alle 10 €</a> · <a href="/valkoviinit-alle-10-euroa/">Valkoviinit alle 10 €</a></p>
+    </main>
+    <script src="/alkon-hinnasto/hinnasto.js?v=11"></script>
+</body>
+</html>

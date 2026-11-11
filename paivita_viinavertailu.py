@@ -17,6 +17,8 @@ ROOT = Path(__file__).resolve().parent
 HINTAKENTAT = ('nimi', 'tyyppi', 'linkki', 'tilavuus_litraa', 'alkoholi_prosentti', 'hinta_eur', 'pantti_eur')
 BUDJETTIVIINIT = (
     ('kuohuviinit-alle-15-euroa', 'kuohuviinit', 15),
+    ('kuohuviinit-alle-12-euroa', 'kuohuviinit', 12),
+    ('kuohuviinit-alle-20-euroa', 'kuohuviinit', 20),
     ('punaviinit-alle-10-euroa', 'punaviinit', 10),
     ('valkoviinit-alle-10-euroa', 'valkoviinit', 10),
 )
