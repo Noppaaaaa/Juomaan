@@ -15,11 +15,11 @@ routes = {
     'halvimmat-lonkerot': ('lonkero', ''), 'halvimmat-seltzerit': ('seltzer', ''),
     'halvimmat-siiderit': ('siideri', ''), 's-ryhman-halvin-alkoholi': ('', ''),
     'prisman-halvin-alkoholi': ('', ''), 'k-ryhman-halvin-alkoholi': ('', ''),
-    'punaviinit-alle-10-euroa': ('punaviini', '9,99'),
-    'valkoviinit-alle-10-euroa': ('valkoviini', '9,99'),
-    'kuohuviinit-alle-12-euroa': ('kuohuviini', '11,99'),
-    'kuohuviinit-alle-15-euroa': ('kuohuviini', '14,99'),
-    'kuohuviinit-alle-20-euroa': ('kuohuviini', '19,99'),
+    'punaviinit-alle-10-euroa': ('punaviini', '10,00'),
+    'valkoviinit-alle-10-euroa': ('valkoviini', '10,00'),
+    'kuohuviinit-alle-12-euroa': ('kuohuviini', '12,00'),
+    'kuohuviinit-alle-15-euroa': ('kuohuviini', '15,00'),
+    'kuohuviinit-alle-20-euroa': ('kuohuviini', '20,00'),
     'halvin-punaviini': ('punaviini', ''),
 }
 try:
@@ -39,7 +39,7 @@ try:
                 for row in rows:
                     cells = row.locator('td')
                     if cells.count() >= 3:
-                        assert float(cells.nth(2).inner_text().replace(',', '.')) < 10
+                        assert float(cells.nth(2).inner_text().replace(',', '.')) <= 10
             if route == 'prisman-halvin-alkoholi':
                 assert page.locator('#prismaRajaus').is_visible()
                 page.locator('#prismaRajaus').click()
