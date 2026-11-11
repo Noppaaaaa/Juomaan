@@ -434,11 +434,18 @@
             // Equally close words are ambiguous; do not silently guess.
             return match&&!tie?match:tok;
         }
-        function tuoteVastaaHakua(t,tokens=hakuTokens){hakuSanat(t);return tokens.every(tok=>t._haku.includes(tok))}
+        const olutHakusanat = new Map([['kalja', 'olut'], ['olut', 'kalja']]);
+        function tuoteVastaaHakua(t, tokens = hakuTokens) {
+            hakuSanat(t);
+            return tokens.every(tok => {
+                const vastine = olutHakusanat.get(tok);
+                return t._haku.includes(tok) || (vastine && t._haku.includes(vastine));
+            });
+        }
         function laskeHakuOsumat(){
             if(!hakuTokens.length){for(const t of tuoteData)t._osuma=true;return}
             if(!hakuSanasto)hakuSanasto=[...new Set(kaikkiTuotteet.flatMap(hakuSanat))];
-            const tokens=hakuTokens.map(tok=>korjaaHakuToken(tok,hakuSanasto));
+            const tokens=hakuTokens.map(tok => olutHakusanat.has(tok) ? tok : korjaaHakuToken(tok, hakuSanasto));
             for(const t of tuoteData)t._osuma=tuoteVastaaHakua(t,tokens);
         }
         function getFilteredData() {

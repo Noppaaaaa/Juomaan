@@ -24,6 +24,14 @@ function search(query, products, catalog=products) {
 const spirits = {nimi:'Koskenkorva Viina', tyyppi:'Väkevät'};
 const wine = {nimi:'Esimerkin punaviini', tyyppi:'Viinit'};
 const products = [spirits, wine];
+const olut = {nimi: 'Vaalea olut'};
+const kalja = {nimi: 'Tumma kalja'};
+for (const term of ['kalja', 'olut']) {
+    assert.deepEqual(Array.from(search(term, [olut, kalja, wine])), [olut, kalja]);
+    assert.deepEqual(Array.from(search('tumma ' + term, [olut, kalja, wine])), [kalja]);
+}
+assert.deepEqual(Array.from(search('kalja', [olut])), [olut]);
+assert.deepEqual(Array.from(search('olut', [kalja])), [kalja]);
 assert.deepEqual(Array.from(search('viina', products)), [spirits]);
 assert.deepEqual(Array.from(search('viini', products)), [wine]);
 assert.deepEqual(Array.from(search('viinat', [{nimi:'Viinat', tyyppi:'Väkevät'}, wine])).map(t=>t.nimi), ['Viinat']);

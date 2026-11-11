@@ -14,6 +14,7 @@ const raha = new Intl.NumberFormat('fi-FI', { style: 'currency', currency: 'EUR'
 const koko = new Intl.NumberFormat('fi-FI', { maximumFractionDigits: 3 });
 const aakkoset = new Intl.Collator('fi');
 const normalisoi = arvo => arvo.toLocaleLowerCase('fi').normalize('NFD').replace(/\p{M}/gu, '');
+const olutHakusanat = new Map([['kalja', 'olut'], ['olut', 'kalja']]);
 const sivukoko = 30;
 let tuotteet = [], osumat = [], naytetty = 0;
 
@@ -55,7 +56,10 @@ function suodata() {
     osumat = tuotteet.filter(tuote => (!viinityyppi?.value || tuote.viinityyppi === viinityyppi.value)
         && (!kauppaketju?.value || tuote.lahde === kauppaketju.value)
         && vastaaVahvuutta(tuote)
-        && sanat.every(sana => tuote.hakuteksti.includes(sana)));
+        && sanat.every(sana => {
+            const vastine = olutHakusanat.get(sana);
+            return tuote.hakuteksti.includes(sana) || (vastine && tuote.hakuteksti.includes(vastine));
+        }));
     if (jarjestys.value === 'litrahinta') osumat.sort((a, b) => a.litrahinta - b.litrahinta);
     if (jarjestys.value === 'annoshinta') osumat.sort((a, b) => a.annoshinta - b.annoshinta);
     if (jarjestys.value === 'hinta') osumat.sort((a, b) => a.hinta - b.hinta);
