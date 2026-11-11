@@ -24,6 +24,7 @@ function search(query, products, catalog=products) {
 const spirits = {nimi:'Koskenkorva Viina', tyyppi:'Väkevät'};
 const wine = {nimi:'Esimerkin punaviini', tyyppi:'Viinit'};
 const products = [spirits, wine];
+assert.equal(search('lonkero', [{nimi:'Gin Long Drink', tyyppi:'Muut'}]).length, 1);
 const olut = {nimi: 'Vaalea olut'};
 const kalja = {nimi: 'Tumma kalja'};
 for (const term of ['kalja', 'olut']) {
